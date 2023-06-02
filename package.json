@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "nitro dev",
-    "build": "nitro build"
+    "build": "nitro build",
+    "deploy": "NITRO_PRESET=lagon bun nitro build && lagon deploy --prod"
   },
   "devDependencies": {
     "bun-types": "^0.4.0"

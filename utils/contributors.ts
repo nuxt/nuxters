@@ -24,6 +24,7 @@ export async function fetchContributors() {
       },
       headers: {
         Authorization: `Bearer ${config.github.accessToken}`,
+        'User-Agent': 'Nuxtbot',
         Accept: 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28',
       },

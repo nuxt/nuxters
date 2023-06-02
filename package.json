@@ -1,0 +1,15 @@
+{
+  "name": "nuxtbot",
+  "type": "module",
+  "scripts": {
+    "dev": "nitro dev",
+    "build": "nitro build"
+  },
+  "devDependencies": {
+    "bun-types": "^0.4.0"
+  },
+  "dependencies": {
+    "nitropack": "^2.3.3",
+    "ofetch": "^1.0.0"
+  }
+}

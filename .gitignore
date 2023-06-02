@@ -1,0 +1,6 @@
+node_modules
+.env
+.nitro
+.output
+routes/test.ts
+routes/add.ts

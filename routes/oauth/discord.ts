@@ -43,6 +43,7 @@ export default defineEventHandler(async event => {
 
   const user = await $fetch<{ id: string }>('https://discord.com/api/users/@me', {
     headers: {
+      'user-agent': 'Nuxtbot (https://nuxt.com, 0.1)',
       Authorization: `Bearer ${access_token}`,
     },
   })
@@ -58,7 +59,8 @@ export default defineEventHandler(async event => {
       {
         method: 'PUT',
         headers: {
-          Authorization: `Bot ${config.discord.botToken}`,
+          'user-agent': 'Nuxtbot (https://nuxt.com, 0.1)',
+          Authorization: `Bot ${config.discord.botToken.trim()}`,
         },
       }
     )

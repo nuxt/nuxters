@@ -9,9 +9,7 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const session = await getUserSession(event)
-
-  if (state !== session.data.state) {
+  if (state !== getCookie(event, 'state')) {
     throw createError({
       statusCode: 422,
       statusMessage: 'Potential cross-site request forgery detected.',
@@ -48,23 +46,11 @@ export default defineEventHandler(async event => {
     },
   })
 
+  const session = await getUserSession(event)
   await setUserSession(event, {
     ...session.data,
     discordId: user.id,
   })
-
-  if (session.data.contributions > 0) {
-    await $fetch(
-      `https://discord.com/api/guilds/${config.discord.guildId}/members/${user.id}/roles/${config.discord.memberRoleId}`,
-      {
-        method: 'PUT',
-        headers: {
-          'user-agent': 'Nuxtbot (https://nuxt.com, 0.1)',
-          Authorization: `Bot ${config.discord.botToken.trim()}`,
-        },
-      }
-    )
-  }
 
   return await sendRedirect(event, '/')
 })

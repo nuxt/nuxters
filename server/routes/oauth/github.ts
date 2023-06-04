@@ -7,9 +7,7 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const session = await getUserSession(event)
-
-  if (state !== session.data.state) {
+  if (state !== getCookie(event, 'state')) {
     throw createError({
       statusCode: 422,
       statusMessage: 'Potential cross-site request forgery detected.',
@@ -43,9 +41,9 @@ export default defineEventHandler(async event => {
     },
   })
 
+  const session = await getUserSession(event)
   await setUserSession(event, {
     ...session.data,
-    state: null,
     githubId,
   })
 

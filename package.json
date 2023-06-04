@@ -2,15 +2,15 @@
   "name": "nuxtbot",
   "type": "module",
   "scripts": {
-    "dev": "nitro dev",
-    "build": "nitro build",
-    "deploy": "NITRO_PRESET=lagon bun nitro build && lagon deploy --prod"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "deploy": "NITRO_PRESET=lagon bun nuxt build && lagon deploy --prod"
   },
   "devDependencies": {
     "bun-types": "^0.4.0"
   },
   "dependencies": {
-    "nitropack": "^2.3.3",
+    "nuxt": "^3.5.2",
     "ofetch": "^1.0.0"
   }
 }

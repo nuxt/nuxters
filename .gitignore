@@ -1,6 +1,7 @@
 node_modules
 .env
 .nitro
+.nuxt
 .output
-routes/test.ts
-routes/add.ts
+server/routes/test.ts
+server/routes/add.ts

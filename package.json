@@ -10,7 +10,10 @@
     "bun-types": "^0.4.0"
   },
   "dependencies": {
+    "@iconify-json/ri": "^1.1.9",
+    "@unocss/nuxt": "^0.52.7",
     "nuxt": "^3.5.2",
-    "ofetch": "^1.0.0"
+    "ofetch": "^1.0.0",
+    "unocss": "^0.52.7"
   }
 }

@@ -6,8 +6,7 @@ export default defineEventHandler(async event => {
     const contributions =
       contributors.find(contributor => contributor.node_id === session.data.githubId)?.contributions || 0
 
-    event.context.contributions = {
-      count: contributions,
-    }
+    event.context.contributions = contributions
+    event.context.roles = session.data.roles || []
   }
 })

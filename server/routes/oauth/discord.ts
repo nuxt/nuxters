@@ -49,6 +49,7 @@ export default defineEventHandler(async event => {
   const session = await getUserSession(event)
   await setUserSession(event, {
     ...session.data,
+    roles: [], // reset discord roles if they exist to allow resyncing
     discordId: user.id,
   })
 

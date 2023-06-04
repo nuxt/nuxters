@@ -1,11 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-  $production: {
-    experimental: {
-      noVueServer: true,
-    },
-  },
+  srcDir: 'src',
   modules: ['@unocss/nuxt'],
   css: ['~/assets/fonts.css', '@unocss/reset/tailwind.css'],
   experimental: {

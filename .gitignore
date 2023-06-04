@@ -3,5 +3,5 @@ node_modules
 .nitro
 .nuxt
 .output
-server/routes/test.ts
-server/routes/add.ts
+src/server/routes/test.ts
+src/server/routes/add.ts

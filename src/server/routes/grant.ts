@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
           method: 'PUT',
           headers: {
             'user-agent': 'Nuxtbot (https://nuxt.com, 0.1)',
-            Authorization: `Bot ${config.discord.botToken.trim()}`,
+            Authorization: `Bot ${config.discord.botToken}`,
           },
         }
       )

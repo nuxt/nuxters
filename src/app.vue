@@ -74,15 +74,16 @@ const links = {
                   v-if="provider === 'github'"
                   class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-1 items-center"
                 >
-                  <div class="i-ri-star-line w-4 h-4" />
+                  <div class="i-ri-star-fill w-4 h-4 text-yellow" />
                   {{ contributions }} contributions
                 </div>
                 <template v-if="provider === 'discord'">
                   <div v-if="roles.length" class="mr-auto flex gap-2">
                     <div
                       v-for="role in roles"
-                      class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-1 items-center"
+                      class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-2 items-center"
                     >
+                      <div class="rounded-full h-2 w-2 bg-green"></div>
                       {{ role }}
                     </div>
                   </div>
@@ -117,12 +118,3 @@ const links = {
     </a>
   </div>
 </template>
-
-<style>
-#__nuxt {
-  overflow: hidden;
-}
-.link {
-  @apply border-b hover:text-green-400 hover:border-green-400;
-}
-</style>

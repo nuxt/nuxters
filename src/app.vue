@@ -56,7 +56,7 @@ const links = {
             <a
               v-if="!linked[provider]"
               :href="link.link"
-              class="flex gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
+              class="flex mr-auto gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
             >
               <div class="w-4 h-4" :class="link.icon" />
               Link {{ link.name }} account

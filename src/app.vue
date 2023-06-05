@@ -78,7 +78,7 @@ useServerSeoMeta({
                   v-if="provider === 'github'"
                   class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-1 items-center"
                 >
-                  <div class="i-ri-star-fill w-4 h-4 text-yellow" />
+                  <div class="i-ri-star-fill w-3 h-3 text-yellow" />
                   {{ contributions }} contributions
                 </div>
                 <template v-if="provider === 'discord'">

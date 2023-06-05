@@ -33,6 +33,10 @@ const links = {
     link: '/connect/discord',
   },
 } satisfies Record<Provider, any>
+
+useServerSeoMeta({
+  description: 'Link your GitHub and Discord accounts to unlock your roles.',
+})
 </script>
 
 <template>

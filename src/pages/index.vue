@@ -38,7 +38,6 @@ const links = {
 
 const sharedUrl = computed(() => {
   if (typeof window !== 'undefined' && githubUsername.value) {
-    // get window url +
     return window.location.origin + '/nuxter/' + githubUsername.value
   }
   return ''

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {GithubUser} from "~~/types";
+import { GithubUser } from "~~/types"
 
 defineProps<{ nuxter: GithubUser }>()
 

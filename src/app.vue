@@ -10,11 +10,9 @@ useServerSeoMeta({
     <Spotlight class="z-[1]" />
     <div class="z-[2] relative flex flex-col min-h-screen items-center py-4 md:justify-center pb-8">
       <article
-        class="rounded-lg border-gray-800 border-[1px] px-4 py-4 bg-gradient-to-r from-[rgba(24,24,27,1)] backdrop-blur-sm to-transparent max-w-[40rem] w-full"
+        class="rounded-lg border-gray-800 border-[1px] px-4 py-4 bg-gradient-to-r from-[rgba(24,24,27,0.65)] backdrop-blur-sm to-transparent max-w-[40rem] w-full"
       >
-        <div>
-          <img src="/icon.svg" class="w-5 h-5" height="20" width="20" alt="Nuxt logo" />
-        </div>
+        <img src="/icon.svg" class="w-5 h-5" height="20" width="20" alt="Nuxt logo" />
         <div class="py-2">
           <NuxtPage />
         </div>

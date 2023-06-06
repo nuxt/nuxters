@@ -59,73 +59,75 @@ function copyShareUrl() {
 }
 </script>
 <template>
-<p class="font-thin">Link your GitHub and Discord accounts.</p>
-<p class="font-thin mt-1 opacity-50">
-  Your details are stored in a cookie and only used to grant you roles on Discord.
-</p>
-<div class="grid gap-5 text-sm mt-4 grid-cols-1 md:grid-cols-2 items-start">
-  <template v-for="(link, provider) in links" :key="provider">
-  <a
-      v-if="!linked[provider]"
-      :href="link.link"
-      class="flex gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
-  >
-    <div class="w-4 h-4" :class="link.icon" />
-    Link {{ link.name }} account
-  </a>
-  <div
-      v-else
-      class="flex gap-2 items-start px-1 rounded border-[1px] border-transparent border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
-  >
-    <div class="flex gap-2 flex-col">
-      <div class="flex gap-2">
-        <div class="w-4 h-4" :class="link.icon" />
-        {{ link.name }} linked
-      </div>
-      <div
-          v-if="provider === 'github'"
-          class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-1 items-center"
-      >
-        <div class="i-ri-star-fill w-4 h-4 text-yellow" />
-        {{ contributions }} contributions
-      </div>
-      <template v-if="provider === 'discord'">
-      <div v-if="roles.length" class="mr-auto flex gap-2">
-        <div
-            v-for="role in roles"
-            class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-2 items-center"
-        >
-          <div class="rounded-full h-2 w-2 bg-green"></div>
-          {{ role }}
+<div>
+  <p class="font-thin">Link your GitHub and Discord accounts.</p>
+  <p class="font-thin mt-1 opacity-50">
+    Your details are stored in a cookie and only used to grant you roles on Discord.
+  </p>
+  <div class="grid gap-5 text-sm mt-4 grid-cols-1 md:grid-cols-2 items-start">
+    <template v-for="(link, provider) in links" :key="provider">
+    <a
+        v-if="!linked[provider]"
+        :href="link.link"
+        class="flex gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
+    >
+      <div class="w-4 h-4" :class="link.icon" />
+      Link {{ link.name }} account
+    </a>
+    <div
+        v-else
+        class="flex gap-2 items-start px-1 rounded border-[1px] border-transparent border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
+    >
+      <div class="flex gap-2 flex-col">
+        <div class="flex gap-2">
+          <div class="w-4 h-4" :class="link.icon" />
+          {{ link.name }} linked
         </div>
+        <div
+            v-if="provider === 'github'"
+            class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-1 items-center"
+        >
+          <div class="i-ri-star-fill w-4 h-4 text-yellow" />
+          {{ contributions }} contributions
+        </div>
+        <template v-if="provider === 'discord'">
+        <div v-if="roles.length" class="mr-auto flex gap-2">
+          <div
+              v-for="role in roles"
+              class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-2 items-center"
+          >
+            <div class="rounded-full h-2 w-2 bg-green"></div>
+            {{ role }}
+          </div>
+        </div>
+        <a
+            v-else-if="linked.github && linked.discord && contributions !== '0'"
+            href="/grant"
+            class="text-xs rounded border-[1px] text-green-400 bg-green-400 bg-opacity-[0.1] hover:bg-opacity-[0.2] border-green-400 border-opacity-[0.1] transition-all hover:border-opacity-[0.7] p-1 flex gap-1 items-center"
+            @click.native="refreshing = 'nuxter'"
+        >
+          <div v-if="refreshing === 'nuxter'" class="i-ri-refresh-line animate-spin w-4 h-4" />
+          <div v-else class="i-ri-lock-line w-4 h-4" />
+          Unlock nuxter role
+        </a>
+        </template>
       </div>
       <a
-          v-else-if="linked.github && linked.discord && contributions !== '0'"
-          href="/grant"
-          class="text-xs rounded border-[1px] text-green-400 bg-green-400 bg-opacity-[0.1] hover:bg-opacity-[0.2] border-green-400 border-opacity-[0.1] transition-all hover:border-opacity-[0.7] p-1 flex gap-1 items-center"
-          @click.native="refreshing = 'nuxter'"
+          class="ml-auto rounded border-[1px] text-green-400 bg-green-400 bg-opacity-[0.1] hover:bg-opacity-[0.2] border-green-400 border-opacity-[0.1] transition-all hover:border-opacity-[0.7] p-2"
+          :href="link.link + '?refresh=1'"
+          @click.native="refreshing = provider"
       >
-        <div v-if="refreshing === 'nuxter'" class="i-ri-refresh-line animate-spin w-4 h-4" />
-        <div v-else class="i-ri-lock-line w-4 h-4" />
-        Unlock nuxter role
+        <span class="sr-only">Refresh link</span>
+        <div class="i-ri-refresh-line ml-auto w-4 h-4" :class="{ 'animate-spin': refreshing === provider }" />
       </a>
-      </template>
     </div>
-    <a
-        class="ml-auto rounded border-[1px] text-green-400 bg-green-400 bg-opacity-[0.1] hover:bg-opacity-[0.2] border-green-400 border-opacity-[0.1] transition-all hover:border-opacity-[0.7] p-2"
-        :href="link.link + '?refresh=1'"
-        @click.native="refreshing = provider"
-    >
-      <span class="sr-only">Refresh link</span>
-      <div class="i-ri-refresh-line ml-auto w-4 h-4" :class="{ 'animate-spin': refreshing === provider }" />
-    </a>
+    </template>
   </div>
-  </template>
   <div
       v-if="linked.github && linked.discord"
       class="w-full py-4"
   >
-    <div class="mb-2">
+    <div class="mb-2 text-sm">
       <span class="i-ri-twitter-fill w-4 h-4 text-blue inline-block mr-1"></span>
       Share that your a Nuxter!
     </div>
@@ -139,7 +141,7 @@ function copyShareUrl() {
           class="ml-auto w-60px text-center justify-center flex items-center rounded border-[1px] text-green-400 bg-green-400 bg-opacity-[0.1] hover:bg-opacity-[0.2] border-green-400 border-opacity-[0.1] transition-all hover:border-opacity-[0.7] p-2"
       >
         <span v-if="!copied">Copy</span>
-        <span v-else class="i-ri-check-fill w-6 h-6 inline-block"> </span>
+        <span v-else class="i-ri-check-fill w-6 h-6 inline-block animate-light-speed-in-left"> </span>
       </div>
     </button>
   </div>

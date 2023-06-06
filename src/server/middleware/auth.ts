@@ -3,10 +3,9 @@ export default defineEventHandler(async event => {
 
   if (session.data.githubId) {
     const contributors = await fetchContributors()
-    const contributions =
-      contributors.find(contributor => contributor.node_id === session.data.githubId)?.contributions || 0
-
-    event.context.contributions = contributions
+    const contributor = contributors.find(contributor => contributor.node_id === session.data.githubId)
+    event.context.contributions = contributor?.contributions || 0
+    event.context.githubUsername = contributor?.login
     event.context.roles = session.data.roles || []
   }
 })

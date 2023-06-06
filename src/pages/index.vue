@@ -8,9 +8,6 @@ const contributions = useState<string>()
 const githubUsername = useState<string>()
 const roles = useState<string[]>()
 
-githubUsername.value = 'harlan-zw'
-contributions.value = 10
-
 if (process.server) {
   const event = useRequestEvent()
   const session = await getSession(event, { password: useRuntimeConfig().sessionPassword })

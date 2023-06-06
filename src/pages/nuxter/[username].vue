@@ -6,7 +6,7 @@ const { username } = useRoute().params
 const contributor = useState<GithubUser>()
 
 if (process.server) {
-  const nuxter = await $fetch('/api/contributor', { query: { username } })
+  const nuxter = await $fetch(`/api/contributor/${username}`)
   if (nuxter.statusCode === 404) {
     throw createError({ statusCode: 404, statusMessage: 'Nuxter Not Found' })
   }
@@ -30,10 +30,10 @@ if (process.server) {
       />
       <div class="flex items-center gap-5">
         <div class="text-7xl font-bold flex items-center">{{ contributor.contributions }}</div>
-        <span class="italic text-gray-400 text-xs"
-          >Contributions to the <br />
-          <a href="" class="underline">nuxt/nuxt</a> repo.</span
-        >
+        <div class="italic text-gray-400 text-xs">
+          Contributions to the <br />
+          <a href="" class="underline">nuxt/nuxt</a> repo.
+        </div>
       </div>
     </div>
     <div class="flex items-center justify-center gap-3 mb-7">
@@ -43,11 +43,10 @@ if (process.server) {
       </div>
     </div>
     <div>
-      Visit their
-      <a :href="`https://github.com/${contributor.login}`" class="inline-flex items-center justify-center"
-        >GitHub
-        <div class="i-ri-github-fill w-4 h-4 ml-2"></div
-      ></a>
+      <a :href="`https://github.com/${contributor.login}`" class="inline-flex items-center justify-center">
+        Visit their GitHub
+        <span class="block i-ri-github-fill w-4 h-4 ml-2" />
+      </a>
     </div>
   </div>
 </template>

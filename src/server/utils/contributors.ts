@@ -1,4 +1,4 @@
-import { GithubUser } from "../../../types"
+import { GithubUser } from '../../../types'
 
 interface CacheEntry<T> {
   data: T

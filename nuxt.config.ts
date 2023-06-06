@@ -18,19 +18,19 @@ export default defineNuxtConfig({
       {
         name: 'RoobertPRO',
         weight: 300,
-        path: 'fonts/RoobertPRO-Light.woff'
+        path: 'fonts/RoobertPRO-Light.woff',
       },
       {
         name: 'RoobertPRO',
         weight: 400,
-        path: 'fonts/RoobertPRO-Regular.woff'
+        path: 'fonts/RoobertPRO-Regular.woff',
       },
       {
         name: 'RoobertPRO',
         weight: 700,
-        path: 'fonts/RoobertPRO-Bold.woff'
+        path: 'fonts/RoobertPRO-Bold.woff',
       },
-    ]
+    ],
   },
   runtimeConfig: {
     url: '',

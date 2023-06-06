@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
           :href="link.link"
           class="flex gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
         >
-          <div class="w-4 h-4" :class="link.icon" />
+          <div class="w-3 h-3" :class="link.icon" />
           Link {{ link.name }} account
         </a>
         <div
@@ -109,8 +109,8 @@ onBeforeUnmount(() => {
                 class="text-xs rounded border-[1px] text-green-400 bg-green-400 bg-opacity-[0.1] hover:bg-opacity-[0.2] border-green-400 border-opacity-[0.1] transition-all hover:border-opacity-[0.7] p-1 flex gap-1 items-center"
                 @click.native="refreshing = 'nuxter'"
               >
-                <div v-if="refreshing === 'nuxter'" class="i-ri-refresh-line animate-spin w-4 h-4" />
-                <div v-else class="i-ri-lock-line w-4 h-4" />
+                <span v-if="refreshing === 'nuxter'" class="block i-ri-refresh-line animate-spin w-4 h-4" />
+                <span v-else class="block i-ri-lock-line w-4 h-4" />
                 Unlock nuxter role
               </a>
             </template>
@@ -121,7 +121,10 @@ onBeforeUnmount(() => {
             @click.native="refreshing = provider"
           >
             <span class="sr-only">Refresh link</span>
-            <div class="i-ri-refresh-line ml-auto w-4 h-4" :class="{ 'animate-spin': refreshing === provider }" />
+            <span
+              class="block i-ri-refresh-line ml-auto w-4 h-4"
+              :class="{ 'animate-spin': refreshing === provider }"
+            />
           </a>
         </div>
       </template>

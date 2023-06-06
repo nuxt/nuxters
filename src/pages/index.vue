@@ -126,10 +126,10 @@ onBeforeUnmount(() => {
         </div>
       </template>
     </div>
-    <div v-if="linked.github && linked.discord" class="w-full py-4">
-      <div class="mb-2 text-sm">
+    <div v-if="linked.github" class="w-full py-4 px-1 flex flex-col gap-2">
+      <div class="text-sm">
         <span class="i-ri-twitter-fill w-4 h-4 text-blue inline-block mr-1"></span>
-        Share that your a Nuxter!
+        Share that you're a Nuxter!
       </div>
       <button
         type="button"

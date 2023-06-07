@@ -46,15 +46,16 @@ const sharedUrl = computed(() => {
 const copied = ref(false)
 let timeoutId
 function copyShareUrl() {
-  navigator.clipboard.writeText(sharedUrl.value)
-      .then(() => {
-        copied.value = true
-        timeoutId = setTimeout(() => {
-          copied.value = false
-        }, 4000)
-      })
-      // silently fails
-      .catch(() => {})
+  navigator.clipboard
+    .writeText(sharedUrl.value)
+    .then(() => {
+      copied.value = true
+      timeoutId = setTimeout(() => {
+        copied.value = false
+      }, 4000)
+    })
+    // silently fails
+    .catch(() => {})
 }
 
 onBeforeUnmount(() => {
@@ -72,7 +73,7 @@ onBeforeUnmount(() => {
         <a
           v-if="!linked[provider]"
           :href="link.link"
-          class="flex gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
+          class="flex mr-auto gap-2 items-center px-3 py-2 rounded border-[1px] bg-white bg-opacity-[0.1] hover:bg-opacity-[0.2] border-white border-opacity-[0.1] transition-all hover:border-opacity-[0.7]"
         >
           <div class="w-3 h-3" :class="link.icon" />
           Link {{ link.name }} account
@@ -90,7 +91,7 @@ onBeforeUnmount(() => {
               v-if="provider === 'github'"
               class="text-xs rounded border-[1px] text-gray-400 bg-gray-400 bg-opacity-[0.1] border-gray-400 border-opacity-[0.1] py-1 px-2 mr-auto flex gap-1 items-center"
             >
-              <div class="i-ri-star-fill w-4 h-4 text-yellow" />
+              <div class="i-ri-star-fill w-3 h-3 text-yellow" />
               {{ contributions }} contributions
             </div>
             <template v-if="provider === 'discord'">

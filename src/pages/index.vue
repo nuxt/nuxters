@@ -44,18 +44,22 @@ const sharedUrl = computed(() => {
 })
 
 const copied = ref(false)
+let timeoutId
 function copyShareUrl() {
-  const el = document.createElement('textarea')
-  el.value = sharedUrl.value
-  document.body.appendChild(el)
-  el.select()
-  document.execCommand('copy')
-  document.body.removeChild(el)
-  copied.value = true
-  setTimeout(() => {
-    copied.value = false
-  }, 2000)
+  navigator.clipboard.writeText(sharedUrl.value)
+      .then(() => {
+        copied.value = true
+        timeoutId = setTimeout(() => {
+          copied.value = false
+        }, 4000)
+      })
+      // silently fails
+      .catch(() => {})
 }
+
+onBeforeUnmount(() => {
+  timeoutId && clearTimeout(timeoutId)
+})
 </script>
 <template>
   <div>

@@ -13,6 +13,7 @@
     "@iconify-json/ri": "^1.1.9",
     "@unocss/nuxt": "^0.52.7",
     "nuxt": "^3.5.2",
+    "nuxt-og-image": "^2.0.0-beta.48",
     "ofetch": "^1.0.0",
     "unocss": "^0.52.7"
   }

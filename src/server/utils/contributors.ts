@@ -1,9 +1,11 @@
+import { GithubUser } from '../../../types'
+
 interface CacheEntry<T> {
   data: T
   expires: number
 }
 
-export async function fetchContributors() {
+export async function fetchContributors(): Promise<GithubUser[]> {
   const storage = useStorage()
 
   const cachedContributors = (await storage.getItem('github:contributors')) as CacheEntry<any[]>
@@ -13,7 +15,7 @@ export async function fetchContributors() {
 
   const config = useRuntimeConfig()
 
-  const contributors = []
+  const contributors: GithubUser[] = []
   let page = 1
 
   do {

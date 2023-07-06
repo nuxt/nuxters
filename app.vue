@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 useServerSeoMeta({
   description: 'Link your GitHub and Discord accounts to unlock your roles.',
 })
@@ -22,5 +22,45 @@ useServerSeoMeta({
       <span class="sr-only">Nuxt</span>
       <img class="h-4" width="132" height="32" alt="Nuxt logo" src="/nuxt.svg" />
     </a>
+  </div>
+</template> -->
+
+<script setup lang="ts">
+
+useHead({
+  link: [
+    { rel: 'icon', href: '/icon.png' }
+  ],
+  meta: [
+    { property: 'og:site_name', content: 'Nuxters' },
+    { property: 'og:type', content: 'website' },
+        // TODO: UPDATE
+    //{ property: 'og:image', content: 'https://nuxtlabs.com/social.png' },
+    { property: 'og:image:alt', content: 'Nuxters' },
+    { property: 'description', content: 'description' },
+    { property: 'twitter:card', content: 'summary_large_image' },
+    { property: 'twitter:site', content: '@Nuxters' },
+  ],
+  htmlAttrs: {
+    lang: 'en'
+  },
+  bodyAttrs: {
+    class: 'bg-gray-950 font-light'
+  }
+})
+
+useServerSeoMeta({
+  description: 'Link your GitHub and Discord accounts to unlock your roles.',
+})
+
+</script>
+
+<template>
+  <div>
+    <AppHeader />
+    <UContainer>
+      <NuxtPage />
+    </UContainer>
+    <!-- <AppFooter /> -->
   </div>
 </template>

@@ -7,14 +7,16 @@
     "deploy": "NITRO_PRESET=lagon bun nuxt build && lagon deploy --prod"
   },
   "devDependencies": {
-    "bun-types": "^0.4.0"
+    "bun-types": "^0.4.0",
+    "@nuxthq/ui": "^2.5.0"
   },
   "dependencies": {
+    "@iconify-json/bx": "^1.1.6",
     "@iconify-json/ri": "^1.1.9",
-    "@unocss/nuxt": "^0.52.7",
+    "@iconify-json/uil": "^1.1.4",
+    "@nuxtjs/google-fonts": "^3.0.1",
     "nuxt": "^3.5.2",
     "nuxt-og-image": "^2.0.0-beta.48",
-    "ofetch": "^1.0.0",
-    "unocss": "^0.52.7"
+    "ofetch": "^1.0.0"
   }
 }

@@ -18,7 +18,7 @@ const links = [
     <UContainer class="flex justify-between items-center">
       <UPopover :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }">
         <UButton variant="link" class="flex flex-row gap-x-4 items-center">
-          <Logo class="w-40 h-12" />
+          <Logo class="w-32 h-8 sm:w-40 sm:h-12" />
           <img class="text-gray-300 w-4 h-4 mt-2" src="/dropdown-chevron.svg" />
         </UButton>
 
@@ -36,15 +36,15 @@ const links = [
           </ul>
         </template>
       </UPopover>
-      <div class="flex mt-2 items-center gap-x-4 text-white font-medium">
-        <UButton class="flex gap-x-2 items-center -mr-2" to="/" variant="link" color="gray" size="xl">
+      <div class="flex mt-2 items-center sm:gap-x-4 text-white font-medium">
+        <UButton class="flex items-center sm:-mr-2" to="/" variant="link" color="gray" size="xl">
           <UIcon name="i-bx-bxl-discord-alt" class="h-5 w-5" />
           <span class="hidden sm:block">Join us</span>
         </UButton>
-        <div class="h-8 w-[1px] bg-gray-300 -mr-6" />
+        <div class="hidden sm:block h-8 w-[1px] bg-gray-300 -mr-2 sm:-mr-6" />
         <UButton class="flex gap-x-2 items-center" variant="link" color="gray" size="xl" to="/">
           <UIcon name="i-bx-bxl-github" class="h-5 w-5 sm:ml-4" />
-          <span class="hidden sm:block">Star us - 45.8</span>
+          <span class="hidden sm:block">Star us - 45.8k</span>
         </UButton>
       </div>
     </UContainer>

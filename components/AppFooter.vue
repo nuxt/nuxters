@@ -26,7 +26,7 @@ const socialLinks = [
       </span>
       <ul class="flex items-center justify-center gap-x-2">
         <li v-for="social in socialLinks" :key="social.to" >
-          <UButton variant="link" color="gray" :to="social.to" :alt="social.alt" :icon="social.icon" />
+          <UButton variant="link" color="gray" :to="social.to" :alt="social.alt" :icon="social.icon" target="_blank" />
         </li>
       </ul>
     </UContainer>

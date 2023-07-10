@@ -27,11 +27,7 @@
           </span>
         </div>
       </div>
-      <div
-        class="w-full lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[300px] flex items-center justify-center border border-gray-900 self-start"
-      >
-        <span class="text-white">CARD</span>
-      </div>
+      <HomeCard />
     </div>
   </div>
 </template>

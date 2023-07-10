@@ -109,13 +109,14 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
               >
                 <UButton
                   class="absolute right-2 top-2 transition-colors duration-200"
-                  color="black"
+                  color="white"
+                  variant="ghost"
                   size="xl"
                   icon="i-bx-x-circle"
                   @click="isOpen = false"
                 />
                 <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg p-8">
-                  <h5 class="text-2xl text-white font-medium text-center pb-4">How is the score calculated?</h5>
+                  <h5 class="text-2xl text-white font-medium pb-4">How is the score calculated?</h5>
                   <span class="pl-4">Issues * 1</span>
                   <span>+ Merged pull requests * 0.5</span>
                   <span>+ Helpful issues * 3</span>

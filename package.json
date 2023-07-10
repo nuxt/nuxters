@@ -7,8 +7,9 @@
     "deploy": "NITRO_PRESET=lagon bun nuxt build && lagon deploy --prod"
   },
   "devDependencies": {
-    "bun-types": "^0.4.0",
-    "@nuxthq/ui": "^2.5.0"
+    "@nuxt/devtools": "^0.6.7",
+    "@nuxthq/ui": "^2.5.0",
+    "bun-types": "^0.4.0"
   },
   "dependencies": {
     "@iconify-json/bx": "^1.1.6",

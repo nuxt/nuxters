@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '1 helpful comment (3+ reactions)']
+</script>
+
 <template>
   <div class="text-white">
     <h1 class="text-6xl font-bold mb-4">Are you a <span class="text-green-400">Nuxter</span>?</h1>
@@ -32,12 +36,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '1 helpful comment (3+ reactions)']
-</script>
-
 <style scoped lang="postcss">
-a {
+p a {
   @apply border-b hover:border-green-400 hover:text-green-400;
 }
 </style>

@@ -4,10 +4,10 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'Nuxt Stars',
+      title: 'Are you a Nuxter?',
     },
   },
-  modules: ['nuxt-og-image', '@nuxthq/ui', '@nuxtjs/google-fonts'],
+  modules: ['@nuxt/devtools', 'nuxt-og-image', '@nuxthq/ui', '@nuxtjs/google-fonts'],
   ogImage: {
     site: process.env.NUXT_SITE || '',
   },

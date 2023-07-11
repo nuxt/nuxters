@@ -51,11 +51,11 @@ export default defineNuxtConfig({
 
   nitro: {
     storage: {
-      // cache: {
-      //   driver: 'cloudflare-kv-binding',
-      //   binding: 'KV',
-      //   base: 'cache',
-      // },
+      cache: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'KV',
+        base: 'cache',
+      },
     },
     devStorage: {
       cache: {

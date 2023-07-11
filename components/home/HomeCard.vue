@@ -141,8 +141,12 @@ if (process.server) {
               <UModal
                 class="relative"
                 v-model="isOpen"
-                :ui="{ background: 'bg-gray-900', overlay: { background: 'backdrop-blur bg-gray-800/70' } }"
-              >
+                :ui="{
+                  background: 'bg-gray-900',
+                  container: 'flex min-h-full justify-center text-center',
+                  padding: 'p-0',
+                  overlay: { background: 'backdrop-blur bg-gray-800/70' },
+                }">
                 <UButton
                   class="absolute right-2 top-2 transition-colors duration-200"
                   color="white"
@@ -152,10 +156,19 @@ if (process.server) {
                   @click="isOpen = false"
                 />
                 <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg">
-                  <h5 class="text-2xl text-white font-medium p-4 bg-gray-950">How is the score calculated?</h5>
+                  <h5 class="text-2xl text-white font-medium px-4 py-3 pr-10 bg-gray-950">How is the score calculated?</h5>
                   <UTable class="overflow-x-auto" :rows="detailedScore" :ui="{
-                    th: { base: 'first:text-left text-center last:text-right' },
-                    td: { base: 'first:text-left text-center last:text-right whitespace-nowrap' }
+                    th: {
+                      base: 'first:text-left text-center last:text-right',
+                      padding: 'px-4 py-3.5',
+                    },
+                    td: {
+                      base: 'first:text-left text-center last:text-right whitespace-nowrap',
+                      padding: 'px-4 py-3.5',
+                    },
+                    tr: {
+                      base: 'last:font-bold'
+                    }
                   }" />
                 </div>
               </UModal>

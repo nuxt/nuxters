@@ -14,7 +14,7 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig(event)
 
   const { access_token } = await $fetch<{ access_token: string }>('https://github.com/login/oauth/access_token', {
     method: 'POST',

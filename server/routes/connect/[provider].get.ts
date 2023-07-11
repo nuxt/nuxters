@@ -5,7 +5,7 @@ export default defineEventHandler(async event => {
   const provider = getRouterParam(event, 'provider')
   const { refresh } = getQuery(event)
 
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig(event)
   const session = await getUserSession(event)
 
   if (provider === 'github' && (refresh || !session.data.githubId)) {

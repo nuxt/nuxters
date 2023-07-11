@@ -16,7 +16,7 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig(event)
 
   const { access_token } = await $fetch<{ access_token: string }>('https://discord.com/api/oauth2/token', {
     method: 'POST',

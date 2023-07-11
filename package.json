@@ -17,6 +17,7 @@
     "@nuxtjs/google-fonts": "^3.0.1",
     "nuxt": "^3.5.2",
     "nuxt-og-image": "^2.0.0-beta.48",
-    "ofetch": "^1.0.0"
+    "ofetch": "^1.0.0",
+    "unstorage": "^1.8.0"
   }
 }

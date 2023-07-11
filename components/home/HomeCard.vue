@@ -36,12 +36,12 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
 
 <template>
   <NuxtLink
-    class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[300px]"
+    class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
     :class="linked['github'] && canUnlockBadge ? 'card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
   >
     <UCard
       :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"
-      class="z-50 !bg-gray-950 card p-8 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[300px]"
+      class="z-50 !bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
     >
       <!--github connect -->
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
@@ -116,10 +116,11 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
                 />
                 <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg p-8">
                   <h5 class="text-2xl text-white font-medium text-center pb-4">How is the score calculated?</h5>
-                  <span class="pl-4">Issues * 1</span>
-                  <span>+ Merged pull requests * 0.5</span>
+                  <span class="pl-4">Merged pull requests {{ user.merged_pull_requests }} * 5</span>
                   <span>+ Helpful issues * 3</span>
                   <span>+ Helpful comments * 2</span>
+                  <span>+ Issues * 1</span>
+                  <span>+ Comments * 0.5</span>
                   <span>+ Reactions * 0.1</span>
                 </div>
               </UModal>

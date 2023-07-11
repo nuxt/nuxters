@@ -1,10 +1,10 @@
 <template>
   <div class="bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-slate-800 rounded-lg ">
     <div class="bg-[url('/join-gradient-bg-sm.svg')] lg:bg-[url('/join-gradient-bg.svg')] bg-no-repeat bg-bottom flex flex-col gap-y-3 text-slate-100 items-center justify-center  py-[72px] px-4 sm:px-6 md:px-16 lg:px-[172px]">
-      <h1 class="text-4xl font-bold">
+      <h1 class="text-4xl font-bold text-center">
         Ready to <span class="text-green-400">Join us</span>?
       </h1>
-      <p class="text-slate-300 text-xl text-center">
+      <p class="text-slate-300 text-base sm:text-lg lg:text-xl text-center">
         Become a Nuxter and help shape the future of Nuxt.
         Contribute, collaborate and join our community today!
       </p>

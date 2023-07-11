@@ -2,7 +2,7 @@
   <div class="text-white">
     <h1 class="text-6xl font-bold mb-8">Are you a <span class="text-green-400">Nuxter</span>?</h1>
     <div class="flex flex-col gap-y-[60px] md:justify-between md:flex-row items-center gap-x-[92px]">
-      <div class="flex flex-col gap-y-4">
+      <div class="flex flex-col gap-y-4 text-gray-300">
         <p class="text-lg">
           Discover your contributions on
           <NuxtLink to="https://github.com/nuxt/nuxt" target="_blank"> <span class="underline">nuxt</span></NuxtLink>

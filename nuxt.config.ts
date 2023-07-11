@@ -36,10 +36,7 @@ export default defineNuxtConfig({
   googleFonts: {
     display: 'swap',
     families: {
-      'DM+Sans': {
-        wght: [300 ,400, 500, 700],
-        ital: [300]
-      },
+      'DM+Sans': [400, 500, 700]
     },
   },
   ui: {

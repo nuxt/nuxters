@@ -7,7 +7,7 @@ useHead({
     lang: 'en'
   },
   bodyAttrs: {
-    class: 'bg-gray-950 font-light'
+    class: 'bg-gray-950'
   }
 })
 

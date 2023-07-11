@@ -4,7 +4,7 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"DMSans"', '"DMSans override"', 'sans-serif'],
+        sans: ["'DM Sans'", "'DM Sans override'", "'sans-serif'"],
       },
       colors: {
         slate: {

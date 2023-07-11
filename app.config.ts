@@ -13,6 +13,33 @@ export default defineAppConfig({
           link: 'text-gray-300 hover:text-gray-200 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-300'
         },
       }
+    },
+    table: {
+      divide: 'divide-y divide-gray-700',
+      tbody: 'divide-y divide-gray-800',
+      tr: {
+        selected: 'bg-gray-800/50'
+      },
+      th: {
+        base: 'text-left rtl:text-right',
+        padding: 'px-3 py-3.5',
+        color: 'text-gray-200',
+        font: 'font-semibold',
+        size: 'text-sm'
+      },
+      td: {
+        color: 'text-gray-300',
+      },
+    },
+    badge: {
+      color: {
+        primary: {
+          solid: 'bg-primary-400/10 text-primary-400 ring-1 ring-inset ring-primary-400 ring-opacity-10 dark:ring-opacity-20'
+        }
+      },
+      size: {
+        md: 'text-base px-2 py-1',
+      },
     }
   },
 })

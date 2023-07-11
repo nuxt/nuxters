@@ -27,32 +27,81 @@ if (process.server) {
   roles.value = event.context.roles || []
 }
 
-const user = computed(() => usersStats.value!.filter(user => user.username.toLowerCase() === githubUsername.value.toLowerCase())[0])
-const canUnlockBadge = computed(() => user.value.helpful_comments > 0 || user.value.helpful_issues > 0 || user.value.merged_pull_requests > 0)
+const user = computed(
+  () => usersStats.value!.filter(user => user.username.toLowerCase() === githubUsername.value.toLowerCase())[0]
+)
+const canUnlockBadge = computed(
+  () => user.value.helpful_comments > 0 || user.value.helpful_issues > 0 || user.value.merged_pull_requests > 0
+)
 const helpfulComments = computed(() => user.value.helpful_comments > 0)
 const helpfulIssues = computed(() => user.value.helpful_issues > 0)
 const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
+
+const detailedScore = computed(() => {
+  const mergedPullRequest = ref({ multiplier: 5, number: user.value.merged_pull_requests, total: user.value.merged_pull_requests * 5 })
+  const helpfulIssues = ref({ multiplier: 3, number: user.value.helpful_issues, total: user.value.helpful_issues * 3 })
+  const helpfulComments = ref({ multiplier: 2, number: user.value.helpful_comments, total: user.value.helpful_comments * 2 })
+  const issues = ref({ multiplier: 1, number: user.value.issues, total: user.value.issues })
+  const comments = ref({ multiplier: 0.5, number: user.value.comments, total: user.value.comments })
+  const reactions = ref({ multiplier: 0.1, number: user.value.reactions, total: user.value.reactions * 0.1 })
+
+  return [
+    {
+      Type: 'Merged pull requests',
+      multiplier: mergedPullRequest.value.multiplier,
+      Amount: mergedPullRequest.value.number,
+      Total: mergedPullRequest.value.total,
+    },
+    {
+      Type: 'Helpful issues',
+      multiplier: helpfulIssues.value.multiplier,
+      Amount: helpfulIssues.value.number,
+      Total: helpfulIssues.value.total,
+    },
+    {
+      Type: 'Helpful comments',
+      multiplier: helpfulComments.value.multiplier,
+      Amount: helpfulComments.value.number,
+      Total: helpfulComments.value.total,
+    },
+    {
+      Type: 'Issues',
+      multiplier: issues.value.multiplier,
+      Amount: issues.value.number,
+      Total: issues.value.total,
+    },
+    {
+      Type: 'Comments',
+      multiplier: comments.value.multiplier,
+      Amount: comments.value.number,
+      Total: comments.value.total,
+    },
+    {
+      Type: 'Reactions',
+      multiplier: reactions.value.multiplier,
+      Amount: reactions.value.number,
+      Total: reactions.value.total,
+    },
+    {
+      Type: 'Score',
+      multiplier: '',
+      Amount: '',
+      Total: user.value.score,
+    },
+  ]
+})
 </script>
 
 <template>
-  <NuxtLink
-    class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked['github'] && canUnlockBadge ? 'card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
-  >
-    <UCard
-      :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"
-      class="z-50 !bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    >
+  <NuxtLink class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
+    :class="linked['github'] && canUnlockBadge ? 'card-border p-[1px]' : 'border border-gray-800 rounded-lg'">
+    <UCard :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"
+      class="z-50 !bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]">
       <!--github connect -->
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
         <p class="text-xl text-gray-50">Unlock your role on Nuxt Discord server.</p>
-        <UButton
-          icon="i-bx-bxl-github"
-          :ui="{ rounded: 'rounded-full' }"
-          class="relative px-7 max-w-fit hover:bg-gray-700"
-          variant="outline"
-          color="gray"
-        >
+        <UButton icon="i-bx-bxl-github" :ui="{ rounded: 'rounded-full' }"
+          class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray">
           <a href="/connect/github" class="absolute inset-0 w-full h-full" />
           <span class="text-sm text-gray-300">Connect with GitHub</span>
         </UButton>
@@ -63,28 +112,18 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
         <img v-if="canUnlockBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full h-full" />
 
         <div class="absolute left-0 right-0 flex justify-center -bottom-4">
-          <UButton
-            class="relative"
-            :class="[
-              canUnlockBadge ? 'primary-button' : 'bg-gray-900',
-              { 'cursor-auto hover:bg-gray-950': linked['discord'] || !canUnlockBadge },
-              { 'primary-button-discord': !linked['discord'] && canUnlockBadge },
-            ]"
-            :color="canUnlockBadge ? 'primary' : 'gray'"
-            variant="outline"
-            :icon="
-              !canUnlockBadge
-                ? 'i-bx-smile'
-                : !linked['discord']
-                ? 'i-bx-bxl-discord-alt'
-                : 'i-heroicons-check-circle-solid'
-            "
-          >
-            <a
-              v-if="!linked['discord'] && canUnlockBadge"
-              href="/connect/discord"
-              class="absolute inset-0 w-full h-full"
-            />
+          <UButton class="relative" :class="[
+            canUnlockBadge ? 'primary-button' : 'bg-gray-900',
+            { 'cursor-auto hover:bg-gray-950': linked['discord'] || !canUnlockBadge },
+            { 'primary-button-discord': !linked['discord'] && canUnlockBadge },
+          ]" :color="canUnlockBadge ? 'primary' : 'gray'" variant="outline" :icon="!canUnlockBadge
+    ? 'i-bx-smile'
+    : !linked['discord']
+      ? 'i-bx-bxl-discord-alt'
+      : 'i-heroicons-check-circle-solid'
+  ">
+            <a v-if="!linked['discord'] && canUnlockBadge" href="/connect/discord"
+              class="absolute inset-0 w-full h-full" />
             <span class="text-sm text-gray-300">{{
               !canUnlockBadge ? "you're almost there, keep going!" : !linked['discord'] ? 'Unlock badge' : 'Nuxter role'
             }}</span>
@@ -92,8 +131,7 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
         </div>
 
         <div
-          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
-        >
+          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full">
           <div class="flex flex-col gap-y-4 justify-center w-full">
             <UAvatar :src="avatarUrl" size="2xl" :alt="user.username" />
             <span class="text-white text-2xl">{{ user.username }}</span>
@@ -102,27 +140,13 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
               <span class="text-white text-lg">score: {{ user.score }}</span>
 
               <UButton variant="link" icon="i-bx-info-circle" color="gray" @click="isOpen = true" />
-              <UModal
-                class="relative"
-                v-model="isOpen"
-                :ui="{ background: 'bg-gray-900', overlay: { background: 'backdrop-blur bg-gray-800/70' } }"
-              >
-                <UButton
-                  class="absolute right-2 top-2 transition-colors duration-200"
-                  color="white"
-                  variant="ghost"
-                  size="xl"
-                  icon="i-bx-x-circle"
-                  @click="isOpen = false"
-                />
+              <UModal class="relative" v-model="isOpen"
+                :ui="{ background: 'bg-gray-900', overlay: { background: 'backdrop-blur bg-gray-800/70' } }">
+                <UButton class="absolute right-2 top-2 transition-colors duration-200" color="gray" variant="link"
+                  size="xl" icon="i-bx-x" @click="isOpen = false" />
                 <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg p-8">
                   <h5 class="text-2xl text-white font-medium text-center pb-4">How is the score calculated?</h5>
-                  <span class="pl-4">Merged pull requests {{ user.merged_pull_requests }} * 5</span>
-                  <span>+ Helpful issues * 3</span>
-                  <span>+ Helpful comments * 2</span>
-                  <span>+ Issues * 1</span>
-                  <span>+ Comments * 0.5</span>
-                  <span>+ Reactions * 0.1</span>
+                  <UTable :rows="detailedScore" />
                 </div>
               </UModal>
             </div>
@@ -131,39 +155,24 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
           <div class="flex flex-col gap-y-6 text-gray-300 w-full">
             <div class="flex items-center justify-between w-full">
               <span
-                ><span class="text-white font-medium">{{ user.merged_pull_requests }}</span> Merged Pull Requests</span
-              >
-              <UCheckbox
-                :ui="{
-                  base: 'h-5 w-5',
-                }"
-                disabled
-                v-model="mergedPullRequests"
-              />
+                  ><span class="text-white font-medium">{{ user.merged_pull_requests }}</span> Merged Pull Requests</span>
+              <UCheckbox :ui="{
+                base: 'h-5 w-5',
+              }" disabled v-model="mergedPullRequests" />
             </div>
             <div class="flex items-center justify-between">
               <span
-                ><span class="text-white font-medium">{{ user.helpful_issues }}</span> Helpful issue</span
-              >
-              <UCheckbox
-                :ui="{
-                  base: 'h-5 w-5',
-                }"
-                v-model="helpfulIssues"
-                disabled
-              />
+                  ><span class="text-white font-medium">{{ user.helpful_issues }}</span> Helpful issue</span>
+              <UCheckbox :ui="{
+                base: 'h-5 w-5',
+              }" v-model="helpfulIssues" disabled />
             </div>
             <div class="flex items-center justify-between">
               <span
-                ><span class="text-white font-medium">{{ user.helpful_comments }}</span> Helpful Comment</span
-              >
-              <UCheckbox
-                :ui="{
-                  base: 'h-5 w-5',
-                }"
-                v-model="helpfulComments"
-                disabled
-              />
+                  ><span class="text-white font-medium">{{ user.helpful_comments }}</span> Helpful Comment</span>
+              <UCheckbox :ui="{
+                base: 'h-5 w-5',
+              }" v-model="helpfulComments" disabled />
             </div>
           </div>
         </div>
@@ -218,7 +227,8 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 10px; /* Ajustez le border radius selon vos besoins */
+  border-radius: 10px;
+  /* Ajustez le border radius selon vos besoins */
   background-image: linear-gradient(to bottom right, #00dc82, #1e293b);
   z-index: -1;
 }

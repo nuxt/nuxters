@@ -6,7 +6,7 @@ export type UserStat = {
   issues: number,
   merged_pull_requests: number,
   helpful_issues: number,
-  comments: string,
+  comments: number,
   helpful_comments: number,
   reactions: number,
   score: number

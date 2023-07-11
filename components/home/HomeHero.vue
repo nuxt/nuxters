@@ -7,13 +7,13 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
     <h1 class="text-6xl font-bold mb-4">Are you a <span class="text-green-400">Nuxter</span>?</h1>
     <div class="flex flex-col gap-y-[60px] md:justify-between md:flex-row items-center gap-x-[92px]">
       <div class="flex flex-col gap-y-4 text-gray-300">
-        <p class="text-lg">
+        <p class="text-lg leading-[32px]">
           Discover your contributions on
           <NuxtLink to="https://github.com/nuxt/nuxt" target="_blank">nuxt</NuxtLink>
           and
           <NuxtLink to="https://github.com/nuxt/modules" target="_blank"
             >nuxt modules</NuxtLink
-          ><br />organisations and unlock the <UBadge>nuxter</UBadge> role on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink>.
+          ><br />organisations and unlock the <UBadge size="md" color="primary" variant="solid">nuxter</UBadge> role on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink>.
         </p>
         <div>
           <div class="mb-2">Unlock it by having either:</div>

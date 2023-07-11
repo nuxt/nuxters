@@ -143,7 +143,7 @@ if (process.server) {
                 v-model="isOpen"
                 :ui="{
                   background: 'bg-gray-900',
-                  container: 'flex min-h-full justify-center text-center',
+                  container: 'flex min-h-full md:items-center justify-center text-center',
                   padding: 'p-0',
                   overlay: { background: 'backdrop-blur bg-gray-800/70' },
                 }">

@@ -14,11 +14,11 @@ const links = [
 </script>
 
 <template>
-  <div class="h-22 w-full sticky top-0 bg-gray-950/70 backdrop-blur-md z-50">
-    <UContainer class="flex justify-between items-center">
+  <div class="h-20 w-full sticky top-0 bg-gray-950/70 backdrop-blur-md z-50 flex flex-col justify-center">
+    <UContainer class="flex justify-between items-center w-full">
       <div class="flex gap-x-2 items-center">
         <NuxtLink to="/">
-          <Logo class="h-4 sm:h-6" />
+          <Logo class="h-6" />
         </NuxtLink>
 
         <UPopover :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }">

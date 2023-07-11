@@ -98,7 +98,7 @@ if (process.server) {
 
       <!-- linked to github -->
       <div v-else-if="linked['github']" class="w-full h-full">
-        <img v-if="canUnlockBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full h-full" />
+        <img v-if="canUnlockBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" />
         <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4">
           <UButton

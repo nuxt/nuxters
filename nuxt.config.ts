@@ -1,37 +1,21 @@
 import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
   app: {
     head: {
-      htmlAttrs: { lang: 'en' },
-      title: 'Nuxt Stars',
+      htmlAttrs: { lang: 'en' }
     },
   },
-  srcDir: 'src',
-  modules: ['@unocss/nuxt', 'nuxt-og-image'],
-  css: ['~/assets/fonts.css', '@unocss/reset/tailwind.css'],
-  experimental: {
-    noScripts: true,
-  },
-  ogImage: {
-    site: process.env.NUXT_SITE || '',
-    fonts: [
-      {
-        name: 'RoobertPRO',
-        weight: 300,
-        path: 'fonts/RoobertPRO-Light.woff',
-      },
-      {
-        name: 'RoobertPRO',
-        weight: 400,
-        path: 'fonts/RoobertPRO-Regular.woff',
-      },
-      {
-        name: 'RoobertPRO',
-        weight: 700,
-        path: 'fonts/RoobertPRO-Bold.woff',
-      },
-    ],
-  },
+
+  modules: [
+    '@nuxt/devtools',
+    '@nuxthq/ui',
+    '@nuxtjs/google-fonts'
+  ],
+
+  // ogImage: {
+  //   site: process.env.NUXT_URL || '',
+  // },
   runtimeConfig: {
     url: '',
     sessionPassword: '',
@@ -48,4 +32,37 @@ export default defineNuxtConfig({
       botToken: '',
     },
   },
+
+  colorMode: {
+    preference: 'dark'
+  },
+
+  googleFonts: {
+    display: 'swap',
+    families: {
+      'DM+Sans': [400, 500, 700]
+    },
+  },
+
+  ui: {
+    icons: ['simple-icons', 'ph']
+  },
+
+  nitro: {
+    storage: {
+      cache: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'KV',
+        base: 'cache'
+      }
+    },
+    devStorage: {
+      cache: {
+        driver: 'fs',
+        base: '.data/cache'
+      }
+    }
+  },
+
+  plugins: ['~/plugins/dark.client.ts'],
 })

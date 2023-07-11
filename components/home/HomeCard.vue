@@ -109,7 +109,8 @@ const mergedPullRequests = computed(() => user.value.merged_pull_requests > 0)
               >
                 <UButton
                   class="absolute right-2 top-2 transition-colors duration-200"
-                  color="black"
+                  color="white"
+                  variant="ghost"
                   size="xl"
                   icon="i-bx-x-circle"
                   @click="isOpen = false"

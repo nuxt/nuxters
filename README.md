@@ -1,6 +1,10 @@
+[![Nuxters](./public/social-card.jpg)](https://nuxters.nuxt.com)
+
 # Nuxters
 
 Discover the number of contributions you made to Nuxt and get the Nuxter badge on [Nuxt Discord server](https://chat.nuxt.dev).
+
+https://nuxters.nuxt.com
 
 ## Setup
 

@@ -146,7 +146,7 @@ const detailedScore = computed(() => {
                   size="xl" icon="i-bx-x" @click="isOpen = false" />
                 <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg p-8">
                   <h5 class="text-2xl text-white font-medium text-center pb-4">How is the score calculated?</h5>
-                  <UTable :rows="detailedScore" />
+                  <UTable class="overflow-x-auto" :rows="detailedScore" />
                 </div>
               </UModal>
             </div>

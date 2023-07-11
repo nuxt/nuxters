@@ -6,11 +6,13 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' }
     },
   },
+
   modules: [
     '@nuxt/devtools',
     '@nuxthq/ui',
     '@nuxtjs/google-fonts'
   ],
+
   // ogImage: {
   //   site: process.env.NUXT_URL || '',
   // },
@@ -30,18 +32,22 @@ export default defineNuxtConfig({
       botToken: '',
     },
   },
+
   colorMode: {
     preference: 'dark'
   },
+
   googleFonts: {
     display: 'swap',
     families: {
       'DM+Sans': [400, 500, 700]
     },
   },
+
   ui: {
     icons: ['simple-icons', 'ph']
   },
+
   nitro: {
     storage: {
       cache: {
@@ -56,4 +62,6 @@ export default defineNuxtConfig({
       }
     }
   },
+
+  plugins: ['~/plugins/dark.client.ts'],
 })

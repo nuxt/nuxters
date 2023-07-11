@@ -14,6 +14,7 @@
   "dependencies": {
     "@iconify-json/ph": "^1.1.5",
     "@iconify-json/simple-icons": "^1.1.60",
+    "@nuxtjs/fontaine": "^0.4.0",
     "@nuxtjs/google-fonts": "^3.0.1",
     "nuxt": "^3.6.2",
     "nuxt-og-image": "^2.0.9",

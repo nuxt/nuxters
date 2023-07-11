@@ -4,7 +4,7 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       fontFamily: {
-        sans: ["'DM Sans'", "'DM Sans override'", "'sans-serif'"],
+        sans: ["'DM Sans'", "'DM Sans fallback'", "'sans-serif'"],
       },
       colors: {
         slate: {
@@ -18,7 +18,7 @@ export default <Partial<Config>>{
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a',
-          950: '#020420'
+          950: '#020420',
         },
         green: {
           50: '#d6ffee',
@@ -30,9 +30,9 @@ export default <Partial<Config>>{
           600: '#009d5d',
           700: '#007e4a',
           800: '#005e38',
-          900: '#003f25'
+          900: '#003f25',
         },
-      }
-    }
-  }
+      },
+    },
+  },
 }

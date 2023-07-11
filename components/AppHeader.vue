@@ -17,8 +17,7 @@ const links = [
   <div class="h-20 w-full sticky top-0 bg-gray-950/70 backdrop-blur-md z-50 flex flex-col justify-center">
     <UContainer class="flex justify-between items-center w-full">
       <div class="flex gap-x-2 items-center">
-
-        <UPopover :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }">
+        <UPopover class="inline-flex" :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }">
           <NuxtLink to="/">
             <Logo class="h-6" />
           </NuxtLink>

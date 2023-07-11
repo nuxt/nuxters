@@ -17,18 +17,19 @@ const links = [
   <div class="h-20 w-full sticky top-0 bg-gray-950/70 backdrop-blur-md z-50 flex flex-col justify-center">
     <UContainer class="flex justify-between items-center w-full">
       <div class="flex gap-x-2 items-center">
-        <NuxtLink to="/">
-          <Logo class="h-6" />
-        </NuxtLink>
 
         <UPopover :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }">
-          <UButton variant="link" class="flex flex-row gap-x-4 items-center">
-            <img class="text-gray-300 w-4 h-4 mt-2" src="/dropdown-chevron.svg" />
+          <NuxtLink to="/">
+            <Logo class="h-6" />
+          </NuxtLink>
+
+          <UButton variant="link" class="flex flex-row justify-center gap-x-4 items-center hover:bg-gray-900 ml-2 !px-1 transition-colors duration-200">
+            <img class="text-gray-300 w-4 h-4 mt-1" src="/dropdown-chevron.svg" />
           </UButton>
 
           <template #panel>
             <ul class="flex flex-col gap-y-1 p-2 bg-gray-950">
-              <li v-for="link in links" :key="link.title" class="p-2 rounded-lg hover:bg-white/5">
+              <li v-for="link in links" :key="link.title" class="p-2 rounded-lg hover:bg-white/5 transition-colors duration-300">
                 <NuxtLink :to="link.to" class="flex gap-x-4 items-center" target="_blank">
                   <img class="text-white w-6 h-6 self-center" src="/nuxt.svg" />
                   <div class="flex flex-col gap-y-1 text-white">

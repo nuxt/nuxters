@@ -40,6 +40,11 @@ export default defineAppConfig({
       size: {
         md: 'text-base px-2 py-1',
       },
+    },
+    popover: {
+      popper: {
+        placement: 'bottom-start'
+      }
     }
   },
 })

@@ -7,7 +7,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/devtools', '@nuxthq/ui', '@nuxtjs/google-fonts', '@nuxtjs/fontaine'],
+  modules: [
+    '@nuxt/devtools',
+    '@nuxthq/ui',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/fontaine',
+    '@nuxtjs/plausible'
+  ],
 
   // ogImage: {
   //   site: process.env.NUXT_URL || '',

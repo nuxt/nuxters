@@ -8,7 +8,6 @@ const isOpen = ref(false)
 const linked = useState<{ [key in Provider]: boolean }>(() => ({ github: false, discord: false }))
 const contributor = useState<Contributor>()
 const canUnlockBadge = useState<boolean>(()=> false)
-const roles = useState<string[]>(()=> [])
 const hasMergedPullRequests = useState<boolean>(() => false)
 const hasHelpfulIssues = useState<boolean>(() => false)
 const hasHelpfulComments = useState<boolean>(() => false)
@@ -24,7 +23,6 @@ if (process.server) {
     discord: !!session?.data.discordId,
   }
   contributor.value = event.context.contributor
-  roles.value = event.context.roles || []
   canUnlockBadge.value = event.context.canUnlockBadge
   // If user has contributions
   if (contributor.value) {

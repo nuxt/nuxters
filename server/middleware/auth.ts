@@ -18,6 +18,5 @@ export default defineEventHandler(async event => {
     }
     event.context.contributor = contributor
     event.context.canUnlockBadge = (contributor.helpful_comments + contributor.helpful_issues + contributor.merged_pull_requests) > 0
-    event.context.roles = session.data.roles || []
   }
 })

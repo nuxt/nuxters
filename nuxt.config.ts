@@ -52,7 +52,8 @@ export default defineNuxtConfig({
     storage: {
       cache: {
         driver: 'cloudflare-kv-binding',
-        binding: 'NUXTERS_CACHE'
+        binding: 'KV',
+        base: 'cache'
       }
     },
     devStorage: {

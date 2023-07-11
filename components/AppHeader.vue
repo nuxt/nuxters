@@ -8,7 +8,7 @@ const links = [
   {
     title: 'Nuxt.new',
     description: 'Nuxt templates',
-    to: '/',
+    to: 'https://nuxt.new',
   },
 ] as Array<{ title: string; description: string; to: string }>
 </script>

@@ -23,9 +23,7 @@ const links = [
             <Logo class="h-6" />
           </NuxtLink>
 
-          <UButton variant="link" class="flex flex-row justify-center gap-x-4 items-center hover:bg-gray-900 ml-2 !px-1 transition-colors duration-200">
-            <img class="text-gray-300 w-4 h-4 mt-1" src="/dropdown-chevron.svg" />
-          </UButton>
+          <UButton variant="ghost" color="gray" icon="i-ph-caret-down-fill" square class="ml-1 opacity-50 hover:opacity-100"/>
 
           <template #panel>
             <ul class="flex flex-col gap-y-1 p-2 bg-gray-950">
@@ -42,7 +40,7 @@ const links = [
           </template>
         </UPopover>
       </div>
-      <div class="flex mt-2 items-center sm:gap-x-4 text-white font-medium">
+      <div class="flex items-center sm:gap-x-4 text-white font-medium">
         <UButton
           class="flex items-center sm:-mr-2"
           to="https://discord.com/invite/nuxt"

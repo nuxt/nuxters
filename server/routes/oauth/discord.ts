@@ -58,9 +58,9 @@ export default defineEventHandler(async event => {
       `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}`,
       {
         method: 'PUT',
-        body: JSON.stringify({
+        body: {
           access_token,
-        }),
+        },
         headers: {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
           Authorization: `Bot ${config.discord.botToken}`,

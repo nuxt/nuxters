@@ -32,7 +32,7 @@ export default defineEventHandler(async event => {
         client_id: config.discord.clientId,
         redirect_uri: joinURL(config.url, 'oauth/discord'),
         response_type: 'code',
-        scope: 'identify',
+        scope: 'identify guilds.join',
         state,
       })
     )

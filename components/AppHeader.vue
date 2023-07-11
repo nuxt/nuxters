@@ -51,12 +51,12 @@ const links = [
           color="gray"
           size="xl"
         >
-          <UIcon name="i-bx-bxl-discord-alt" class="h-5 w-5" />
+          <UIcon name="i-simple-icons-discord" class="h-5 w-5" />
           <span class="hidden sm:block">Join us</span>
         </UButton>
         <div class="hidden sm:block h-8 w-[1px] bg-gray-700 -mr-2 sm:-mr-6" />
         <UButton to="http://www.github.com/nuxt/nuxt" class="flex gap-x-2 items-center" variant="link" color="gray" size="xl" target="_blank">
-          <UIcon name="i-bx-bxl-github" class="h-5 w-5 sm:ml-4" />
+          <UIcon name="i-simple-icons-github" class="h-5 w-5 sm:ml-4" />
           <span class="hidden sm:block">Star us</span>
         </UButton>
       </div>

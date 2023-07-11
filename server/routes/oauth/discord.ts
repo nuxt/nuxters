@@ -46,12 +46,26 @@ export default defineEventHandler(async event => {
     },
   })
 
+
   const session = await getUserSession(event)
-  await setUserSession(event, {
-    ...session.data,
-    roles: [], // reset discord roles if they exist to allow resyncing
-    discordId: user.id,
-  })
+
+  session.data.discordId = user.id
+
+  if (event.context.canUnlockBadge) {
+    await $fetch(
+      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.memberRoleId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
+          Authorization: `Bot ${config.discord.botToken}`,
+        },
+      }
+    )
+    session.data.roleAdded = true
+  }
+
+  await setUserSession(event, session.data)
 
   return await sendRedirect(event, '/')
 })

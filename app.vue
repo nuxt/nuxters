@@ -1,18 +1,7 @@
 <script setup lang="ts">
-
 useHead({
   link: [
     { rel: 'icon', href: '/icon.png' }
-  ],
-  meta: [
-    { property: 'og:site_name', content: 'Nuxters' },
-    { property: 'og:type', content: 'website' },
-    //TODO
-    //{ property: 'og:image', content: '' },
-    { property: 'og:image:alt', content: 'Nuxters' },
-    { property: 'description', content: 'description' },
-    { property: 'twitter:card', content: 'summary_large_image' },
-    { property: 'twitter:site', content: '@nuxt_js' },
   ],
   htmlAttrs: {
     lang: 'en'
@@ -22,10 +11,16 @@ useHead({
   }
 })
 
-useServerSeoMeta({
-  description: 'Link your GitHub and Discord accounts to unlock your roles.',
+useSeoMeta({
+  title: 'Are you a Nuxter?',
+  description: 'Discover your contributions to unlock a role on the Nuxt Discord server.',
+  ogSiteName: 'Nuxters',
+  ogImage: '/social-card.jpg',
+  ogImageAlt: 'Nuxters',
+  twitterImage: '/social-card.jpg',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@nuxt_js',
 })
-
 </script>
 
 <template>

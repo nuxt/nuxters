@@ -3,17 +3,17 @@ const socialLinks = [
   {
     to: 'https://twitter.com/nuxt_js',
     alt: 'Nuxt Twitter Account',
-    icon: 'i-bx-bxl-twitter'
+    icon: 'i-simple-icons-twitter'
   },
   {
     to: 'https://github.com/nuxt/nuxt',
     alt: 'Nuxt GitHub Repository',
-    icon: 'i-bx-bxl-github'
+    icon: 'i-simple-icons-github'
   },
   {
     to: 'https://discord.com/invite/nuxt',
     alt: 'Nuxt Discord Channel',
-    icon: 'i-bx-bxl-discord-alt'
+    icon: 'i-simple-icons-discord'
   }
 ] as Array<{ to: string, alt: string, icon: string }>
 </script>

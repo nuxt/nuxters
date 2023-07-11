@@ -3,14 +3,17 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   app: {
     head: {
-      htmlAttrs: { lang: 'en' },
-      title: 'Are you a Nuxter?',
+      htmlAttrs: { lang: 'en' }
     },
   },
-  modules: ['@nuxt/devtools', 'nuxt-og-image', '@nuxthq/ui', '@nuxtjs/google-fonts'],
-  ogImage: {
-    site: process.env.NUXT_SITE || '',
-  },
+  modules: [
+    '@nuxt/devtools',
+    '@nuxthq/ui',
+    '@nuxtjs/google-fonts'
+  ],
+  // ogImage: {
+  //   site: process.env.NUXT_URL || '',
+  // },
   runtimeConfig: {
     url: '',
     sessionPassword: '',
@@ -40,6 +43,20 @@ export default defineNuxtConfig({
     },
   },
   ui: {
-    icons: ['heroicons', 'bx']
+    icons: ['simple-icons', 'ph']
+  },
+  nitro: {
+    storage: {
+      cache: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'NUXTERS_CACHE'
+      }
+    },
+    devStorage: {
+      cache: {
+        driver: 'fs',
+        base: '.data/cache'
+      }
+    }
   },
 })

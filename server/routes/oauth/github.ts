@@ -32,19 +32,20 @@ export default defineEventHandler(async event => {
     })
   }
 
-  const { node_id: githubId } = await $fetch<{ node_id: string }>('https://api.github.com/user', {
+  const ghUser = await $fetch<{ id: number, login: string }>('https://api.github.com/user', {
     headers: {
       Authorization: `Bearer ${access_token}`,
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'Nuxtbot',
+      'User-Agent': 'Nuxter',
     },
   })
 
   const session = await getUserSession(event)
   await setUserSession(event, {
     ...session.data,
-    githubId,
+    githubId: ghUser.id,
+    githubUsername: ghUser.login,
   })
 
   return await sendRedirect(event, '/')

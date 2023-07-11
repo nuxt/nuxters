@@ -90,7 +90,7 @@ if (process.server) {
     >
       <!--github connect -->
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
-        <p class="text-xl text-gray-50">Unlock your role on Nuxt Discord server.</p>
+        <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
         <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
           class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray">
           <a href="/connect/github" class="absolute inset-0 w-full h-full" />
@@ -153,8 +153,8 @@ if (process.server) {
                   icon="i-ph-x"
                   @click="isOpen = false"
                 />
-                <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg p-8">
-                  <h5 class="text-2xl text-white font-medium pb-4">How is the score calculated?</h5>
+                <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg">
+                  <h5 class="text-2xl text-white font-medium p-4 bg-gray-950">How is the score calculated?</h5>
                   <UTable class="overflow-x-auto" :rows="detailedScore" :ui="{
                     th: { base: 'first:text-left text-center last:text-right' },
                     td: { base: 'first:text-left text-center last:text-right whitespace-nowrap' }

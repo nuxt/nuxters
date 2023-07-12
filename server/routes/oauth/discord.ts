@@ -51,7 +51,8 @@ export default defineEventHandler(async event => {
   session.data.discordId = user.id
 
   // makes sure the user is in the guild
-  if (!session.data.guildMemberAdded) {
+  // TODO: fix
+  if (0 && !session.data.guildMemberAdded) {
     const guildInfo = await $fetch(`https://discord.com/api/guilds/${config.discord.guildId}`).catch(() => null)
     if (!guildInfo) {
       console.log('adding user to guild', session.data.guildMemberAdded)

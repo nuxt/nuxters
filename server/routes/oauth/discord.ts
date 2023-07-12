@@ -46,17 +46,16 @@ export default defineEventHandler(async event => {
     },
   })
 
-
   const session = await getUserSession(event)
 
   session.data.discordId = user.id
 
   // makes sure the user is in the guild
   if (!session.data.guildMemberAdded) {
-    console.log('adding user to guild', session.data.guildMemberAdded)
-    await $fetch(
-      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}`,
-      {
+    const guildInfo = await $fetch(`https://discord.com/api/guilds/${config.discord.guildId}`).catch(() => null)
+    if (!guildInfo) {
+      console.log('adding user to guild', session.data.guildMemberAdded)
+      await $fetch(`https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}`, {
         method: 'PUT',
         body: {
           access_token,
@@ -65,9 +64,9 @@ export default defineEventHandler(async event => {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
           Authorization: `Bot ${config.discord.botToken}`,
         },
-      }
-    )
-   session.data.guildMemberAdded = true
+      })
+    }
+    session.data.guildMemberAdded = true
   }
 
   if (event.context.canUnlockBadge) {

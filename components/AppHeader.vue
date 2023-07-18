@@ -3,12 +3,12 @@ const links = [
   {
     title: 'Nuxt.com',
     description: 'Framework documentation',
-    to: 'https://nuxt.com',
+    to: 'https://nuxt.com/?utm_source=nuxters&utm_medium=dropdown&utm_campaign=home',
   },
   {
     title: 'Nuxt.new',
     description: 'Nuxt templates',
-    to: 'https://nuxt.new',
+    to: 'https://nuxt.new/?utm_source=nuxters&utm_medium=dropdown&utm_campaign=home',
   },
 ] as Array<{ title: string; description: string; to: string }>
 </script>

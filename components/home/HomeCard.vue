@@ -90,15 +90,15 @@ if (process.server) {
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
         <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
         <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
-          class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray">
-          <a href="/connect/github" class="absolute inset-0 w-full h-full" />
+          class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray" aria-label="connect with GitHub">
+          <a href="/connect/github" class="absolute inset-0 w-full h-full" aria-label="connect with GitHub" />
           <span class="text-sm text-gray-300">Connect with GitHub</span>
         </UButton>
       </div>
 
       <!-- linked to github -->
       <div v-else-if="linked['github']" class="w-full h-full">
-        <img v-if="canUnlockBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" />
+        <img v-if="canUnlockBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
         <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4">
           <UButton
@@ -117,6 +117,7 @@ if (process.server) {
                 ? 'i-simple-icons-discord'
                 : 'i-heroicons-check-circle-solid'
             "
+             :aria-label="!canUnlockBadge ? 'you\'re almost there, keep going!' : !linked['discord'] ? 'Unlock badge' : 'Nuxter role'"
           >
             <a
               v-if="!linked['discord'] && canUnlockBadge"
@@ -137,7 +138,7 @@ if (process.server) {
             <span class="bg-gray-700 w-10 h-[1px]" />
             <div class="flex items-center">
               <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-gray-200 pl-[3px]">pts</span></span>
-              <UButton variant="ghost" icon="i-ph-info" color="gray" @click="isOpen = true" class="ml-1 transitions-color duration-200" />
+              <UButton variant="ghost" icon="i-ph-info" color="gray" @click="isOpen = true" class="ml-1 transitions-color duration-200" aria-label="show score table" />
               <UModal
                 class="relative"
                 v-model="isOpen"

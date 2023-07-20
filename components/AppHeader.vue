@@ -18,11 +18,11 @@ const links = [
     <UContainer class="flex justify-between items-center w-full">
       <div class="flex gap-x-2 items-center">
         <UPopover class="inline-flex" :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }">
-          <NuxtLink to="/">
+          <NuxtLink to="/" aria-label="go to home page">
             <Logo class="h-6" />
           </NuxtLink>
 
-          <UButton variant="ghost" color="gray" icon="i-ph-caret-down-fill" square class="ml-1 opacity-50 hover:opacity-100"/>
+          <UButton variant="ghost" color="gray" icon="i-ph-caret-down-fill" square class="ml-1 opacity-50 hover:opacity-100" aria-label="dropdown button" />
 
           <template #panel>
             <ul class="flex flex-col gap-y-1 p-2 bg-gray-950">
@@ -47,14 +47,16 @@ const links = [
           variant="link"
           color="gray"
           size="xl"
+          aria-label="join us"
         >
           <UIcon name="i-simple-icons-discord" class="h-5 w-5" />
           <span class="hidden sm:block">Join us</span>
         </UButton>
         <div class="hidden sm:block h-8 w-[1px] bg-gray-700 -mr-2 sm:-mr-6" />
-        <UButton to="http://www.github.com/nuxt/nuxt" class="flex gap-x-2 items-center" variant="link" color="gray" size="xl" target="_blank">
+        <UButton to="http://www.github.com/nuxt/nuxt" class="flex gap-x-2 items-center" variant="link" color="gray" size="xl" target="_blank"  aria-label="star us">
           <UIcon name="i-simple-icons-github" class="h-5 w-5 sm:ml-4" />
           <span class="hidden sm:block">Star us</span>
+
         </UButton>
       </div>
     </UContainer>

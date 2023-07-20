@@ -32,7 +32,7 @@ if (process.server) {
         <div class="text-7xl font-bold flex items-center">{{ contributor.contributions }}</div>
         <div class="italic text-gray-400 text-xs">
           Contributions to the <br />
-          <a href="" class="underline">nuxt/nuxt</a> repo.
+          <a href="" class="underline" aria-label="nuxt/nuxt repo">nuxt/nuxt</a> repo.
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@ if (process.server) {
       </div>
     </div>
     <div>
-      <a :href="`https://github.com/${contributor.login}`" class="inline-flex items-center justify-center">
+      <a :href="`https://github.com/${contributor.login}`" class="inline-flex items-center justify-center" aria-label="visit their GitHub">
         Visit their GitHub
         <span class="block i-ri-github-fill w-4 h-4 ml-2" />
       </a>

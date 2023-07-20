@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.1.5
     version: 1.1.5
   '@iconify-json/simple-icons':
-    specifier: ^1.1.60
-    version: 1.1.60
+    specifier: ^1.1.61
+    version: 1.1.61
   '@nuxtjs/fontaine':
     specifier: ^0.4.0
     version: 0.4.0
@@ -21,8 +21,8 @@ dependencies:
     specifier: ^3.6.5
     version: 3.6.5(@types/node@20.4.1)
   nuxt-og-image:
-    specifier: ^2.0.9
-    version: 2.0.9
+    specifier: ^2.0.10
+    version: 2.0.10
   ofetch:
     specifier: ^1.1.1
     version: 1.1.1
@@ -35,14 +35,14 @@ devDependencies:
     specifier: ^0.6.7
     version: 0.6.7(nuxt@3.6.5)(vite@4.4.3)
   '@nuxthq/ui':
-    specifier: ^2.5.0
-    version: 2.5.0(vue@3.3.4)(webpack@5.88.1)
+    specifier: ^2.6.0
+    version: 2.6.0(vue@3.3.4)(webpack@5.88.1)
   '@nuxtjs/plausible':
     specifier: ^0.2.1
     version: 0.2.1
   bun-types:
-    specifier: ^0.6.13
-    version: 0.6.13
+    specifier: ^0.6.14
+    version: 0.6.14
 
 packages:
 
@@ -401,13 +401,13 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@egoist/tailwindcss-icons@1.1.0(tailwindcss@3.3.2):
+  /@egoist/tailwindcss-icons@1.1.0(tailwindcss@3.3.3):
     resolution: {integrity: sha512-3zIBtwMH4viBDtDF7nDgGOFS/mxu4qtfhimeyyGlK+RHJu26YaLhHrJf6NaEK5Gwxt8chNntJwslklR+66AErg==}
     peerDependencies:
       tailwindcss: '*'
     dependencies:
       '@iconify/utils': 2.1.7
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -816,8 +816,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: false
 
-  /@iconify-json/simple-icons@1.1.60:
-    resolution: {integrity: sha512-/5ZU9nbHTOhhqdTDcTsN2iZBqfBzVHcpaWmt381wh+LmWXghYTLrYpFb/E3Vkb+TmuvKtpk/8zaBIgv+gGurKA==}
+  /@iconify-json/simple-icons@1.1.61:
+    resolution: {integrity: sha512-n1UWME41sSm7AexhVLAfuPwwmjHXiNsHU88KhJBwrZGL47s4GzmADbGobms7EmKwehC8RlMJq3hj7j8jYNqWjQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
@@ -1015,8 +1015,8 @@ packages:
       nuxt: ^3.6.1
       vite: '*'
     dependencies:
-      '@nuxt/kit': 3.6.2
-      '@nuxt/schema': 3.6.2
+      '@nuxt/kit': 3.6.5
+      '@nuxt/schema': 3.6.5
       execa: 7.1.1
       nuxt: 3.6.5(@types/node@20.4.1)
       vite: 4.4.3(@types/node@20.4.1)
@@ -1283,28 +1283,28 @@ packages:
       - vti
       - vue-tsc
 
-  /@nuxthq/ui@2.5.0(vue@3.3.4)(webpack@5.88.1):
-    resolution: {integrity: sha512-KQ+bf8HyyIH1gvuja8NwNRZetyqrRT3fFDipohWlvCrOpds2kLUUhF6SMOaVTWWzugKLUhIDCsDFsAMX/4I9Nw==}
+  /@nuxthq/ui@2.6.0(vue@3.3.4)(webpack@5.88.1):
+    resolution: {integrity: sha512-uTIkloPb+LLNsa2vfpDcDEzRnDY05GDnX/nRewPkNlWGjIIVhnl2gsyI40Dy/LJLtvmTJcJMT21QkMRHzIuybw==}
     engines: {node: '>=v16.14.0'}
     dependencies:
-      '@egoist/tailwindcss-icons': 1.1.0(tailwindcss@3.3.2)
+      '@egoist/tailwindcss-icons': 1.1.0(tailwindcss@3.3.3)
       '@headlessui/vue': 1.7.14(vue@3.3.4)
       '@iconify-json/heroicons': 1.1.11
-      '@nuxt/kit': 3.6.2
+      '@nuxt/kit': 3.6.5
       '@nuxtjs/color-mode': 3.3.0
       '@nuxtjs/tailwindcss': 6.8.0(webpack@5.88.1)
       '@popperjs/core': 2.11.8
-      '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.3.2)
-      '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.2)
-      '@tailwindcss/forms': 0.5.3(tailwindcss@3.3.2)
-      '@tailwindcss/typography': 0.5.9(tailwindcss@3.3.2)
+      '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.3.3)
+      '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.3)
+      '@tailwindcss/forms': 0.5.4(tailwindcss@3.3.3)
+      '@tailwindcss/typography': 0.5.9(tailwindcss@3.3.3)
       '@vueuse/core': 10.2.1(vue@3.3.4)
       '@vueuse/integrations': 10.2.1(fuse.js@6.6.2)(vue@3.3.4)
       '@vueuse/math': 10.2.1(vue@3.3.4)
       defu: 6.1.2
       fuse.js: 6.6.2
       lodash-es: 4.17.21
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     transitivePeerDependencies:
       - '@vue/composition-api'
       - async-validator
@@ -1328,7 +1328,7 @@ packages:
   /@nuxtjs/color-mode@3.3.0:
     resolution: {integrity: sha512-YVFNmTISke1eL7uk5p9I1suOsM222FxrqKoF13HS4x94OKCWwPLLeTCEzHZ8orzKnaFUbCXpuL4pRv8gvW+0Kw==}
     dependencies:
-      '@nuxt/kit': 3.6.2
+      '@nuxt/kit': 3.6.5
       lodash.template: 4.5.0
       pathe: 1.1.1
     transitivePeerDependencies:
@@ -1376,7 +1376,7 @@ packages:
   /@nuxtjs/tailwindcss@6.8.0(webpack@5.88.1):
     resolution: {integrity: sha512-jzuvD1nfA2BPnSbHtKK0aiI51ndMa7lNGL1iDEFuEPsltzilZ9ED7zOP6niGTrImg0n5Yt4GEJpixi6yWwp9Hw==}
     dependencies:
-      '@nuxt/kit': 3.6.2
+      '@nuxt/kit': 3.6.5
       '@nuxt/postcss8': 1.1.3(webpack@5.88.1)
       autoprefixer: 10.4.14(postcss@8.4.25)
       chokidar: 3.5.3
@@ -1393,8 +1393,8 @@ packages:
       postcss-custom-properties: 13.2.1(postcss@8.4.25)
       postcss-nesting: 11.3.0(postcss@8.4.25)
       radix3: 1.0.1
-      tailwind-config-viewer: 1.7.2(tailwindcss@3.3.2)
-      tailwindcss: 3.3.2
+      tailwind-config-viewer: 1.7.2(tailwindcss@3.3.3)
+      tailwindcss: 3.3.3
       ufo: 1.1.2
       uncrypto: 0.1.3
     transitivePeerDependencies:
@@ -1724,32 +1724,32 @@ packages:
       tslib: 2.6.0
     dev: false
 
-  /@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.3.2):
+  /@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.3.3):
     resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     dev: true
 
-  /@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.2):
+  /@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.3):
     resolution: {integrity: sha512-p18dswChx6WnTSaJCSGx6lTmrGzNNvm2FtXmiO6AuA1V4U5REyoqwmT6kgAsIMdjo07QdAfYXHJ4hnMtfHzWgA==}
     peerDependencies:
       tailwindcss: '>=3.2.0'
     dependencies:
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     dev: true
 
-  /@tailwindcss/forms@0.5.3(tailwindcss@3.3.2):
-    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
+  /@tailwindcss/forms@0.5.4(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-YAm12D3R7/9Mh4jFbYSMnsd6jG++8KxogWgqs7hbdo/86aWjjlIEvL7+QYdVELmAI0InXTpZqFIg5e7aDVWI2Q==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     dev: true
 
-  /@tailwindcss/typography@0.5.9(tailwindcss@3.3.2):
+  /@tailwindcss/typography@0.5.9(tailwindcss@3.3.3):
     resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -1758,7 +1758,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     dev: true
 
   /@tootallnate/once@1.1.2:
@@ -2666,8 +2666,8 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /bun-types@0.6.13:
-    resolution: {integrity: sha512-7jx6Lh3YefVv/0ZYKDQeKpB0C1zCe2XRH0XYwRgbGkbhj6YlIm49uaahllP9hhj0UciT4ZOx6mCq8I4oKlNOJQ==}
+  /bun-types@0.6.14:
+    resolution: {integrity: sha512-sRdvu+t59+H/TVOe7FSGFWYITbqkhiCx9NxVUHt2+JOXM9gUOe5uMPvVvcr/hGngnh+/yb5a7uPE4JaS6uxujg==}
     dev: true
 
   /bundle-name@3.0.0:
@@ -5710,10 +5710,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
-  /nuxt-og-image@2.0.9:
-    resolution: {integrity: sha512-20GeQ2+ZGGDMchQdyQSdZ29Xf+W+MRS0W8mq+nuxle/bFZrpzRBDy6ZPyX+PvYNJgURMeRAJJo2WpTiXz3eMHw==}
+  /nuxt-og-image@2.0.10:
+    resolution: {integrity: sha512-1oLJJmSetuM8GoVPlO2TqLqmXf2zBXQVMaFjwmIHqCSguDYp1FppvBKBQ0EzlXel4bDvty8aib2lGsLfxKuNvg==}
     dependencies:
-      '@nuxt/kit': 3.6.2
+      '@nuxt/kit': 3.6.5
       '@resvg/resvg-js': 2.4.1
       '@resvg/resvg-wasm': 2.4.1
       '@types/fs-extra': 11.0.1
@@ -5735,7 +5735,7 @@ packages:
       ofetch: 1.1.1
       ohash: 1.1.2
       pathe: 1.1.1
-      playwright-core: 1.35.1
+      playwright-core: 1.36.1
       radix3: 1.0.1
       satori: 0.10.1
       satori-html: 0.3.2
@@ -5757,8 +5757,8 @@ packages:
   /nuxt-site-config-kit@1.0.5:
     resolution: {integrity: sha512-2en2IG0pwSSvtE46UWMM7Cv2GbfU1VdSWrBhK7NxXfj4B/OPRtI+UjgK0I9fjf2PixaVhTCZLMQqd0Oxau/sHA==}
     dependencies:
-      '@nuxt/kit': 3.6.2
-      '@nuxt/schema': 3.6.2
+      '@nuxt/kit': 3.6.5
+      '@nuxt/schema': 3.6.5
       defu: 6.1.2
       pkg-types: 1.0.3
       site-config-stack: 1.0.5
@@ -5771,8 +5771,8 @@ packages:
   /nuxt-site-config@1.0.5:
     resolution: {integrity: sha512-aQ/imSl4dVCuCQftJsQsuYfiFOluuxT+vwTc5ScQ4C+EDoqhsXvGBVU1f+yY5TTAtdG+7NMshCzBjTf/D3uErg==}
     dependencies:
-      '@nuxt/kit': 3.6.2
-      '@nuxt/schema': 3.6.2
+      '@nuxt/kit': 3.6.5
+      '@nuxt/schema': 3.6.5
       nuxt-site-config-kit: 1.0.5
       pathe: 1.1.1
       site-config-stack: 1.0.5
@@ -6234,8 +6234,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /playwright-core@1.35.1:
-    resolution: {integrity: sha512-pNXb6CQ7OqmGDRspEjlxE49w+4YtR6a3X6mT1hZXeJHWmsEz7SunmvZeiG/+y1yyMZdHnnn73WKYdtV1er0Xyg==}
+  /playwright-core@1.36.1:
+    resolution: {integrity: sha512-7+tmPuMcEW4xeCL9cp9KxmYpQYHKkyjwoXRnoeTowaeNat8PoBMk/HwCYhqkH2fRkshfKEOiVus/IhID2Pg8kg==}
     engines: {node: '>=16'}
     hasBin: true
     dev: false
@@ -7173,7 +7173,7 @@ packages:
   /site-config-stack@1.0.5:
     resolution: {integrity: sha512-1sToRHVWQ6RY//OuKea2KW78p64o8Uni6vK3TCYyJ6s6RWr5FH6w9MZHXuKpsdStmuPwiTZi6t0XTCLO8v9Wng==}
     dependencies:
-      '@nuxt/kit': 3.6.2
+      '@nuxt/kit': 3.6.5
       defu: 6.1.2
       pkg-types: 1.0.3
       ufo: 1.1.2
@@ -7473,7 +7473,7 @@ packages:
       csso: 5.0.5
       picocolors: 1.0.0
 
-  /tailwind-config-viewer@1.7.2(tailwindcss@3.3.2):
+  /tailwind-config-viewer@1.7.2(tailwindcss@3.3.3):
     resolution: {integrity: sha512-3JJCeAAlvG+i/EBj+tQb0x4weo30QjdSAo4hlcnVbtD+CkpzHi/UwU9InbPMcYH+ESActoa2kCyjpLEyjEkn0Q==}
     engines: {node: '>=8'}
     hasBin: true
@@ -7488,13 +7488,13 @@ packages:
       open: 7.4.2
       portfinder: 1.0.32
       replace-in-file: 6.3.5
-      tailwindcss: 3.3.2
+      tailwindcss: 3.3.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /tailwindcss@3.3.2:
-    resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
+  /tailwindcss@3.3.3:
+    resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -7518,7 +7518,6 @@ packages:
       postcss-load-config: 4.0.1(postcss@8.4.25)
       postcss-nested: 6.0.1(postcss@8.4.25)
       postcss-selector-parser: 6.0.13
-      postcss-value-parser: 4.2.0
       resolve: 1.22.2
       sucrase: 3.32.0
     transitivePeerDependencies:

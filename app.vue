@@ -14,6 +14,7 @@ useHead({
 useSeoMeta({
   title: 'Are you a Nuxter?',
   description: 'Discover your contributions to unlock the nuxter role on Nuxt Discord server.',
+  ogTitle: 'Are you a Nuxter?',
   ogSiteName: 'Nuxters',
   ogImage: 'https://nuxters.nuxt.com/social-card.jpg',
   ogImageAlt: 'Nuxters',

@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     '@nuxthq/ui',
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',
-    '@nuxtjs/plausible'
+    '@nuxtjs/plausible',
+    '@vueuse/nuxt'
   ],
 
   // ogImage: {

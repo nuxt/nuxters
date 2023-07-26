@@ -6,24 +6,27 @@ type Provider = 'github' | 'discord'
 
 const isOpen = ref(false)
 const linked = useState<{ [key in Provider]: boolean }>(() => ({ github: false, discord: false }))
-const contributor = useState<Contributor>()
+const contributor = useState<Contributor>('contributor')
 const canUnlockBadge = useState<boolean>(()=> false)
 const hasMergedPullRequests = useState<boolean>(() => false)
 const hasHelpfulIssues = useState<boolean>(() => false)
 const hasHelpfulComments = useState<boolean>(() => false)
-const detailedScore = useState<any>(() => [])
-// const { format } = Intl.NumberFormat('en-GB', { notation: 'compact', compactDisplay: 'short' })
+const detailedScore = useState<any>()
+
 const { format } = Intl.NumberFormat('en-GB', { })
 
 if (process.server) {
   const event = useRequestEvent()
   const session = await getSession(event, { password: useRuntimeConfig().sessionPassword })
+
   linked.value = {
     github: !!session?.data.githubId,
     discord: !!session?.data.discordId,
   }
+
   contributor.value = event.context.contributor
   canUnlockBadge.value = event.context.canUnlockBadge
+
   // If user has contributions
   if (contributor.value) {
     hasMergedPullRequests.value = contributor.value.merged_pull_requests > 0
@@ -80,11 +83,13 @@ if (process.server) {
 <template>
   <div
     class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked['github'] && canUnlockBadge ? 'card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
+    :class="linked['github'] && canUnlockBadge ? 'hover:border-green-400 card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
+    @click="linked.github ? $router.push(`/nuxter/${contributor.username}`) : ''"
   >
     <UCard
       :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"
-      class="z-50 !bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
+      class="!bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
+      :class="{ 'cursor-pointer': linked.github }"
     >
       <!--github connect -->
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
@@ -138,7 +143,7 @@ if (process.server) {
             <span class="bg-gray-700 w-10 h-[1px]" />
             <div class="flex items-center">
               <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-gray-200 pl-[3px]">pts</span></span>
-              <UButton variant="ghost" icon="i-ph-info" color="gray" @click="isOpen = true" class="ml-1 transitions-color duration-200" aria-label="show score table" />
+              <UButton variant="ghost" icon="i-ph-info" color="gray" @click.stop="isOpen = true" class="ml-1 transitions-color duration-200 z-50" aria-label="show score table" />
               <UModal
                 class="relative"
                 v-model="isOpen"
@@ -270,5 +275,9 @@ if (process.server) {
   /* Ajustez le border radius selon vos besoins */
   background-image: linear-gradient(to bottom right, #00dc82, #1e293b);
   z-index: -1;
+}
+
+.card-border:hover::before {
+  background:  #00dc82;
 }
 </style>

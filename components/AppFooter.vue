@@ -19,8 +19,8 @@ const socialLinks = [
 </script>
 
 <template>
-  <div class="border-t border-gray-800 py-8">
-    <UContainer class="flex justify-between items-center gap-x-4">
+  <div class="border-t border-gray-800">
+    <UContainer class="flex justify-between gap-x-4 items-center h-20 sm:h-16">
       <span class="text-gray-300 text-sm">
         Made with love by the Nuxt Community 💚 (<NuxtLink to="https://github.com/nuxt/nuxters" target="_blank" class="underline hover:text-white">source code</NuxtLink>).
       </span>

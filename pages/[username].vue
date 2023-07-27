@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-// import { GithubUser } from '~~/types'
 import type { Contributor } from '~/types'
 
 const { username } = useRoute().params
 const { copy, copied } = useClipboard()
-const route = useRoute()
 
 const { data: contributor } = await useFetch(`/api/contributors/${username}`)
 
@@ -16,6 +14,11 @@ if (!contributor.value) {
 }
 
 const { format } = Intl.NumberFormat('en-GB', { })
+
+defineOgImage({
+  component: 'OgImageNuxter',
+  contributor
+})
 </script>
 
 <template>

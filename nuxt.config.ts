@@ -13,12 +13,9 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',
     '@nuxtjs/plausible',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
+    'nuxt-og-image'
   ],
-
-  // ogImage: {
-  //   site: process.env.NUXT_URL || '',
-  // },
   runtimeConfig: {
     url: '',
     sessionPassword: '',

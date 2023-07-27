@@ -1,24 +1,21 @@
 <script lang="ts" setup>
 // import { GithubUser } from '~~/types'
-
-// const { username } = useRoute().params
-
-// const contributor = useState<GithubUser>()
-
-
-
 import type { Contributor } from '~/types'
 
+const { username } = useRoute().params
 const { copy, copied } = useClipboard()
+const route = useRoute()
 
-const contributor = useState<Contributor>('contributor')
+const { data: contributor } = await useFetch(`/api/contributors/${username}`)
+
+if (!contributor.value) {
+  throw createError({
+    statusCode: 404,
+    message: 'Contributor not found'
+  })
+}
 
 const { format } = Intl.NumberFormat('en-GB', { })
-
-if (process.server) {
-  const event = useRequestEvent()
-  contributor.value = event.context.contributor
-}
 </script>
 
 <template>

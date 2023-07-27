@@ -42,9 +42,9 @@ if (process.server) {
           <div class="flex flex-col items-center justify-center text-center gap-y-3">
             <span class="text-lg">Share your Nuxter profile ✨</span>
 
-            <UButton @click="copy(`nuxters.nuxt.com/nuxter/${contributor.username}`)" color="gray" variant="outline" size="xl"
+            <UButton @click="copy(`nuxters.nuxt.com/${contributor.username}`)" color="gray" variant="outline" size="xl"
               :class="{ 'border-primary-400': copied }" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
-              <span class="truncate">{{ `nuxters.nuxt.com/nuxter/${contributor.username}` }}</span>
+              <span class="truncate">{{ `nuxters.nuxt.com/${contributor.username}` }}</span>
               <UIcon :name="copied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': copied }"/>
             </UButton>
 

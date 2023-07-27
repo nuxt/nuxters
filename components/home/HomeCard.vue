@@ -84,7 +84,7 @@ if (process.server) {
   <div
     class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
     :class="linked['github'] && canUnlockBadge ? 'hover:border-green-400 card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
-    @click="linked.github ? $router.push(`/nuxter/${contributor.username}`) : ''"
+    @click="linked.github ? $router.push(`/${contributor.username}`) : ''"
   >
     <UCard
       :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"

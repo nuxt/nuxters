@@ -7,18 +7,18 @@
     "logs": "wrangler pages deployment tail"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.7.0",
-    "@nuxthq/ui": "^2.6.0",
+    "@nuxt/devtools": "^0.7.4",
+    "@nuxthq/ui": "^2.7.0",
     "@nuxtjs/plausible": "^0.2.1",
-    "bun-types": "^0.6.14"
+    "bun-types": "^0.7.1"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.1.5",
-    "@iconify-json/simple-icons": "^1.1.61",
-    "@nuxtjs/fontaine": "^0.4.0",
-    "@nuxtjs/google-fonts": "^3.0.1",
+    "@iconify-json/simple-icons": "^1.1.63",
+    "@nuxtjs/fontaine": "^0.4.1",
+    "@nuxtjs/google-fonts": "^3.0.2",
     "nuxt": "^3.6.5",
-    "nuxt-og-image": "^2.0.10",
+    "nuxt-og-image": "^2.0.13",
     "ofetch": "^1.1.1",
     "unstorage": "^1.8.0"
   }

@@ -89,10 +89,9 @@ if (process.server) {
       <!--github connect -->
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
         <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
-        <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
+        <UButton to="/connect/github" external icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
           class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray" aria-label="connect with GitHub">
-          <a href="/connect/github" class="absolute inset-0 w-full h-full" aria-label="connect with GitHub" />
-          <span class="text-sm text-gray-300">Connect with GitHub</span>
+          Connect with GitHub
         </UButton>
       </div>
 

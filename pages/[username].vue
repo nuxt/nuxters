@@ -19,6 +19,10 @@ defineOgImage({
   component: 'OgImageNuxter',
   contributor
 })
+useSeoMeta({
+  title: () => `${contributor.value?.username} is a Nuxter`,
+  description: () => `Discover ${contributor.value?.username} contributions to the Nuxt ecosystem.`,
+})
 </script>
 
 <template>

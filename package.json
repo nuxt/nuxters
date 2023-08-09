@@ -20,6 +20,8 @@
     "@iconify-json/simple-icons": "^1.1.65",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.0.2",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/nuxt": "^10.3.0",
     "nuxt": "^3.6.5",
     "nuxt-og-image": "^2.0.13",
     "ofetch": "^1.1.1",

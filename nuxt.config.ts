@@ -77,10 +77,5 @@ export default defineNuxtConfig({
     ogImage: {
       runtimeCacheStorage: cacheProduction
     }
-  },
-
-  plugins: [
-    '~/plugins/nuxter.server.ts',
-    '~/plugins/dark.client.ts',
-  ],
+  }
 })

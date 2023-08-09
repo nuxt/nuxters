@@ -1,12 +1,21 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
+const cacheDevelopment = {
+  driver: 'fs',
+  base: '.data/cache',
+}
+const cacheProduction = {
+  driver: 'cloudflare-kv-binding',
+  binding: 'KV',
+  base: 'cache',
+}
+
 export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
     },
   },
-
   modules: [
     '@nuxt/devtools',
     '@nuxthq/ui',
@@ -55,19 +64,16 @@ export default defineNuxtConfig({
 
   nitro: {
     storage: {
-      cache: {
-        driver: 'cloudflare-kv-binding',
-        binding: 'KV',
-        base: 'cache',
-      },
+      cache: cacheProduction,
     },
     devStorage: {
-      cache: {
-        driver: 'fs',
-        base: '.data/cache',
-      },
+      cache: cacheDevelopment,
     },
   },
 
-  plugins: ['~/plugins/dark.client.ts'],
+  $production: {
+    ogImage: {
+      runtimeCacheStorage: cacheProduction
+    }
+  }
 })

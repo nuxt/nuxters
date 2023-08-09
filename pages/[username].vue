@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { Contributor } from '~/types'
-
 const { username } = useRoute().params
 const { copy, copied } = useClipboard()
 

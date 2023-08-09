@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
     },
   },
+
   modules: [
     '@nuxt/devtools',
     '@nuxthq/ui',
@@ -25,6 +26,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-og-image'
   ],
+
   runtimeConfig: {
     url: '',
     sessionPassword: '',
@@ -75,5 +77,10 @@ export default defineNuxtConfig({
     ogImage: {
       runtimeCacheStorage: cacheProduction
     }
-  }
+  },
+
+  plugins: [
+    '~/plugins/nuxter.server.ts',
+    '~/plugins/dark.client.ts',
+  ],
 })

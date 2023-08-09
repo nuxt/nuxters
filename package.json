@@ -11,19 +11,18 @@
     "pnpm": ">=8"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.7.4",
+    "@nuxt/devtools": "^0.7.6",
     "@nuxthq/ui": "^2.7.0",
-    "@nuxtjs/plausible": "^0.2.1",
-    "bun-types": "^0.7.1"
+    "@nuxtjs/plausible": "^0.2.1"
   },
   "dependencies": {
-    "@iconify-json/ph": "^1.1.5",
-    "@iconify-json/simple-icons": "^1.1.63",
+    "@iconify-json/ph": "^1.1.6",
+    "@iconify-json/simple-icons": "^1.1.65",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.0.2",
     "nuxt": "^3.6.5",
     "nuxt-og-image": "^2.0.13",
     "ofetch": "^1.1.1",
-    "unstorage": "^1.8.0"
+    "unstorage": "^1.9.0"
   }
 }

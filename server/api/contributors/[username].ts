@@ -8,7 +8,7 @@ export default eventHandler(async (event) => {
   }
   const contributors = await fetchContributors()
 
-  const contributor = contributors.find((contributor) => contributor.username === username)
+  const contributor = contributors.find((contributor) => contributor.username.toLowerCase() === username.toLocaleLowerCase())
 
   if (!contributor) {
     throw createError({

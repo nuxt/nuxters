@@ -20,8 +20,8 @@ defineOgImage({
 useSeoMeta({
   title: () => `${contributor.value?.username} is a Nuxter`,
   ogTitle: () => `${contributor.value?.username} is a Nuxter`,
-  description: () => `Discover ${contributor.value?.username} contributions to the Nuxt ecosystem.`,
-  ogDescription: () => `Discover ${contributor.value?.username} contributions to the Nuxt ecosystem.`,
+  description: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
+  ogDescription: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
 })
 </script>
 

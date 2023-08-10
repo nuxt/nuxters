@@ -17,6 +17,10 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/:username/__og_image__/og.png': { swr: 60 }
+  },
+
   modules: [
     '@nuxt/devtools',
     '@nuxthq/ui',

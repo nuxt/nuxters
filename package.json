@@ -23,7 +23,7 @@
     "@vueuse/core": "^10.3.0",
     "@vueuse/nuxt": "^10.3.0",
     "nuxt": "^3.6.5",
-    "nuxt-og-image": "^2.0.14",
+    "nuxt-og-image": "^2.0.15",
     "ofetch": "^1.1.1",
     "unstorage": "^1.9.0"
   }

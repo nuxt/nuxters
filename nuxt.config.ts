@@ -1,5 +1,15 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
+const cacheDevelopment = {
+  driver: 'fs',
+  base: '.data/cache',
+}
+const cacheProduction = {
+  driver: 'cloudflare-kv-binding',
+  binding: 'KV',
+  base: 'cache',
+}
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -12,12 +22,11 @@ export default defineNuxtConfig({
     '@nuxthq/ui',
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',
-    '@nuxtjs/plausible'
+    '@nuxtjs/plausible',
+    '@vueuse/nuxt',
+    'nuxt-og-image'
   ],
 
-  // ogImage: {
-  //   site: process.env.NUXT_URL || '',
-  // },
   runtimeConfig: {
     url: '',
     sessionPassword: '',
@@ -57,19 +66,10 @@ export default defineNuxtConfig({
 
   nitro: {
     storage: {
-      cache: {
-        driver: 'cloudflare-kv-binding',
-        binding: 'KV',
-        base: 'cache',
-      },
+      cache: cacheProduction,
     },
     devStorage: {
-      cache: {
-        driver: 'fs',
-        base: '.data/cache',
-      },
+      cache: cacheDevelopment,
     },
   },
-
-  plugins: ['~/plugins/dark.client.ts'],
 })

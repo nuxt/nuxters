@@ -1,97 +1,39 @@
 <script setup lang="ts">
-import { getSession } from 'h3'
 import type { Contributor } from '~/types'
 
 type Provider = 'github' | 'discord'
 
 const isOpen = ref(false)
-const linked = useState<{ [key in Provider]: boolean }>(() => ({ github: false, discord: false }))
-const contributor = useState<Contributor>()
-const canUnlockBadge = useState<boolean>(()=> false)
-const hasMergedPullRequests = useState<boolean>(() => false)
-const hasHelpfulIssues = useState<boolean>(() => false)
-const hasHelpfulComments = useState<boolean>(() => false)
-const detailedScore = useState<any>(() => [])
-// const { format } = Intl.NumberFormat('en-GB', { notation: 'compact', compactDisplay: 'short' })
+const {
+  linked,
+  contributor,
+  canUnlockBadge,
+  hasMergedPullRequests,
+  hasHelpfulIssues,
+  hasHelpfulComments,
+  detailedScore,
+} = useNuxter()
 const { format } = Intl.NumberFormat('en-GB', { })
-
-if (process.server) {
-  const event = useRequestEvent()
-  const session = await getSession(event, { password: useRuntimeConfig().sessionPassword })
-  linked.value = {
-    github: !!session?.data.githubId,
-    discord: !!session?.data.discordId,
-  }
-  contributor.value = event.context.contributor
-  canUnlockBadge.value = event.context.canUnlockBadge
-  // If user has contributions
-  if (contributor.value) {
-    hasMergedPullRequests.value = contributor.value.merged_pull_requests > 0
-    hasHelpfulIssues.value = contributor.value.helpful_issues > 0
-    hasHelpfulComments.value = contributor.value.helpful_comments > 0
-    detailedScore.value = [
-      {
-        type: 'Merged pull requests',
-        multiplier: 5,
-        amount: format(contributor.value.merged_pull_requests),
-        total: format(contributor.value.merged_pull_requests * 5),
-      },
-      {
-        type: 'Helpful issues',
-        multiplier: 3,
-        amount: format(contributor.value.helpful_issues),
-        total: format(contributor.value.helpful_issues * 3),
-      },
-      {
-        type: 'Helpful comments',
-        multiplier: 2,
-        amount: format(contributor.value.helpful_comments),
-        total: format(contributor.value.helpful_comments * 2),
-      },
-      {
-        type: 'Issues',
-        multiplier: 1,
-        amount: format(contributor.value.issues),
-        total: format(contributor.value.issues),
-      },
-      {
-        type: 'Comments',
-        multiplier: 0.5,
-        amount: format(contributor.value.comments),
-        total: format(contributor.value.comments * 0.5),
-      },
-      {
-        type: 'Reactions',
-        multiplier: 0.1,
-        amount: format(contributor.value.reactions),
-        total: format(contributor.value.reactions * 0.1),
-      },
-      {
-        type: 'Score',
-        multiplier: '',
-        amount: '',
-        total: format(contributor.value.score),
-      }
-    ]
-  }
-}
 </script>
 
 <template>
   <div
     class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked['github'] && canUnlockBadge ? 'card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
+    :class="linked['github'] && canUnlockBadge ? 'hover:border-green-400 card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
+    @click="linked.github ? $router.push(`/${contributor.username}`) : ''"
   >
     <UCard
       :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"
-      class="z-50 !bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
+      class="!bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
+      :class="{ 'cursor-pointer': linked.github }"
     >
       <!--github connect -->
       <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
         <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
-        <UButton to="/connect/github" external icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
+        <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
           class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray" aria-label="connect with GitHub">
-          Connect with GitHub
+          <a href="/connect/github" class="absolute inset-0 w-full h-full" aria-label="connect with GitHub" />
+          <span class="text-sm text-gray-300">Connect with GitHub</span>
         </UButton>
       </div>
 
@@ -137,7 +79,7 @@ if (process.server) {
             <span class="bg-gray-700 w-10 h-[1px]" />
             <div class="flex items-center">
               <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-gray-200 pl-[3px]">pts</span></span>
-              <UButton variant="ghost" icon="i-ph-info" color="gray" @click="isOpen = true" class="ml-1 transitions-color duration-200" aria-label="show score table" />
+              <UButton variant="ghost" icon="i-ph-info" color="gray" @click.stop="isOpen = true" class="ml-1 transitions-color duration-200 z-50" aria-label="show score table" />
               <UModal
                 class="relative"
                 v-model="isOpen"
@@ -269,5 +211,9 @@ if (process.server) {
   /* Ajustez le border radius selon vos besoins */
   background-image: linear-gradient(to bottom right, #00dc82, #1e293b);
   z-index: -1;
+}
+
+.card-border:hover::before {
+  background:  #00dc82;
 }
 </style>

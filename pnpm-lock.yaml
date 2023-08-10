@@ -27,8 +27,8 @@ dependencies:
     specifier: ^3.6.5
     version: 3.6.5(@types/node@20.4.1)
   nuxt-og-image:
-    specifier: ^2.0.15
-    version: 2.0.15
+    specifier: ^2.0.16
+    version: 2.0.16
   ofetch:
     specifier: ^1.1.1
     version: 1.1.1
@@ -5820,8 +5820,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
-  /nuxt-og-image@2.0.15:
-    resolution: {integrity: sha512-1gC436ugpvhqURyGdsUgaQ+1i2DEQhCupVhfPppHhWjQfBnDFPDFWCSh6KZHOVF3NIHxsvTMiW62UAVvSC7xeA==}
+  /nuxt-og-image@2.0.16:
+    resolution: {integrity: sha512-qfiyvCLObLc/sHZTAi0JX0s4M57WG7v4/r/Jice/Xa0JbIAk1fUm1iy68FH18Q+po35mxRpcVf6RWju+WowxtA==}
     dependencies:
       '@nuxt/kit': 3.6.5
       '@resvg/resvg-js': 2.4.1

@@ -130,10 +130,6 @@ useSeoMeta({
   z-index: -1;
 }
 
-.card-border {
-  z-index: 50;
-}
-
 .profile-card {
   background-image: url('/card-gradient-bg.svg') ;
   background-repeat: no-repeat;

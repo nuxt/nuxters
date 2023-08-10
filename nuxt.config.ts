@@ -31,6 +31,10 @@ export default defineNuxtConfig({
     'nuxt-og-image'
   ],
 
+  ogImage: {
+    debug: true,
+  },
+
   runtimeConfig: {
     url: '',
     sessionPassword: '',
@@ -76,10 +80,4 @@ export default defineNuxtConfig({
       cache: cacheDevelopment,
     },
   },
-
-  $production: {
-    ogImage: {
-      runtimeCacheStorage: cacheProduction
-    }
-  }
 })

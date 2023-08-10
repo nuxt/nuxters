@@ -21,7 +21,7 @@ Next, copy the `.env.example` to `.env` and fill the env variables.
 Start the development server on http://localhost:3000:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ### License

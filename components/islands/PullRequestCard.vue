@@ -48,5 +48,5 @@ defineProps<{ pullRequests: String }>()
     </svg>
   </div>
   <span class="text-5xl font-medium">{{ pullRequests }}</span>
-  <span class="text-2xl">Pull Requests</span>
+  <span class="text-2xl">Merged PRs</span>
 </div></template>

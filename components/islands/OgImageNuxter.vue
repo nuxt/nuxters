@@ -70,7 +70,7 @@ const { format } = Intl.NumberFormat('en-GB', {})
     </div>
     <div class="flex flex-col w-[31.5%] text-white justify-between">
       <div class="h-[48%]">
-        <IssuesCard :issues="format(contributor.issues + contributor.helpful_issues)" />
+        <IssuesCard :issues="format(contributor.issues)" />
       </div>
       <div class="h-[48%]">
         <PullRequestCard :pullRequests="format(contributor.merged_pull_requests)" />
@@ -78,7 +78,7 @@ const { format } = Intl.NumberFormat('en-GB', {})
     </div>
     <div class="flex flex-col w-[31.5%] text-white justify-between">
       <div class="h-[48%]">
-        <CommentsCard :comments="format(contributor.comments + contributor.helpful_comments)" />
+        <CommentsCard :comments="format(contributor.comments)" />
       </div>
       <div class="h-[48%]">
         <ReactionsCard :reactions="format(contributor.reactions)" />

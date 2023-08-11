@@ -34,7 +34,7 @@ useSeoMeta({
       <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">
         <div class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 !bg-gray-950 rounded-[9.5px] relative p-[18px] sm:p-[44px]">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-6 pb-2 lg:w-full items-center text-center">
-            <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="4xl" :ui="{ background: '' }" />
+            <img :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" :alt="contributor?.username" class="rounded-full" />
             <div class="flex flex-col gap-y-[18px] md:ml-6 lg:ml-0">
               <UButton :to="`https://github.com/${contributor.username}`" color="gray" variant="ghost" size="lg" icon="i-simple-icons-github" target="_blank" :trailing="true" class="transition-colors duration-200">
                 <div class="text-2xl">{{ contributor.username }}</div>
@@ -68,51 +68,22 @@ useSeoMeta({
 
       </div>
       <div class="border-primary-400 issues-card card">
-        <span class="text-5xl font-medium">{{ format(contributor.issues + contributor.helpful_issues) }}</span>
+        <span class="text-5xl font-medium">{{ format(contributor.issues) }}</span>
         <span class="text-2xl">Issues</span>
       </div>
       <div class="border-blue-400 comments-card card">
-        <span class="text-5xl font-medium">{{ format(contributor.comments + contributor.helpful_comments) }}</span>
+        <span class="text-5xl font-medium">{{ format(contributor.comments) }}</span>
         <span class="text-2xl">Comments</span>
       </div>
       <div class="border-violet-400 pull-requests-card card">
         <span class="text-5xl font-medium">{{ format(contributor.merged_pull_requests) }}</span>
-        <span class="text-2xl"> Pull requests</span>
+        <span class="text-2xl"> Merged PRs</span>
       </div>
       <div class="border-yellow-400 reactions-card card">
         <span class="text-5xl font-medium">{{ format(contributor.reactions) }}</span>
         <span class="text-2xl"> Reactions</span>
       </div>
     </div>
-
-    <!-- <div class="flex items-center gap-5 justify-center mb-7">
-      <img
-        :src="contributor.avatar_url"
-        :alt="contributor.login"
-        width="60"
-        height="60"
-        class="w-60px h-60px rounded-full"
-      />
-      <div class="flex items-center gap-5">
-        <div class="text-7xl font-bold flex items-center">{{ contributor.contributions }}</div>
-        <div class="italic text-gray-400 text-xs">
-          Contributions to the <br />
-          <a href="" class="underline" aria-label="nuxt/nuxt repo">nuxt/nuxt</a> repo.
-        </div>
-      </div>
-    </div>
-    <div class="flex items-center justify-center gap-3 mb-7">
-      <div class="flex items-center gap-2 text-xl">
-        <strong>{{ contributor.login }}</strong> is a Nuxt star
-        <div class="i-ri-star-fill w-6 h-6 text-yellow" />
-      </div>
-    </div>
-    <div>
-      <a :href="`https://github.com/${contributor.login}`" class="inline-flex items-center justify-center" aria-label="visit their GitHub">
-        Visit their GitHub
-        <span class="block i-ri-github-fill w-4 h-4 ml-2" />
-      </a>
-    </div> -->
   </div>
 </template>
 

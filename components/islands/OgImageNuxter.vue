@@ -6,7 +6,7 @@ defineProps<{ contributor: Contributor }>()
 defineOptions({
   inheritAttrs: false,
 })
-const { format } = Intl.NumberFormat('en-GB', {})
+const format = useNumberFormatter()
 </script>
 
 <template>
@@ -70,18 +70,18 @@ const { format } = Intl.NumberFormat('en-GB', {})
     </div>
     <div class="flex flex-col w-[31.5%] text-white justify-between">
       <div class="h-[48%]">
-        <IssuesCard :issues="format(contributor.issues)" />
+        <IssuesCard :issues="contributor.issues" />
       </div>
       <div class="h-[48%]">
-        <PullRequestCard :pullRequests="format(contributor.merged_pull_requests)" />
+        <PullRequestCard :pullRequests="contributor.merged_pull_requests" />
       </div>
     </div>
     <div class="flex flex-col w-[31.5%] text-white justify-between">
       <div class="h-[48%]">
-        <CommentsCard :comments="format(contributor.comments)" />
+        <CommentsCard :comments="contributor.comments" />
       </div>
       <div class="h-[48%]">
-        <ReactionsCard :reactions="format(contributor.reactions)" />
+        <ReactionsCard :reactions="contributor.reactions" />
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 
 <script lang="ts" setup>
-defineProps<{ comments: String }>()
+defineProps<{ comments: number }>()
+const format = useNumberFormatter()
 </script>
 
 <template>
@@ -192,6 +193,6 @@ defineProps<{ comments: String }>()
       </defs>
     </svg>
   </div>
-  <span class="text-5xl font-medium">{{ comments }}</span>
-  <span class="text-2xl">Comments</span>
+  <span class="text-5xl font-medium">{{ format(comments) }}</span>
+  <span class="text-2xl">{{ comments === 1 ? 'Comment' : 'Comments' }}</span>
 </div></template>

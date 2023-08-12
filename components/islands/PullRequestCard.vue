@@ -1,6 +1,8 @@
 
 <script lang="ts" setup>
-defineProps<{ pullRequests: String }>()
+defineProps<{ pullRequests: number }>()
+
+const format = useNumberFormatter()
 </script>
 
 <template>
@@ -47,6 +49,6 @@ defineProps<{ pullRequests: String }>()
       </defs>
     </svg>
   </div>
-  <span class="text-5xl font-medium">{{ pullRequests }}</span>
-  <span class="text-2xl">Merged PRs</span>
+  <span class="text-5xl font-medium">{{ format(pullRequests) }}</span>
+  <span class="text-2xl">Merged {{ pullRequests === 1 ? 'PR' : 'PRs' }}</span>
 </div></template>

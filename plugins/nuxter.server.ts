@@ -12,7 +12,7 @@ export default defineNuxtPlugin(async () => {
   } = useNuxter()
   const event = useRequestEvent()
   const session = await getSession(event, { password: useRuntimeConfig().sessionPassword })
-  const { format } = Intl.NumberFormat('en-GB', { })
+  const format = useNumberFormatter()
 
   linked.value = {
     github: !!session?.data.githubId,

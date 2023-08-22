@@ -1,6 +1,7 @@
 
 <script lang="ts" setup>
-defineProps<{ issues: String }>()
+defineProps<{ issues: number }>()
+const format = useNumberFormatter()
 </script>
 
 <template>
@@ -94,6 +95,6 @@ defineProps<{ issues: String }>()
       </defs>
     </svg>
   </div>
-  <span class="text-5xl font-medium">{{ issues }}</span>
-  <span class="text-2xl">Issues</span>
+  <span class="text-5xl font-medium">{{ format(issues) }}</span>
+  <span class="text-2xl">{{ issues === 1 ? 'Issue' : 'Issues' }}</span>
 </div></template>

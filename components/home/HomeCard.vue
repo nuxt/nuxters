@@ -13,7 +13,7 @@ const {
   hasHelpfulComments,
   detailedScore,
 } = useNuxter()
-const { format } = Intl.NumberFormat('en-GB', { })
+const format = useNumberFormatter()
 </script>
 
 <template>

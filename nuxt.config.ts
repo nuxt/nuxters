@@ -11,6 +11,8 @@ const cacheProduction = {
 }
 
 export default defineNuxtConfig({
+  extends: process.env.NUXT_ELEMENTS_PATH || '@nuxthq/elements',
+
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -19,12 +21,13 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/devtools',
-    '@nuxthq/ui',
+    '@nuxt/ui',
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',
     '@nuxtjs/plausible',
     '@vueuse/nuxt',
-    'nuxt-og-image'
+    'nuxt-og-image',
+    '@nuxt/image',
   ],
 
   runtimeConfig: {

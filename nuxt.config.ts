@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from "node:fs"
 import { defineNuxtConfig } from 'nuxt/config'
 
 const cacheDevelopment = {
@@ -12,6 +13,7 @@ const cacheProduction = {
 
 export default defineNuxtConfig({
   extends: process.env.NUXT_ELEMENTS_PATH || '@nuxthq/elements',
+
 
   app: {
     head: {

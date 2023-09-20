@@ -12,16 +12,17 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.7.6",
-    "@nuxtjs/plausible": "^0.2.1"
+    "@nuxtjs/plausible": "^0.2.1",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.1.6",
     "@iconify-json/simple-icons": "^1.1.65",
     "@nuxt/image": "1.0.0-rc.1",
+    "@nuxthq/elements": "npm:@nuxthq/elements-edge@latest",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.0.2",
     "@vueuse/core": "^10.3.0",
-    "@nuxthq/elements": "npm:@nuxthq/elements-edge@latest",
     "@vueuse/nuxt": "^10.3.0",
     "nuxt": "^3.6.5",
     "nuxt-og-image": "^2.0.18",

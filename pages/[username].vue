@@ -61,11 +61,10 @@ useSeoMeta({
               <UIcon :name="copied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0"
                 :class="{ 'text-green-400': copied }" />
             </UButton>
-
           </div>
         </div>
-
       </div>
+
       <div class="border-primary-400 issues-card card">
         <span class="text-5xl font-medium">{{ format(contributor.issues) }}</span>
         <span class="text-2xl">{{ contributor?.issues === 1 ? 'Issue' : 'Issues' }}</span>

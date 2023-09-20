@@ -21,7 +21,6 @@ useSeoMeta({
       <template #logo>
         <NuxtDropdown />
       </template>
-
       <template #right>
         <UButton to="https://discord.com/invite/nuxt" class="mr-2" target="_blank" variant="ghost" color="gray"
           aria-label="Join us" icon="i-simple-icons-discord" />
@@ -29,14 +28,17 @@ useSeoMeta({
           icon="i-simple-icons-github" />
       </template>
     </UHeader>
+
     <UContainer>
       <NuxtPage />
     </UContainer>
+
     <UFooter>
       <template #left>
-        <span class="text-gray-300 text-sm text-center">
-                    Made with love by the Nuxt Community 💚 (<NuxtLink to="https://github.com/nuxt/nuxt.new" target="_blank" class="underline hover:text-white" aria-label="View nuxt.new source code on github">source code</NuxtLink>).
-                  </span>
+        <p class="text-gray-300 text-sm text-center">
+          Made with love by the Nuxt Community 💚 (<NuxtLink to="https://github.com/nuxt/nuxt.new" target="_blank"
+            class="underline hover:text-white" aria-label="View nuxt.new source code on github">source code</NuxtLink>).
+        </p>
       </template>
       <template #right>
         <UButton to="https://discord.com/invite/nuxt" target="_blank" variant="ghost" color="gray" aria-label="Join us"

@@ -47,12 +47,11 @@ const format = useNumberFormatter()
             { 'cursor-auto hover:bg-gray-950': linked['discord'] || !canUnlockBadge },
             { 'primary-button-discord': !linked['discord'] && canUnlockBadge },
           ]" :color="canUnlockBadge ? 'primary' : 'gray'" variant="outline" :icon="!canUnlockBadge
-    ? 'i-ph-smiley'
-    : !linked['discord']
-      ? 'i-simple-icons-discord'
-      : 'i-heroicons-check-circle-solid'
-  "
-            :aria-label="!canUnlockBadge ? 'you\'re almost there, keep going!' : !linked['discord'] ? 'Unlock badge' : 'Nuxter role'">
+  ? 'i-ph-smiley'
+  : !linked['discord']
+    ? 'i-simple-icons-discord'
+    : 'i-heroicons-check-circle-solid'
+  " :aria-label="!canUnlockBadge ? 'you\'re almost there, keep going!' : !linked['discord'] ? 'Unlock badge' : 'Nuxter role'">
             <a v-if="!linked['discord'] && canUnlockBadge" href="/connect/discord"
               class="absolute inset-0 w-full h-full" />
             <span class="text-sm text-gray-300">{{
@@ -104,7 +103,8 @@ const format = useNumberFormatter()
           <div class="flex flex-col gap-y-6 text-gray-300 w-full">
             <div class="flex items-center justify-between w-full">
               <span
-                  ><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull
+                      ><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged
+              pull
               request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span>
               <UCheckbox :ui="{
                 base: 'h-5 w-5',
@@ -112,16 +112,17 @@ const format = useNumberFormatter()
             </div>
             <div class="flex items-center justify-between">
               <span
-                  ><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{
-                    contributor.helpful_issues > 1 ? 's' : '' }}</span>
+                      ><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{
+                        contributor.helpful_issues > 1 ? 's' : '' }}</span>
               <UCheckbox :ui="{
                 base: 'h-5 w-5',
               }" v-model="hasHelpfulIssues" disabled />
             </div>
             <div class="flex items-center justify-between">
               <span
-                  ><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful comment{{
-                    contributor.helpful_comments > 1 ? 's' : '' }}</span>
+                      ><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful
+              comment{{
+                contributor.helpful_comments > 1 ? 's' : '' }}</span>
               <UCheckbox :ui="{
                 base: 'h-5 w-5',
               }" v-model="hasHelpfulComments" disabled />

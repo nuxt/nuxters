@@ -26,13 +26,12 @@ useSeoMeta({
 
 const color = ref('violet')
 
-const profileCard = ref()
+
 const issuesCard = ref()
 const commentsCard = ref()
 const prsCard = ref()
 const reactionsCard = ref()
 
-const profileCardOutside = ref(useMouseInElement(profileCard).isOutside)
 const greenCardOutside = ref(useMouseInElement(issuesCard).isOutside)
 const commentsCardOutside = ref(useMouseInElement(commentsCard).isOutside)
 const prsCardOutside = ref(useMouseInElement(prsCard).isOutside)
@@ -61,7 +60,7 @@ watch(() => reactionsCardOutside.value, () => {
     <UPageGrid v-if="contributor" :ui="{ wrapper: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full' }">
       <ULandingCard
         :ui="{ background: '', shadow: 'shadow-none', body: { base: 'gap-x-8 gap-y-4 h-full flex flex-col justify-end', padding: 'pb-4' }, title: 'text-5xl font-medium', description: 'text-2xl dark:text-white' }"
-        class="profile-card relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 p-[1px] rounded-xl bg-transparent">
+        class="relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 p-[1px] rounded-xl bg-transparent">
         <div
           class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 ounded-[9.5px] relative p-[18px] sm:p-[44px]">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-6 pb-2 lg:w-full items-center text-center">

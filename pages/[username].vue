@@ -24,7 +24,7 @@ useSeoMeta({
   ogDescription: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
 })
 
-const color = ref('violet')
+const color = ref('')
 
 
 const issuesCard = ref()
@@ -38,16 +38,16 @@ const prsCardOutside = ref(useMouseInElement(prsCard).isOutside)
 const reactionsCardOutside = ref(useMouseInElement(reactionsCard).isOutside)
 
 watch(() => greenCardOutside.value, () => {
-  if (greenCardOutside) color.value = 'rgba(0, 220, 130, 0.60)'
+  if (greenCardOutside) color.value = 'rgba(0, 220, 130, 0.80)'
 })
 watch(() => commentsCardOutside.value, () => {
-  if (commentsCardOutside) color.value = 'rgb(64, 187, 255, 0.60)'
+  if (commentsCardOutside) color.value = 'rgb(64, 187, 255, 0.80)'
 })
 watch(() => prsCardOutside.value, () => {
-  if (prsCardOutside) color.value = 'rgba(139, 92, 246, 0.60)'
+  if (prsCardOutside) color.value = 'rgba(139, 92, 246, 0.80)'
 })
 watch(() => reactionsCardOutside.value, () => {
-  if (reactionsCardOutside) color.value = 'rgb(247, 209, 76, 0.60)'
+  if (reactionsCardOutside) color.value = 'rgb(247, 209, 76, 0.80)'
 })
 </script>
 

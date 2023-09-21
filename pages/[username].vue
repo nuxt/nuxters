@@ -24,8 +24,7 @@ useSeoMeta({
   ogDescription: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
 })
 
-const color = ref('')
-
+const color = ref()
 
 const issuesCard = ref()
 const commentsCard = ref()

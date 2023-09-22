@@ -12,8 +12,7 @@ const cacheProduction = {
 }
 
 export default defineNuxtConfig({
-  extends: process.env.NUXT_ELEMENTS_PATH || '@nuxthq/elements',
-
+  extends: process.env.NUXT_UI_PRO_PATH || '@nuxt/ui-pro',
 
   app: {
     head: {

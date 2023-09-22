@@ -19,7 +19,7 @@
     "@iconify-json/ph": "^1.1.6",
     "@iconify-json/simple-icons": "^1.1.65",
     "@nuxt/image": "1.0.0-rc.1",
-    "@nuxthq/elements": "npm:@nuxthq/elements-edge@latest",
+    "@nuxt/ui-pro": "npm:@nuxt/ui-pro-edge@latest",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.0.2",
     "@vueuse/core": "^10.3.0",

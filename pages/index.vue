@@ -54,7 +54,7 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
 
     <!-- CTA -->
     <ULandingCTA
-      :ui="{ wrapper: 'relative bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-slate-800 rounded-lg' }"
+      :ui="{ wrapper: 'relative bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-slate-800 rounded-lg', links: 'mt-10 flex flex-col sm:flex-row items-center gap-6' }"
       description="Become a Nuxter and help shape the future of Nuxt. Contribute, collaborate and join our community today!">
       <template #title>
         Ready to <span class="text-green-400">Join us</span>?

@@ -11,7 +11,7 @@
     "pnpm": ">=8"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.7.6",
+    "@nuxt/devtools": "^1.0.0",
     "@nuxthq/ui": "^2.7.0",
     "@nuxtjs/plausible": "^0.2.1"
   },

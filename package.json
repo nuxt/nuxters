@@ -6,9 +6,6 @@
     "build": "nuxt build",
     "logs": "wrangler pages deployment tail"
   },
-  "engines": {
-    "pnpm": ">=8.9.2"
-  },
   "devDependencies": {
     "@nuxt/devtools": "^0.8.5",
     "@nuxthq/ui": "^2.7.0",

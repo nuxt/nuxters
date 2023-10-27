@@ -11,6 +11,7 @@ const cacheProduction = {
 }
 
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -18,8 +19,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxt/devtools',
-    '@nuxthq/ui',
+    '@nuxt/ui',
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',
     '@nuxtjs/plausible',

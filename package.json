@@ -7,7 +7,6 @@
     "logs": "wrangler pages deployment tail"
   },
   "engines": {
-    "node": ">=18.18.2",
     "pnpm": ">=8.9.2"
   },
   "devDependencies": {

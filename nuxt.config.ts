@@ -12,6 +12,7 @@ const cacheProduction = {
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  experimental: { appManifest: false },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },

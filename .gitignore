@@ -6,3 +6,4 @@ node_modules
 .data
 src/server/routes/test.ts
 src/server/routes/add.ts
+dist

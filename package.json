@@ -7,24 +7,24 @@
     "logs": "wrangler pages deployment tail"
   },
   "engines": {
-    "node": ">=v18.17.1",
-    "pnpm": ">=8"
+    "node": ">=18.18.2",
+    "pnpm": ">=8.9.2"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.7.6",
+    "@nuxt/devtools": "^0.8.5",
     "@nuxthq/ui": "^2.7.0",
-    "@nuxtjs/plausible": "^0.2.1"
+    "@nuxtjs/plausible": "^0.2.3"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.1.6",
-    "@iconify-json/simple-icons": "^1.1.65",
+    "@iconify-json/simple-icons": "^1.1.76",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.0.2",
-    "@vueuse/core": "^10.3.0",
-    "@vueuse/nuxt": "^10.3.0",
+    "@vueuse/core": "^10.5.0",
+    "@vueuse/nuxt": "^10.5.0",
     "nuxt": "^3.6.5",
-    "nuxt-og-image": "^2.0.18",
-    "ofetch": "^1.1.1",
+    "nuxt-og-image": "^2.2.0",
+    "ofetch": "^1.3.3",
     "unstorage": "^1.9.0"
   }
 }

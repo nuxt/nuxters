@@ -9,9 +9,9 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
       <div class="flex flex-col gap-y-4 text-gray-300">
         <p class="text-base lg:text-lg lg:leading-[32px]">
           Discover your contributions on
-          <NuxtLink to="https://github.com/nuxt/nuxt" target="_blank">nuxt</NuxtLink>
+          <NuxtLink to="https://github.com/nuxt" target="_blank">nuxt</NuxtLink>
           and
-          <NuxtLink to="https://github.com/nuxt/modules" target="_blank"
+          <NuxtLink to="https://github.com/nuxt-modules" target="_blank"
             >nuxt modules</NuxtLink
           > organisations and unlock the <UBadge size="md" color="primary" variant="solid">nuxter</UBadge> role on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink>.
         </p>

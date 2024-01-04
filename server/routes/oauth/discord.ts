@@ -65,9 +65,9 @@ export default defineEventHandler(async event => {
     session.data.guildMemberAdded = true
   }
 
-  if (event.context.canUnlockBadge) {
+  if (event.context.canUnlockNuxterBadge) {
     await $fetch(
-      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.memberRoleId}`,
+      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.nuxterRoleId}`,
       {
         method: 'PUT',
         headers: {
@@ -76,7 +76,20 @@ export default defineEventHandler(async event => {
         },
       }
     )
-    session.data.roleAdded = true
+    session.data.nuxterRoleAdded = true
+  }
+
+  if (event.context.canUnlockModuleBadge) {
+    await $fetch(
+      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.moduleMaintainerRoleId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
+          Authorization: `Bot ${config.discord.botToken}`,
+        },
+      }
+    )
   }
 
   await setUserSession(event, session.data)

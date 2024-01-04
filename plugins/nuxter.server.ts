@@ -4,7 +4,8 @@ export default defineNuxtPlugin(async () => {
   const {
     linked,
     contributor,
-    canUnlockBadge,
+    canUnlockNuxterBadge,
+    canUnlockModuleBadge,
     hasMergedPullRequests,
     hasHelpfulIssues,
     hasHelpfulComments,
@@ -20,7 +21,8 @@ export default defineNuxtPlugin(async () => {
   }
 
   contributor.value = event.context.contributor
-  canUnlockBadge.value = event.context.canUnlockBadge
+  canUnlockNuxterBadge.value = event.context.canUnlockNuxterBadge
+  canUnlockModuleBadge.value = event.context.canUnlockModuleBadge
 
   // If user has contributions
   if (contributor.value) {

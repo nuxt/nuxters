@@ -17,8 +17,8 @@ const {
 const format = useNumberFormatter()
 const showConfetti = ref(false)
 const badgeName = computed(() => {
-  if (canUnlockModuleBadge) return 'Nuxter & Module Author badges unlocked'
-  if (canUnlockNuxterBadge) return 'Nuxter badge unlocked'
+  if (canUnlockModuleBadge.value) return 'Nuxter & Module Author badges unlocked'
+  if (canUnlockNuxterBadge.value) return 'Nuxter badge unlocked'
   return 'You\'re almost there, keep going!'
 })
 async function popConfetti() {

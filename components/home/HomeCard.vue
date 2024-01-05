@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Contributor } from '~/types'
+import ConfettiExplosion from 'vue-confetti-explosion'
 
 type Provider = 'github' | 'discord'
 
@@ -8,18 +8,41 @@ const {
   linked,
   contributor,
   canUnlockNuxterBadge,
+  canUnlockModuleBadge,
   hasMergedPullRequests,
   hasHelpfulIssues,
   hasHelpfulComments,
   detailedScore,
 } = useNuxter()
 const format = useNumberFormatter()
+const showConfetti = ref(false)
+const badgeName = computed(() => {
+  if (canUnlockModuleBadge) return 'Nuxter & Module Author badges unlocked'
+  if (canUnlockNuxterBadge) return 'Nuxter badge unlocked'
+  return 'You\'re almost there, keep going!'
+})
+async function popConfetti() {
+  showConfetti.value = false
+  await nextTick()
+  showConfetti.value = true
+}
+function unlockButton(e: MouseEvent) {
+  e.stopPropagation()
+  if (linked.value.discord && canUnlockNuxterBadge) {
+    popConfetti()
+  }
+}
+onMounted(() => {
+  if (linked.value.discord && canUnlockNuxterBadge) {
+    popConfetti()
+  }
+})
 </script>
 
 <template>
   <div
     class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked['github'] && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
+    :class="linked.github && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
     @click="linked.github ? $router.push(`/${contributor.username}`) : ''"
   >
     <UCard
@@ -28,7 +51,7 @@ const format = useNumberFormatter()
       :class="{ 'cursor-pointer': linked.github }"
     >
       <!--github connect -->
-      <div v-if="!linked['github']" class="flex gap-y-6 flex-col justify-center items-center">
+      <div v-if="!linked.github" class="flex gap-y-6 flex-col justify-center items-center">
         <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
         <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
           class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray" aria-label="connect with GitHub">
@@ -38,35 +61,38 @@ const format = useNumberFormatter()
       </div>
 
       <!-- linked to github -->
-      <div v-else-if="linked['github']" class="w-full h-full">
+      <div v-else-if="linked.github" class="w-full h-full">
         <img v-if="canUnlockNuxterBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
-        <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
+        <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
+        <div class="absolute left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4">
           <UButton
             class="relative"
             :class="[
               canUnlockNuxterBadge ? 'primary-button' : 'bg-gray-900',
-              { 'cursor-auto hover:bg-gray-950': linked['discord'] || !canUnlockNuxterBadge },
-              { 'primary-button-discord': !linked['discord'] && canUnlockNuxterBadge },
+              { 'cursor-auto hover:bg-gray-950': !canUnlockNuxterBadge },
+              { 'primary-button-discord': !linked.discord && canUnlockNuxterBadge },
+              { 'cursor-auto hover:bg-gray-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
             ]"
             :color="canUnlockNuxterBadge ? 'primary' : 'gray'"
             variant="outline"
             :icon="
               !canUnlockNuxterBadge
                 ? 'i-ph-smiley'
-                : !linked['discord']
+                : !linked.discord
                 ? 'i-simple-icons-discord'
                 : 'i-heroicons-check-circle-solid'
             "
-             :aria-label="!canUnlockNuxterBadge ? 'you\'re almost there, keep going!' : !linked['discord'] ? 'Unlock badge' : 'Nuxter role'"
+             :aria-label="linked.discord ? badgeName : 'Unlock badge(s)'"
+             @click="(e) => unlockButton(e)"
           >
             <a
-              v-if="!linked['discord'] && canUnlockNuxterBadge"
+              v-if="!linked.discord && canUnlockNuxterBadge"
               href="/connect/discord"
               class="absolute inset-0 w-full h-full"
             />
-            <span class="text-sm text-gray-300">{{
-              !canUnlockNuxterBadge ? "you're almost there, keep going!" : !linked['discord'] ? 'Unlock badge' : 'Nuxter role'
+            <span class="text-sm" :class="[linked.discord ? 'text-primary-400 ': 'text-gray-300']">{{
+              linked.discord ? badgeName : 'Unlock badge(s)'
             }}</span>
           </UButton>
         </div>

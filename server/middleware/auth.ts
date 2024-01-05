@@ -18,6 +18,6 @@ export default defineEventHandler(async event => {
     }
     event.context.contributor = contributor
     event.context.canUnlockNuxterBadge = (contributor.helpful_comments + contributor.helpful_issues + contributor.merged_pull_requests) > 0
-    event.context.canUnlockModuleBadge = !!moduleMaintainers.find(maintainer => maintainer.github === String(session.data.githubId))
+    event.context.canUnlockModuleBadge = !!moduleMaintainers.find(maintainer => maintainer.github?.toLowerCase() === String(session.data.githubUsername).toLowerCase())
   }
 })

@@ -64,7 +64,7 @@ onMounted(() => {
       <div v-else-if="linked.github" class="w-full h-full">
         <img v-if="canUnlockNuxterBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
         <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
-        <div class="absolute left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
+        <div class="absolute overflow-hidden left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4">
           <UButton
             class="relative"

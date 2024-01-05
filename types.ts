@@ -9,3 +9,9 @@ export interface Contributor {
   reactions: number,
   score: number
 }
+
+export interface ModuleMaintainer {
+  name: string,
+  github: string,
+  modules: string[]
+}

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+const href = useRequestURL().href;
 const { username } = useRoute().params
-const { copy, copied } = useClipboard()
+const { copy: copyPage, copied: pageCopied } = useClipboard()
+const { copy: copyCard, copied: cardCopied } = useClipboard()
 
 const { data: contributor } = await useFetch(`/api/contributors/${username}`)
 
@@ -23,6 +25,8 @@ useSeoMeta({
   description: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
   ogDescription: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
 })
+
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -59,10 +63,15 @@ useSeoMeta({
               <div class="flex flex-col items-center justify-center text-center gap-y-3">
                 <span class="text-lg">Share your Nuxter profile ✨</span>
 
-                <UButton @click="copy(`nuxters.nuxt.com/${contributor.username}`)" color="gray" variant="outline" size="xl"
-                  :class="{ 'border-primary-400': copied }" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
+                <UButton @click="copyPage(`nuxters.nuxt.com/${contributor.username}`)" color="gray" variant="outline" size="xl"
+                  :class="{ 'border-primary-400': pageCopied }" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
                   <span class="truncate">{{ `nuxters.nuxt.com/${contributor.username}` }}</span>
-                  <UIcon :name="copied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': copied }"/>
+                  <UIcon :name="pageCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': pageCopied }"/>
+                </UButton>
+                <UDivider label="OR" />
+                <UButton @click="isOpen = true" color="gray" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
+                  <span class="truncate">Add your Nuxter card on Github</span>
+                  <UIcon name="i-simple-icons-github" class="h-5 w-5 shrink-0"/>
                 </UButton>
               </div>
             </div>
@@ -87,6 +96,31 @@ useSeoMeta({
         <span class="text-2xl">{{ contributor?.reactions === 1 ? 'Reaction' : 'Reactions' }}</span>
       </div>
     </div>
+    <UModal v-model="isOpen" :ui="{ width: 'sm:max-w-2xl' }">
+      <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
+              Add your Nuxter card on Github
+            </h3>
+            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="isOpen = false" />
+          </div>
+        </template>
+        <div class="flex flex-col gap-y-4">
+          <div class="aspect-[1.91/1] flex items-center justify-center">
+            <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
+            <img :src="`${href}/__og_image__/og.png`" :alt="contributor?.username" height="630" width="1200" class="absolute" />
+          </div>
+          <UButton @click="copyCard(`![${contributor?.username} Nuxter profile](${href}/__og_image__/og.png)`)" color="gray" variant="outline" size="xl"
+            :class="{ 'border-primary-400': cardCopied }" class="self-center">
+            <span class="truncate">Get your Nuxter card</span>
+            <UIcon :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': cardCopied }"/>
+          </UButton>
+          <p class="text-center">Copy your Nuxter card and paste it on your <NuxtLink to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" target="_blank">profile README</NuxtLink>.</p>
+          <p class="text-gray-400 text-center">Example : <NuxtLink to="https://github.com/Atinux" target="_blank">Atinux profile</NuxtLink> with <NuxtLink to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md" target="_blank">this template</NuxtLink></p>
+        </div>
+      </UCard>
+    </UModal>
   </div>
 </template>
 
@@ -128,5 +162,9 @@ useSeoMeta({
 
 .reactions-card {
   background-image: linear-gradient(180deg, rgba(247, 209, 76, 0.40) 0%, rgba(247, 209, 76, 0.00) 100%, rgba(2, 4, 32, 0.50)), url('/reactions-card-bg.webp');
+}
+
+p a {
+  @apply border-b hover:border-green-400 hover:text-green-400;
 }
 </style>

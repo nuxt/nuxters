@@ -13,10 +13,10 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
           and
           <NuxtLink to="https://github.com/nuxt-modules" target="_blank"
             >nuxt modules</NuxtLink
-          > organisations and unlock the <UBadge size="md" color="primary" variant="solid">nuxter</UBadge> role on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink>.
+          > organisations, unlock roles on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink> and share your Nuxter profile.
         </p>
         <div>
-          <div class="mb-2">Unlock it by having either:</div>
+          <div class="mb-2">Unlock the <UBadge size="md" color="primary" variant="solid">nuxter</UBadge> role by having either:</div>
           <ul class="flex flex-col gap-y-1 pt-1 text-base">
             <li v-for="item in unlockList" :key="item" class="flex gap-x-2">
               <UIcon name="i-heroicons-check-circle-20-solid" class="h-5 w-5 text-green-400" />

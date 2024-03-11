@@ -65,7 +65,7 @@ onMounted(() => {
         <img v-if="canUnlockNuxterBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
         <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
         <div class="absolute left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
-        <div class="absolute left-0 right-0 flex justify-center -bottom-4">
+        <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
             class="relative"
             :class="[
@@ -94,6 +94,19 @@ onMounted(() => {
             <span class="text-sm" :class="[linked.discord ? 'text-primary-400 ': 'text-gray-300']">{{
               linked.discord ? badgeName : 'Unlock badge(s)'
             }}</span>
+          </UButton>
+          <UButton v-if="linked.github"
+            class="relative primary-button hidden 2xl:flex"
+            color="primary"
+            variant="outline"
+            icon="i-ph-share-network"
+            aria-label="Share my Nuxter profile"
+          >
+            <a
+              :href="`/${contributor.username}`"
+              class="absolute inset-0 w-full h-full"
+            />
+            <span class="text-sm text-gray-300">Share my Nuxter profile</span>
           </UButton>
         </div>
 

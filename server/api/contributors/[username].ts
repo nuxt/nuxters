@@ -8,13 +8,16 @@ export default eventHandler(async (event) => {
   }
   const contributors = await fetchContributors()
 
-  const contributor = contributors.find((contributor) => contributor.username.toLowerCase() === username.toLocaleLowerCase())
+  const index = contributors.findIndex((contributor) => contributor.username.toLowerCase() === username.toLocaleLowerCase())
 
-  if (!contributor) {
+  if (index === -1) {
     throw createError({
       statusCode: 404,
       statusMessage: 'Contributor not found',
     })
   }
-  return contributor
+  return {
+    ...contributors[index],
+    rank: index + 1
+  } 
 })

@@ -7,7 +7,8 @@ export interface Contributor {
   comments: number,
   helpful_comments: number,
   reactions: number,
-  score: number
+  score: number,
+  rank: number
 }
 
 export interface ModuleMaintainer {

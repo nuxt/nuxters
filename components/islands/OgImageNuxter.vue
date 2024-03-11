@@ -40,6 +40,9 @@ const format = useNumberFormatter()
           </svg>
           <div class="font-medium text-4xl pl-2 pt-1">{{ format(contributor.score) }}</div>
         </div>
+        <div class="flex flex-row text-gray-400 items-center pt-3 font-medium text-3xl">
+          #{{ format(contributor.rank) }}
+        </div>
       </div>
       <svg width="238" height="43" viewBox="0 0 1091 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

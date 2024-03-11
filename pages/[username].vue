@@ -38,7 +38,7 @@ const isOpen = ref(false)
       <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">
         <div class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 !bg-gray-950 rounded-[9.5px] relative p-[18px] sm:p-[44px]">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-6 pb-2 md:w-full items-center text-center justify-between">
-            <img :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" :alt="contributor?.username" class="rounded-full" />
+            <img :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" :alt="contributor?.username" class="rounded-full w-40" />
             <div class="flex flex-col items-center gap-5">
               <div class="flex flex-col gap-y-[18px]">
                 <UButton :to="`https://github.com/${contributor.username}`" color="gray" variant="ghost" size="lg" icon="i-simple-icons-github" target="_blank" :trailing="true" class="transition-colors duration-200">

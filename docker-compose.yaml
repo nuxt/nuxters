@@ -1,0 +1,9 @@
+services:
+  nuxter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './nuxter-storage:/nuxter/data'
+    ports:
+      - 3000:3000

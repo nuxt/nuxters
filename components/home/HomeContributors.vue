@@ -31,7 +31,7 @@
                     class="rounded-xl w-full h-full transition lg:hover:scale-125"
                     />
                 </UTooltip>
-                <span class="absolute -bottom-3 right-2 font-semibold drop-shadow-[0px_0px_5px_var(--tw-shadow-color)] shadow-gray-950"># {{ index + 1 }}</span>
+                <span class="absolute -bottom-3 right-2 font-semibold drop-shadow-xl shadow-gray-950"># {{ index + 1 }}</span>
                 </NuxtLink>
             </div>
         </div>

@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.6",
+    "@nuxt/image": "^1.5.0",
     "@nuxt/ui": "^2.11.1",
     "@nuxtjs/plausible": "^0.2.4"
   },

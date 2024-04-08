@@ -14,7 +14,7 @@ if (!contributor.value) {
   })
 }
 
-const ogImageUrl = joinURL(origin, '/__og-image__/image/', contributor.value?.username || '', 'og.png')
+const ogImageUrl = joinURL(origin, '/card/', contributor.value?.username || '', 'og.png')
 const format = useNumberFormatter()
 
 defineOgImageComponent('Nuxter', {

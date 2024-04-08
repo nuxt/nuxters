@@ -67,4 +67,8 @@ export default defineNuxtConfig({
       cache: cacheDevelopment,
     },
   },
+
+  routeRules: {
+    '/card/**': { proxy: '/__og-image__/image/**' },
+  }
 })

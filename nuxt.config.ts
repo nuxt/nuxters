@@ -23,7 +23,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/plausible',
     '@vueuse/nuxt',
-    'nuxt-og-image'
+    'nuxt-og-image',
+    "@nuxt/image"
   ],
 
   runtimeConfig: {
@@ -50,6 +51,12 @@ export default defineNuxtConfig({
 
   ui: {
     icons: ['simple-icons', 'ph'],
+  },
+
+  image: {
+    ipx: {
+      baseURL: 'https://ipx.nuxt.com'
+    }
   },
 
   nitro: {

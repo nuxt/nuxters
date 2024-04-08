@@ -12,7 +12,6 @@
                 v-if="contributor.username"
                 :key="contributor.username"
                 :to="`/${contributor.username}`"
-                target="_blank"
                 class="absolute inset-0 flex transition-all"
                 :style="{
                     'transition-delay': `${(index % 8 + Math.floor(index / 8)) * 20}ms`
@@ -27,11 +26,10 @@
                     width="80px"
                     :alt="contributor.username"
                     loading="lazy"
-                    :title="contributor.username"
-                    class="rounded-xl w-full h-full transition lg:hover:scale-125"
+                    class="rounded-xl w-full h-full transition lg:hover:scale-110"
                     />
                 </UTooltip>
-                <span class="absolute -bottom-3 right-2 font-semibold drop-shadow-xl shadow-gray-950"># {{ index + 1 }}</span>
+                <span class="inline-block rounded-t px-1 bg-gray-950 absolute -bottom-2 right-0 font-medium text-sm"><span class="font-light text-xs text-gray-400">#</span>{{ index + 1 }}</span>
                 </NuxtLink>
             </div>
         </div>
@@ -39,7 +37,7 @@
             <div class="pt-8 flex justify-center">
                 <UButton variant="outline" color="gray" :ui="{ rounded: 'rounded-full'}" size="xl" icon="i-ph-plus-bold" @click="showMore">Show more</UButton>
             </div>
-    
+
         </div>
     </div>
 

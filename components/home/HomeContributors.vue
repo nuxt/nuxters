@@ -17,7 +17,7 @@
                     'transition-delay': `${(index % 8 + Math.floor(index / 8)) * 20}ms`
                 }"
                 >
-                <UTooltip :text="contributor.username">
+                <UTooltip class="w-full" :text="contributor.username">
                     <NuxtImg
                     :src="`/gh_avatar/${contributor.username}`"
                     provider="ipx"

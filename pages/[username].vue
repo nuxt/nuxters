@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const href = useRequestURL().href;
+import { joinURL } from 'ufo'
+const origin = useRequestURL().origin;
 const { username } = useRoute().params
 const { copy: copyPage, copied: pageCopied } = useClipboard()
 const { copy: copyCard, copied: cardCopied } = useClipboard()
@@ -13,10 +14,10 @@ if (!contributor.value) {
   })
 }
 
+const ogImageUrl = joinURL(origin, '/__og-image__/image/', contributor.value?.username || '', 'og.png')
 const format = useNumberFormatter()
 
-defineOgImage({
-  component: 'OgImageNuxter',
+defineOgImageComponent('Nuxter', {
   contributor
 })
 useSeoMeta({
@@ -46,10 +47,10 @@ const isOpen = ref(false)
                 </UButton>
 
                 <div class="flex flex-col gap-y-2">
-                  <div class="inline-flex items-center justify-center gap-1">
+                  <div class="flex items-center justify-center gap-1">
                     <span class="text-2xl text-center md:text-left lg:text-center md:ml-4 lg:ml-0 text-gray-400"><span class="text-2xl font-medium">#</span>{{ format(contributor.rank) }}</span>
                   </div>
-                  <div class="inline-flex items-center justify-center gap-1">
+                  <div class="flex items-center justify-center gap-1">
                     <svg class="h-6" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M37.3227 14.4875V14.6091C37.3227 16.0425 37.3227 16.7609 36.9777 17.3475C36.6327 17.9342 36.0044 18.2825 34.751 18.9809L33.4293 19.7142C34.3393 16.6342 34.6443 13.3241 34.756 10.4941L34.7727 10.1257L34.776 10.0391C35.861 10.4157 36.471 10.6974 36.851 11.2241C37.3227 11.8791 37.3227 12.7491 37.3227 14.4875ZM3.98877 14.4875V14.6091C3.98877 16.0425 3.98877 16.7609 4.33378 17.3475C4.67878 17.9342 5.30713 18.2825 6.56048 18.9809L7.88384 19.7142C6.97216 16.6342 6.66715 13.3241 6.55548 10.4941L6.53882 10.1257L6.53715 10.0391C5.45046 10.4157 4.84045 10.6974 4.46044 11.2241C3.98877 11.8791 3.98877 12.7508 3.98877 14.4875Z"
@@ -114,9 +115,9 @@ const isOpen = ref(false)
         <div class="flex flex-col gap-y-4">
           <div class="aspect-[1.91/1] flex items-center justify-center">
             <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
-            <img :src="`${href}/__og_image__/og.png`" :alt="contributor?.username" height="630" width="1200" class="absolute" />
+            <img :src="ogImageUrl" :alt="contributor?.username" height="630" width="1200" class="absolute" />
           </div>
-          <UButton @click="copyCard(`![${contributor?.username} Nuxter profile](${href}/__og_image__/og.png)`)" color="gray" variant="outline" size="xl"
+          <UButton @click="copyCard(`![${contributor?.username} Nuxter profile](${ogImageUrl})`)" color="gray" variant="outline" size="xl"
             :class="{ 'border-primary-400': cardCopied }" class="self-center">
             <span class="truncate">Get your Nuxter card</span>
             <UIcon :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': cardCopied }"/>

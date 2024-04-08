@@ -14,7 +14,7 @@ const format = useNumberFormatter()
     <div class="flex flex-col w-1/3 items-center py-10 justify-between text-white">
       <div class="flex flex-col items-center">
         <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="3xl"
-          :ui="{ background: '', size: { '3xl': 'h-32 w-32 text-5xl' } }" />
+          :ui="{ wrapper: 'flex', background: '', size: { '3xl': 'h-32 w-32 text-5xl' } }" />
         <div class="text-3xl pt-[18px]">{{ contributor.username }}</div>
         <div class="pt-12">
           <svg width="119" height="2" viewBox="0 0 119 2" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -20,7 +20,7 @@
                 <UTooltip :text="contributor.username">
                     <NuxtImg
                     :src="`/gh_avatar/${contributor.username}`"
-                    provide="ipx"
+                    provider="ipx"
                     densities="x1 x2"
                     height="80px"
                     width="80px"

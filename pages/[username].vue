@@ -117,7 +117,7 @@ const isOpen = ref(false)
             <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
             <img :src="ogImageUrl" :alt="contributor?.username" height="630" width="1200" class="absolute" />
           </div>
-          <UButton @click="copyCard(`![${contributor?.username} Nuxter profile](${ogImageUrl})`)" color="gray" variant="outline" size="xl"
+          <UButton @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://nuxters.nuxt.com/${contributor?.username})`)" color="gray" variant="outline" size="xl"
             :class="{ 'border-primary-400': cardCopied }" class="self-center">
             <span class="truncate">Get your Nuxter card</span>
             <UIcon :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': cardCopied }"/>

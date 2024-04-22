@@ -53,6 +53,6 @@
     };
 
     const contributors = computed(() => {
-        return allContributors.value.slice(0, limit.value)
+        return allContributors.value?.slice(0, limit.value)
     })
 </script>

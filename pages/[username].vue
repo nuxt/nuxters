@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { joinURL } from 'ufo'
-const origin = useRequestURL().origin;
+const origin = useRequestURL().origin
+const router = useRouter()
 const { username } = useRoute().params
 const { copy: copyPage, copied: pageCopied } = useClipboard()
 const { copy: copyCard, copied: cardCopied } = useClipboard()
@@ -28,13 +29,21 @@ useSeoMeta({
   ogDescription: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
 })
 
+function backToHome() {
+  if (router.options.history.state.back === '/') {
+    router.back()
+  } else {
+    navigateTo('/')
+  }
+}
+
 const isOpen = ref(false)
 </script>
 
 <template>
   <div class="pb-[60px] lg:min-h-[calc(100dvh-9rem)] flex flex-col items-center justify-center">
     <div class="flex items-start justify-start w-full h-full pb-8  mb-8">
-      <UButton to="/" variant="ghost" label="back to homepage" icon="i-ph-arrow-left-thin" color="gray" class="transition-colors duration-200" />
+      <UButton @click.prevent="backToHome()" to="/" variant="ghost" label="back to homepage" icon="i-ph-arrow-left-thin" color="gray" class="transition-colors duration-200" />
     </div>
     <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-[42px]">
       <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">

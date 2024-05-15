@@ -46,7 +46,7 @@
 <script setup lang="ts">
     const {data: allContributors} = useFetch('/api/contributors')
 
-    const limit = ref(100);
+    const limit = useState('contributors-limit', () => 100);
 
     const showMore = () => {
       limit.value += 100;

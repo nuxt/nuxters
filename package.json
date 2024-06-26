@@ -13,6 +13,7 @@
     "@nuxtjs/plausible": "^1.0.0"
   },
   "dependencies": {
+    "@iconify-json/logos": "^1.1.43",
     "@iconify-json/ph": "^1.1.13",
     "@iconify-json/simple-icons": "^1.1.106",
     "@nuxt/fonts": "^0.7.0",

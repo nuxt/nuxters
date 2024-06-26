@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   },
 
   ui: {
-    icons: ['simple-icons', 'ph'],
+    icons: ['simple-icons', 'ph', 'logos'],
   },
 
   image: {

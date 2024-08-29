@@ -46,7 +46,7 @@ const isOpen = ref(false)
       <UButton @click.prevent="backToHome()" to="/" variant="ghost" label="back to homepage" icon="i-ph-arrow-left-thin" color="gray" class="transition-colors duration-200" />
     </div>
     <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-[42px]">
-      <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">
+      <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-auto lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">
         <div class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 !bg-gray-950 rounded-[9.5px] relative p-[18px] sm:p-[44px]">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-2 pb-2 md:w-full items-center text-center justify-between">
             <img :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" :alt="contributor?.username" class="rounded-full w-40" />

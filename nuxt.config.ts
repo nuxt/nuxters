@@ -1,15 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-const cacheDevelopment = {
-  driver: 'fs',
-  base: '.data/cache',
-}
-const cacheProduction = {
-  driver: 'cloudflare-kv-binding',
-  binding: 'KV',
-  base: 'cache',
-}
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
@@ -24,8 +14,13 @@ export default defineNuxtConfig({
     '@nuxtjs/plausible',
     '@vueuse/nuxt',
     'nuxt-og-image',
-    "@nuxt/image"
+    "@nuxt/image",
+    "@nuxthub/core"
   ],
+
+  hub: {
+    cache: true
+  },
 
   runtimeConfig: {
     url: '',
@@ -57,15 +52,6 @@ export default defineNuxtConfig({
     ipx: {
       baseURL: 'https://ipx.nuxt.com'
     }
-  },
-
-  nitro: {
-    storage: {
-      cache: cacheProduction,
-    },
-    devStorage: {
-      cache: cacheDevelopment,
-    },
   },
 
   routeRules: {

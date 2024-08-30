@@ -16,6 +16,7 @@
     "@iconify-json/ph": "^1.1.13",
     "@iconify-json/simple-icons": "^1.1.106",
     "@nuxt/fonts": "^0.7.0",
+    "@nuxthub/core": "^0.7.7",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",
     "nuxt": "^3.12.2",
@@ -24,5 +25,6 @@
     "ufo": "^1.5.3",
     "unstorage": "^1.10.2",
     "vue-confetti-explosion": "^1.0.2"
-  }
+  },
+  "packageManager": "pnpm@9.9.0"
 }

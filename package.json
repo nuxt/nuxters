@@ -17,7 +17,7 @@
     "@iconify-json/simple-icons": "^1.1.106",
     "@nuxt/fonts": "^0.7.0",
     "@nuxthub/core": "^0.7.7",
-    "@vueuse/core": "^10.11.0",
+    "@vueuse/core": "^11.1.0",
     "@vueuse/nuxt": "^10.11.0",
     "nuxt": "^3.12.2",
     "nuxt-og-image": "^3.0.0-rc.54",

@@ -21,8 +21,8 @@ importers:
         specifier: ^0.7.7
         version: 0.7.7(ioredis@5.3.2)(magicast@0.3.4)(rollup@4.14.1)(vite@5.3.1(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))
       '@vueuse/core':
-        specifier: ^10.11.0
-        version: 10.11.0(vue@3.4.29)
+        specifier: ^11.1.0
+        version: 11.1.0(vue@3.4.29)
       '@vueuse/nuxt':
         specifier: ^10.11.0
         version: 10.11.0(magicast@0.3.4)(nuxt@3.12.2(@parcel/watcher@2.4.1)(@types/node@20.8.9)(@unocss/reset@0.59.0)(encoding@0.1.13)(floating-vue@5.2.2(@nuxt/kit@3.12.2(magicast@0.3.4)(rollup@4.14.1))(vue@3.4.29))(fuse.js@6.6.2)(ioredis@5.3.2)(magicast@0.3.4)(rollup@4.14.1)(sass@1.77.6)(terser@5.30.3)(unocss@0.59.0(@unocss/webpack@0.58.9(rollup@4.14.1)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.14.1)(vite@5.3.1(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3)))(vite@5.3.1(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3)))(rollup@4.14.1)(vue@3.4.29)
@@ -773,6 +773,7 @@ packages:
   '@koa/router@12.0.1':
     resolution: {integrity: sha512-ribfPYfHb+Uw3b27Eiw6NPqjhIhTpVFzEWLwyc/1Xp+DCdwRRyIlAUODX+9bPARF6aQtUu1+/PHzdNvRzcs/+Q==}
     engines: {node: '>= 12'}
+    deprecated: Use v12.0.2 or higher to fix the vulnerability issue
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
@@ -1736,6 +1737,9 @@ packages:
   '@vueuse/core@10.9.0':
     resolution: {integrity: sha512-/1vjTol8SXnx6xewDEKfS0Ra//ncg4Hb0DaZiwKf7drgfMsKFExQ+FnnENcN6efPen+1kIzhLQoGSy0eDUVOMg==}
 
+  '@vueuse/core@11.1.0':
+    resolution: {integrity: sha512-P6dk79QYA6sKQnghrUz/1tHi0n9mrb/iO1WTMk/ElLmTyNqgDeSZ3wcDf6fRBGzRJbeG1dxzEOvLENMjr+E3fg==}
+
   '@vueuse/integrations@10.11.0':
     resolution: {integrity: sha512-Pp6MtWEIr+NDOccWd8j59Kpjy5YDXogXI61Kb1JxvSfVBO8NzFQkmrKmSZz47i+ZqHnIzxaT38L358yDHTncZg==}
     peerDependencies:
@@ -1786,6 +1790,9 @@ packages:
   '@vueuse/metadata@10.9.0':
     resolution: {integrity: sha512-iddNbg3yZM0X7qFY2sAotomgdHK7YJ6sKUvQqbvwnf7TmaVPxS4EJydcNsVejNdS8iWCtDk+fYXr7E32nyTnGA==}
 
+  '@vueuse/metadata@11.1.0':
+    resolution: {integrity: sha512-l9Q502TBTaPYGanl1G+hPgd3QX5s4CGnpXriVBR5fEZ/goI6fvDaVmIl3Td8oKFurOxTmbXvBPSsgrd6eu6HYg==}
+
   '@vueuse/nuxt@10.11.0':
     resolution: {integrity: sha512-PV15CU28qzr/+4IleyahobwU9kfTwfbsl8f+wkv6TWjboFVdt4WLMP2TNfPj7QgssyDdCRdl3gLZ4DC884wnDw==}
     peerDependencies:
@@ -1796,6 +1803,9 @@ packages:
 
   '@vueuse/shared@10.9.0':
     resolution: {integrity: sha512-Uud2IWncmAfJvRaFYzv5OHDli+FbOzxiVEQdLCKQKLyhz94PIyFC3CHcH7EDMwIn8NPtD06+PNbC/PiO0LGLtw==}
+
+  '@vueuse/shared@11.1.0':
+    resolution: {integrity: sha512-YUtIpY122q7osj+zsNMFAfMTubGz0sn5QzE5gPzAIiCmtt2ha3uQUY1+JPyL4gRCTsLPX82Y9brNbo/aqlA91w==}
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -5040,6 +5050,17 @@ packages:
     peerDependencies:
       vue: ^3.0.5
 
+  vue-demi@0.14.10:
+    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   vue-demi@0.14.8:
     resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
     engines: {node: '>=12'}
@@ -7025,7 +7046,7 @@ snapshots:
       colorette: 2.0.20
       consola: 3.2.3
       fast-glob: 3.3.2
-      magic-string: 0.30.10
+      magic-string: 0.30.11
       pathe: 1.1.2
       perfect-debounce: 1.0.0
     transitivePeerDependencies:
@@ -7116,7 +7137,7 @@ snapshots:
       '@unocss/rule-utils': 0.59.0
       css-tree: 2.3.1
       fast-glob: 3.3.2
-      magic-string: 0.30.10
+      magic-string: 0.30.11
       postcss: 8.4.38
 
   '@unocss/preset-attributify@0.58.9':
@@ -7233,7 +7254,7 @@ snapshots:
   '@unocss/rule-utils@0.59.0':
     dependencies:
       '@unocss/core': 0.59.4
-      magic-string: 0.30.10
+      magic-string: 0.30.11
 
   '@unocss/rule-utils@0.61.0':
     dependencies:
@@ -7325,7 +7346,7 @@ snapshots:
       '@unocss/transformer-directives': 0.59.0
       chokidar: 3.6.0
       fast-glob: 3.3.2
-      magic-string: 0.30.10
+      magic-string: 0.30.11
       vite: 5.3.1(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3)
     transitivePeerDependencies:
       - rollup
@@ -7588,6 +7609,16 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@vueuse/core@11.1.0(vue@3.4.29)':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 11.1.0
+      '@vueuse/shared': 11.1.0(vue@3.4.29)
+      vue-demi: 0.14.10(vue@3.4.29)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/integrations@10.11.0(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.29)':
     dependencies:
       '@vueuse/core': 10.11.0(vue@3.4.29)
@@ -7611,6 +7642,8 @@ snapshots:
   '@vueuse/metadata@10.11.0': {}
 
   '@vueuse/metadata@10.9.0': {}
+
+  '@vueuse/metadata@11.1.0': {}
 
   '@vueuse/nuxt@10.11.0(magicast@0.3.4)(nuxt@3.12.2(@parcel/watcher@2.4.1)(@types/node@20.8.9)(@unocss/reset@0.59.0)(encoding@0.1.13)(floating-vue@5.2.2(@nuxt/kit@3.12.2(magicast@0.3.4)(rollup@4.14.1))(vue@3.4.29))(fuse.js@6.6.2)(ioredis@5.3.2)(magicast@0.3.4)(rollup@4.14.1)(sass@1.77.6)(terser@5.30.3)(unocss@0.59.0(@unocss/webpack@0.58.9(rollup@4.14.1)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.14.1)(vite@5.3.1(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3)))(vite@5.3.1(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3)))(rollup@4.14.1)(vue@3.4.29)':
     dependencies:
@@ -7637,6 +7670,13 @@ snapshots:
   '@vueuse/shared@10.9.0(vue@3.4.29)':
     dependencies:
       vue-demi: 0.14.8(vue@3.4.29)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
+  '@vueuse/shared@11.1.0(vue@3.4.29)':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.4.29)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -7734,9 +7774,9 @@ snapshots:
       mime-types: 2.1.35
       negotiator: 0.6.3
 
-  acorn-import-assertions@1.9.0(acorn@8.12.0):
+  acorn-import-assertions@1.9.0(acorn@8.12.1):
     dependencies:
-      acorn: 8.12.0
+      acorn: 8.12.1
 
   acorn-import-attributes@1.9.5(acorn@8.12.0):
     dependencies:
@@ -11536,6 +11576,10 @@ snapshots:
     dependencies:
       vue: 3.4.29
 
+  vue-demi@0.14.10(vue@3.4.29):
+    dependencies:
+      vue: 3.4.29
+
   vue-demi@0.14.8(vue@3.4.29):
     dependencies:
       vue: 3.4.29
@@ -11592,8 +11636,8 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/wasm-edit': 1.12.1
       '@webassemblyjs/wasm-parser': 1.12.1
-      acorn: 8.12.0
-      acorn-import-assertions: 1.9.0(acorn@8.12.0)
+      acorn: 8.12.1
+      acorn-import-assertions: 1.9.0(acorn@8.12.1)
       browserslist: 4.23.0
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.16.0

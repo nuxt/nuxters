@@ -18,8 +18,8 @@ importers:
         specifier: ^0.10.0
         version: 0.10.0(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@nuxthub/core':
-        specifier: ^0.7.26
-        version: 0.7.26(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
+        specifier: ^0.7.27
+        version: 0.7.27(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@vueuse/core':
         specifier: ^11.1.0
         version: 11.1.0(vue@3.5.5)
@@ -1063,8 +1063,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.7.26':
-    resolution: {integrity: sha512-xOfI+txczteKk66cxf9Rb5AL/PttcS47FCotzXVCZflS4xgnJfZb42FurKYagozpu1MbM6V95nXhO/esg3xUbA==}
+  '@nuxthub/core@0.7.27':
+    resolution: {integrity: sha512-FEE0py4/gxtgMllOTcoiBSSARUylurK2C5xDtpNiQ3SfWl6Zv9BhdeBiwfSFWZP2gLNsLA+fhv5qL0JHt4I5AA==}
 
   '@nuxtjs/color-mode@3.5.1':
     resolution: {integrity: sha512-GRHF3WUwX6fXIiRVlngNq1nVDwrVuP6dWX1DRmox3QolzX0eH1oJEcFr/lAm1nkT71JVGb8mszho9w+yHJbePw==}
@@ -2042,9 +2042,6 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
-
-  confbox@0.1.7:
-    resolution: {integrity: sha512-uJcB/FKZtBMCJpK8MQji6bJHgu1tixKPxRLeGkNzBoOZzpnZUJm0jm2/sBDWcuBx1dYgxV4JU+g5hmNxCyAmdA==}
 
   confbox@0.1.8:
     resolution: {integrity: sha512-RMtmw0iFkeR4YV+fUOSucriAQNb9g8zFR52MWCtl+cCZOFRNL6zeB395vPzFhEjjn4fMxXudmELnl/KF/WrK6w==}
@@ -5733,7 +5730,7 @@ snapshots:
       - vue-tsc
       - webpack-sources
 
-  '@nuxthub/core@0.7.26(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
+  '@nuxthub/core@0.7.27(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
     dependencies:
       '@cloudflare/workers-types': 4.20241004.0
       '@nuxt/devtools-kit': 1.5.2(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
@@ -6648,7 +6645,7 @@ snapshots:
   c12@1.11.2(magicast@0.3.5):
     dependencies:
       chokidar: 3.6.0
-      confbox: 0.1.7
+      confbox: 0.1.8
       defu: 6.1.4
       dotenv: 16.4.5
       giget: 1.2.3
@@ -6823,8 +6820,6 @@ snapshots:
       readable-stream: 4.5.2
 
   concat-map@0.0.1: {}
-
-  confbox@0.1.7: {}
 
   confbox@0.1.8: {}
 

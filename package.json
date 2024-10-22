@@ -16,7 +16,7 @@
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/simple-icons": "^1.2.9",
     "@nuxt/fonts": "^0.10.1",
-    "@nuxthub/core": "^0.7.34",
+    "@nuxthub/core": "^0.7.35",
     "@vueuse/core": "^11.1.0",
     "@vueuse/nuxt": "^11.1.0",
     "nuxt": "^3.13.2",

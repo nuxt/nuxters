@@ -15,8 +15,8 @@ importers:
         specifier: ^1.2.9
         version: 1.2.9
       '@nuxt/fonts':
-        specifier: ^0.10.1
-        version: 0.10.1(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
+        specifier: ^0.10.2
+        version: 0.10.2(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@nuxthub/core':
         specifier: ^0.7.36
         version: 0.7.36(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
@@ -1028,8 +1028,8 @@ packages:
     peerDependencies:
       vite: '*'
 
-  '@nuxt/fonts@0.10.1':
-    resolution: {integrity: sha512-fgfUXcsyNsxrm/n3Dg1GYUIZMr78nKWFwEyT29z/c2fLEBRnhAyFV1QdPR//SJ6OTrG/edNlC5/Y5M7SdxUAQg==}
+  '@nuxt/fonts@0.10.2':
+    resolution: {integrity: sha512-WYsrKBv9tPEgEntNwe4Zov2taKO/cnct+tR/g5EQ1jgADkFeEGkfCsUDwTG/pZFkW0FlKSR/KRLMB3U6O+C6Ow==}
 
   '@nuxt/icon@1.5.5':
     resolution: {integrity: sha512-VM6B6eHn1HUpz6LQt7GfD341q7oXl1FzM4v2QIVNvEpKZwgr2fqOShq3uEEpzS4FjyxyUlp+iCzBZTYFx2sXqA==}
@@ -4206,8 +4206,8 @@ packages:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
 
-  unifont@0.1.4:
-    resolution: {integrity: sha512-zQ55RqKnOKFNRReeOiOpRa/Jv3Sr69rRvwgxDizQQV/Qcz4X5s2BHkQ3Lt8tAM+di61TBgAHG8i74hZNWktWag==}
+  unifont@0.1.5:
+    resolution: {integrity: sha512-sfSPHFIu50SVyjGJ9zE6lDCqz/axfmsaeeiEQ3+JuzPN1bImtmBuaGdjvsQbksrI8fyWcDOZvlxVt4VSg7tepg==}
 
   unimport@3.12.0:
     resolution: {integrity: sha512-5y8dSvNvyevsnw4TBQkIQR1Rjdbb+XjVSwQwxltpnVZrStBvvPkMPcZrh1kg5kY77kpx6+D4Ztd3W6FOBH/y2Q==}
@@ -5446,7 +5446,7 @@ snapshots:
       - vue
       - webpack-sources
 
-  '@nuxt/fonts@0.10.1(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
+  '@nuxt/fonts@0.10.2(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
     dependencies:
       '@nuxt/devtools-kit': 1.6.0(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.21.3)(webpack-sources@3.2.3)
@@ -5465,7 +5465,7 @@ snapshots:
       sirv: 3.0.0
       tinyglobby: 0.2.9
       ufo: 1.5.4
-      unifont: 0.1.4
+      unifont: 0.1.5
       unplugin: 1.14.1(webpack-sources@3.2.3)
       unstorage: 1.12.0(ioredis@5.4.1)
     transitivePeerDependencies:
@@ -9438,7 +9438,7 @@ snapshots:
 
   unicorn-magic@0.3.0: {}
 
-  unifont@0.1.4:
+  unifont@0.1.5:
     dependencies:
       css-tree: 3.0.0
       ohash: 1.1.4

@@ -18,8 +18,8 @@ importers:
         specifier: ^0.10.2
         version: 0.10.2(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@nuxthub/core':
-        specifier: ^0.7.36
-        version: 0.7.36(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
+        specifier: ^0.7.37
+        version: 0.7.37(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@vueuse/core':
         specifier: ^11.1.0
         version: 11.1.0(vue@3.5.5)
@@ -321,8 +321,8 @@ packages:
     resolution: {integrity: sha512-YLPHc8yASwjNkmcDMQMY35yiWjoKAKnhUbPRszBRS0YgH+IXtsMp61j+yTcnCE3oO2DgP0U3iejLC8FTtKDC8Q==}
     engines: {node: '>=16.13'}
 
-  '@cloudflare/workers-types@4.20241018.0':
-    resolution: {integrity: sha512-gGWumpaaqnjN/G6SI7CZQ13G4SpIUV+EM8QqvuN2D3cGDF6mKIm+ov7H4x7V/c+AdY90v0FCc8B5nmEEt90MvQ==}
+  '@cloudflare/workers-types@4.20241022.0':
+    resolution: {integrity: sha512-1zOAw5QIDKItzGatzCrEpfLOB1AuMTwVqKmbw9B9eBfCUGRFNfJYMrJxIwcse9EmKahsQt2GruqU00pY/GyXgg==}
 
   '@csstools/selector-resolve-nested@1.1.0':
     resolution: {integrity: sha512-uWvSaeRcHyeNenKg8tp17EVDRkpflmdyvbE0DHo6D/GdBb6PDnCYYU6gRpXhtICMGMcahQmj2zGxwFM/WC8hCg==}
@@ -1059,8 +1059,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.7.36':
-    resolution: {integrity: sha512-X25yOYMqmt1KxE190S1dS6biLVqQVfHMy3pCp2i38p5+JIFSwqXjYNWO1dWo3CLohFKHhDSuPgAzwlgRc6Fd/Q==}
+  '@nuxthub/core@0.7.37':
+    resolution: {integrity: sha512-SOAGUsW+XGA9oghwItTYjx3CtPyKuc7OhBONeGpUMGJ26xs2dKdEW7DV+My2woW2PXBWL4N5YLfV+m5e60yfAg==}
 
   '@nuxtjs/color-mode@3.5.1':
     resolution: {integrity: sha512-GRHF3WUwX6fXIiRVlngNq1nVDwrVuP6dWX1DRmox3QolzX0eH1oJEcFr/lAm1nkT71JVGb8mszho9w+yHJbePw==}
@@ -4941,7 +4941,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/workers-types@4.20241018.0': {}
+  '@cloudflare/workers-types@4.20241022.0': {}
 
   '@csstools/selector-resolve-nested@1.1.0(postcss-selector-parser@6.1.2)':
     dependencies:
@@ -5726,9 +5726,9 @@ snapshots:
       - vue-tsc
       - webpack-sources
 
-  '@nuxthub/core@0.7.36(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
+  '@nuxthub/core@0.7.37(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
     dependencies:
-      '@cloudflare/workers-types': 4.20241018.0
+      '@cloudflare/workers-types': 4.20241022.0
       '@nuxt/devtools-kit': 1.6.0(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.21.3)(webpack-sources@3.2.3)
       '@uploadthing/mime-types': 0.3.0

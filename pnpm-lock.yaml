@@ -12,14 +12,14 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       '@iconify-json/simple-icons':
-        specifier: ^1.2.9
-        version: 1.2.9
+        specifier: ^1.2.10
+        version: 1.2.10
       '@nuxt/fonts':
         specifier: ^0.10.2
         version: 0.10.2(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@nuxthub/core':
-        specifier: ^0.8.2
-        version: 0.8.2(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
+        specifier: ^0.8.3
+        version: 0.8.3(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)
       '@vueuse/core':
         specifier: ^11.1.0
         version: 11.1.0(vue@3.5.5)
@@ -926,8 +926,8 @@ packages:
   '@iconify-json/ph@1.2.1':
     resolution: {integrity: sha512-x0DNfwWrS18dbsBYOq3XGiZnGz4CgRyC+YSl/TZvMQiKhIUl1woWqUbMYqqfMNUBzjyk7ulvaRovpRsIlqIf8g==}
 
-  '@iconify-json/simple-icons@1.2.9':
-    resolution: {integrity: sha512-0hxlf0uCKAUT+rLjh4iH16XMfRqptOpZURBVk2PKAFDGbe1+8hPPstKFkBAPvtfkCK0bO+E9QE/Q5ozuCYz28A==}
+  '@iconify-json/simple-icons@1.2.10':
+    resolution: {integrity: sha512-9OK1dsSjXlH36lhu5n+BlSoXuqFjHUErGLtNdzHpq0vHq4YFBuGYWtZ+vZTHLreRQ8ijPRv/6EsgkV+nf6AReQ==}
 
   '@iconify/collections@1.0.468':
     resolution: {integrity: sha512-B8K/NcupKk7CkJGWw6Ldx0z4HojL/3eQfrMv6Q4wdDZBi7cvjrxYCChMP/+D37rJEGnfdWVWgtceQAL7LMHeDg==}
@@ -1059,8 +1059,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.8.2':
-    resolution: {integrity: sha512-C9XKgqQq0AXaH2AbCeFVFAEU14aTl0nP0g7mdtUN0c/JiQhdX1MIn70ANDUgFPVbNN5S6s8f38/OfJlXiDdpFA==}
+  '@nuxthub/core@0.8.3':
+    resolution: {integrity: sha512-3oae5Za/SYSuLOThj48viDVjlFo1XxEaOL/W77Z83zg5eb54Shnh18QIipRz4BURUpAXpYRbzlwxOpgW2Zs7JQ==}
 
   '@nuxtjs/color-mode@3.5.1':
     resolution: {integrity: sha512-GRHF3WUwX6fXIiRVlngNq1nVDwrVuP6dWX1DRmox3QolzX0eH1oJEcFr/lAm1nkT71JVGb8mszho9w+yHJbePw==}
@@ -5255,7 +5255,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.9':
+  '@iconify-json/simple-icons@1.2.10':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -5726,7 +5726,7 @@ snapshots:
       - vue-tsc
       - webpack-sources
 
-  '@nuxthub/core@0.8.2(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
+  '@nuxthub/core@0.8.3(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)':
     dependencies:
       '@cloudflare/workers-types': 4.20241022.0
       '@nuxt/devtools-kit': 1.6.0(magicast@0.3.5)(rollup@4.21.3)(vite@5.4.5(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(webpack-sources@3.2.3)

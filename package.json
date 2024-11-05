@@ -9,7 +9,7 @@
   "devDependencies": {
     "@nuxt/devtools": "^1.6.0",
     "@nuxt/image": "^1.8.1",
-    "@nuxt/ui": "^2.18.7",
+    "@nuxt/ui": "^2.19.2",
     "@nuxtjs/plausible": "^1.0.3"
   },
   "dependencies": {

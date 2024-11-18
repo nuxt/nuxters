@@ -55,8 +55,8 @@ importers:
         specifier: ^2.19.2
         version: 2.19.2(change-case@5.4.4)(focus-trap@7.5.4)(magicast@0.3.5)(rollup@4.24.4)(vite@5.4.10(@types/node@20.8.9)(sass@1.77.6)(terser@5.30.3))(vue@3.5.12(typescript@5.6.3))(webpack-sources@3.2.3)
       '@nuxtjs/plausible':
-        specifier: ^1.0.3
-        version: 1.0.3(magicast@0.3.5)(rollup@4.24.4)(webpack-sources@3.2.3)
+        specifier: ^1.1.0
+        version: 1.1.0(magicast@0.3.5)(rollup@4.24.4)(webpack-sources@3.2.3)
 
 packages:
 
@@ -709,8 +709,8 @@ packages:
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
 
-  '@nuxtjs/plausible@1.0.3':
-    resolution: {integrity: sha512-jf6W9+Q/VhfHk/jal1gp0OpYU2qwq7eOV4evNKvHWKVM0Qbps+LbKSxNcewgqN91tVx9sv4RbnOEJ8Uq0/FRkg==}
+  '@nuxtjs/plausible@1.1.0':
+    resolution: {integrity: sha512-Cxa39bJf19IkDhE0LiI/pD/m7FaHsUWF2ww1CyxbBp0sHrrn7p+5WSKGAaJyImf9pVgOZwr4UMShpFYT2hS+xw==}
 
   '@nuxtjs/tailwindcss@6.12.2':
     resolution: {integrity: sha512-qPJiFH67CkTj/2kBGBzqXihOD1rQXMsbVS4vdQvfBxOBLPfGhU1yw7AATdhPl2BBjO2krjJLuZj39t7dnDYOwg==}
@@ -5282,10 +5282,10 @@ snapshots:
       - supports-color
       - webpack-sources
 
-  '@nuxtjs/plausible@1.0.3(magicast@0.3.5)(rollup@4.24.4)(webpack-sources@3.2.3)':
+  '@nuxtjs/plausible@1.1.0(magicast@0.3.5)(rollup@4.24.4)(webpack-sources@3.2.3)':
     dependencies:
       '@barbapapazes/plausible-tracker': 0.5.3
-      '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.24.4)(webpack-sources@3.2.3)
+      '@nuxt/kit': 3.14.159(magicast@0.3.5)(rollup@4.24.4)(webpack-sources@3.2.3)
       defu: 6.1.4
     transitivePeerDependencies:
       - magicast

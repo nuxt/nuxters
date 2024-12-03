@@ -7,14 +7,14 @@
     "logs": "wrangler pages deployment tail"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^1.6.1",
+    "@nuxt/devtools": "^1.6.3",
     "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^2.19.2",
     "@nuxtjs/plausible": "^1.2.0"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.1",
-    "@iconify-json/simple-icons": "^1.2.13",
+    "@iconify-json/simple-icons": "^1.2.14",
     "@nuxt/fonts": "^0.10.2",
     "@nuxthub/core": "^0.8.7",
     "@vueuse/core": "^12.0.0",

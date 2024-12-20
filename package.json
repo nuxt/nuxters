@@ -23,8 +23,8 @@
     "nuxt-og-image": "^4.0.1",
     "ofetch": "^1.4.1",
     "ufo": "^1.5.4",
-    "unstorage": "^1.14.0",
+    "unstorage": "^1.14.1",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.1"
 }

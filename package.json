@@ -26,5 +26,5 @@
     "unstorage": "^1.14.4",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@9.15.1"
+  "packageManager": "pnpm@9.15.2"
 }

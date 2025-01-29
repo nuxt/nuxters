@@ -22,11 +22,17 @@ const format = useNumberFormatter()
 defineOgImageComponent('Nuxter', {
   contributor
 })
+
+useHead({
+  link: [{ rel: 'canonical', href: `https://${contributorUrl}` }],
+})
+
 useSeoMeta({
   title: () => `${contributor.value?.username} is a Nuxter`,
   ogTitle: () => `${contributor.value?.username} is a Nuxter`,
   description: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
   ogDescription: () => `Discover ${contributor.value?.username}'s contributions to the Nuxt ecosystem.`,
+  ogUrl: () => `https://${contributorUrl}`
 })
 
 function backToHome() {

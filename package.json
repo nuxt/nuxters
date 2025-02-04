@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.22",
+    "@iconify-json/simple-icons": "^1.2.23",
     "@nuxt/fonts": "^0.10.3",
     "@nuxthub/core": "^0.8.15",
     "@vueuse/core": "^12.5.0",
@@ -26,5 +26,5 @@
     "unstorage": "^1.14.4",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@9.15.4"
+  "packageManager": "pnpm@9.15.5"
 }

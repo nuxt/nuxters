@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.23",
+    "@iconify-json/simple-icons": "^1.2.24",
     "@nuxt/fonts": "^0.10.3",
-    "@nuxthub/core": "^0.8.16",
-    "@vueuse/core": "^12.5.0",
-    "@vueuse/nuxt": "^12.5.0",
+    "@nuxthub/core": "^0.8.17",
+    "@vueuse/core": "^12.6.1",
+    "@vueuse/nuxt": "^12.6.1",
     "nuxt": "^3.15.4",
     "nuxt-og-image": "^4.1.2",
     "ofetch": "^1.4.1",
@@ -26,5 +26,5 @@
     "unstorage": "^1.14.4",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.2.1"
+  "packageManager": "pnpm@10.4.0"
 }

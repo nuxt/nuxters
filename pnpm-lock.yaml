@@ -21,11 +21,11 @@ importers:
         specifier: ^0.8.16
         version: 0.8.16(db0@0.2.1)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))
       '@vueuse/core':
-        specifier: ^12.5.0
-        version: 12.5.0(typescript@5.6.3)
+        specifier: ^13.0.0
+        version: 13.0.0(vue@3.5.13(typescript@5.6.3))
       '@vueuse/nuxt':
-        specifier: ^12.5.0
-        version: 12.5.0(magicast@0.3.5)(nuxt@3.15.4(@parcel/watcher@2.4.1)(@types/node@20.8.9)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(sass@1.77.6)(terser@5.30.3)(typescript@5.6.3)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))(yaml@2.7.0))(rollup@4.24.4)(typescript@5.6.3)
+        specifier: ^13.0.0
+        version: 13.0.0(magicast@0.3.5)(nuxt@3.15.4(@parcel/watcher@2.4.1)(@types/node@20.8.9)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(sass@1.77.6)(terser@5.30.3)(typescript@5.6.3)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))
       nuxt:
         specifier: ^3.15.4
         version: 3.15.4(@parcel/watcher@2.4.1)(@types/node@20.8.9)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(sass@1.77.6)(terser@5.30.3)(typescript@5.6.3)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))(yaml@2.7.0)
@@ -708,10 +708,6 @@ packages:
     resolution: {integrity: sha512-7cVWjzfz3L6CsZrg6ppDZa7zGrZxCSfZjEQDIvVFn4mFKtJlK9k2izf5EewL6luzWwIQojkZAC3iq/1wtgI0Xw==}
     engines: {node: '>=18.20.5'}
 
-  '@nuxt/kit@3.15.2':
-    resolution: {integrity: sha512-nxiPJVz2fICcyBKlN5pL1IgZVejyArulREsS5HvAk07hijlYuZ5toRM8soLt51VQNpFd/PedL+Z1AlYu/bQCYQ==}
-    engines: {node: '>=18.0.0'}
-
   '@nuxt/kit@3.15.4':
     resolution: {integrity: sha512-dr7I7eZOoRLl4uxdxeL2dQsH0OrbEiVPIyBHnBpA4co24CBnoJoF+JINuP9l3PAM3IhUzc5JIVq3/YY3lEc3Hw==}
     engines: {node: '>=18.12.0'}
@@ -730,10 +726,6 @@ packages:
 
   '@nuxt/schema@3.15.1':
     resolution: {integrity: sha512-n5kOHt8uUyUM9z4Wu/8tIZkBYh3KTCGvyruG6oD9bfeT4OaS21+X3M7XsTXFMe+eYBZA70IFFlWn1JJZIPsKeA==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-
-  '@nuxt/schema@3.15.2':
-    resolution: {integrity: sha512-cTHGbLTbrQ83B+7Mh0ggc5MzIp74o8KciA0boCiBJyK5uImH9QQNK6VgfwRWcTD5sj3WNKiIB1luOMom3LHgVw==}
     engines: {node: ^14.18.0 || >=16.10.0}
 
   '@nuxt/schema@3.15.4':
@@ -1192,6 +1184,9 @@ packages:
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
 
+  '@types/web-bluetooth@0.0.21':
+    resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
+
   '@unhead/dom@1.11.18':
     resolution: {integrity: sha512-zQuJUw/et9zYEV0SZWTDX23IgurwMaXycAuxt4L6OgNL0T4TWP3a0J/Vm3Q02hmdNo/cPKeVBrwBdnFUXjGU4w==}
 
@@ -1332,6 +1327,11 @@ packages:
   '@vueuse/core@12.5.0':
     resolution: {integrity: sha512-GVyH1iYqNANwcahAx8JBm6awaNgvR/SwZ1fjr10b8l1HIgDp82ngNbfzJUgOgWEoxjL+URAggnlilAEXwCOZtg==}
 
+  '@vueuse/core@13.0.0':
+    resolution: {integrity: sha512-rkgb4a8/0b234lMGCT29WkCjPfsX0oxrIRR7FDndRoW3FsaC9NBzefXg/9TLhAgwM11f49XnutshM4LzJBrQ5g==}
+    peerDependencies:
+      vue: ^3.5.0
+
   '@vueuse/integrations@12.4.0':
     resolution: {integrity: sha512-EZm+TLoZMeEwDnccnEqB54CvvcVKbVnJubOF380HqdyZAxWfQ8egnFCESdlXWEIbxFgjfhcGfZUvQx5Nqw9Ofw==}
     peerDependencies:
@@ -1382,16 +1382,25 @@ packages:
   '@vueuse/metadata@12.5.0':
     resolution: {integrity: sha512-Ui7Lo2a7AxrMAXRF+fAp9QsXuwTeeZ8fIB9wsLHqzq9MQk+2gMYE2IGJW48VMJ8ecvCB3z3GsGLKLbSasQ5Qlg==}
 
-  '@vueuse/nuxt@12.5.0':
-    resolution: {integrity: sha512-daqSOlXv5ilAiT5GlRBtfqdkYjeMO9P6n50OpbEVm9hXmfXmZoXK3YMND8l5n5KcscD4pnD66IrYPqqOW5eH1Q==}
+  '@vueuse/metadata@13.0.0':
+    resolution: {integrity: sha512-TRNksqmvtvqsuHf7bbgH9OSXEV2b6+M3BSN4LR5oxWKykOFT9gV78+C2/0++Pq9KCp9KQ1OQDPvGlWNQpOb2Mw==}
+
+  '@vueuse/nuxt@13.0.0':
+    resolution: {integrity: sha512-tVb57PW0aUGMHwvzp4uH2mo8ut3D/3c7DA936E4ValhQq2VMZMCMxaKGz1nE8etFC7p18fVypyzpe8o6CBAYFw==}
     peerDependencies:
-      nuxt: ^3.0.0
+      nuxt: ^3.0.0 || ^4.0.0-0
+      vue: ^3.5.0
 
   '@vueuse/shared@12.4.0':
     resolution: {integrity: sha512-9yLgbHVIF12OSCojnjTIoZL1+UA10+O4E1aD6Hpfo/DKVm5o3SZIwz6CupqGy3+IcKI8d6Jnl26EQj/YucnW0Q==}
 
   '@vueuse/shared@12.5.0':
     resolution: {integrity: sha512-vMpcL1lStUU6O+kdj6YdHDixh0odjPAUM15uJ9f7MY781jcYkIwFA4iv2EfoIPO6vBmvutI1HxxAwmf0cx5ISQ==}
+
+  '@vueuse/shared@13.0.0':
+    resolution: {integrity: sha512-9MiHhAPw+sqCF/RLo8V6HsjRqEdNEWVpDLm2WBRW2G/kSQjb8X901sozXpSCaeLG0f7TEfMrT4XNaA5m1ez7Dg==}
+    peerDependencies:
+      vue: ^3.5.0
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -2727,6 +2736,10 @@ packages:
     resolution: {integrity: sha512-bbgPw/wmroJsil/GgL4qjDzs5YLTBMQ99weRsok1XCDccQeehbHA/I1oRvk2NPtr7KGZgT/Y5tPRnAtMqeG2Kg==}
     engines: {node: '>=14'}
 
+  local-pkg@1.1.1:
+    resolution: {integrity: sha512-WunYko2W1NcdfAFpuLUoucsgULmgDBRkdxHxWQ7mK0cQqwPiy8E1enjuRBrhLtZkB5iScJ1XIPdhVEFK8aOLSg==}
+    engines: {node: '>=14'}
+
   lodash.castarray@4.4.0:
     resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
 
@@ -3484,6 +3497,9 @@ packages:
 
   pump@3.0.0:
     resolution: {integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==}
+
+  quansync@0.2.8:
+    resolution: {integrity: sha512-4+saucphJMazjt7iOM27mbFCk+D9dd/zmgMDCzRZ8MEoBfYp7lAvoN38et/phRQF6wOPMy/OROBGgoWeSKyluA==}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -5279,34 +5295,6 @@ snapshots:
       - rollup
       - supports-color
 
-  '@nuxt/kit@3.15.2(magicast@0.3.5)(rollup@4.24.4)':
-    dependencies:
-      '@nuxt/schema': 3.15.2
-      c12: 2.0.1(magicast@0.3.5)
-      consola: 3.4.0
-      defu: 6.1.4
-      destr: 2.0.3
-      globby: 14.0.2
-      ignore: 7.0.3
-      jiti: 2.4.2
-      klona: 2.0.6
-      knitwork: 1.2.0
-      mlly: 1.7.4
-      ohash: 1.1.4
-      pathe: 2.0.2
-      pkg-types: 1.3.1
-      scule: 1.3.0
-      semver: 7.6.3
-      std-env: 3.8.0
-      ufo: 1.5.4
-      unctx: 2.4.1
-      unimport: 3.14.6(rollup@4.24.4)
-      untyped: 1.5.2
-    transitivePeerDependencies:
-      - magicast
-      - rollup
-      - supports-color
-
   '@nuxt/kit@3.15.4(magicast@0.3.5)(rollup@4.24.4)':
     dependencies:
       c12: 2.0.1(magicast@0.3.5)
@@ -5402,13 +5390,6 @@ snapshots:
       - supports-color
 
   '@nuxt/schema@3.15.1':
-    dependencies:
-      consola: 3.4.0
-      defu: 6.1.4
-      pathe: 2.0.2
-      std-env: 3.8.0
-
-  '@nuxt/schema@3.15.2':
     dependencies:
       consola: 3.4.0
       defu: 6.1.4
@@ -5972,6 +5953,8 @@ snapshots:
 
   '@types/web-bluetooth@0.0.20': {}
 
+  '@types/web-bluetooth@0.0.21': {}
+
   '@unhead/dom@1.11.18':
     dependencies:
       '@unhead/schema': 1.11.18
@@ -6225,6 +6208,13 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@vueuse/core@13.0.0(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.21
+      '@vueuse/metadata': 13.0.0
+      '@vueuse/shared': 13.0.0(vue@3.5.13(typescript@5.6.3))
+      vue: 3.5.13(typescript@5.6.3)
+
   '@vueuse/integrations@12.4.0(change-case@5.4.4)(focus-trap@7.5.4)(fuse.js@7.0.0)(typescript@5.6.3)':
     dependencies:
       '@vueuse/core': 12.4.0(typescript@5.6.3)
@@ -6248,19 +6238,18 @@ snapshots:
 
   '@vueuse/metadata@12.5.0': {}
 
-  '@vueuse/nuxt@12.5.0(magicast@0.3.5)(nuxt@3.15.4(@parcel/watcher@2.4.1)(@types/node@20.8.9)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(sass@1.77.6)(terser@5.30.3)(typescript@5.6.3)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))(yaml@2.7.0))(rollup@4.24.4)(typescript@5.6.3)':
+  '@vueuse/metadata@13.0.0': {}
+
+  '@vueuse/nuxt@13.0.0(magicast@0.3.5)(nuxt@3.15.4(@parcel/watcher@2.4.1)(@types/node@20.8.9)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(sass@1.77.6)(terser@5.30.3)(typescript@5.6.3)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))':
     dependencies:
-      '@nuxt/kit': 3.15.2(magicast@0.3.5)(rollup@4.24.4)
-      '@vueuse/core': 12.5.0(typescript@5.6.3)
-      '@vueuse/metadata': 12.5.0
-      local-pkg: 1.0.0
+      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.6.3))
+      '@vueuse/metadata': 13.0.0
+      local-pkg: 1.1.1
       nuxt: 3.15.4(@parcel/watcher@2.4.1)(@types/node@20.8.9)(db0@0.2.1)(encoding@0.1.13)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.24.4)(sass@1.77.6)(terser@5.30.3)(typescript@5.6.3)(vite@6.0.11(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))(yaml@2.7.0)
       vue: 3.5.13(typescript@5.6.3)
     transitivePeerDependencies:
       - magicast
-      - rollup
-      - supports-color
-      - typescript
 
   '@vueuse/shared@12.4.0(typescript@5.6.3)':
     dependencies:
@@ -6273,6 +6262,10 @@ snapshots:
       vue: 3.5.13(typescript@5.6.3)
     transitivePeerDependencies:
       - typescript
+
+  '@vueuse/shared@13.0.0(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      vue: 3.5.13(typescript@5.6.3)
 
   abbrev@1.1.1: {}
 
@@ -7752,6 +7745,12 @@ snapshots:
       mlly: 1.7.4
       pkg-types: 1.3.1
 
+  local-pkg@1.1.1:
+    dependencies:
+      mlly: 1.7.4
+      pkg-types: 2.1.0
+      quansync: 0.2.8
+
   lodash.castarray@4.4.0: {}
 
   lodash.defaults@4.2.0: {}
@@ -8717,6 +8716,8 @@ snapshots:
       end-of-stream: 1.4.4
       once: 1.4.0
     optional: true
+
+  quansync@0.2.8: {}
 
   queue-microtask@1.2.3: {}
 

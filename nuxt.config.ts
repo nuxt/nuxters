@@ -2,6 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -44,10 +45,6 @@ export default defineNuxtConfig({
     preference: 'dark',
   },
 
-  ui: {
-    icons: ['simple-icons', 'ph'],
-  },
-
   image: {
     ipx: {
       baseURL: 'https://ipx.nuxt.com'
@@ -56,5 +53,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/card/**': { proxy: '/__og-image__/image/**' },
-  }
+  },
+
+  compatibilityDate: '2025-03-10'
 })

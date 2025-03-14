@@ -21,13 +21,13 @@
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "nuxt": "^3.16.0",
-    "nuxt-og-image": "^5.0.2",
+    "nuxt-og-image": "^5.0.3",
     "ofetch": "^1.4.1",
     "ufo": "^1.5.4",
     "unstorage": "^1.15.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.6.2",
+  "packageManager": "pnpm@10.6.3",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

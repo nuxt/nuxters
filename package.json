@@ -7,7 +7,7 @@
     "logs": "wrangler pages deployment tail"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^2.3.0",
+    "@nuxt/devtools": "^2.3.1",
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^2.21.1",
     "@nuxtjs/plausible": "^1.2.0",

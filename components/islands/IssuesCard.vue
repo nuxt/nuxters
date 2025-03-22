@@ -6,7 +6,7 @@ const format = useNumberFormatter()
 
 <template>
   <div
-    class="rounded-xl border p-6 text-center flex flex-col items-center justify-end relative h-full border-green-400">
+    class="rounded-xl border p-6 text-center flex flex-col items-center justify-end relative h-full border-green-400 overflow-hidden">
     <div class="absolute top-0 left-0 right-0">
       <svg xmlns="http://www.w3.org/2000/svg" width="352" height="263" fill="none">
         <g filter="url(#a)">

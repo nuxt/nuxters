@@ -42,7 +42,7 @@ const links = [
       <div class="flex items-center sm:gap-x-4 text-white font-medium">
         <UButton
           class="flex items-center sm:-mr-2"
-          to="https://discord.com/invite/nuxt"
+          to="https://go.nuxt.com/discord"
           target="_blank"
           variant="link"
           color="gray"
@@ -53,7 +53,7 @@ const links = [
           <span class="hidden sm:block">Join us</span>
         </UButton>
         <div class="hidden sm:block h-8 w-[1px] bg-gray-700 -mr-2 sm:-mr-6" />
-        <UButton to="http://www.github.com/nuxt/nuxt" class="flex gap-x-2 items-center" variant="link" color="gray" size="xl" target="_blank"  aria-label="star us">
+        <UButton to="http://go.nuxt.com/github" class="flex gap-x-2 items-center" variant="link" color="gray" size="xl" target="_blank"  aria-label="star us">
           <UIcon name="i-simple-icons-github" class="h-5 w-5 sm:ml-4" />
           <span class="hidden sm:block">Star us</span>
 

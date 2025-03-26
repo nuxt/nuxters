@@ -11,13 +11,13 @@
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^2.21.1",
     "@nuxtjs/plausible": "^1.2.0",
-    "wrangler": "^4.4.1"
+    "wrangler": "^4.5.0"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.29",
     "@nuxt/fonts": "^0.11.0",
-    "@nuxthub/core": "^0.8.19",
+    "@nuxthub/core": "^0.8.21",
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "nuxt": "^3.16.1",
@@ -27,7 +27,7 @@
     "unstorage": "^1.15.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.7.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

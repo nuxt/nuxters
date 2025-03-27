@@ -11,7 +11,7 @@
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^2.21.1",
     "@nuxtjs/plausible": "^1.2.0",
-    "wrangler": "^4.5.0"
+    "wrangler": "^4.5.1"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",
@@ -21,7 +21,7 @@
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "nuxt": "^3.16.1",
-    "nuxt-og-image": "^5.0.5",
+    "nuxt-og-image": "^5.1.1",
     "ofetch": "^1.4.1",
     "ufo": "^1.5.4",
     "unstorage": "^1.15.0",

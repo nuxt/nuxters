@@ -18,8 +18,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(db0@0.3.1)(encoding@0.1.13)(ioredis@5.6.0)(magicast@0.3.5)(vite@6.2.2(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))
       '@nuxthub/core':
-        specifier: ^0.8.21
-        version: 0.8.21(db0@0.3.1)(ioredis@5.6.0)(magicast@0.3.5)(vite@6.2.2(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))
+        specifier: ^0.8.22
+        version: 0.8.22(db0@0.3.1)(ioredis@5.6.0)(magicast@0.3.5)(vite@6.2.2(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))
       '@vueuse/core':
         specifier: ^13.0.0
         version: 13.0.0(vue@3.5.13(typescript@5.6.3))
@@ -59,7 +59,7 @@ importers:
         version: 1.2.0(magicast@0.3.5)
       wrangler:
         specifier: ^4.6.0
-        version: 4.6.0
+        version: 4.6.0(@cloudflare/workers-types@4.20250327.0)
 
 packages:
 
@@ -258,8 +258,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@cloudflare/workers-types@4.20250303.0':
-    resolution: {integrity: sha512-O7F7nRT4bbmwHf3gkRBLfJ7R6vHIJ/oZzWdby6obOiw2yavUfp/AIwS7aO2POu5Cv8+h3TXS3oHs3kKCZLraUA==}
+  '@cloudflare/workers-types@4.20250327.0':
+    resolution: {integrity: sha512-rkoGnSY/GgBLCuhjZMIC3mt0jjqqvL17uOK92OI4eivmE+pMFOAchowDxIWOzDyYe5vwNCakbCeIM/FrSmwGJA==}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -881,8 +881,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.8.21':
-    resolution: {integrity: sha512-DU0Aqxl35X2K5ZA2wwGpx9Q9amqAbTwnLN5rRL4G2jyB/ifLwfnObQUCyTvB+5ED9n7ZDpdW8e5gpUuS/3jGQw==}
+  '@nuxthub/core@0.8.22':
+    resolution: {integrity: sha512-VSiHRKk4djskFTFXYYSJM0in3GSNQI7pgIxO6vUEa5kA7qPa4G+QTAkIjSksZmst1Pk0rnQe7+BFIU6QXlYLiQ==}
 
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
@@ -3142,8 +3142,8 @@ packages:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
 
-  nitro-cloudflare-dev@0.2.1:
-    resolution: {integrity: sha512-zHAN21dp+As0ldkAr5tWTop/I721j7MssZG6qb7a7EMorFwdRIhyTUwltr2L6v4qT4209S4eb2S9rszP1fxS7A==}
+  nitro-cloudflare-dev@0.2.2:
+    resolution: {integrity: sha512-aZfNTVdgXPQeAmXW0Tw8hm3usAHr4qVG4Bg3WhHBGeZYuXr9OyT04Ztb+STkMzhyaXvfMHViAaPUPg06iAYqag==}
 
   nitropack@2.11.7:
     resolution: {integrity: sha512-ghqLa3Q4X9qaQiUyspWxxoU1fY2nwfSJqhOH+COqyCp7Vgj4oM1EM1L0YNSQUF16T2tAoOWg8woXGq0EH5Y6wQ==}
@@ -4822,7 +4822,7 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20250321.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20250303.0': {}
+  '@cloudflare/workers-types@4.20250327.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -5625,9 +5625,9 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.8.21(db0@0.3.1)(ioredis@5.6.0)(magicast@0.3.5)(vite@6.2.2(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))':
+  '@nuxthub/core@0.8.22(db0@0.3.1)(ioredis@5.6.0)(magicast@0.3.5)(vite@6.2.2(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))':
     dependencies:
-      '@cloudflare/workers-types': 4.20250303.0
+      '@cloudflare/workers-types': 4.20250327.0
       '@nuxt/devtools-kit': 2.3.2(magicast@0.3.5)(vite@6.2.2(@types/node@20.8.9)(jiti@2.4.2)(sass@1.77.6)(terser@5.30.3)(yaml@2.7.0))
       '@nuxt/kit': 3.16.1(magicast@0.3.5)
       '@uploadthing/mime-types': 0.3.4
@@ -5637,7 +5637,7 @@ snapshots:
       destr: 2.0.3
       h3: 1.15.1
       mime: 4.0.6
-      nitro-cloudflare-dev: 0.2.1
+      nitro-cloudflare-dev: 0.2.2
       ofetch: 1.4.1
       pathe: 2.0.3
       pkg-types: 2.1.0
@@ -7930,11 +7930,11 @@ snapshots:
 
   negotiator@0.6.3: {}
 
-  nitro-cloudflare-dev@0.2.1:
+  nitro-cloudflare-dev@0.2.2:
     dependencies:
       consola: 3.4.2
       mlly: 1.7.4
-      pkg-types: 1.3.1
+      pkg-types: 2.1.0
 
   nitropack@2.11.7(encoding@0.1.13)(typescript@5.6.3):
     dependencies:
@@ -9608,7 +9608,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250321.0
       '@cloudflare/workerd-windows-64': 1.20250321.0
 
-  wrangler@4.6.0:
+  wrangler@4.6.0(@cloudflare/workers-types@4.20250327.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250321.0)
@@ -9619,6 +9619,7 @@ snapshots:
       unenv: 2.0.0-rc.15
       workerd: 1.20250321.0
     optionalDependencies:
+      '@cloudflare/workers-types': 4.20250327.0
       fsevents: 2.3.3
       sharp: 0.33.5
     transitivePeerDependencies:

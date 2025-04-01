@@ -20,7 +20,7 @@
     "@nuxthub/core": "^0.8.22",
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
-    "nuxt": "^3.16.1",
+    "nuxt": "^3.16.2",
     "nuxt-og-image": "^5.1.1",
     "ofetch": "^1.4.1",
     "ufo": "^1.5.4",

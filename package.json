@@ -17,7 +17,7 @@
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.30",
     "@nuxt/fonts": "^0.11.0",
-    "@nuxthub/core": "^0.8.22",
+    "@nuxthub/core": "^0.8.23",
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "nuxt": "^3.16.2",
@@ -27,7 +27,7 @@
     "unstorage": "^1.15.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.7.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

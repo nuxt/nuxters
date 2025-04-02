@@ -11,7 +11,7 @@
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^2.21.1",
     "@nuxtjs/plausible": "^1.2.0",
-    "wrangler": "^4.6.0"
+    "wrangler": "^4.7.0"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",

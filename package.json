@@ -21,7 +21,7 @@
     "@vueuse/core": "^13.1.0",
     "@vueuse/nuxt": "^13.1.0",
     "nuxt": "^3.16.2",
-    "nuxt-og-image": "^5.1.1",
+    "nuxt-og-image": "^5.1.2",
     "ofetch": "^1.4.1",
     "ufo": "^1.6.1",
     "unstorage": "^1.15.0",

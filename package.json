@@ -27,7 +27,7 @@
     "unstorage": "^1.15.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.9.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

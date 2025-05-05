@@ -58,7 +58,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(magicast@0.3.5)
       wrangler:
-        specifier: ^4.13.2
+        specifier: ^4.14.1
         version: 4.14.1(@cloudflare/workers-types@4.20250504.0)
 
 packages:

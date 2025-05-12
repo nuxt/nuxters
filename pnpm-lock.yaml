@@ -12,13 +12,13 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       '@iconify-json/simple-icons':
-        specifier: ^1.2.33
+        specifier: ^1.2.34
         version: 1.2.34
       '@nuxt/fonts':
-        specifier: ^0.11.2
+        specifier: ^0.11.3
         version: 0.11.3(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))
       '@nuxthub/core':
-        specifier: ^0.8.25
+        specifier: ^0.8.27
         version: 0.8.27(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))
       '@vueuse/core':
         specifier: ^13.1.0
@@ -58,7 +58,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(magicast@0.3.5)
       wrangler:
-        specifier: ^4.14.1
+        specifier: ^4.14.4
         version: 4.14.4(@cloudflare/workers-types@4.20250510.0)
 
 packages:

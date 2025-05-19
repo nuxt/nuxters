@@ -15,16 +15,16 @@ importers:
         specifier: ^1.2.34
         version: 1.2.34
       '@nuxt/fonts':
-        specifier: ^0.11.3
+        specifier: ^0.11.4
         version: 0.11.4(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
       '@nuxthub/core':
         specifier: ^0.8.27
         version: 0.8.27(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
       '@vueuse/core':
-        specifier: ^13.1.0
+        specifier: ^13.2.0
         version: 13.2.0(vue@3.5.14(typescript@5.8.3))
       '@vueuse/nuxt':
-        specifier: ^13.1.0
+        specifier: ^13.2.0
         version: 13.2.0(magicast@0.3.5)(nuxt@3.17.3(@parcel/watcher@2.5.1)(@types/node@22.15.19)(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(rollup@4.41.0)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
       nuxt:
         specifier: ^3.17.3
@@ -46,7 +46,7 @@ importers:
         version: 1.0.2(vue@3.5.14(typescript@5.8.3))
     devDependencies:
       '@nuxt/devtools':
-        specifier: ^2.4.0
+        specifier: ^2.4.1
         version: 2.4.1(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
       '@nuxt/image':
         specifier: ^1.10.0
@@ -58,7 +58,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(magicast@0.3.5)
       wrangler:
-        specifier: ^4.14.4
+        specifier: ^4.15.2
         version: 4.15.2(@cloudflare/workers-types@4.20250519.0)
 
 packages:

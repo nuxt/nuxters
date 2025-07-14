@@ -11,7 +11,7 @@
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^2.22.0",
     "@nuxtjs/plausible": "^1.2.0",
-    "wrangler": "^4.23.0"
+    "wrangler": "^4.24.3"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",
@@ -27,7 +27,7 @@
     "unstorage": "^1.16.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.13.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

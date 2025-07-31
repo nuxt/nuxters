@@ -3,6 +3,9 @@
         <h2 class="text-3xl lg:text-4xl font-bold mb-12">They are already <span class="text-green-400">Nuxters</span></h2>
 
         <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-4 sm:gap-5 lg:gap-8">
+          <div v-if="status === 'pending'" v-for="i in 100" :key="i" class="pt-[100%] relative">
+            <div class="absolute inset-0 bg-gray-900 rounded-xl animate-pulse"></div>
+          </div>
             <div
             v-for="(contributor, index) in contributors"
             :key="index"
@@ -44,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-    const {data: allContributors} = useFetch('/api/contributors')
+    const {data: allContributors, status } = useFetch('/api/contributors')
 
     const limit = useState('contributors-limit', () => 100);
 

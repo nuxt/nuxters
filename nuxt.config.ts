@@ -55,5 +55,5 @@ export default defineNuxtConfig({
     '/card/**': { proxy: '/__og-image__/image/**' },
   },
 
-  compatibilityDate: '2025-03-10'
+  compatibilityDate: '2025-07-31'
 })

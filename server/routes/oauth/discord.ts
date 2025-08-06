@@ -52,6 +52,7 @@ export default defineEventHandler(async event => {
 
   // makes sure the user is in the guild
   if (!session.data.guildMemberAdded) {
+    console.log('adding user to guild', config.discord.botToken.length)
     await $fetch(`https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}`, {
       method: 'PUT',
       body: {

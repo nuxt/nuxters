@@ -12,7 +12,7 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       '@iconify-json/simple-icons':
-        specifier: ^1.2.46
+        specifier: ^1.2.47
         version: 1.2.47
       '@nuxt/fonts':
         specifier: ^0.11.4
@@ -58,7 +58,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(magicast@0.3.5)
       wrangler:
-        specifier: ^4.27.0
+        specifier: ^4.28.1
         version: 4.28.1(@cloudflare/workers-types@4.20250810.0)
 
 packages:

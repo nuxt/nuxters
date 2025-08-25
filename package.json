@@ -7,15 +7,15 @@
     "logs": "wrangler pages deployment tail"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^2.6.2",
+    "@nuxt/devtools": "^2.6.3",
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui": "^2.22.1",
     "@nuxtjs/plausible": "^1.2.0",
-    "wrangler": "^4.31.0"
+    "wrangler": "^4.32.0"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.48",
+    "@iconify-json/simple-icons": "^1.2.49",
     "@nuxt/fonts": "^0.11.4",
     "@nuxthub/core": "^0.9.0",
     "@vueuse/core": "^13.7.0",
@@ -24,10 +24,10 @@
     "nuxt-og-image": "^5.1.9",
     "ofetch": "^1.4.1",
     "ufo": "^1.6.1",
-    "unstorage": "^1.16.1",
+    "unstorage": "^1.17.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

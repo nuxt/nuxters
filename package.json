@@ -18,8 +18,8 @@
     "@iconify-json/simple-icons": "^1.2.50",
     "@nuxt/fonts": "^0.11.4",
     "@nuxthub/core": "^0.9.0",
-    "@vueuse/core": "^13.8.0",
-    "@vueuse/nuxt": "^13.8.0",
+    "@vueuse/core": "^13.9.0",
+    "@vueuse/nuxt": "^13.9.0",
     "nuxt": "^4.0.3",
     "nuxt-og-image": "^5.1.9",
     "ofetch": "^1.4.1",
@@ -27,7 +27,7 @@
     "unstorage": "^1.17.0",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.15.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

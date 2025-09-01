@@ -10,7 +10,7 @@
     "@nuxt/devtools": "^2.6.3",
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui": "^2.22.1",
-    "@nuxtjs/plausible": "^1.2.0",
+    "@nuxtjs/plausible": "^2.0.0",
     "wrangler": "^4.33.1"
   },
   "dependencies": {

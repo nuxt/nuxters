@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans:
+    'DM Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020420;
+
+  --color-green-50: #d6ffee;
+  --color-green-100: #acffdd;
+  --color-green-200: #83ffcc;
+  --color-green-300: #30ffaa;
+  --color-green-400: #00dc82;
+  --color-green-500: #00bd6f;
+  --color-green-600: #009d5d;
+  --color-green-700: #007e4a;
+  --color-green-800: #005e38;
+  --color-green-900: #003f25;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-neutral-200, currentcolor);
+  }
+}

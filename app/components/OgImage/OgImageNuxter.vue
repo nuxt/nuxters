@@ -10,11 +10,11 @@ const format = useNumberFormatter()
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full h-full p-[38px] bg-neutral-900">
+  <div class="flex flex-row justify-between w-full h-full p-[38px] bg-slate-900">
     <div class="flex flex-col w-1/3 items-center py-10 justify-between text-white">
       <div class="flex flex-col items-center">
-        <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="3xl"
-          :ui="{ wrapper: 'flex', background: '', size: { '3xl': 'h-32 w-32 text-5xl' } }" />
+        <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
+          :ui="{ root: 'flex size-32 text-5xl', image: 'rounded-full'}" />
         <div class="text-3xl pt-[18px]">{{ contributor.username }}</div>
         <div class="pt-12">
           <svg width="119" height="2" viewBox="0 0 119 2" fill="none" xmlns="http://www.w3.org/2000/svg">

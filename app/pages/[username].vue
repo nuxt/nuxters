@@ -90,7 +90,7 @@ const isOpen = ref(false)
                   <span class="truncate">{{ contributorUrl }}</span>
                   <UIcon :name="pageCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': pageCopied }"/>
                 </UButton>
-                <UDivider label="OR" />
+                <USeparator label="OR" />
                 <UButton @click="isOpen = true" color="neutral" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
                   <span class="truncate">Add your Nuxter card on Github</span>
                   <UIcon name="i-simple-icons-github" class="h-5 w-5 shrink-0"/>

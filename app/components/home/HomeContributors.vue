@@ -38,7 +38,7 @@
         </div>
         <div>
             <div class="pt-8 flex justify-center">
-                <UButton variant="outline" color="neutral" :ui="{ rounded-sm: 'rounded-full'}" size="xl" icon="i-ph-plus-bold" @click="showMore">Show more</UButton>
+                <UButton variant="outline" color="neutral" class="rounded-full" size="xl" icon="i-ph-plus-bold" @click="showMore">Show more</UButton>
             </div>
 
         </div>

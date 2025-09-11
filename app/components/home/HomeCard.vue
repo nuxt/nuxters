@@ -46,14 +46,13 @@ onMounted(() => {
     @click="linked.github ? $router.push(`/${contributor.username}`) : ''"
   >
     <UCard
-      :ui="{ ring-3: 'ring-0', body: { base: 'w-full h-full p-0' } }"
       class="bg-neutral-950! card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
       :class="{ 'cursor-pointer': linked.github }"
     >
       <!--github connect -->
       <div v-if="!linked.github" class="flex gap-y-6 flex-col justify-center items-center">
         <p class="text-xl text-neutral-50 text-center">Unlock your role on Nuxt Discord server.</p>
-        <UButton icon="i-simple-icons-github" :ui="{ rounded-sm: 'rounded-full' }"
+        <UButton icon="i-simple-icons-github"
           class="relative px-7 max-w-fit hover:bg-neutral-700" variant="outline" color="neutral" aria-label="connect with GitHub">
           <a href="/connect/github" class="absolute inset-0 w-full h-full" aria-label="connect with GitHub" />
           <span class="text-sm text-neutral-300">Connect with GitHub</span>

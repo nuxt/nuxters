@@ -17,7 +17,7 @@ const links = [
   <div class="h-20 w-full sticky top-0 bg-neutral-950/70 backdrop-blur-md z-50 flex flex-col justify-center">
     <UContainer class="flex justify-between items-center w-full">
       <div class="flex gap-x-2 items-center">
-        <UPopover class="inline-flex" :ui="{ ring-3: 'border-2 border-neutral-900', shadow-sm: 'none', rounded-sm: 'rounded-lg' }">
+        <UPopover class="inline-flex">
           <NuxtLink to="/" aria-label="go to home page">
             <Logo class="h-6" />
           </NuxtLink>

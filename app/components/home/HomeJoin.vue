@@ -9,8 +9,8 @@
         Contribute, collaborate and join our community today!
       </p>
       <div class="pt-8 flex flex-col gap-y-4 sm:flex-row gap-x-4 items-center">
-        <UButton to="https://github.com/nuxt/nuxt" icon="i-simple-icons-github" label="Nuxt" :ui="{ rounded-sm: 'rounded-full'}" class="px-7" variant="outline" color="neutral" target="_blank" aria-label="nuxt" />
-        <UButton to="https://nuxt.com/modules" icon="i-simple-icons-github" label="Nuxt Modules" :ui="{ rounded-sm: 'rounded-full'}" class="px-7" variant="outline" color="neutral" target="_blank" aria-label="nuxt module" />
+        <UButton to="https://github.com/nuxt/nuxt" icon="i-simple-icons-github" label="Nuxt" class="rounded-full px-7" variant="outline" color="neutral" target="_blank" aria-label="nuxt" />
+        <UButton to="https://nuxt.com/modules" icon="i-simple-icons-github" label="Nuxt Modules" class="rounded-full px-7" variant="outline" color="neutral" target="_blank" aria-label="nuxt module" />
       </div>
     </div>
   </div>

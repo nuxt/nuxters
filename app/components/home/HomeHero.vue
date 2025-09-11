@@ -6,7 +6,7 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
   <div class="text-white">
     <h1 class="text-4xl lg:text-6xl font-bold mb-4">Are you a <span class="text-green-400">Nuxter</span>?</h1>
     <div class="flex flex-col gap-y-[40px] md:justify-between md:flex-row items-start gap-x-[92px]">
-      <div class="flex flex-col gap-y-4 text-gray-300">
+      <div class="flex flex-col gap-y-4 text-neutral-300">
         <p class="text-base lg:text-lg lg:leading-[32px]">
           Discover your contributions on
           <NuxtLink to="https://github.com/nuxt" target="_blank">nuxt</NuxtLink>
@@ -25,8 +25,8 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
               </span>
             </li>
           </ul>
-          <div class="w-20 h-[1px] bg-gray-700 mt-8 mb-4" />
-          <span class="italic text-gray-400 text-base">
+          <div class="w-20 h-px bg-neutral-700 mt-8 mb-4" />
+          <span class="italic text-neutral-400 text-base">
             Note that your details are stored in a secured cookie and only used to grant you roles on Discord.
           </span>
         </div>

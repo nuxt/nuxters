@@ -1,33 +1,35 @@
 export default defineAppConfig({
   ui: {
-    primary: 'green',
-    gray: 'slate',
+    colors: {
+        primary: 'green',
+        neutral: 'slate'
+    },
     button: {
       color: {
         primary: {
-          outline: 'bg-gray-950 border border-[0.5px] border-primary-400 text-gray-300 disabled:bg-gray-700 hover:bg-gray-900 focus-visible:ring-2 focus-visible:ring-gray-400 transition-all duration-200'
+          outline: 'bg-neutral-950 border border-[0.5px] border-primary-400 text-neutral-300 disabled:bg-neutral-700 hover:bg-neutral-900 focus-visible:ring-2 focus-visible:ring-neutral-400 transition-all duration-200'
         },
         gray: {
-          outline: 'bg-gradient-to-b from-gray-800/50 to-gray-900/50 border border-gray-700 text-gray-300 disabled:bg-transparent hover:bg-gray-900 disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-gray-400 transition-color duration-200',
-          link: 'text-gray-300 hover:text-gray-200 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-300'
+          outline: 'bg-linear-to-b from-neutral-800/50 to-neutral-900/50 border border-neutral-700 text-neutral-300 disabled:bg-transparent hover:bg-neutral-900 disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-neutral-400 transition-color duration-200',
+          link: 'text-neutral-300 hover:text-neutral-200 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-300'
         },
       }
     },
     table: {
-      divide: 'divide-y divide-gray-700',
-      tbody: 'divide-y divide-gray-800',
+      divide: 'divide-y divide-neutral-700',
+      tbody: 'divide-y divide-neutral-800',
       tr: {
-        selected: 'bg-gray-800/50'
+        selected: 'bg-neutral-800/50'
       },
       th: {
         base: 'text-left rtl:text-right',
         padding: 'px-3 py-3.5',
-        color: 'text-gray-200',
+        color: 'text-neutral-200',
         font: 'font-semibold',
         size: 'text-sm'
       },
       td: {
-        color: 'text-gray-300',
+        color: 'text-neutral-300',
       },
     },
     badge: {

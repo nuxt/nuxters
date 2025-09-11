@@ -10,7 +10,7 @@ const format = useNumberFormatter()
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full h-full p-[38px] bg-gray-900">
+  <div class="flex flex-row justify-between w-full h-full p-[38px] bg-neutral-900">
     <div class="flex flex-col w-1/3 items-center py-10 justify-between text-white">
       <div class="flex flex-col items-center">
         <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="3xl"
@@ -40,7 +40,7 @@ const format = useNumberFormatter()
           </svg>
           <div class="font-medium text-4xl pl-2 pt-1">{{ format(contributor.score) }}</div>
         </div>
-        <div class="flex flex-row text-gray-400 items-center pt-3 font-medium text-3xl">
+        <div class="flex flex-row text-neutral-400 items-center pt-3 font-medium text-3xl">
           #{{ format(contributor.rank) }}
         </div>
       </div>

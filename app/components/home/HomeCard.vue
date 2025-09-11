@@ -42,37 +42,37 @@ onMounted(() => {
 <template>
   <div
     class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked.github && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-[1px]' : 'border border-gray-800 rounded-lg'"
+    :class="linked.github && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-px' : 'border border-neutral-800 rounded-lg'"
     @click="linked.github ? $router.push(`/${contributor.username}`) : ''"
   >
     <UCard
-      :ui="{ ring: 'ring-0', body: { base: 'w-full h-full p-0' } }"
-      class="!bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
+      :ui="{ ring-3: 'ring-0', body: { base: 'w-full h-full p-0' } }"
+      class="bg-neutral-950! card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
       :class="{ 'cursor-pointer': linked.github }"
     >
       <!--github connect -->
       <div v-if="!linked.github" class="flex gap-y-6 flex-col justify-center items-center">
-        <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
-        <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
-          class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray" aria-label="connect with GitHub">
+        <p class="text-xl text-neutral-50 text-center">Unlock your role on Nuxt Discord server.</p>
+        <UButton icon="i-simple-icons-github" :ui="{ rounded-sm: 'rounded-full' }"
+          class="relative px-7 max-w-fit hover:bg-neutral-700" variant="outline" color="neutral" aria-label="connect with GitHub">
           <a href="/connect/github" class="absolute inset-0 w-full h-full" aria-label="connect with GitHub" />
-          <span class="text-sm text-gray-300">Connect with GitHub</span>
+          <span class="text-sm text-neutral-300">Connect with GitHub</span>
         </UButton>
       </div>
 
       <!-- linked to github -->
       <div v-else-if="linked.github" class="w-full h-full">
         <img v-if="canUnlockNuxterBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
-        <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
+        <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="neutral" variant="ghost"/></div>
         <div class="absolute left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
             class="relative"
             :class="[
-              canUnlockNuxterBadge ? 'primary-button' : 'bg-gray-900',
-              { 'cursor-auto hover:bg-gray-950': !canUnlockNuxterBadge },
+              canUnlockNuxterBadge ? 'primary-button' : 'bg-neutral-900',
+              { 'cursor-auto hover:bg-neutral-950': !canUnlockNuxterBadge },
               { 'primary-button-discord': !linked.discord && canUnlockNuxterBadge },
-              { 'cursor-auto hover:bg-gray-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
+              { 'cursor-auto hover:bg-neutral-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
             ]"
             :color="canUnlockNuxterBadge ? 'primary' : 'gray'"
             variant="outline"
@@ -91,7 +91,7 @@ onMounted(() => {
               href="/connect/discord"
               class="absolute inset-0 w-full h-full"
             />
-            <span class="text-sm" :class="[linked.discord ? 'text-primary-400 ': 'text-gray-300']">{{
+            <span class="text-sm" :class="[linked.discord ? 'text-primary-400 ': 'text-neutral-300']">{{
               linked.discord ? badgeName : 'Unlock badge(s)'
             }}</span>
           </UButton>
@@ -106,7 +106,7 @@ onMounted(() => {
               :href="`/${contributor.username}`"
               class="absolute inset-0 w-full h-full"
             />
-            <span class="text-sm text-gray-300">Share my Nuxter profile</span>
+            <span class="text-sm text-neutral-300">Share my Nuxter profile</span>
           </UButton>
         </div>
 
@@ -115,29 +115,29 @@ onMounted(() => {
           <div class="flex flex-col gap-y-4 justify-center w-full">
             <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="2xl" :alt="contributor.username" />
             <span class="text-white text-2xl">{{ contributor.username }}</span>
-            <span class="bg-gray-700 w-10 h-[1px]" />
+            <span class="bg-neutral-700 w-10 h-px" />
             <div class="flex items-center">
-              <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-gray-200 pl-[3px]">pts</span></span>
-              <UButton variant="ghost" icon="i-ph-info" color="gray" @click.stop="isOpen = true" class="ml-1 transitions-color duration-200 z-50" aria-label="show score table" />
+              <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-neutral-200 pl-[3px]">pts</span></span>
+              <UButton variant="ghost" icon="i-ph-info" color="neutral" @click.stop="isOpen = true" class="ml-1 transitions-color duration-200 z-50" aria-label="show score table" />
               <UModal
                 class="relative"
                 v-model="isOpen"
                 :ui="{
-                  background: 'bg-gray-900',
+                  background: 'bg-neutral-900',
                   container: 'flex min-h-full md:items-center justify-center text-center',
                   padding: 'p-0',
-                  overlay: { background: 'backdrop-blur bg-gray-800/70' },
+                  overlay: { background: 'backdrop-blur-sm bg-neutral-800/70' },
                 }">
                 <UButton
                   class="absolute right-2 top-2 transition-colors duration-200"
-                  color="white"
+                  color="neutral"
                   variant="ghost"
                   size="xl"
                   icon="i-ph-x"
                   @click="isOpen = false"
                 />
-                <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg">
-                  <h5 class="text-2xl text-white font-medium px-4 py-3 pr-10 bg-gray-950">How is the score calculated?</h5>
+                <div class="flex flex-col justify-center gap-y-2 text-neutral-300 text-lg">
+                  <h5 class="text-2xl text-white font-medium px-4 py-3 pr-10 bg-neutral-950">How is the score calculated?</h5>
                   <UTable class="overflow-x-auto" :rows="detailedScore" :ui="{
                     th: {
                       base: 'first:text-left text-center last:text-right',
@@ -156,7 +156,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <div class="flex flex-col gap-y-6 text-gray-300 w-full">
+          <div class="flex flex-col gap-y-6 text-neutral-300 w-full">
             <div class="flex items-center justify-between w-full">
               <span
                 ><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span

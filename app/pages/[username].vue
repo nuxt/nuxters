@@ -49,22 +49,22 @@ const isOpen = ref(false)
 <template>
   <div class="pb-[60px] lg:min-h-[calc(100dvh-9rem)] flex flex-col items-center justify-center">
     <div class="flex items-start justify-start w-full h-full pb-8  mb-8">
-      <UButton @click.prevent="backToHome()" to="/" variant="ghost" label="back to homepage" icon="i-ph-arrow-left-thin" color="gray" class="transition-colors duration-200" />
+      <UButton @click.prevent="backToHome()" to="/" variant="ghost" label="back to homepage" icon="i-ph-arrow-left-thin" color="neutral" class="transition-colors duration-200" />
     </div>
     <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-[42px]">
-      <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">
-        <div class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 !bg-gray-950 rounded-[9.5px] relative p-[18px] sm:p-[44px]">
+      <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-neutral-800 p-px rounded-xl">
+        <div class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 bg-neutral-950! rounded-[9.5px] relative p-[18px] sm:p-[44px]">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-2 pb-2 md:w-full items-center text-center justify-between">
             <img :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" :alt="contributor?.username" class="rounded-full w-40" />
             <div class="flex flex-col items-center gap-4">
               <div class="flex flex-col gap-y-[18px]">
-                <UButton :to="`https://github.com/${contributor.username}`" color="black" variant="ghost" size="lg" icon="i-simple-icons-github" target="_blank" :trailing="true" class="transition-colors duration-200">
+                <UButton :to="`https://github.com/${contributor.username}`" color="neutral" variant="ghost" size="lg" icon="i-simple-icons-github" target="_blank" :trailing="true" class="transition-colors duration-200">
                   <div class="text-2xl">{{ contributor.username }}</div>
                 </UButton>
 
                 <div class="flex flex-col gap-y-2">
                   <div class="flex items-center justify-center gap-1">
-                    <span class="text-2xl text-center md:text-left lg:text-center md:ml-4 lg:ml-0 text-gray-400"><span class="text-2xl font-medium">#</span>{{ format(contributor.rank) }}</span>
+                    <span class="text-2xl text-center md:text-left lg:text-center md:ml-4 lg:ml-0 text-neutral-400"><span class="text-2xl font-medium">#</span>{{ format(contributor.rank) }}</span>
                   </div>
                   <div class="flex items-center justify-center gap-1">
                     <svg class="h-6" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,18 +80,18 @@ const isOpen = ref(false)
                 </div>
               </div>
 
-              <span class="block mb-10 md:mb-0 h-[1px] w-[92px] bg-gray-800" />
+              <span class="block mb-10 md:mb-0 h-px w-[92px] bg-neutral-800" />
 
               <div class="flex flex-col items-center justify-center text-center gap-y-3">
                 <span class="text-lg">Share your Nuxter profile ✨</span>
 
-                <UButton @click="copyPage(contributorUrl)" color="gray" variant="outline" size="xl"
+                <UButton @click="copyPage(contributorUrl)" color="neutral" variant="outline" size="xl"
                   :class="{ 'border-primary-400': pageCopied }" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
                   <span class="truncate">{{ contributorUrl }}</span>
                   <UIcon :name="pageCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': pageCopied }"/>
                 </UButton>
                 <UDivider label="OR" />
-                <UButton @click="isOpen = true" color="gray" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
+                <UButton @click="isOpen = true" color="neutral" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
                   <span class="truncate">Add your Nuxter card on Github</span>
                   <UIcon name="i-simple-icons-github" class="h-5 w-5 shrink-0"/>
                 </UButton>
@@ -119,13 +119,13 @@ const isOpen = ref(false)
       </div>
     </div>
     <UModal v-model="isOpen" :ui="{ width: 'sm:max-w-2xl' }">
-      <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+      <UCard :ui="{ divide: 'divide-y divide-neutral-100 dark:divide-neutral-800' }">
         <template #header>
           <div class="flex items-center justify-between">
-            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
+            <h3 class="text-base font-semibold leading-6 text-highlighted">
               Add your Nuxter card on Github
             </h3>
-            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="isOpen = false" />
+            <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="isOpen = false" />
           </div>
         </template>
         <div class="flex flex-col gap-y-4">
@@ -133,13 +133,13 @@ const isOpen = ref(false)
             <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
             <img :src="ogImageUrl" :alt="contributor?.username" height="630" width="1200" class="absolute" />
           </div>
-          <UButton @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)" color="gray" variant="outline" size="xl"
+          <UButton @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)" color="neutral" variant="outline" size="xl"
             :class="{ 'border-primary-400': cardCopied }" class="self-center">
             <span class="truncate">Get your Nuxter card</span>
             <UIcon :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': cardCopied }"/>
           </UButton>
           <p class="text-center">Copy your Nuxter card and paste it on your <NuxtLink to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" target="_blank">profile README</NuxtLink>.</p>
-          <p class="text-gray-400 text-center">Example : <NuxtLink to="https://github.com/Atinux" target="_blank">Atinux profile</NuxtLink> with <NuxtLink to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md" target="_blank">this template</NuxtLink></p>
+          <p class="text-neutral-400 text-center">Example : <NuxtLink to="https://github.com/Atinux" target="_blank">Atinux profile</NuxtLink> with <NuxtLink to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md" target="_blank">this template</NuxtLink></p>
         </div>
       </UCard>
     </UModal>

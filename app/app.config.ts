@@ -5,6 +5,9 @@ export default defineAppConfig({
         neutral: 'slate'
     },
     button: {
+      slots: {
+        base: 'hover:cursor-pointer'
+      },
       compoundVariants: [
         {
           color: 'primary',

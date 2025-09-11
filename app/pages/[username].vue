@@ -91,10 +91,27 @@ const isOpen = ref(false)
                   <UIcon :name="pageCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': pageCopied }"/>
                 </UButton>
                 <USeparator label="OR" />
-                <UButton @click="isOpen = true" color="neutral" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]">
-                  <span class="truncate">Add your Nuxter card on Github</span>
-                  <UIcon name="i-simple-icons-github" class="h-5 w-5 shrink-0"/>
-                </UButton>
+
+                <UModal :ui="{ width: 'sm:max-w-2xl' }">
+                  <UButton color="neutral" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]" label="Add your Nuxter card on Github" icon="i-simple-icons-github" trailing />
+                  <template #content>
+                    <UCard :ui="{ divide: 'divide-y divide-neutral-100 dark:divide-neutral-800' }">
+                      <div class="flex flex-col gap-y-4">
+                        <div class="aspect-[1.91/1] flex items-center justify-center">
+                          <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
+                          <img :src="ogImageUrl" :alt="contributor?.username" height="630" width="1200" class="absolute" />
+                        </div>
+                        <UButton @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)" color="neutral" variant="outline" size="xl"
+                          :class="{ 'border-primary-400': cardCopied }" class="self-center">
+                          <span class="truncate">Get your Nuxter card</span>
+                          <UIcon :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': cardCopied }"/>
+                        </UButton>
+                        <p class="text-center">Copy your Nuxter card and paste it on your <ULink to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" target="_blank">profile README</ULink>.</p>
+                        <p class="text-neutral-400 text-center">Example : <ULink to="https://github.com/Atinux" target="_blank">Atinux profile</ULink> with <ULink to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md" target="_blank">this template</ULink></p>
+                      </div>
+                    </UCard>
+                  </template>
+                </UModal>
               </div>
             </div>
           </div>
@@ -118,31 +135,6 @@ const isOpen = ref(false)
         <span class="text-2xl">{{ contributor?.reactions === 1 ? 'Reaction' : 'Reactions' }}</span>
       </div>
     </div>
-    <UModal v-model:open="isOpen" :ui="{ width: 'sm:max-w-2xl' }">
-      <UCard :ui="{ divide: 'divide-y divide-neutral-100 dark:divide-neutral-800' }">
-        <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-semibold leading-6 text-highlighted">
-              Add your Nuxter card on Github
-            </h3>
-            <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="isOpen = false" />
-          </div>
-        </template>
-        <div class="flex flex-col gap-y-4">
-          <div class="aspect-[1.91/1] flex items-center justify-center">
-            <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
-            <img :src="ogImageUrl" :alt="contributor?.username" height="630" width="1200" class="absolute" />
-          </div>
-          <UButton @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)" color="neutral" variant="outline" size="xl"
-            :class="{ 'border-primary-400': cardCopied }" class="self-center">
-            <span class="truncate">Get your Nuxter card</span>
-            <UIcon :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'" class="h-5 w-5 shrink-0" :class="{ 'text-green-400': cardCopied }"/>
-          </UButton>
-          <p class="text-center">Copy your Nuxter card and paste it on your <NuxtLink to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" target="_blank">profile README</NuxtLink>.</p>
-          <p class="text-neutral-400 text-center">Example : <NuxtLink to="https://github.com/Atinux" target="_blank">Atinux profile</NuxtLink> with <NuxtLink to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md" target="_blank">this template</NuxtLink></p>
-        </div>
-      </UCard>
-    </UModal>
   </div>
 </template>
 

@@ -9,6 +9,8 @@ export default defineNuxtConfig({
     },
   },
 
+  css: ['~/assets/css/main.css'],
+
   modules: [
     '@nuxt/fonts',
     '@nuxt/ui',

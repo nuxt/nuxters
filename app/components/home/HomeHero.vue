@@ -9,14 +9,14 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
       <div class="flex flex-col gap-y-4 text-neutral-300">
         <p class="text-base lg:text-lg lg:leading-[32px]">
           Discover your contributions on
-          <NuxtLink to="https://github.com/nuxt" target="_blank">nuxt</NuxtLink>
+          <ULink to="https://github.com/nuxt" target="_blank">nuxt</ULink>
           and
-          <NuxtLink to="https://github.com/nuxt-modules" target="_blank"
-            >nuxt modules</NuxtLink
-          > organisations, unlock roles on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink> and share your Nuxter profile.
+          <ULink to="https://github.com/nuxt-modules" target="_blank"
+            >nuxt modules</ULink
+          > organisations, unlock roles on <ULink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</ULink> and share your Nuxter profile.
         </p>
         <div>
-          <div class="mb-2">Unlock the <UBadge size="md" color="primary" variant="solid">nuxter</UBadge> role by having either:</div>
+          <div class="mb-2">Unlock the <UBadge size="xl" color="primary" variant="subtle">nuxter</UBadge> role by having either:</div>
           <ul class="flex flex-col gap-y-1 pt-1 text-base">
             <li v-for="item in unlockList" :key="item" class="flex gap-x-2">
               <UIcon name="i-heroicons-check-circle-20-solid" class="h-5 w-5 text-green-400" />

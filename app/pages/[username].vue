@@ -118,7 +118,7 @@ const isOpen = ref(false)
         <span class="text-2xl">{{ contributor?.reactions === 1 ? 'Reaction' : 'Reactions' }}</span>
       </div>
     </div>
-    <UModal v-model="isOpen" :ui="{ width: 'sm:max-w-2xl' }">
+    <UModal v-model:open="isOpen" :ui="{ width: 'sm:max-w-2xl' }">
       <UCard :ui="{ divide: 'divide-y divide-neutral-100 dark:divide-neutral-800' }">
         <template #header>
           <div class="flex items-center justify-between">

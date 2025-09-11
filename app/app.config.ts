@@ -24,19 +24,24 @@ export default defineAppConfig({
         },
       ]
     },
-    badge: {
+    link: {
+      base: 'focus-visible:outline-primary underline underline-offset-6',
+      variants: {
+        active: {
+          true: 'text-default',
+          false: 'text-muted'
+        },
+      },
       compoundVariants: [
         {
-          color: 'primary',
-          variant: 'solid',
-          class: 'bg-primary-400/10 text-primary-400 ring-1 ring-inset ring-primary-400 ring-opacity-10 dark:ring-opacity-20'
+          active: false,
+          disabled: false,
+          class: [
+            'hover:text-primary',
+            'transition-colors'
+          ]
         }
-      ],
-      variants: {
-        size: {
-          md: 'text-base px-2 py-1',
-        },
-      }
-    },
+      ]
+    }
   },
 })

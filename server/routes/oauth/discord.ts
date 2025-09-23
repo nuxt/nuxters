@@ -92,8 +92,8 @@ export default defineEventHandler(async event => {
     )
   }
 
+  console.log('event.context.canUnlockUIProBadge', event.context.canUnlockUIProBadge, config.discord.uIProRoleId)
   if (event.context.canUnlockUIProBadge && config.discord.uIProRoleId) {
-    console.log('adding user to ui pro role', config.discord.uIProRoleId)
     await $fetch(
       `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.uIProRoleId}`,
       {

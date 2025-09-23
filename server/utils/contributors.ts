@@ -27,5 +27,5 @@ export const fetchNuxtUIProOutsideCollaborators = cachedFunction<string[]>(async
   return response.map((collaborator: { login: string }) => collaborator.login)
 }, {
   getKey: () => 'nuxt-ui-pro-outside-collaborators',
-  maxAge: 60 * 10, // 10 minutes
+  maxAge: 365 * 60 * 60 * 24, // 365 days
 })

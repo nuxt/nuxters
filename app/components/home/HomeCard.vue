@@ -21,7 +21,7 @@ const badgeName = computed(() => {
   const badges = []
   if (canUnlockNuxterBadge.value) badges.push('Nuxter')
   if (canUnlockModuleBadge.value) badges.push('Module Author')
-  if (canUnlockUIProBadge.value) badges.push('UI Pioneer')
+  if (canUnlockUIProBadge.value) badges.push('UI Pro')
   if (badges.length > 0) return badges.join(' + ') + ' badge'+ (badges.length > 1 ? 's' : '') + ' unlocked'
   return 'You\'re almost there, keep going!'
 })
@@ -101,19 +101,6 @@ onMounted(() => {
             <span class="text-sm" :class="[linked.discord ? 'text-primary-400 ': 'text-gray-300']">{{
               linked.discord ? badgeName : 'Unlock badge(s)'
             }}</span>
-          </UButton>
-          <UButton v-if="linked.github"
-            class="relative primary-button hidden 2xl:flex"
-            color="primary"
-            variant="outline"
-            icon="i-ph-share-network"
-            aria-label="Share my Nuxter profile"
-          >
-            <a
-              :href="`/${contributor.username}`"
-              class="absolute inset-0 w-full h-full"
-            />
-            <span class="text-sm text-gray-300">Share my Nuxter profile</span>
           </UButton>
         </div>
 

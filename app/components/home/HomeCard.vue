@@ -18,8 +18,11 @@ const {
 const format = useNumberFormatter()
 const showConfetti = ref(false)
 const badgeName = computed(() => {
-  if (canUnlockModuleBadge.value) return 'Nuxter & Module Author badges unlocked'
-  if (canUnlockNuxterBadge.value) return 'Nuxter badge unlocked'
+  const badges = []
+  if (canUnlockNuxterBadge.value) badges.push('Nuxter')
+  if (canUnlockModuleBadge.value) badges.push('Module Author')
+  if (canUnlockUIProBadge.value) badges.push('UI Pioneer')
+  if (badges.length > 0) return badges.join(' + ') + ' badge'+ (badges.length > 1 ? 's' : '') + ' unlocked'
   return 'You\'re almost there, keep going!'
 })
 const canUnlockADiscordBadge = computed(() => {

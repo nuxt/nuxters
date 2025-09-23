@@ -37,6 +37,7 @@ export default defineNuxtConfig({
       guildId: '',
       nuxterRoleId: '',
       moduleMaintainerRoleId: '',
+      uIProRoleId: '',
       botToken: '',
     },
   },

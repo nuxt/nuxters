@@ -9,6 +9,7 @@ const {
   contributor,
   canUnlockNuxterBadge,
   canUnlockModuleBadge,
+  canUnlockUIProBadge,
   hasMergedPullRequests,
   hasHelpfulIssues,
   hasHelpfulComments,
@@ -20,6 +21,9 @@ const badgeName = computed(() => {
   if (canUnlockModuleBadge.value) return 'Nuxter & Module Author badges unlocked'
   if (canUnlockNuxterBadge.value) return 'Nuxter badge unlocked'
   return 'You\'re almost there, keep going!'
+})
+const canUnlockADiscordBadge = computed(() => {
+  return canUnlockNuxterBadge.value || canUnlockModuleBadge.value || canUnlockUIProBadge.value
 })
 async function popConfetti() {
   showConfetti.value = false
@@ -62,22 +66,22 @@ onMounted(() => {
 
       <!-- linked to github -->
       <div v-else-if="linked.github" class="w-full h-full">
-        <img v-if="canUnlockNuxterBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
+        <img v-if="canUnlockADiscordBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
         <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
         <div class="absolute left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
             class="relative"
             :class="[
-              canUnlockNuxterBadge ? 'primary-button' : 'bg-gray-900',
-              { 'cursor-auto hover:bg-gray-950': !canUnlockNuxterBadge },
+              canUnlockADiscordBadge ? 'primary-button' : 'bg-gray-900',
+              { 'cursor-auto hover:bg-gray-950': !canUnlockADiscordBadge },
               { 'primary-button-discord': !linked.discord && canUnlockNuxterBadge },
               { 'cursor-auto hover:bg-gray-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
             ]"
-            :color="canUnlockNuxterBadge ? 'primary' : 'gray'"
+            :color="canUnlockADiscordBadge ? 'primary' : 'gray'"
             variant="outline"
             :icon="
-              !canUnlockNuxterBadge
+              !canUnlockADiscordBadge
                 ? 'i-ph-smiley'
                 : !linked.discord
                 ? 'i-simple-icons-discord'
@@ -87,7 +91,7 @@ onMounted(() => {
              @click="(e) => unlockButton(e)"
           >
             <a
-              v-if="!linked.discord && canUnlockNuxterBadge"
+              v-if="!linked.discord && canUnlockADiscordBadge"
               href="/connect/discord"
               class="absolute inset-0 w-full h-full"
             />

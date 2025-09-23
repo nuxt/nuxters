@@ -3,6 +3,7 @@ export function useNuxter() {
   const contributor = useState<Contributor>('contributor')
   const canUnlockNuxterBadge = useState<boolean>(() => false)
   const canUnlockModuleBadge = useState<boolean>(() => false)
+  const canUnlockUIProBadge = useState<boolean>(() => false)
   const hasMergedPullRequests = useState<boolean>(() => false)
   const hasHelpfulIssues = useState<boolean>(() => false)
   const hasHelpfulComments = useState<boolean>(() => false)
@@ -13,6 +14,7 @@ export function useNuxter() {
     contributor,
     canUnlockNuxterBadge,
     canUnlockModuleBadge,
+    canUnlockUIProBadge,
     hasMergedPullRequests,
     hasHelpfulIssues,
     hasHelpfulComments,

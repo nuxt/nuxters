@@ -52,7 +52,6 @@ export default defineEventHandler(async event => {
 
   // makes sure the user is in the guild
   if (!session.data.guildMemberAdded) {
-    console.log('adding user to guild', config.discord.botToken.length)
     await $fetch(`https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}`, {
       method: 'PUT',
       body: {
@@ -66,7 +65,7 @@ export default defineEventHandler(async event => {
     session.data.guildMemberAdded = true
   }
 
-  if (event.context.canUnlockNuxterBadge) {
+  if (event.context.canUnlockNuxterBadge && config.discord.nuxterRoleId) {
     await $fetch(
       `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.nuxterRoleId}`,
       {
@@ -80,9 +79,23 @@ export default defineEventHandler(async event => {
     session.data.nuxterRoleAdded = true
   }
 
-  if (event.context.canUnlockModuleBadge) {
+  if (event.context.canUnlockModuleBadge && config.discord.moduleMaintainerRoleId) {
     await $fetch(
       `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.moduleMaintainerRoleId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
+          Authorization: `Bot ${config.discord.botToken}`,
+        },
+      }
+    )
+  }
+
+  if (event.context.canUnlockUIProBadge && config.discord.uIProRoleId) {
+    console.log('adding user to ui pro role', config.discord.uIProRoleId)
+    await $fetch(
+      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.uIProRoleId}`,
       {
         method: 'PUT',
         headers: {

@@ -49,7 +49,10 @@ const isOpen = ref(false)
 </script>
 
 <template>
-  <div v-if="contributor" class="pb-[60px] lg:min-h-[calc(100dvh-9rem)] flex flex-col items-center justify-center">
+  <div
+    v-if="contributor"
+    class="pb-[60px] lg:min-h-[calc(100dvh-9rem)] flex flex-col items-center justify-center"
+  >
     <div class="flex items-start justify-start w-full h-full pb-8  mb-8">
       <UButton
         to="/"

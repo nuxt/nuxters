@@ -1,4 +1,4 @@
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
   event.context.canUnlockNuxterBadge = false
 
@@ -6,7 +6,7 @@ export default defineEventHandler(async event => {
     const [contributors, moduleMaintainers, nuxtUIProOutsideCollaborators] = await Promise.all([
       fetchContributors(),
       fetchModuleMaintainers(),
-      fetchNuxtUIProOutsideCollaborators()
+      fetchNuxtUIProOutsideCollaborators(),
     ])
 
     const contributor = contributors?.find(contributor => contributor.githubId === String(session.data.githubId)) || {

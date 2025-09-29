@@ -8,7 +8,7 @@ export default eventHandler(async (event) => {
   }
   const contributors = await fetchContributors()
 
-  const index = contributors.findIndex((contributor) => contributor.username.toLowerCase() === username.toLocaleLowerCase())
+  const index = contributors?.findIndex(contributor => contributor.username.toLowerCase() === username.toLocaleLowerCase()) ?? -1
 
   if (index === -1) {
     throw createError({
@@ -17,7 +17,7 @@ export default eventHandler(async (event) => {
     })
   }
   return {
-    ...contributors[index],
-    rank: index + 1
-  } 
+    ...contributors![index]!,
+    rank: index + 1,
+  }
 })

@@ -4,22 +4,46 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
 
 <template>
   <div class="text-white">
-    <h1 class="text-4xl lg:text-6xl font-bold mb-4">Are you a <span class="text-green-400">Nuxter</span>?</h1>
+    <h1 class="text-4xl lg:text-6xl font-bold mb-4">
+      Are you a <span class="text-green-400">Nuxter</span>?
+    </h1>
     <div class="flex flex-col gap-y-[40px] md:justify-between md:flex-row items-start gap-x-[92px]">
       <div class="flex flex-col gap-y-4 text-gray-300">
         <p class="text-base lg:text-lg lg:leading-[32px]">
           Discover your contributions on
-          <NuxtLink to="https://github.com/nuxt" target="_blank">nuxt</NuxtLink>
+          <NuxtLink
+            to="https://github.com/nuxt"
+            target="_blank"
+          >nuxt</NuxtLink>
           and
-          <NuxtLink to="https://github.com/nuxt-modules" target="_blank"
-            >nuxt modules</NuxtLink
-          > organisations, unlock roles on <NuxtLink to="https://discord.com/invite/nuxt" target="_blank">Nuxt Discord server</NuxtLink> and share your Nuxter profile.
+          <NuxtLink
+            to="https://github.com/nuxt-modules"
+            target="_blank"
+          >nuxt modules</NuxtLink> organisations, unlock roles on <NuxtLink
+            to="https://discord.com/invite/nuxt"
+            target="_blank"
+          >Nuxt Discord server</NuxtLink> and share your Nuxter profile.
         </p>
         <div>
-          <div class="mb-2">Unlock the <UBadge size="md" color="primary" variant="solid">nuxter</UBadge> role by having either:</div>
+          <div class="mb-2">
+            Unlock the <UBadge
+              size="md"
+              color="primary"
+              variant="solid"
+            >
+              nuxter
+            </UBadge> role by having either:
+          </div>
           <ul class="flex flex-col gap-y-1 pt-1 text-base">
-            <li v-for="item in unlockList" :key="item" class="flex gap-x-2">
-              <UIcon name="i-heroicons-check-circle-20-solid" class="h-5 w-5 text-green-400" />
+            <li
+              v-for="item in unlockList"
+              :key="item"
+              class="flex gap-x-2"
+            >
+              <UIcon
+                name="i-heroicons-check-circle-20-solid"
+                class="h-5 w-5 text-green-400"
+              />
               <span>
                 {{ item }}
               </span>

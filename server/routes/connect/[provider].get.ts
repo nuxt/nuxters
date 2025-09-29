@@ -1,7 +1,7 @@
 import { joinURL, withQuery } from 'ufo'
 import { randomUUID } from 'uncrypto'
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const provider = getRouterParam(event, 'provider')
   const { refresh } = getQuery(event)
 
@@ -18,7 +18,7 @@ export default defineEventHandler(async event => {
         client_id: config.github.clientId,
         redirect_uri: joinURL(config.url, 'oauth/github'),
         state,
-      })
+      }),
     )
   }
 
@@ -34,7 +34,7 @@ export default defineEventHandler(async event => {
         response_type: 'code',
         scope: 'identify guilds.join',
         state,
-      })
+      }),
     )
   }
 

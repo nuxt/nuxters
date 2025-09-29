@@ -1,6 +1,6 @@
 import { joinURL } from 'ufo'
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { state, code } = getQuery(event)
   if (!code || !state) {
     throw createError({
@@ -42,7 +42,7 @@ export default defineEventHandler(async event => {
   const user = await $fetch<{ id: string }>('https://discord.com/api/users/@me', {
     headers: {
       'user-agent': 'Nuxtbot (https://nuxt.com, 0.1)',
-      Authorization: `Bearer ${access_token}`,
+      'Authorization': `Bearer ${access_token}`,
     },
   })
 
@@ -59,7 +59,7 @@ export default defineEventHandler(async event => {
       },
       headers: {
         'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-        Authorization: `Bot ${config.discord.botToken}`,
+        'Authorization': `Bot ${config.discord.botToken}`,
       },
     })
     session.data.guildMemberAdded = true
@@ -72,9 +72,9 @@ export default defineEventHandler(async event => {
         method: 'PUT',
         headers: {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-          Authorization: `Bot ${config.discord.botToken}`,
+          'Authorization': `Bot ${config.discord.botToken}`,
         },
-      }
+      },
     )
     session.data.nuxterRoleAdded = true
   }
@@ -86,9 +86,9 @@ export default defineEventHandler(async event => {
         method: 'PUT',
         headers: {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-          Authorization: `Bot ${config.discord.botToken}`,
+          'Authorization': `Bot ${config.discord.botToken}`,
         },
-      }
+      },
     )
   }
 
@@ -99,9 +99,9 @@ export default defineEventHandler(async event => {
         method: 'PUT',
         headers: {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-          Authorization: `Bot ${config.discord.botToken}`,
+          'Authorization': `Bot ${config.discord.botToken}`,
         },
-      }
+      },
     )
   }
 

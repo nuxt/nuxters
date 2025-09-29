@@ -73,7 +73,7 @@ export default defineNuxtPlugin(async () => {
         multiplier: '',
         amount: '',
         total: format(contributor.value.score),
-      }
+      },
     ]
   }
 })

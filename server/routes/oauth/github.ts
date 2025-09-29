@@ -1,4 +1,4 @@
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { state, code } = getQuery(event)
   if (!code || !state) {
     throw createError({
@@ -34,8 +34,8 @@ export default defineEventHandler(async event => {
 
   const ghUser = await $fetch<{ id: number, login: string }>('https://api.github.com/user', {
     headers: {
-      Authorization: `Bearer ${access_token}`,
-      Accept: 'application/vnd.github+json',
+      'Authorization': `Bearer ${access_token}`,
+      'Accept': 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
       'User-Agent': 'Nuxter',
     },

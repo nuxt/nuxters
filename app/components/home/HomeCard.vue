@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import ConfettiExplosion from 'vue-confetti-explosion'
 
-type Provider = 'github' | 'discord'
-
 const isOpen = ref(false)
 const {
   linked,
@@ -22,7 +20,7 @@ const badgeName = computed(() => {
   if (canUnlockNuxterBadge.value) badges.push('Nuxter')
   if (canUnlockModuleBadge.value) badges.push('Module Author')
   if (canUnlockUIProBadge.value) badges.push('UI Pro')
-  if (badges.length > 0) return badges.join(' + ') + ' badge'+ (badges.length > 1 ? 's' : '') + ' unlocked'
+  if (badges.length > 0) return badges.join(' + ') + ' badge' + (badges.length > 1 ? 's' : '') + ' unlocked'
   return 'You\'re almost there, keep going!'
 })
 const canUnlockADiscordBadge = computed(() => {
@@ -57,21 +55,64 @@ onMounted(() => {
       class="!bg-gray-950 card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
       :class="{ 'cursor-pointer': linked.github }"
     >
-      <!--github connect -->
-      <div v-if="!linked.github" class="flex gap-y-6 flex-col justify-center items-center">
-        <p class="text-xl text-gray-50 text-center">Unlock your role on Nuxt Discord server.</p>
-        <UButton icon="i-simple-icons-github" :ui="{ rounded: 'rounded-full' }"
-          class="relative px-7 max-w-fit hover:bg-gray-700" variant="outline" color="gray" aria-label="connect with GitHub">
-          <a href="/connect/github" class="absolute inset-0 w-full h-full" aria-label="connect with GitHub" />
+      <!-- github connect -->
+      <div
+        v-if="!linked.github"
+        class="flex gap-y-6 flex-col justify-center items-center"
+      >
+        <p class="text-xl text-gray-50 text-center">
+          Unlock your role on Nuxt Discord server.
+        </p>
+        <UButton
+          icon="i-simple-icons-github"
+          :ui="{ rounded: 'rounded-full' }"
+          class="relative px-7 max-w-fit hover:bg-gray-700"
+          variant="outline"
+          color="gray"
+          aria-label="connect with GitHub"
+        >
+          <a
+            href="/connect/github"
+            class="absolute inset-0 w-full h-full"
+            aria-label="connect with GitHub"
+          />
           <span class="text-sm text-gray-300">Connect with GitHub</span>
         </UButton>
       </div>
 
       <!-- linked to github -->
-      <div v-else-if="linked.github" class="w-full h-full">
-        <img v-if="canUnlockADiscordBadge" src="/card-gradient-bg.svg" class="absolute inset-0 w-full" alt="" />
-        <div class="absolute right-2 top-2"><UButton class="transitions-colors duration-200" to="/logout" @click="(e) => e.stopPropagation()" external size="xs" icon="i-ph-power" label="logout" color="gray" variant="ghost"/></div>
-        <div class="absolute left-0 right-0 flex justify-center bottom-0"><ConfettiExplosion v-if="showConfetti" :force="0.7" :colors="['#00DC82']" :particle-size="4" :particle-count="200" /></div>
+      <div
+        v-else-if="linked.github"
+        class="w-full h-full"
+      >
+        <img
+          v-if="canUnlockADiscordBadge"
+          src="/card-gradient-bg.svg"
+          class="absolute inset-0 w-full"
+          alt=""
+        >
+        <div class="absolute right-2 top-2">
+          <UButton
+            class="transitions-colors duration-200"
+            to="/logout"
+            external
+            size="xs"
+            icon="i-ph-power"
+            label="logout"
+            color="gray"
+            variant="ghost"
+            @click.stop="() => {}"
+          />
+        </div>
+        <div class="absolute left-0 right-0 flex justify-center bottom-0">
+          <ConfettiExplosion
+            v-if="showConfetti"
+            :force="0.7"
+            :colors="['#00DC82']"
+            :particle-size="4"
+            :particle-count="200"
+          />
+        </div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
             class="relative"
@@ -87,41 +128,57 @@ onMounted(() => {
               !canUnlockADiscordBadge
                 ? 'i-ph-smiley'
                 : !linked.discord
-                ? 'i-simple-icons-discord'
-                : 'i-heroicons-check-circle-solid'
+                  ? 'i-simple-icons-discord'
+                  : 'i-heroicons-check-circle-solid'
             "
-             :aria-label="linked.discord ? badgeName : 'Unlock badge(s)'"
-             @click="(e) => unlockButton(e)"
+            :aria-label="linked.discord ? badgeName : 'Unlock badge(s)'"
+            @click="unlockButton"
           >
             <a
               v-if="!linked.discord && canUnlockADiscordBadge"
               href="/connect/discord"
               class="absolute inset-0 w-full h-full"
             />
-            <span class="text-sm" :class="[linked.discord ? 'text-primary-400 ': 'text-gray-300']">{{
+            <span
+              class="text-sm"
+              :class="[linked.discord ? 'text-primary-400 ': 'text-gray-300']"
+            >{{
               linked.discord ? badgeName : 'Unlock badge(s)'
             }}</span>
           </UButton>
         </div>
 
         <div
-          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full">
+          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
+        >
           <div class="flex flex-col gap-y-4 justify-center w-full">
-            <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="2xl" :alt="contributor.username" />
+            <UAvatar
+              :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
+              size="2xl"
+              :alt="contributor.username"
+            />
             <span class="text-white text-2xl">{{ contributor.username }}</span>
             <span class="bg-gray-700 w-10 h-[1px]" />
             <div class="flex items-center">
               <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-gray-200 pl-[3px]">pts</span></span>
-              <UButton variant="ghost" icon="i-ph-info" color="gray" @click.stop="isOpen = true" class="ml-1 transitions-color duration-200 z-50" aria-label="show score table" />
+              <UButton
+                variant="ghost"
+                icon="i-ph-info"
+                color="gray"
+                class="ml-1 transitions-color duration-200 z-50"
+                aria-label="show score table"
+                @click.stop="isOpen = true"
+              />
               <UModal
-                class="relative"
                 v-model="isOpen"
+                class="relative"
                 :ui="{
                   background: 'bg-gray-900',
                   container: 'flex min-h-full md:items-center justify-center text-center',
                   padding: 'p-0',
                   overlay: { background: 'backdrop-blur bg-gray-800/70' },
-                }">
+                }"
+              >
                 <UButton
                   class="absolute right-2 top-2 transition-colors duration-200"
                   color="white"
@@ -131,20 +188,26 @@ onMounted(() => {
                   @click="isOpen = false"
                 />
                 <div class="flex flex-col justify-center gap-y-2 text-gray-300 text-lg">
-                  <h5 class="text-2xl text-white font-medium px-4 py-3 pr-10 bg-gray-950">How is the score calculated?</h5>
-                  <UTable class="overflow-x-auto" :rows="detailedScore" :ui="{
-                    th: {
-                      base: 'first:text-left text-center last:text-right',
-                      padding: 'px-4 py-3.5',
-                    },
-                    td: {
-                      base: 'first:text-left text-center last:text-right whitespace-nowrap',
-                      padding: 'px-4 py-3.5',
-                    },
-                    tr: {
-                      base: 'last:font-bold'
-                    }
-                  }" />
+                  <h5 class="text-2xl text-white font-medium px-4 py-3 pr-10 bg-gray-950">
+                    How is the score calculated?
+                  </h5>
+                  <UTable
+                    class="overflow-x-auto"
+                    :rows="detailedScore"
+                    :ui="{
+                      th: {
+                        base: 'first:text-left text-center last:text-right',
+                        padding: 'px-4 py-3.5',
+                      },
+                      td: {
+                        base: 'first:text-left text-center last:text-right whitespace-nowrap',
+                        padding: 'px-4 py-3.5',
+                      },
+                      tr: {
+                        base: 'last:font-bold',
+                      },
+                    }"
+                  />
                 </div>
               </UModal>
             </div>
@@ -152,38 +215,32 @@ onMounted(() => {
 
           <div class="flex flex-col gap-y-6 text-gray-300 w-full">
             <div class="flex items-center justify-between w-full">
-              <span
-                ><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span
-              >
+              <span><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span>
               <UCheckbox
-                :ui="{
-                  base: 'h-5 w-5',
-                }"
-                disabled
                 v-model="hasMergedPullRequests"
-              />
-            </div>
-            <div class="flex items-center justify-between">
-              <span
-                ><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{ contributor.helpful_issues > 1 ? 's' : '' }}</span
-              >
-              <UCheckbox
                 :ui="{
                   base: 'h-5 w-5',
                 }"
-                v-model="hasHelpfulIssues"
                 disabled
               />
             </div>
             <div class="flex items-center justify-between">
-              <span
-                ><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful comment{{ contributor.helpful_comments > 1 ? 's' : '' }}</span
-              >
+              <span><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{ contributor.helpful_issues > 1 ? 's' : '' }}</span>
               <UCheckbox
+                v-model="hasHelpfulIssues"
                 :ui="{
                   base: 'h-5 w-5',
                 }"
+                disabled
+              />
+            </div>
+            <div class="flex items-center justify-between">
+              <span><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful comment{{ contributor.helpful_comments > 1 ? 's' : '' }}</span>
+              <UCheckbox
                 v-model="hasHelpfulComments"
+                :ui="{
+                  base: 'h-5 w-5',
+                }"
                 disabled
               />
             </div>

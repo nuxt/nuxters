@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🔠 Lint project
+        run: pnpm lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 💪 Type check
+        run: pnpm test:types

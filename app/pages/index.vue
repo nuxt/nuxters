@@ -1,5 +1,4 @@
 <script setup>
-
 useHead({
   link: [{ rel: 'canonical', href: 'https://nuxters.nuxt.com' }],
 })
@@ -12,7 +11,7 @@ useSeoMeta({
   ogImage: 'https://nuxters.nuxt.com/social-card.jpg',
   ogImageAlt: 'Nuxters',
   twitterImage: 'https://nuxters.nuxt.com/social-card.jpg',
-  ogUrl: 'https://nuxters.nuxt.com'
+  ogUrl: 'https://nuxters.nuxt.com',
 })
 </script>
 

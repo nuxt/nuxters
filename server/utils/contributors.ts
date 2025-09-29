@@ -1,4 +1,4 @@
-import type { Contributor, ModuleMaintainer } from '~~/types'
+import type { Contributor, ModuleMaintainer } from '#shared/types'
 import { Octokit } from 'octokit'
 
 export const fetchContributors = cachedFunction<Contributor[]>(async () => {
@@ -9,7 +9,7 @@ export const fetchContributors = cachedFunction<Contributor[]>(async () => {
 })
 
 export const fetchModuleMaintainers = cachedFunction<ModuleMaintainer[]>(async () => {
-  return $fetch<{ maintainers: ModuleMaintainer[] }>('https://api.nuxt.com/modules').then((data) => data.maintainers).catch(() => [])
+  return $fetch<{ maintainers: ModuleMaintainer[] }>('https://api.nuxt.com/modules').then(data => data.maintainers).catch(() => [])
 }, {
   getKey: () => 'module-maintainers',
   maxAge: 60 * 10, // 10 minutes

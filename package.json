@@ -5,6 +5,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "lint": "eslint .",
+    "postinstall": "nuxt prepare",
     "logs": "wrangler pages deployment tail",
     "test:types": "vue-tsc -b --noEmit"
   },

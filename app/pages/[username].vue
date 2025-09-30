@@ -52,7 +52,15 @@ function backToHome() {
     class="pb-[60px] lg:min-h-[calc(100dvh-9rem)] flex flex-col items-center justify-center"
   >
     <div class="flex items-start justify-start w-full h-full pb-8  mb-8">
-      <UButton to="/" variant="link" label="back to homepage" icon="i-ph-arrow-left-thin" color="neutral" class="transition-colors duration-200" @click.prevent="backToHome()" />
+      <UButton
+        to="/"
+        variant="link"
+        label="back to homepage"
+        icon="i-ph-arrow-left-thin"
+        color="neutral"
+        class="transition-colors duration-200"
+        @click.prevent="backToHome()"
+      />
     </div>
     <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-[42px]">
       <div class="relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-neutral-800 p-px rounded-xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-[10px] before:bg-[linear-gradient(to_bottom_right,_#00dc82,_#1e293b)] before:-z-10 hover:before:bg-[linear-gradient(to_bottom_right,_#00dc82,_#00dc82)]">
@@ -65,8 +73,19 @@ function backToHome() {
             >
             <div class="flex flex-col items-center gap-4">
               <div class="flex flex-col gap-y-[18px]">
-                <UButton :to="`https://github.com/${contributor.username}`" color="neutral" variant="link" size="lg" icon="i-simple-icons-github" target="_blank" :trailing="true" class="transition-colors duration-200">
-                  <div class="text-2xl">{{ contributor.username }}</div>
+                <UButton
+                  :to="`https://github.com/${contributor.username}`"
+                  color="neutral"
+                  variant="link"
+                  size="lg"
+                  icon="i-simple-icons-github"
+                  target="_blank"
+                  :trailing="true"
+                  class="transition-colors duration-200"
+                >
+                  <div class="text-2xl">
+                    {{ contributor.username }}
+                  </div>
                 </UButton>
 
                 <div class="flex flex-col gap-y-2">
@@ -102,7 +121,7 @@ function backToHome() {
                 <span class="text-lg">Share your Nuxter profile ✨</span>
 
                 <UButton
-:color="pageCopied ? 'primary' : 'neutral'"
+                  :color="pageCopied ? 'primary' : 'neutral'"
                   :variant="pageCopied ? 'subtle' : 'outline'"
                   size="xl"
                   class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]"
@@ -113,29 +132,60 @@ function backToHome() {
                 />
                 <USeparator label="OR" />
 
-                <UModal :ui="{ content: 'sm:max-w-2xl' }" title="Add your Nuxter card on Github">
-                  <UButton color="neutral" variant="outline" size="xl" class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]" label="Add your Nuxter card on Github" icon="i-simple-icons-github" trailing />
+                <UModal
+                  :ui="{ content: 'sm:max-w-2xl' }"
+                  title="Add your Nuxter card on Github"
+                >
+                  <UButton
+                    color="neutral"
+                    variant="outline"
+                    size="xl"
+                    class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]"
+                    label="Add your Nuxter card on Github"
+                    icon="i-simple-icons-github"
+                    trailing
+                  />
                   <template #body>
-                    
-                      <div class="flex flex-col gap-y-4">
-                        <div class="aspect-[1.91/1] flex items-center justify-center">
-                          <UIcon name="i-ph-arrow-clockwise-bold" class="h-10 w-10 shrink-0 animate-spin" />
-                          <img :src="ogImageUrl" :alt="contributor?.username" height="630" width="1200" class="absolute" >
-                        </div>
-                        <UButton
-                          label="Get your Nuxter card"
-                          :color="cardCopied ? 'primary' : 'neutral'"
-                          :variant="cardCopied ? 'subtle' : 'outline'"
-                          size="xl"
-                          class="self-center"
-                          trailing
-                          :icon="cardCopied ? 'i-ph-check' : 'i-ph-copy'"
-                          @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)"
+                    <div class="flex flex-col gap-y-4">
+                      <div class="aspect-[1.91/1] flex items-center justify-center">
+                        <UIcon
+                          name="i-ph-arrow-clockwise-bold"
+                          class="h-10 w-10 shrink-0 animate-spin"
                         />
-                        <p class="text-center">Copy your Nuxter card and paste it on your <ULink to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme" target="_blank">profile README</ULink>.</p>
-                        <p class="text-neutral-400 text-center">Example : <ULink to="https://github.com/Atinux" target="_blank">Atinux profile</ULink> with <ULink  to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md" target="_blank">this template</ULink></p>
+                        <img
+                          :src="ogImageUrl"
+                          :alt="contributor?.username"
+                          height="630"
+                          width="1200"
+                          class="absolute"
+                        >
                       </div>
-             
+                      <UButton
+                        label="Get your Nuxter card"
+                        :color="cardCopied ? 'primary' : 'neutral'"
+                        :variant="cardCopied ? 'subtle' : 'outline'"
+                        size="xl"
+                        class="self-center"
+                        trailing
+                        :icon="cardCopied ? 'i-ph-check' : 'i-ph-copy'"
+                        @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)"
+                      />
+                      <p class="text-center">
+                        Copy your Nuxter card and paste it on your <ULink
+                          to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"
+                          target="_blank"
+                        >profile README</ULink>.
+                      </p>
+                      <p class="text-neutral-400 text-center">
+                        Example : <ULink
+                          to="https://github.com/Atinux"
+                          target="_blank"
+                        >Atinux profile</ULink> with <ULink
+                          to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md"
+                          target="_blank"
+                        >this template</ULink>
+                      </p>
+                    </div>
                   </template>
                 </UModal>
               </div>

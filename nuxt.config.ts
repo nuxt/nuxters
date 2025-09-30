@@ -22,20 +22,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  modules: [
-    '@nuxt/fonts',
-    '@nuxt/ui',
-    '@nuxtjs/plausible',
-    '@vueuse/nuxt',
-    'nuxt-og-image',
-    "@nuxt/image",
-    "@nuxthub/core"
-  ],
-
-  hub: {
-    cache: true
-  },
-
   runtimeConfig: {
     url: '',
     sessionPassword: '',

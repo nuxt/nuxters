@@ -7,8 +7,8 @@ useHead({
     lang: 'en',
   },
   bodyAttrs: {
-    class: 'bg-neutral-950'
-  }
+    class: 'bg-neutral-950',
+  },
 })
 
 useSeoMeta({

@@ -20,6 +20,14 @@ export default defineNuxtConfig({
     },
   },
 
+  ogImage: {
+    compatibility: {
+      runtime: {
+        chromium: false
+      }
+    }
+  },
+
   colorMode: {
     preference: 'dark',
   },

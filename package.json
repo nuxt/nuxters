@@ -5,17 +5,27 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "lint": "eslint .",
+    "postinstall": "nuxt prepare",
     "logs": "wrangler pages deployment tail",
-    "test:types": "vue-tsc -b --noEmit"
+    "test:browser": "playwright test test/browser",
+    "test:browser:update": "docker run --rm --network host -v $(pwd):/work/ -v /tmp/playwright-node-modules:/work/node_modules -w /work/ -it mcr.microsoft.com/playwright:v1.55.1-noble bash -c 'corepack enable && pnpm i && pnpm playwright test test/browser --update-snapshots'",
+    "test:nuxt": "vitest --project nuxt",
+    "test:types": "vue-tsc -b --noEmit",
+    "test:unit": "vitest --project unit"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.9.0",
+    "@nuxt/test-utils": "^3.19.2",
+    "@playwright/test": "^1.55.1",
     "eslint": "^9.36.0",
+    "happy-dom": "^19.0.1",
     "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
     "vue-tsc": "^3.1.0",
     "wrangler": "^4.40.2"
   },
   "dependencies": {
+    "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.53",
     "@nuxt/devtools": "^2.6.5",

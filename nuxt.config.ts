@@ -1,7 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
@@ -10,6 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-og-image',
     '@nuxt/image',
+    '@nuxt/test-utils/module',
     '@nuxthub/core',
   ],
   devtools: { enabled: true },
@@ -53,6 +53,15 @@ export default defineNuxtConfig({
     cache: true,
   },
 
+  typescript: {
+    tsConfig: {
+      include: ['../test'],
+    },
+    nodeTsConfig: {
+      include: ['../vitest.config.ts'],
+    },
+  },
+
   eslint: {
     config: {
       stylistic: true,
@@ -62,6 +71,14 @@ export default defineNuxtConfig({
   image: {
     ipx: {
       baseURL: 'https://ipx.nuxt.com',
+    },
+  },
+
+  ogImage: {
+    compatibility: {
+      runtime: {
+        chromium: false,
+      },
     },
   },
 })

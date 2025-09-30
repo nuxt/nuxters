@@ -20,14 +20,6 @@ export default defineNuxtConfig({
     },
   },
 
-  ogImage: {
-    compatibility: {
-      runtime: {
-        chromium: false
-      }
-    }
-  },
-
   colorMode: {
     preference: 'dark',
   },
@@ -79,6 +71,14 @@ export default defineNuxtConfig({
   image: {
     ipx: {
       baseURL: 'https://ipx.nuxt.com',
+    },
+  },
+
+  ogImage: {
+    compatibility: {
+      runtime: {
+        chromium: false,
+      },
     },
   },
 })

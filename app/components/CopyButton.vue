@@ -1,17 +1,15 @@
-
 <script setup lang="ts">
 defineProps({
   text: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 })
 const { copy, copied } = useClipboard()
 </script>
 
-
 <template>
-  <UButton @click='copy(text)'
+  <UButton
     :label="text"
     size="xl"
     class="grid grid-cols-12 sm:grid-cols-6 items-center justify-between gap-x-3 px-5 transition-all duration-200 group border w-fit"

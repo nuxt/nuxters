@@ -1,6 +1,6 @@
 import { joinURL } from 'ufo'
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { state, code } = getQuery(event)
   if (!code || !state) {
     throw createError({
@@ -42,7 +42,7 @@ export default defineEventHandler(async event => {
   const user = await $fetch<{ id: string }>('https://discord.com/api/users/@me', {
     headers: {
       'user-agent': 'Nuxtbot (https://nuxt.com, 0.1)',
-      Authorization: `Bearer ${access_token}`,
+      'Authorization': `Bearer ${access_token}`,
     },
   })
 
@@ -52,7 +52,6 @@ export default defineEventHandler(async event => {
 
   // makes sure the user is in the guild
   if (!session.data.guildMemberAdded) {
-    console.log('adding user to guild', config.discord.botToken.length)
     await $fetch(`https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}`, {
       method: 'PUT',
       body: {
@@ -60,36 +59,49 @@ export default defineEventHandler(async event => {
       },
       headers: {
         'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-        Authorization: `Bot ${config.discord.botToken}`,
+        'Authorization': `Bot ${config.discord.botToken}`,
       },
     })
     session.data.guildMemberAdded = true
   }
 
-  if (event.context.canUnlockNuxterBadge) {
+  if (event.context.canUnlockNuxterBadge && config.discord.nuxterRoleId) {
     await $fetch(
       `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.nuxterRoleId}`,
       {
         method: 'PUT',
         headers: {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-          Authorization: `Bot ${config.discord.botToken}`,
+          'Authorization': `Bot ${config.discord.botToken}`,
         },
-      }
+      },
     )
     session.data.nuxterRoleAdded = true
   }
 
-  if (event.context.canUnlockModuleBadge) {
+  if (event.context.canUnlockModuleBadge && config.discord.moduleMaintainerRoleId) {
     await $fetch(
       `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${config.discord.moduleMaintainerRoleId}`,
       {
         method: 'PUT',
         headers: {
           'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
-          Authorization: `Bot ${config.discord.botToken}`,
+          'Authorization': `Bot ${config.discord.botToken}`,
         },
-      }
+      },
+    )
+  }
+
+  if (event.context.canUnlockUIProBadge && process.env.NUXT_DISCORD_UI_PRO_ROLE_ID) {
+    await $fetch(
+      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${process.env.NUXT_DISCORD_UI_PRO_ROLE_ID}`,
+      {
+        method: 'PUT',
+        headers: {
+          'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
+          'Authorization': `Bot ${config.discord.botToken}`,
+        },
+      },
     )
   }
 

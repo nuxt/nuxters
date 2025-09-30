@@ -1,6 +1,17 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/ui',
+    '@nuxtjs/plausible',
+    '@vueuse/nuxt',
+    'nuxt-og-image',
+    '@nuxt/image',
+    '@nuxt/test-utils/module',
+    '@nuxthub/core',
+  ],
   devtools: { enabled: true },
 
   app: {
@@ -39,23 +50,47 @@ export default defineNuxtConfig({
       guildId: '',
       nuxterRoleId: '',
       moduleMaintainerRoleId: '',
+      uIProRoleId: '',
       botToken: '',
     },
-  },
-
-  colorMode: {
-    preference: 'dark',
-  },
-
-  image: {
-    ipx: {
-      baseURL: 'https://ipx.nuxt.com'
-    }
   },
 
   routeRules: {
     '/card/**': { proxy: '/__og-image__/image/**' },
   },
 
-  compatibilityDate: '2025-07-31'
+  compatibilityDate: '2025-07-31',
+
+  hub: {
+    cache: true,
+  },
+
+  typescript: {
+    tsConfig: {
+      include: ['../test'],
+    },
+    nodeTsConfig: {
+      include: ['../vitest.config.ts'],
+    },
+  },
+
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+
+  image: {
+    ipx: {
+      baseURL: 'https://ipx.nuxt.com',
+    },
+  },
+
+  ogImage: {
+    compatibility: {
+      runtime: {
+        chromium: false,
+      },
+    },
+  },
 })

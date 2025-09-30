@@ -1,10 +1,10 @@
 <script setup lang="ts">
 useHead({
   link: [
-    { rel: 'icon', href: '/icon.png' }
+    { rel: 'icon', href: '/icon.png' },
   ],
   htmlAttrs: {
-    lang: 'en'
+    lang: 'en',
   },
   bodyAttrs: {
     class: 'bg-neutral-950'

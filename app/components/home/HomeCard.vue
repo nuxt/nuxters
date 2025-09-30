@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import ConfettiExplosion from 'vue-confetti-explosion'
 
-type Provider = 'github' | 'discord'
-
 const isOpen = ref(false)
 const {
   linked,
   contributor,
   canUnlockNuxterBadge,
   canUnlockModuleBadge,
+  canUnlockUIProBadge,
   hasMergedPullRequests,
   hasHelpfulIssues,
   hasHelpfulComments,
@@ -17,9 +16,15 @@ const {
 const format = useNumberFormatter()
 const showConfetti = ref(false)
 const badgeName = computed(() => {
-  if (canUnlockModuleBadge.value) return 'Nuxter & Module Author badges unlocked'
-  if (canUnlockNuxterBadge.value) return 'Nuxter badge unlocked'
+  const badges = []
+  if (canUnlockNuxterBadge.value) badges.push('Nuxter')
+  if (canUnlockModuleBadge.value) badges.push('Module Author')
+  if (canUnlockUIProBadge.value) badges.push('UI Pro')
+  if (badges.length > 0) return badges.join(' + ') + ' badge' + (badges.length > 1 ? 's' : '') + ' unlocked'
   return 'You\'re almost there, keep going!'
+})
+const canUnlockADiscordBadge = computed(() => {
+  return canUnlockNuxterBadge.value || canUnlockModuleBadge.value || canUnlockUIProBadge.value
 })
 async function popConfetti() {
   showConfetti.value = false
@@ -73,20 +78,20 @@ onMounted(() => {
               { 'primary-button-discord': !linked.discord && canUnlockNuxterBadge },
               { 'cursor-auto hover:bg-neutral-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
             ]"
-            :color="canUnlockNuxterBadge ? 'primary' : 'gray'"
+            :color="canUnlockADiscordBadge ? 'primary' : 'gray'"
             variant="outline"
             :icon="
-              !canUnlockNuxterBadge
+              !canUnlockADiscordBadge
                 ? 'i-ph-smiley'
                 : !linked.discord
-                ? 'i-simple-icons-discord'
-                : 'i-heroicons-check-circle-solid'
+                  ? 'i-simple-icons-discord'
+                  : 'i-heroicons-check-circle-solid'
             "
-             :aria-label="linked.discord ? badgeName : 'Unlock badge(s)'"
-             @click="(e) => unlockButton(e)"
+            :aria-label="linked.discord ? badgeName : 'Unlock badge(s)'"
+            @click="unlockButton"
           >
             <a
-              v-if="!linked.discord && canUnlockNuxterBadge"
+              v-if="!linked.discord && canUnlockADiscordBadge"
               href="/connect/discord"
               class="absolute inset-0 w-full h-full"
             />
@@ -110,17 +115,22 @@ onMounted(() => {
         </div>
 
         <div
-          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full">
+          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
+        >
           <div class="flex flex-col gap-y-4 justify-center w-full">
-            <UAvatar :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`" size="2xl" :alt="contributor.username" />
+            <UAvatar
+              :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
+              size="2xl"
+              :alt="contributor.username"
+            />
             <span class="text-white text-2xl">{{ contributor.username }}</span>
             <span class="bg-neutral-700 w-10 h-px" />
             <div class="flex items-center">
               <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-neutral-200 pl-[3px]">pts</span></span>
               <UButton variant="ghost" icon="i-ph-info" color="neutral" @click.stop="isOpen = true" class="ml-1 transitions-color duration-200 z-50" aria-label="show score table" />
               <UModal
-                class="relative"
                 v-model="isOpen"
+                class="relative"
                 :ui="{
                   background: 'bg-neutral-900',
                   container: 'flex min-h-full md:items-center justify-center text-center',
@@ -157,38 +167,32 @@ onMounted(() => {
 
           <div class="flex flex-col gap-y-6 text-neutral-300 w-full">
             <div class="flex items-center justify-between w-full">
-              <span
-                ><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span
-              >
+              <span><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span>
               <UCheckbox
-                :ui="{
-                  base: 'h-5 w-5',
-                }"
-                disabled
                 v-model="hasMergedPullRequests"
-              />
-            </div>
-            <div class="flex items-center justify-between">
-              <span
-                ><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{ contributor.helpful_issues > 1 ? 's' : '' }}</span
-              >
-              <UCheckbox
                 :ui="{
                   base: 'h-5 w-5',
                 }"
-                v-model="hasHelpfulIssues"
                 disabled
               />
             </div>
             <div class="flex items-center justify-between">
-              <span
-                ><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful comment{{ contributor.helpful_comments > 1 ? 's' : '' }}</span
-              >
+              <span><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{ contributor.helpful_issues > 1 ? 's' : '' }}</span>
               <UCheckbox
+                v-model="hasHelpfulIssues"
                 :ui="{
                   base: 'h-5 w-5',
                 }"
+                disabled
+              />
+            </div>
+            <div class="flex items-center justify-between">
+              <span><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful comment{{ contributor.helpful_comments > 1 ? 's' : '' }}</span>
+              <UCheckbox
                 v-model="hasHelpfulComments"
+                :ui="{
+                  base: 'h-5 w-5',
+                }"
                 disabled
               />
             </div>

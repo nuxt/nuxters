@@ -1,6 +1,8 @@
 <template>
-    <div class="text-white">
-        <h2 class="text-3xl lg:text-4xl font-bold mb-12">They are already <span class="text-green-400">Nuxters</span></h2>
+  <div class="text-white">
+    <h2 class="text-3xl lg:text-4xl font-bold mb-12">
+      They are already <span class="text-green-400">Nuxters</span>
+    </h2>
 
         <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-4 sm:gap-5 lg:gap-8">
           <div v-if="status === 'pending'" v-for="i in 100" :key="i" class="pt-[100%] relative">
@@ -43,19 +45,19 @@
 
         </div>
     </div>
-
+  </div>
 </template>
 
 <script setup lang="ts">
-    const {data: allContributors, status } = useFetch('/api/contributors')
+const { data: allContributors, status } = useFetch('/api/contributors')
 
-    const limit = useState('contributors-limit', () => 100);
+const limit = useState('contributors-limit', () => 100)
 
-    const showMore = () => {
-      limit.value += 100;
-    };
+const showMore = () => {
+  limit.value += 100
+}
 
-    const contributors = computed(() => {
-        return allContributors.value?.slice(0, limit.value) || []
-    })
+const contributors = computed(() => {
+  return allContributors.value?.slice(0, limit.value) || []
+})
 </script>

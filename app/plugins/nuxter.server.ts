@@ -6,12 +6,13 @@ export default defineNuxtPlugin(async () => {
     contributor,
     canUnlockNuxterBadge,
     canUnlockModuleBadge,
+    canUnlockUIProBadge,
     hasMergedPullRequests,
     hasHelpfulIssues,
     hasHelpfulComments,
     detailedScore,
   } = useNuxter()
-  const event = useRequestEvent()
+  const event = useRequestEvent()!
   const session = await getSession(event, { password: useRuntimeConfig().sessionPassword })
   const format = useNumberFormatter()
 
@@ -23,6 +24,7 @@ export default defineNuxtPlugin(async () => {
   contributor.value = event.context.contributor
   canUnlockNuxterBadge.value = event.context.canUnlockNuxterBadge
   canUnlockModuleBadge.value = event.context.canUnlockModuleBadge
+  canUnlockUIProBadge.value = event.context.canUnlockUIProBadge
 
   // If user has contributions
   if (contributor.value) {
@@ -71,7 +73,7 @@ export default defineNuxtPlugin(async () => {
         multiplier: '',
         amount: '',
         total: format(contributor.value.score),
-      }
+      },
     ]
   }
 })

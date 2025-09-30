@@ -3,18 +3,18 @@ const socialLinks = [
   {
     to: 'https://twitter.com/nuxt_js',
     alt: 'Nuxt Twitter Account',
-    icon: 'i-simple-icons-twitter'
+    icon: 'i-simple-icons-twitter',
   },
   {
     to: 'https://github.com/nuxt/nuxt',
     alt: 'Nuxt GitHub Repository',
-    icon: 'i-simple-icons-github'
+    icon: 'i-simple-icons-github',
   },
   {
     to: 'https://discord.com/invite/nuxt',
     alt: 'Nuxt Discord Channel',
-    icon: 'i-simple-icons-discord'
-  }
+    icon: 'i-simple-icons-discord',
+  },
 ] as Array<{ to: string, alt: string, icon: string }>
 </script>
 

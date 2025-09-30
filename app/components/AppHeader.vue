@@ -43,7 +43,10 @@ const links: DropdownMenuItem[] = [
           size="xl"
           aria-label="join us"
         >
-          <UIcon name="i-simple-icons-discord" class="h-5 w-5" />
+          <UIcon
+            name="i-simple-icons-discord"
+            class="h-5 w-5"
+          />
           <span class="hidden sm:block">Join us</span>
         </UButton>
         <div class="hidden sm:block h-8 w-px bg-neutral-700 -mr-2 sm:-mr-6" />

@@ -7,7 +7,7 @@ useHead({
     lang: 'en',
   },
   bodyAttrs: {
-    class: 'bg-gray-950',
+    class: 'bg-neutral-950',
   },
 })
 
@@ -19,11 +19,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <UApp>
     <AppHeader />
     <UContainer class="overflow-hidden">
       <NuxtPage />
     </UContainer>
     <AppFooter />
-  </div>
+  </UApp>
 </template>

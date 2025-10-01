@@ -1,67 +1,52 @@
 <script setup lang="ts">
-const links = [
+import type { DropdownMenuItem } from '@nuxt/ui'
+
+const links: DropdownMenuItem[] = [
   {
-    title: 'Nuxt.com',
+    label: 'Nuxt.com',
     description: 'Framework documentation',
     to: 'https://nuxt.com/?utm_source=nuxters&utm_medium=dropdown&utm_campaign=home',
+    icon: 'i-simple-icons-nuxtdotjs',
   },
   {
-    title: 'Nuxt.new',
+    label: 'Nuxt.new',
     description: 'Nuxt templates',
     to: 'https://nuxt.new/?utm_source=nuxters&utm_medium=dropdown&utm_campaign=home',
+    icon: 'i-simple-icons-nuxtdotjs',
   },
-] as Array<{ title: string, description: string, to: string }>
+]
 </script>
 
 <template>
-  <div class="h-20 w-full sticky top-0 bg-gray-950/70 backdrop-blur-md z-50 flex flex-col justify-center">
+  <div class="h-20 w-full sticky top-0 bg-neutral-950/70 backdrop-blur-md z-50 flex flex-col justify-center">
     <UContainer class="flex justify-between items-center w-full">
-      <div class="flex gap-x-2 items-center">
-        <UPopover
-          class="inline-flex"
-          :ui="{ ring: 'border-2 border-gray-900', shadow: 'none', rounded: 'rounded-lg' }"
+      <div class="flex items-center">
+        <NuxtLink
+          to="/"
+          aria-label="go to home page"
+          class="flex items-center"
         >
-          <NuxtLink
-            to="/"
-            aria-label="go to home page"
-          >
-            <TheLogo class="h-6" />
-          </NuxtLink>
-
+          <TheLogo class="h-6" />
+        </NuxtLink>
+        <UDropdownMenu
+          :items="links"
+          size="xl"
+        >
           <UButton
             variant="ghost"
-            color="gray"
+            color="neutral"
             icon="i-ph-caret-down-fill"
             square
             class="ml-1 opacity-50 hover:opacity-100"
             aria-label="dropdown button"
           />
-
-          <template #panel>
-            <ul class="flex flex-col gap-y-1 p-2 bg-gray-950">
-              <li
-                v-for="link in links"
-                :key="link.title"
-                class="p-2 rounded-lg hover:bg-white/5 transition-colors duration-300"
-              >
-                <NuxtLink
-                  :to="link.to"
-                  class="flex gap-x-4 items-center"
-                  target="_blank"
-                >
-                  <img
-                    class="text-white w-6 h-6 self-center"
-                    src="/nuxt.svg"
-                  >
-                  <div class="flex flex-col gap-y-1 text-white">
-                    <span class="font-bold text-sm">{{ link.title }}</span>
-                    <span class="text-xs text-gray-400">{{ link.description }}</span>
-                  </div>
-                </NuxtLink>
-              </li>
-            </ul>
+          <template #item-label="{ item }">
+            <div class="flex flex-col px-2 gap-y-1">
+              <span class="font-medium text-white">{{ item.label }}</span>
+              <span class="text-xs text-muted">{{ item.description }}</span>
+            </div>
           </template>
-        </UPopover>
+        </UDropdownMenu>
       </div>
       <div class="flex items-center sm:gap-x-4 text-white font-medium">
         <UButton
@@ -69,7 +54,7 @@ const links = [
           to="https://go.nuxt.com/discord"
           target="_blank"
           variant="link"
-          color="gray"
+          color="neutral"
           size="xl"
           aria-label="join us"
         >
@@ -79,12 +64,12 @@ const links = [
           />
           <span class="hidden sm:block">Join us</span>
         </UButton>
-        <div class="hidden sm:block h-8 w-[1px] bg-gray-700 -mr-2 sm:-mr-6" />
+        <div class="hidden sm:block h-8 w-px bg-neutral-700 -mr-2 sm:-mr-6" />
         <UButton
           to="http://go.nuxt.com/github"
           class="flex gap-x-2 items-center"
           variant="link"
-          color="gray"
+          color="neutral"
           size="xl"
           target="_blank"
           aria-label="star us"

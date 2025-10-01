@@ -1,4 +1,4 @@
-import type { Contributor, Provider } from '#shared/types'
+import type { Contributor, Provider, Score } from '#shared/types'
 
 export function useNuxter() {
   const linked = useState<{ [key in Provider]: boolean }>(() => ({ github: false, discord: false }))
@@ -9,7 +9,7 @@ export function useNuxter() {
   const hasMergedPullRequests = useState<boolean>(() => false)
   const hasHelpfulIssues = useState<boolean>(() => false)
   const hasHelpfulComments = useState<boolean>(() => false)
-  const detailedScore = useState<Score>()
+  const detailedScore = useState<Score[]>()
 
   return {
     linked,
@@ -23,10 +23,3 @@ export function useNuxter() {
     detailedScore,
   }
 }
-
-type Score = Array<{
-  type: string
-  multiplier: number | ''
-  amount: string
-  total: string
-}>

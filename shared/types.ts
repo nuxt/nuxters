@@ -18,3 +18,10 @@ export interface ModuleMaintainer {
   github: string
   modules: string[]
 }
+
+export interface Score {
+  type: string
+  multiplier: number | ''
+  amount: string
+  total: string
+}

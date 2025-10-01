@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ConfettiExplosion from 'vue-confetti-explosion'
+import type { TableColumn } from '@nuxt/ui'
+import type { Score } from '#shared/types'
 
 const {
   linked,
@@ -41,12 +43,35 @@ onMounted(() => {
     popConfetti()
   }
 })
+
+const columns: TableColumn<Score>[] = [
+  {
+    accessorKey: 'type',
+    header: 'Type',
+    cell: ({ row }) => row.getValue('type'),
+  },
+  {
+    accessorKey: 'multiplier',
+    header: 'Multiplier',
+    cell: ({ row }) => row.getValue('multiplier'),
+  },
+  {
+    accessorKey: 'amount',
+    header: 'Amount',
+    cell: ({ row }) => row.getValue('amount'),
+  },
+  {
+    accessorKey: 'total',
+    header: 'Total',
+    cell: ({ row }) => row.getValue('total'),
+  },
+]
 </script>
 
 <template>
   <div
     class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked.github && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-px' : 'border border-neutral-800 rounded-lg'"
+    :class="linked.github && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-[1.5px]' : 'border border-neutral-800 rounded-lg'"
     @click="linked.github ? $router.push(`/${contributor.username}`) : ''"
   >
     <UCard
@@ -85,7 +110,7 @@ onMounted(() => {
         <img
           v-if="canUnlockNuxterBadge"
           src="/card-gradient-bg.svg"
-          class="absolute inset-0 w-full"
+          class="absolute inset-0 w-full rounded-lg"
           alt=""
         >
         <div class="absolute right-2 top-2">
@@ -175,6 +200,10 @@ onMounted(() => {
 
               <UModal
                 class="relative"
+                title="How is the score calculated?"
+                :ui="{
+                  body: 'p-0 sm:p-0',
+                }"
               >
                 <UButton
                   variant="ghost"
@@ -183,36 +212,19 @@ onMounted(() => {
                   class="ml-1 transitions-color duration-200 z-50"
                   aria-label="show score table"
                 />
-                <template #content>
-                  <div class="flex flex-col justify-center gap-y-2 text-neutral-300 text-lg">
-                    <h5 class="text-2xl text-white font-medium px-4 py-3 pr-10 bg-neutral-950">
-                      How is the score calculated?
-                    </h5>
-                    <UTable
-                      class="overflow-x-auto"
-                      :rows="detailedScore"
-                      :ui="{
-                        th: {
-                          base: 'first:text-left text-center last:text-right',
-                          padding: 'px-4 py-3.5',
-                        },
-                        td: {
-                          base: 'first:text-left text-center last:text-right whitespace-nowrap',
-                          padding: 'px-4 py-3.5',
-                        },
-                        tr: {
-                          base: 'last:font-bold',
-                        },
-                      }"
-                    />
-                  </div>
+                <template #body>
+                  <UTable
+                    class="overflow-x-auto"
+                    :data="detailedScore"
+                    :columns="columns"
+                  />
                 </template>
               </UModal>
             </div>
           </div>
 
           <div class="flex flex-col gap-y-6 text-neutral-300 w-full">
-            <div class="flex items-center justify-between w-full">
+            <div class="flex items-center justify-between gap-2 w-full">
               <span><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span>
               <UCheckbox
                 v-model="hasMergedPullRequests"
@@ -222,7 +234,7 @@ onMounted(() => {
                 disabled
               />
             </div>
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between gap-2">
               <span><span class="text-white font-medium">{{ format(contributor.helpful_issues) }}</span> helpful issue{{ contributor.helpful_issues > 1 ? 's' : '' }}</span>
               <UCheckbox
                 v-model="hasHelpfulIssues"
@@ -232,7 +244,7 @@ onMounted(() => {
                 disabled
               />
             </div>
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between gap-2">
               <span><span class="text-white font-medium">{{ format(contributor.helpful_comments) }}</span> helpful comment{{ contributor.helpful_comments > 1 ? 's' : '' }}</span>
               <UCheckbox
                 v-model="hasHelpfulComments"

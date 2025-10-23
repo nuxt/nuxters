@@ -33,8 +33,7 @@
             :text="contributor.username"
           >
             <NuxtImg
-              :src="`/gh_avatar/${contributor.username}`"
-              provider="ipx"
+              :src="contributor.username"
               densities="x1 x2"
               height="80px"
               width="80px"

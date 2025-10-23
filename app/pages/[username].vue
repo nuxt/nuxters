@@ -66,11 +66,11 @@ function backToHome() {
       <div class="relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-neutral-800 p-px rounded-xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-[10px] before:bg-[linear-gradient(to_bottom_right,_#00dc82,_#1e293b)] before:-z-10 hover:before:bg-[linear-gradient(to_bottom_right,_#00dc82,_#00dc82)]">
         <div class="bg-[url('/card-gradient-bg.svg')] bg-no-repeat [background-size:300%] flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 bg-neutral-950! rounded-[9.5px] relative p-[18px] sm:p-[44px] hover:border-primary">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-2 pb-2 md:w-full items-center text-center justify-between">
-            <img
-              :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
-              :alt="contributor?.username"
+            <NuxtImg
+              :src="contributor.username"
+              :alt="contributor.username"
               class="rounded-full w-40"
-            >
+            />
             <div class="flex flex-col items-center gap-4">
               <div class="flex flex-col gap-y-[18px]">
                 <UButton

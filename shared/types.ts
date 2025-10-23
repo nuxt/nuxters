@@ -18,3 +18,9 @@ export interface ModuleMaintainer {
   github: string
   modules: string[]
 }
+
+export interface ModuleContributor {
+  id: number
+  username: string
+  contributions: number
+}

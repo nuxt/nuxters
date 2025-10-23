@@ -69,9 +69,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    ipx: {
-      baseURL: 'https://ipx.nuxt.com',
-    },
     providers: {
       github: {
         provider: '~/providers/github.ts',

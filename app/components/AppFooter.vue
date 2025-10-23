@@ -19,9 +19,9 @@ const socialLinks = [
 </script>
 
 <template>
-  <div class="border-t border-gray-800">
+  <div class="border-t border-neutral-800">
     <UContainer class="flex justify-between gap-x-4 items-center h-20 sm:h-16">
-      <span class="text-gray-300 text-sm">
+      <span class="text-neutral-300 text-sm">
         Made with love by the Nuxt Community 💚 (<NuxtLink
           to="https://github.com/nuxt/nuxters"
           target="_blank"
@@ -35,7 +35,7 @@ const socialLinks = [
         >
           <UButton
             variant="link"
-            color="gray"
+            color="neutral"
             :to="social.to"
             :alt="social.alt"
             :icon="social.icon"

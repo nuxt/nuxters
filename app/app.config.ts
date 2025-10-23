@@ -1,49 +1,50 @@
 export default defineAppConfig({
   ui: {
-    primary: 'green',
-    gray: 'slate',
+    colors: {
+      primary: 'green',
+      neutral: 'slate',
+    },
     button: {
-      color: {
-        primary: {
-          outline: 'bg-gray-950 border border-[0.5px] border-primary-400 text-gray-300 disabled:bg-gray-700 hover:bg-gray-900 focus-visible:ring-2 focus-visible:ring-gray-400 transition-all duration-200',
+      slots: {
+        base: 'hover:cursor-pointer',
+      },
+      compoundVariants: [
+        {
+          color: 'primary',
+          variant: 'outline',
+          class: 'bg-neutral-950 border border-[0.5px] border-primary-400 text-neutral-300 disabled:bg-neutral-700 hover:bg-neutral-900 focus-visible:ring-2 focus-visible:ring-neutral-400 transition-all duration-200',
         },
-        gray: {
-          outline: 'bg-gradient-to-b from-gray-800/50 to-gray-900/50 border border-gray-700 text-gray-300 disabled:bg-transparent hover:bg-gray-900 disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-gray-400 transition-color duration-200',
-          link: 'text-gray-300 hover:text-gray-200 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-300',
+        {
+          color: 'neutral',
+          variant: 'outline',
+          class: 'bg-linear-to-b from-neutral-800/50 to-neutral-900/50 border border-neutral-700 text-neutral-300 disabled:bg-transparent hover:bg-neutral-900 disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-neutral-400 transition-color duration-200',
+          link: 'text-neutral-300 hover:text-neutral-200 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-300',
         },
-      },
+        {
+          color: 'neutral',
+          variant: 'link',
+          class: 'text-neutral-300 hover:text-neutral-200 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-300',
+        },
+      ],
     },
-    table: {
-      divide: 'divide-y divide-gray-700',
-      tbody: 'divide-y divide-gray-800',
-      tr: {
-        selected: 'bg-gray-800/50',
-      },
-      th: {
-        base: 'text-left rtl:text-right',
-        padding: 'px-3 py-3.5',
-        color: 'text-gray-200',
-        font: 'font-semibold',
-        size: 'text-sm',
-      },
-      td: {
-        color: 'text-gray-300',
-      },
-    },
-    badge: {
-      color: {
-        primary: {
-          solid: 'bg-primary-400/10 text-primary-400 ring-1 ring-inset ring-primary-400 ring-opacity-10 dark:ring-opacity-20',
+    link: {
+      base: 'focus-visible:outline-primary underline underline-offset-6',
+      variants: {
+        active: {
+          true: 'text-default',
+          false: 'text-muted',
         },
       },
-      size: {
-        md: 'text-base px-2 py-1',
-      },
-    },
-    popover: {
-      popper: {
-        placement: 'bottom-start',
-      },
+      compoundVariants: [
+        {
+          active: false,
+          disabled: false,
+          class: [
+            'hover:text-primary',
+            'transition-colors',
+          ],
+        },
+      ],
     },
   },
 })

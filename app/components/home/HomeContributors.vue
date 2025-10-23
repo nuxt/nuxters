@@ -8,11 +8,10 @@
       <template v-if="status === 'pending'">
         <div
           v-for="i in 100"
-
           :key="i"
           class="pt-[100%] relative"
         >
-          <div class="absolute inset-0 bg-gray-900 rounded-xl animate-pulse" />
+          <div class="absolute inset-0 bg-neutral-900 rounded-xl animate-pulse" />
         </div>
       </template>
       <div
@@ -43,7 +42,7 @@
               class="rounded-xl w-full h-full transition lg:hover:scale-110"
             />
           </UTooltip>
-          <span class="inline-block rounded-t px-1 bg-gray-950 absolute -bottom-2 right-0 font-medium text-sm"><span class="font-light text-xs text-gray-400">#</span>{{ index + 1 }}</span>
+          <span class="inline-block rounded-t px-1 bg-neutral-950 absolute -bottom-2 right-0 font-medium text-sm"><span class="font-light text-xs text-neutral-400">#</span>{{ index + 1 }}</span>
         </NuxtLink>
       </div>
     </div>
@@ -51,8 +50,8 @@
       <div class="pt-8 flex justify-center">
         <UButton
           variant="outline"
-          color="gray"
-          :ui="{ rounded: 'rounded-full' }"
+          color="neutral"
+          class="rounded-full"
           size="xl"
           icon="i-ph-plus-bold"
           @click="showMore"

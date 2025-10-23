@@ -70,7 +70,6 @@ const isOpen = ref(false)
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-2 pb-2 md:w-full items-center text-center justify-between">
             <NuxtImg
               :src="contributor.username"
-              provider="github"
               :alt="contributor.username"
               class="rounded-full w-40"
             />

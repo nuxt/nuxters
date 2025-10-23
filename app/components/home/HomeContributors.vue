@@ -35,7 +35,6 @@
           >
             <NuxtImg
               :src="contributor.username"
-              provider="github"
               densities="x1 x2"
               height="80px"
               width="80px"

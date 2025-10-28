@@ -135,8 +135,8 @@ const columns: TableColumn<Score>[] = [
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
             class="relative"
-            color="neutral"
-            variant="outline"
+            :color="canUnlockADiscordBadge ? 'primary' : 'neutral'"
+            :variant="canUnlockADiscordBadge ? 'solid' : 'outline'"
             :icon="
               !canUnlockADiscordBadge
                 ? 'i-ph-smiley'

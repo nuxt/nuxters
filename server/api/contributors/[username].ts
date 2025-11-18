@@ -6,7 +6,7 @@ export default eventHandler(async (event) => {
       statusMessage: 'Username missing',
     })
   }
-  const contributors = await fetchContributors()
+  const contributors = await fetchContributors(event)
 
   const index = contributors?.findIndex(contributor => contributor.username.toLowerCase() === username.toLocaleLowerCase()) ?? -1
 

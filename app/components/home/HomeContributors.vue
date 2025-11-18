@@ -1,3 +1,17 @@
+<script setup lang="ts">
+const { data: allContributors, status } = useFetch('/api/contributors')
+
+const limit = useState('contributors-limit', () => 100)
+
+const showMore = () => {
+  limit.value += 100
+}
+
+const contributors = computed(() => {
+  return allContributors.value?.slice(0, limit.value) || []
+})
+</script>
+
 <template>
   <div class="text-white">
     <h2 class="text-3xl lg:text-4xl font-bold mb-12">
@@ -62,17 +76,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const { data: allContributors, status } = useFetch('/api/contributors')
-
-const limit = useState('contributors-limit', () => 100)
-
-const showMore = () => {
-  limit.value += 100
-}
-
-const contributors = computed(() => {
-  return allContributors.value?.slice(0, limit.value) || []
-})
-</script>

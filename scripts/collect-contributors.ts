@@ -8,10 +8,11 @@ import { retry } from '@octokit/plugin-retry'
 const REQUIRED_TOKEN_MESSAGE = 'NUXT_GITHUB_TOKEN is required to collect contributor statistics'
 const ORGS = [
   'nuxt',
+  'nuxt-community',
+  'nuxt-content',
+  'nuxt-hub',
   'nuxt-modules',
   'nuxt-ui-templates',
-  'nuxt-hub',
-  'nuxt-content',
 ] as const
 const HELPFUL_REACTIONS_THRESHOLD = 3
 const OUTPUT_FILE = resolve(fileURLToPath(new URL('../public/contributors.json', import.meta.url)))

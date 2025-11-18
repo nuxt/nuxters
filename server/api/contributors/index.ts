@@ -1,5 +1,5 @@
-export default eventHandler(async () => {
-  const contributors = await fetchContributors()
+export default eventHandler(async (event) => {
+  const contributors = await fetchContributors(event)
 
   return contributors
 })

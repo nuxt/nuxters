@@ -68,11 +68,6 @@ export default defineNuxtConfig({
 
   image: {
     provider: 'github',
-    providers: {
-      github: {
-        provider: '~/providers/github.ts',
-      },
-    },
   },
 
   ogImage: {

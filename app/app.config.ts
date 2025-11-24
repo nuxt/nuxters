@@ -12,7 +12,7 @@ export default defineAppConfig({
         {
           color: 'primary',
           variant: 'outline',
-          class: 'bg-neutral-950 border border-[0.5px] border-primary-400 text-neutral-300 disabled:bg-neutral-700 hover:bg-neutral-900 focus-visible:ring-2 focus-visible:ring-neutral-400 transition-all duration-200',
+          class: 'bg-neutral-950 border border-primary-400 text-neutral-300 disabled:bg-neutral-700 hover:bg-neutral-900 focus-visible:ring-2 focus-visible:ring-neutral-400 transition-all duration-200',
         },
         {
           color: 'neutral',

@@ -16,21 +16,21 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.11.0",
-    "@nuxt/test-utils": "^3.20.1",
+    "@nuxt/test-utils": "^3.21.0",
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.1",
     "eslint": "^9.39.1",
     "happy-dom": "^20.0.11",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.14",
-    "vue-tsc": "^3.1.5",
-    "wrangler": "^4.51.0"
+    "vitest": "^4.0.15",
+    "vue-tsc": "^3.1.7",
+    "wrangler": "^4.53.0"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.61",
+    "@iconify-json/simple-icons": "^1.2.62",
     "@nuxt/devtools": "^3.1.1",
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/image": "^2.0.0",

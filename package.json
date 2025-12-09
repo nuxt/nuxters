@@ -5,7 +5,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "lint": "eslint .",
-    "collect:contributors": "tsx --env-file=.env scripts/collect-contributors.ts",
+    "collect:contributors": "tsx scripts/collect-contributors.ts",
     "postinstall": "nuxt prepare",
     "logs": "wrangler pages deployment tail",
     "test:browser": "playwright test test/browser",

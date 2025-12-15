@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { data: allContributors, status } = useFetch('/api/contributors')
-
+const url = useRequestURL().origin
+const { data: allContributors, status } = useFetch('/contributors.json', { baseURL: url })
 const limit = useState('contributors-limit', () => 100)
 
 const showMore = () => {

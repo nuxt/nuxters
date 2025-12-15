@@ -1,5 +1,4 @@
 export default eventHandler(async (event) => {
-  const contributors = await fetchContributors(event)
-
-  return contributors
+  const url = getRequestURL(event)
+  return fetch(`${url.protocol}//${url.host}/contributors.json`)
 })

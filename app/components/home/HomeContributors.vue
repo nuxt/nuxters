@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const url = useRequestURL().origin
-const { data: allContributors, status } = useFetch('/contributors.json', { baseURL: url })
+const { data: allContributors, status } = useLazyFetch('/contributors.json', { baseURL: url, server: false })
 const limit = useState('contributors-limit', () => 100)
 
 const showMore = () => {

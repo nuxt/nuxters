@@ -19,7 +19,7 @@ const contributors = computed(() => {
     </h2>
 
     <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-4 sm:gap-5 lg:gap-8">
-      <template v-if="status === 'pending'">
+      <template v-if="status !== 'success'">
         <div
           v-for="i in 100"
           :key="i"

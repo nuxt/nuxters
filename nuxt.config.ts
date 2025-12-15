@@ -70,6 +70,9 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
+    runtimeCacheStorage: {
+      driver: 'vercel-runtime-cache',
+    },
     compatibility: {
       runtime: {
         chromium: false,

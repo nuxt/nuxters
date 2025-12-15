@@ -189,7 +189,7 @@ const columns: TableColumn<Score>[] = [
         >
           <div class="flex flex-col gap-y-4 justify-center w-full">
             <UAvatar
-              :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
+              :src="contributor.username"
               size="2xl"
               :alt="contributor.username"
             />

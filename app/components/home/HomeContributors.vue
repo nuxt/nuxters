@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import type { Contributor } from '~~/shared/types'
+
 const url = useRequestURL().origin
-const { data: allContributors, status } = useLazyFetch('/contributors.json', { baseURL: url, server: false })
+const { data: allContributors, status } = useLazyFetch<Contributor[]>('/contributors.json', {
+  baseURL: url,
+  server: false,
+  default: () => [],
+})
 const limit = useState('contributors-limit', () => 100)
 
 const showMore = () => {
@@ -8,7 +14,7 @@ const showMore = () => {
 }
 
 const contributors = computed(() => {
-  return allContributors.value?.slice(0, limit.value) || []
+  return allContributors.value.slice(0, limit.value)
 })
 </script>
 

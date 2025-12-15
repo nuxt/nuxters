@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig(event)
   const session = await getUserSession(event)
+  const url = getRequestURL(event)
 
   if (provider === 'github' && (refresh || !session.data.githubId)) {
     const state = randomUUID()
@@ -16,7 +17,7 @@ export default defineEventHandler(async (event) => {
       event,
       withQuery('https://github.com/login/oauth/authorize', {
         client_id: config.github.clientId,
-        redirect_uri: joinURL(config.url, 'oauth/github'),
+        redirect_uri: joinURL(url.origin, 'oauth/github'),
         state,
       }),
     )
@@ -30,7 +31,7 @@ export default defineEventHandler(async (event) => {
       event,
       withQuery('https://discord.com/api/oauth2/authorize', {
         client_id: config.discord.clientId,
-        redirect_uri: joinURL(config.url, 'oauth/discord'),
+        redirect_uri: joinURL(url.origin, 'oauth/discord'),
         response_type: 'code',
         scope: 'identify guilds.join',
         state,

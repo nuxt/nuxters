@@ -23,7 +23,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
-    url: '',
     sessionPassword: '',
     github: {
       accessToken: '',

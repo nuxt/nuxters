@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   if (session.data.githubId) {
     const [contributors, moduleMaintainers, nuxtUIProOutsideCollaborators] = await Promise.all([
-      fetchContributors(),
+      fetchContributors(event),
       fetchModuleMaintainers(),
       fetchNuxtUIProOutsideCollaborators(),
     ])

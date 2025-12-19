@@ -24,3 +24,10 @@ export interface ModuleContributor {
   username: string
   contributions: number
 }
+
+export interface Score {
+  type: string
+  multiplier: number | ''
+  amount: string
+  total: string
+}

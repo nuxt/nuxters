@@ -22,6 +22,7 @@ const format = useNumberFormatter()
 
 defineOgImageComponent('Nuxter', {
   contributor,
+  cacheMaxAgeSeconds: 24 * 60 * 60, // 24 hours
 })
 
 useHead({
@@ -44,8 +45,6 @@ function backToHome() {
     navigateTo('/')
   }
 }
-
-const isOpen = ref(false)
 </script>
 
 <template>
@@ -56,29 +55,29 @@ const isOpen = ref(false)
     <div class="flex items-start justify-start w-full h-full pb-8  mb-8">
       <UButton
         to="/"
-        variant="ghost"
+        variant="link"
         label="back to homepage"
         icon="i-ph-arrow-left-thin"
-        color="gray"
+        color="neutral"
         class="transition-colors duration-200"
         @click.prevent="backToHome()"
       />
     </div>
     <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-[42px]">
-      <div class="card-border relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-gray-800 p-[1px] rounded-xl">
-        <div class="profile-card flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 !bg-gray-950 rounded-[9.5px] relative p-[18px] sm:p-[44px]">
+      <div class="relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-neutral-800 p-px rounded-xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-[10px] before:bg-[linear-gradient(to_bottom_right,_#00dc82,_#1e293b)] before:-z-10 hover:before:bg-[linear-gradient(to_bottom_right,_#00dc82,_#00dc82)]">
+        <div class="bg-[url('/card-gradient-bg.svg')] bg-no-repeat [background-size:300%] flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 bg-neutral-950! rounded-[9.5px] relative p-[18px] sm:p-[44px] hover:border-primary">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-2 pb-2 md:w-full items-center text-center justify-between">
-            <img
-              :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
-              :alt="contributor?.username"
+            <NuxtImg
+              :src="contributor.username"
+              :alt="contributor.username"
               class="rounded-full w-40"
-            >
+            />
             <div class="flex flex-col items-center gap-4">
               <div class="flex flex-col gap-y-[18px]">
                 <UButton
                   :to="`https://github.com/${contributor.username}`"
-                  color="black"
-                  variant="ghost"
+                  color="neutral"
+                  variant="link"
                   size="lg"
                   icon="i-simple-icons-github"
                   target="_blank"
@@ -92,7 +91,7 @@ const isOpen = ref(false)
 
                 <div class="flex flex-col gap-y-2">
                   <div class="flex items-center justify-center gap-1">
-                    <span class="text-2xl text-center md:text-left lg:text-center md:ml-4 lg:ml-0 text-gray-400"><span class="text-2xl font-medium">#</span>{{ format(contributor.rank) }}</span>
+                    <span class="text-2xl text-center md:text-left lg:text-center md:ml-4 lg:ml-0 text-neutral-400"><span class="text-2xl font-medium">#</span>{{ format(contributor.rank) }}</span>
                   </div>
                   <div class="flex items-center justify-center gap-1">
                     <svg
@@ -117,171 +116,100 @@ const isOpen = ref(false)
                 </div>
               </div>
 
-              <span class="block mb-10 md:mb-0 h-[1px] w-[92px] bg-gray-800" />
+              <span class="block mb-10 md:mb-0 h-px w-[92px] bg-neutral-800" />
 
               <div class="flex flex-col items-center justify-center text-center gap-y-3">
                 <span class="text-lg">Share your Nuxter profile ✨</span>
 
                 <UButton
-                  color="gray"
-                  variant="outline"
+                  :color="pageCopied ? 'primary' : 'neutral'"
+                  :variant="pageCopied ? 'subtle' : 'outline'"
                   size="xl"
-                  :class="{ 'border-primary-400': pageCopied }"
                   class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]"
+                  :label="contributorUrl"
+                  trailing
+                  :icon="pageCopied ? 'i-ph-check' : 'i-ph-copy'"
                   @click="copyPage(contributorUrl)"
+                />
+                <USeparator label="OR" />
+
+                <UModal
+                  :ui="{ content: 'sm:max-w-2xl' }"
+                  title="Add your Nuxter card on Github"
                 >
-                  <span class="truncate">{{ contributorUrl }}</span>
-                  <UIcon
-                    :name="pageCopied ? 'i-ph-check' : 'i-ph-copy'"
-                    class="h-5 w-5 shrink-0"
-                    :class="{ 'text-green-400': pageCopied }"
+                  <UButton
+                    color="neutral"
+                    variant="outline"
+                    size="xl"
+                    class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]"
+                    label="Add your Nuxter card on Github"
+                    icon="i-simple-icons-github"
+                    trailing
                   />
-                </UButton>
-                <UDivider label="OR" />
-                <UButton
-                  color="gray"
-                  variant="outline"
-                  size="xl"
-                  class="max-w-[250px] m:max-w-[270px] xl:max-w-[300px]"
-                  @click="isOpen = true"
-                >
-                  <span class="truncate">Add your Nuxter card on Github</span>
-                  <UIcon
-                    name="i-simple-icons-github"
-                    class="h-5 w-5 shrink-0"
-                  />
-                </UButton>
+                  <template #body>
+                    <div class="flex flex-col gap-y-4">
+                      <div class="aspect-[1.91/1] flex items-center justify-center">
+                        <UIcon
+                          name="i-ph-arrow-clockwise-bold"
+                          class="h-10 w-10 shrink-0 animate-spin"
+                        />
+                        <img
+                          :src="ogImageUrl"
+                          :alt="contributor?.username"
+                          height="630"
+                          width="1200"
+                          class="absolute"
+                        >
+                      </div>
+                      <UButton
+                        label="Get your Nuxter card"
+                        :color="cardCopied ? 'primary' : 'neutral'"
+                        :variant="cardCopied ? 'subtle' : 'outline'"
+                        size="xl"
+                        class="self-center"
+                        trailing
+                        :icon="cardCopied ? 'i-ph-check' : 'i-ph-copy'"
+                        @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)"
+                      />
+                      <p class="text-center">
+                        Copy your Nuxter card and paste it on your <ULink
+                          to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"
+                          target="_blank"
+                        >profile README</ULink>.
+                      </p>
+                      <p class="text-neutral-400 text-center">
+                        Example : <ULink
+                          to="https://github.com/Atinux"
+                          target="_blank"
+                        >Atinux profile</ULink> with <ULink
+                          to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md"
+                          target="_blank"
+                        >this template</ULink>
+                      </p>
+                    </div>
+                  </template>
+                </UModal>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="border-primary-400 issues-card card">
+      <div class="border-primary-400 rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end bg-[linear-gradient(180deg,_rgba(0,_220,_130,_0.40)_0%,_rgba(0,_220,_130,_0.00)_100%,_rgba(2,_4,_32,_0.50)),url('/issues-card-bg.svg')]">
         <span class="text-5xl font-medium">{{ format(contributor.issues) }}</span>
         <span class="text-2xl">{{ contributor?.issues === 1 ? 'Issue' : 'Issues' }}</span>
       </div>
-      <div class="border-blue-400 comments-card card">
+      <div class="border-blue-400 rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end bg-[linear-gradient(180deg,_rgba(64,_187,_255,_0.40)_0%,_rgba(64,_187,_255,_0.00)_100%,_rgba(2,_4,_32,_0.50)),url('/comments-card-bg.svg')]">
         <span class="text-5xl font-medium">{{ format(contributor.comments) }}</span>
         <span class="text-2xl">{{ contributor?.comments === 1 ? 'Comment' : 'Comments' }}</span>
       </div>
-      <div class="border-violet-400 pull-requests-card card">
+      <div class="border-violet-400 rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end bg-[linear-gradient(180deg,_rgba(139,_92,_246,_0.40)_0%,_rgba(139,_92,_246,_0.00)_100%,_rgba(2,_4,_32,_0.50)),url('/pull-requests-card-bg.svg')]">
         <span class="text-5xl font-medium">{{ format(contributor.merged_pull_requests) }}</span>
         <span class="text-2xl">Merged {{ contributor?.merged_pull_requests === 1 ? 'PR' : 'PRs' }}</span>
       </div>
-      <div class="border-yellow-400 reactions-card card">
+      <div class="border-yellow-400 rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end bg-[linear-gradient(180deg,_rgba(247,_209,_76,_0.40)_0%,_rgba(247,_209,_76,_0.00)_100%,_rgba(2,_4,_32,_0.50)),url('/reactions-card-bg.webp')]">
         <span class="text-5xl font-medium">{{ format(contributor.reactions) }}</span>
         <span class="text-2xl">{{ contributor?.reactions === 1 ? 'Reaction' : 'Reactions' }}</span>
       </div>
     </div>
-    <UModal
-      v-model="isOpen"
-      :ui="{ width: 'sm:max-w-2xl' }"
-    >
-      <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
-        <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-              Add your Nuxter card on Github
-            </h3>
-            <UButton
-              color="gray"
-              variant="ghost"
-              icon="i-heroicons-x-mark-20-solid"
-              class="-my-1"
-              @click="isOpen = false"
-            />
-          </div>
-        </template>
-        <div class="flex flex-col gap-y-4">
-          <div class="aspect-[1.91/1] flex items-center justify-center">
-            <UIcon
-              name="i-ph-arrow-clockwise-bold"
-              class="h-10 w-10 shrink-0 animate-spin"
-            />
-            <img
-              :src="ogImageUrl"
-              :alt="contributor?.username"
-              height="630"
-              width="1200"
-              class="absolute"
-            >
-          </div>
-          <UButton
-            color="gray"
-            variant="outline"
-            size="xl"
-            :class="{ 'border-primary-400': cardCopied }"
-            class="self-center"
-            @click="copyCard(`[![${contributor?.username} Nuxter profile](${ogImageUrl})](https://${contributorUrl})`)"
-          >
-            <span class="truncate">Get your Nuxter card</span>
-            <UIcon
-              :name="cardCopied ? 'i-ph-check' : 'i-ph-copy'"
-              class="h-5 w-5 shrink-0"
-              :class="{ 'text-green-400': cardCopied }"
-            />
-          </UButton>
-          <p class="text-center">
-            Copy your Nuxter card and paste it on your <NuxtLink
-              to="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"
-              target="_blank"
-            >profile README</NuxtLink>.
-          </p>
-          <p class="text-gray-400 text-center">
-            Example : <NuxtLink
-              to="https://github.com/Atinux"
-              target="_blank"
-            >Atinux profile</NuxtLink> with <NuxtLink
-              to="https://raw.githubusercontent.com/Atinux/Atinux/main/README.md"
-              target="_blank"
-            >this template</NuxtLink>
-          </p>
-        </div>
-      </UCard>
-    </UModal>
   </div>
 </template>
-
-<style scoped lang="postcss">
-.card-border::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-image: linear-gradient(to bottom right, #00dc82, #1e293b);
-  z-index: -1;
-}
-
-.profile-card {
-  background-image: url('/card-gradient-bg.svg') ;
-  background-repeat: no-repeat;
-  background-size: 300%;
-}
-
-.card {
-  @apply rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end;
-}
-
-.issues-card {
-  background-image: linear-gradient(180deg, rgba(0, 220, 130, 0.40) 0%, rgba(0, 220, 130, 0.00) 100%, rgba(2, 4, 32, 0.50)), url('/issues-card-bg.svg');
-}
-
-.comments-card {
-  background-image: linear-gradient(180deg, rgba(64, 187, 255, 0.40) 0%, rgba(64, 187, 255, 0.00) 100%, rgba(2, 4, 32, 0.50)), url('/comments-card-bg.svg');
-}
-
-.pull-requests-card {
-  background-image: linear-gradient(180deg, rgba(139, 92, 246, 0.40) 0%, rgba(139, 92, 246, 0.00) 100%, rgba(2, 4, 32, 0.50)), url('/pull-requests-card-bg.svg');
-}
-
-.reactions-card {
-  background-image: linear-gradient(180deg, rgba(247, 209, 76, 0.40) 0%, rgba(247, 209, 76, 0.00) 100%, rgba(2, 4, 32, 0.50)), url('/reactions-card-bg.webp');
-}
-
-p a {
-  @apply border-b hover:border-green-400 hover:text-green-400;
-}
-</style>

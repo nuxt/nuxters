@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const config = useRuntimeConfig(event)
+  const url = getRequestURL(event)
 
   const { access_token } = await $fetch<{ access_token: string }>('https://discord.com/api/oauth2/token', {
     method: 'POST',
@@ -25,7 +26,7 @@ export default defineEventHandler(async (event) => {
       client_secret: config.discord.clientSecret,
       grant_type: 'authorization_code',
       code: code as string,
-      redirect_uri: joinURL(config.url, '/oauth/discord'),
+      redirect_uri: joinURL(url.origin, '/oauth/discord'),
     }).toString(),
     headers: {
       'content-type': 'application/x-www-form-urlencoded',

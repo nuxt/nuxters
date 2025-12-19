@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-b from-slate-800/50 to-slate-900/50 border border-slate-800 rounded-lg ">
+  <div class="bg-linear-to-b from-slate-800/50 to-slate-900/50 border border-slate-800 rounded-lg ">
     <div class="bg-[url('/join-gradient-bg-sm.svg')] lg:bg-[url('/join-gradient-bg.svg')] bg-no-repeat bg-bottom flex flex-col gap-y-3 text-slate-100 items-center justify-center  py-[72px] px-4 sm:px-6 md:px-16 lg:px-[172px]">
       <h1 class="text-4xl font-bold text-center">
         Ready to <span class="text-green-400">Join us</span>?
@@ -13,10 +13,9 @@
           to="https://github.com/nuxt/nuxt"
           icon="i-simple-icons-github"
           label="Nuxt"
-          :ui="{ rounded: 'rounded-full' }"
-          class="px-7"
+          class="rounded-full px-7"
           variant="outline"
-          color="gray"
+          color="neutral"
           target="_blank"
           aria-label="nuxt"
         />
@@ -24,10 +23,9 @@
           to="https://nuxt.com/modules"
           icon="i-simple-icons-github"
           label="Nuxt Modules"
-          :ui="{ rounded: 'rounded-full' }"
-          class="px-7"
+          class="rounded-full px-7"
           variant="outline"
-          color="gray"
+          color="neutral"
           target="_blank"
           aria-label="nuxt module"
         />

@@ -20,12 +20,9 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    preference: 'dark',
-  },
+  css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
-    url: '',
     sessionPassword: '',
     github: {
       accessToken: '',
@@ -69,12 +66,13 @@ export default defineNuxtConfig({
   },
 
   image: {
-    ipx: {
-      baseURL: 'https://ipx.nuxt.com',
-    },
+    provider: 'github',
   },
 
   ogImage: {
+    runtimeCacheStorage: {
+      driver: 'vercel-runtime-cache',
+    },
     compatibility: {
       runtime: {
         chromium: false,

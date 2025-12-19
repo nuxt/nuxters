@@ -24,6 +24,12 @@ Start the development server on http://localhost:3000:
 pnpm dev
 ```
 
+## Contributor stats
+
+ - Run `pnpm collect:contributors` locally with `NUXT_GITHUB_TOKEN` set to a GitHub personal access token that can read public repos.
+ - The script aggregates contributions across Nuxt organizations and writes the results to `public/contributors.json`.
+- `.github/workflows/update-contributors.yml` refreshes the data nightly and on demand, committing changes automatically.
+
 ### License
 
 [MIT License](./LICENSE)

@@ -11,13 +11,14 @@ const { format } = Intl.NumberFormat('en-GB', {})
 </script>
 
 <template>
-  <div class="flex flex-row justify-between w-full h-full p-[38px] bg-gray-900">
+  <div class="flex flex-row justify-between w-full h-full p-[38px] bg-slate-900">
     <div class="flex flex-col w-1/3 items-center py-10 justify-between text-white">
       <div class="flex flex-col items-center">
         <UAvatar
-          :src="`https://avatars.githubusercontent.com/u/${contributor.githubId}`"
-          size="3xl"
-          :ui="{ wrapper: 'flex', background: '', size: { '3xl': 'h-32 w-32 text-5xl' } }"
+          :src="contributor.username"
+          :ui="{ root: 'flex size-32 text-5xl', image: 'rounded-full' }"
+          width="200"
+          height="200"
         />
         <div class="text-3xl pt-[18px]">
           {{ contributor.username }}
@@ -86,7 +87,7 @@ const { format } = Intl.NumberFormat('en-GB', {})
             {{ format(contributor.score) }}
           </div>
         </div>
-        <div class="flex flex-row text-gray-400 items-center pt-3 font-medium text-3xl">
+        <div class="flex flex-row text-neutral-400 items-center pt-3 font-medium text-3xl">
           #{{ format(contributor.rank) }}
         </div>
       </div>

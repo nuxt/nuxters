@@ -134,7 +134,13 @@ const columns: TableColumn<Score>[] = [
         </div>
         <div class="absolute left-0 right-0 -bottom-4 z-20 flex justify-center gap-x-4">
           <UButton
-            class="relative"
+            class="relative active:bg-neutral-900 active:scale-98"
+            :class="[
+              canUnlockNuxterBadge ? 'primary-button' : 'bg-neutral-900',
+              { 'cursor-auto hover:bg-neutral-950': !canUnlockNuxterBadge },
+              { 'primary-button-discord': !linked.discord && canUnlockNuxterBadge },
+              { 'cursor-auto hover:bg-neutral-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
+            ]"
             :color="canUnlockADiscordBadge ? 'primary' : 'neutral'"
             :variant="canUnlockADiscordBadge ? 'solid' : 'outline'"
             :icon="
@@ -149,7 +155,19 @@ const columns: TableColumn<Score>[] = [
             to="/connect/discord"
             external
             @click="unlockButton"
-          />
+          >
+            <a
+              v-if="!linked.discord && canUnlockADiscordBadge"
+              href="/connect/discord"
+              class="absolute inset-0 size-full"
+            />
+            <span
+              class="text-sm"
+              :class="[linked.discord ? 'text-primary-400 ': 'text-neutral-300']"
+            >{{
+              linked.discord ? badgeName : 'Unlock badge(s)'
+            }}</span>
+          </UButton>
           <UButton
             v-if="linked.github"
             color="neutral"
@@ -238,3 +256,59 @@ const columns: TableColumn<Score>[] = [
     </UCard>
   </div>
 </template>
+
+<style lang="postcss">
+.card {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.5) 100%);
+}
+
+.form-checkbox {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-checkbox:checked {
+  display: flex !important;
+  border-radius: 4px !important;
+  border: 1px solid #00dc82 !important;
+  background-position: center;
+  background-image: url('/check.svg') !important;
+}
+
+.disabled\:opacity-50:disabled {
+  opacity: 1;
+}
+
+.disabled\:cursor-not-allowed:disabled {
+  cursor: auto;
+}
+
+.primary-button {
+  box-shadow: 0 0 4px 1px #00dc82;
+}
+
+.primary-button-discord:hover {
+  box-shadow: none;
+}
+
+.card-border {
+  position: relative;
+}
+
+.card-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom right, #00dc82, #1e293b);
+  z-index: -1;
+}
+
+.card-border:hover::before {
+  background:  #00dc82;
+}
+</style>

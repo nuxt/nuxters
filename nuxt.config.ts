@@ -23,7 +23,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
-    url: '',
     sessionPassword: '',
     github: {
       accessToken: '',
@@ -68,14 +67,12 @@ export default defineNuxtConfig({
 
   image: {
     provider: 'github',
-    providers: {
-      github: {
-        provider: '~/providers/github.ts',
-      },
-    },
   },
 
   ogImage: {
+    runtimeCacheStorage: {
+      driver: 'vercel-runtime-cache',
+    },
     compatibility: {
       runtime: {
         chromium: false,

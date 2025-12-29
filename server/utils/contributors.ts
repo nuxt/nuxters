@@ -1,11 +1,13 @@
 import type { Contributor, ModuleMaintainer } from '#shared/types'
 import { Octokit } from 'octokit'
 
-export const fetchContributors = cachedFunction<Contributor[]>(async () => {
-  return $fetch<Contributor[]>('https://api.nuxt.com/contributors').catch(() => [])
+export const fetchContributors = cachedFunction<Contributor[]>(async (event) => {
+  const url = getRequestURL(event)
+
+  return $fetch<Contributor[]>(`${url.protocol}//${url.host}/contributors.json`)
 }, {
   getKey: () => 'contributors',
-  maxAge: 60 * 10, // 10 minutes
+  maxAge: 60 * 60, // 1 hour
 })
 
 export const fetchModuleMaintainers = cachedFunction<ModuleMaintainer[]>(async () => {

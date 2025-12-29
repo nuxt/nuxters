@@ -107,10 +107,10 @@ const columns: TableColumn<Score>[] = [
         <img
           v-if="canUnlockNuxterBadge"
           src="/card-gradient-bg.svg"
-          class="absolute inset-0 w-full rounded-lg"
+          class="absolute inset-0 z-0 w-full rounded-lg"
           alt=""
         >
-        <div class="absolute right-2 top-2">
+        <div class="absolute right-2 top-2 z-20">
           <UButton
             class="transitions-colors duration-200"
             to="/logout"
@@ -123,7 +123,7 @@ const columns: TableColumn<Score>[] = [
             @click.stop
           />
         </div>
-        <div class="absolute left-0 right-0 flex justify-center bottom-0">
+        <div class="absolute left-0 right-0 bottom-0 z-20 flex justify-center">
           <ConfettiExplosion
             v-if="showConfetti"
             :force="0.7"
@@ -132,7 +132,7 @@ const columns: TableColumn<Score>[] = [
             :particle-count="200"
           />
         </div>
-        <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
+        <div class="absolute left-0 right-0 -bottom-4 z-20 flex justify-center gap-x-4">
           <UButton
             class="relative"
             :color="canUnlockADiscordBadge ? 'primary' : 'neutral'"
@@ -163,7 +163,7 @@ const columns: TableColumn<Score>[] = [
         </div>
 
         <div
-          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
+          class="relative z-10 flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
         >
           <div class="flex flex-col gap-y-4 justify-center w-full">
             <UAvatar

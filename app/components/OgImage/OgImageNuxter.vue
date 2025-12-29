@@ -17,6 +17,8 @@ const { format } = Intl.NumberFormat('en-GB', {})
         <UAvatar
           :src="`u/${contributor.githubId}?v=4&s=32`"
           :ui="{ root: 'flex size-32 text-5xl', image: 'rounded-full' }"
+          width="200"
+          height="200"
         />
         <div class="text-3xl pt-[18px]">
           {{ contributor.username }}

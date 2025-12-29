@@ -22,6 +22,7 @@ const format = useNumberFormatter()
 
 defineOgImageComponent('Nuxter', {
   contributor,
+  cacheMaxAgeSeconds: 24 * 60 * 60, // 24 hours
 })
 
 useHead({

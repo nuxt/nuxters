@@ -133,7 +133,7 @@ const columns: TableColumn<Score>[] = [
         </div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
-            class="relative"
+            class="relative hover:bg-primary-300"
             :color="canUnlockADiscordBadge ? 'primary' : 'neutral'"
             :variant="canUnlockADiscordBadge ? 'solid' : 'outline'"
             :icon="

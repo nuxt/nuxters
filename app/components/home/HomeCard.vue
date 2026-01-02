@@ -70,14 +70,13 @@ const columns: TableColumn<Score>[] = [
 
 <template>
   <div
-    class="relative w-full md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-    :class="linked.github && canUnlockNuxterBadge ? 'hover:border-green-400 card-border p-[1.5px]' : 'border border-neutral-800 rounded-lg'"
+    class="relative w-full md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5"
   >
     <UCard
-      :to="linked.github ? `/${contributor.username}` : undefined"
+
       :overlay="!!linked.github"
-      class="bg-neutral-950! card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-[400px] lg:max-w-[600px] min-h-[300px] md:min-h-[350px] lg:min-h-[222px]"
-      :class="{ 'cursor-pointer': linked.github }"
+      class="bg-neutral-950! card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5 transition-all duration-200"
+      :class="{ 'hover:ring-primary/60': linked.github && canUnlockNuxterBadge }"
     >
       <!-- github connect -->
       <div
@@ -107,10 +106,10 @@ const columns: TableColumn<Score>[] = [
         <img
           v-if="canUnlockNuxterBadge"
           src="/card-gradient-bg.svg"
-          class="absolute inset-0 z-0 w-full rounded-lg"
+          class="absolute inset-0 w-full rounded-lg"
           alt=""
         >
-        <div class="absolute right-2 top-2 z-20">
+        <div class="absolute right-2 top-2">
           <UButton
             class="transitions-colors duration-200"
             to="/logout"
@@ -123,7 +122,7 @@ const columns: TableColumn<Score>[] = [
             @click.stop
           />
         </div>
-        <div class="absolute left-0 right-0 bottom-0 z-20 flex justify-center">
+        <div class="absolute left-0 right-0 flex justify-center bottom-0">
           <ConfettiExplosion
             v-if="showConfetti"
             :force="0.7"
@@ -132,15 +131,9 @@ const columns: TableColumn<Score>[] = [
             :particle-count="200"
           />
         </div>
-        <div class="absolute left-0 right-0 -bottom-4 z-20 flex justify-center gap-x-4">
+        <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
-            class="relative active:bg-neutral-900 active:scale-98"
-            :class="[
-              canUnlockNuxterBadge ? 'primary-button' : 'bg-neutral-900',
-              { 'cursor-auto hover:bg-neutral-950': !canUnlockNuxterBadge },
-              { 'primary-button-discord': !linked.discord && canUnlockNuxterBadge },
-              { 'cursor-auto hover:bg-neutral-950 text-primary-400': linked.discord && canUnlockNuxterBadge },
-            ]"
+            class="relative"
             :color="canUnlockADiscordBadge ? 'primary' : 'neutral'"
             :variant="canUnlockADiscordBadge ? 'solid' : 'outline'"
             :icon="
@@ -155,19 +148,7 @@ const columns: TableColumn<Score>[] = [
             to="/connect/discord"
             external
             @click="unlockButton"
-          >
-            <a
-              v-if="!linked.discord && canUnlockADiscordBadge"
-              href="/connect/discord"
-              class="absolute inset-0 size-full"
-            />
-            <span
-              class="text-sm"
-              :class="[linked.discord ? 'text-primary-400 ': 'text-neutral-300']"
-            >{{
-              linked.discord ? badgeName : 'Unlock badge(s)'
-            }}</span>
-          </UButton>
+          />
           <UButton
             v-if="linked.github"
             color="neutral"
@@ -181,18 +162,19 @@ const columns: TableColumn<Score>[] = [
         </div>
 
         <div
-          class="relative z-10 flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
+          class="flex flex-col items-start sm:items-center md:items-center sm:grid sm:grid-cols-2 md:flex md:flex-col lg:grid gap-y-6 lg:grid-cols-2 justify-center w-full h-full"
         >
           <div class="flex flex-col gap-y-4 justify-center w-full">
             <UAvatar
               :src="contributor.username"
               size="2xl"
               :alt="contributor.username"
+              class="z-10"
             />
             <span class="text-white text-2xl">{{ contributor.username }}</span>
             <span class="bg-neutral-700 w-10 h-px" />
             <div class="flex items-center">
-              <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-neutral-200 pl-[3px]">pts</span></span>
+              <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-neutral-200 pl-0.75">pts</span></span>
 
               <UModal
                 class="relative"
@@ -205,7 +187,7 @@ const columns: TableColumn<Score>[] = [
                   variant="ghost"
                   icon="i-ph-info"
                   color="neutral"
-                  class="ml-1 transitions-color duration-200 z-50"
+                  class="ml-1 transitions-color duration-200 z-10"
                   aria-label="show score table"
                 />
                 <template #body>
@@ -256,59 +238,3 @@ const columns: TableColumn<Score>[] = [
     </UCard>
   </div>
 </template>
-
-<style lang="postcss">
-.card {
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.5) 100%);
-}
-
-.form-checkbox {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.form-checkbox:checked {
-  display: flex !important;
-  border-radius: 4px !important;
-  border: 1px solid #00dc82 !important;
-  background-position: center;
-  background-image: url('/check.svg') !important;
-}
-
-.disabled\:opacity-50:disabled {
-  opacity: 1;
-}
-
-.disabled\:cursor-not-allowed:disabled {
-  cursor: auto;
-}
-
-.primary-button {
-  box-shadow: 0 0 4px 1px #00dc82;
-}
-
-.primary-button-discord:hover {
-  box-shadow: none;
-}
-
-.card-border {
-  position: relative;
-}
-
-.card-border::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-image: linear-gradient(to bottom right, #00dc82, #1e293b);
-  z-index: -1;
-}
-
-.card-border:hover::before {
-  background:  #00dc82;
-}
-</style>

@@ -19,14 +19,20 @@ export const fetchModuleMaintainers = cachedFunction<ModuleMaintainer[]>(async (
 
 export const fetchNuxtUIProOutsideCollaborators = cachedFunction<string[]>(async () => {
   // Fetch on GitHub the outside collaborators of the Nuxt UI Pro repository
-  const octokit = new Octokit({
-    auth: process.env.NUXT_GITHUB_TOKEN,
-  })
-  const response = await octokit.paginate(octokit.rest.repos.listCollaborators, {
-    owner: 'nuxt',
-    repo: 'ui-pro',
-  })
-  return response.map((collaborator: { login: string }) => collaborator.login)
+  try {
+    const octokit = new Octokit({
+      auth: process.env.NUXT_GITHUB_TOKEN,
+    })
+    const response = await octokit.paginate(octokit.rest.repos.listCollaborators, {
+      owner: 'nuxt',
+      repo: 'ui-pro',
+    })
+    return response.map((collaborator: { login: string }) => collaborator.login)
+  }
+  catch {
+    console.warn('Failed to fetch Nuxt UI Pro collaborators:')
+    return []
+  }
 }, {
   getKey: () => 'nuxt-ui-pro-outside-collaborators',
   maxAge: 365 * 60 * 60 * 24, // 365 days

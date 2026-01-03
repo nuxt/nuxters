@@ -132,7 +132,7 @@ const columns: TableColumn<Score>[] = [
         </div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
-            class="relative"
+            class="relative z-50"
             color="neutral"
             variant="outline"
             :icon="
@@ -152,7 +152,7 @@ const columns: TableColumn<Score>[] = [
             v-if="linked.github"
             color="neutral"
             variant="outline"
-            class="hidden lg:flex"
+            class="hidden lg:flex z-50"
             icon="i-ph-share-network"
             aria-label="Share my Nuxter profile"
             :to="`/${contributor.username}`"

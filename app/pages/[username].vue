@@ -71,6 +71,7 @@ function backToHome() {
               :src="contributor.username"
               :alt="contributor.username"
               class="rounded-full w-40"
+              :style="{ 'view-transition-name': `nuxter-${contributor.username}` }"
             />
             <div class="flex flex-col items-center gap-4">
               <div class="flex flex-col gap-y-[18px]">

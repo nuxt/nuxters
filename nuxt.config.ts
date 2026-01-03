@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'en' },
     },
+    pageTransition: false,
   },
 
   css: ['~/assets/css/main.css'],
@@ -42,6 +43,10 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/card/**': { proxy: '/__og-image__/image/**' },
+  },
+
+  experimental: {
+    viewTransition: true,
   },
 
   compatibilityDate: '2025-07-31',

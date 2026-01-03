@@ -19,6 +19,12 @@ export interface ModuleMaintainer {
   modules: string[]
 }
 
+export interface ModuleContributor {
+  id: number
+  username: string
+  contributions: number
+}
+
 export interface Score {
   type: string
   multiplier: number | ''

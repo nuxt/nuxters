@@ -144,7 +144,7 @@ const columns: TableColumn<Score>[] = [
             "
             :aria-label="linked.discord ? badgeName : 'Unlock badge(s)'"
             :label="linked.discord ? badgeName : 'Unlock badge(s)'"
-            to="/connect/discord"
+            :to="!linked.discord ? '/connect/discord' : undefined"
             external
             @click="unlockButton"
           />

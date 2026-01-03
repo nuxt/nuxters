@@ -72,11 +72,10 @@ const columns: TableColumn<Score>[] = [
   <div
     class="relative w-full md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5"
   >
-    <UCard
-
-      :overlay="!!linked.github"
-      class="bg-neutral-950! card p-4 rounded-[9.5px] flex items-center justify-center self-start md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5 transition-all duration-200"
+    <UPageCard
+      class="md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5"
       :class="{ 'hover:ring-primary/60': linked.github && canUnlockNuxterBadge }"
+      :to="!!linked.github ? `/${contributor.username}` : undefined"
     >
       <!-- github connect -->
       <div
@@ -109,7 +108,7 @@ const columns: TableColumn<Score>[] = [
           class="absolute inset-0 w-full rounded-lg"
           alt=""
         >
-        <div class="absolute right-2 top-2">
+        <div class="absolute right-2 top-2 z-50">
           <UButton
             class="transitions-colors duration-200"
             to="/logout"
@@ -153,7 +152,7 @@ const columns: TableColumn<Score>[] = [
             v-if="linked.github"
             color="neutral"
             variant="outline"
-            class="hidden 2xl:flex"
+            class="hidden lg:flex"
             icon="i-ph-share-network"
             aria-label="Share my Nuxter profile"
             :to="`/${contributor.username}`"
@@ -236,6 +235,6 @@ const columns: TableColumn<Score>[] = [
           </div>
         </div>
       </div>
-    </UCard>
+    </UPageCard>
   </div>
 </template>

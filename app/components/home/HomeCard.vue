@@ -133,9 +133,9 @@ const columns: TableColumn<Score>[] = [
         </div>
         <div class="absolute left-0 right-0 flex justify-center -bottom-4 gap-x-4">
           <UButton
-            class="relative hover:bg-primary-300"
-            :color="canUnlockADiscordBadge ? 'primary' : 'neutral'"
-            :variant="canUnlockADiscordBadge ? 'solid' : 'outline'"
+            class="relative"
+            color="neutral"
+            variant="outline"
             :icon="
               !canUnlockADiscordBadge
                 ? 'i-ph-smiley'
@@ -153,6 +153,7 @@ const columns: TableColumn<Score>[] = [
             v-if="linked.github"
             color="neutral"
             variant="outline"
+            class="hidden 2xl:flex"
             icon="i-ph-share-network"
             aria-label="Share my Nuxter profile"
             :to="`/${contributor.username}`"

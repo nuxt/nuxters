@@ -60,6 +60,7 @@ const contributors = computed(() => {
               :alt="contributor.username"
               loading="lazy"
               class="rounded-xl w-full h-full transition lg:hover:scale-110"
+              :style="{ 'view-transition-name': `nuxter-${contributor.username}` }"
             />
           </UTooltip>
           <span class="inline-block rounded-t px-1 bg-neutral-950 absolute -bottom-2 right-0 font-medium text-sm"><span class="font-light text-xs text-neutral-400">#</span>{{ index + 1 }}</span>

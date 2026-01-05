@@ -40,12 +40,6 @@ const links: DropdownMenuItem[] = [
             class="ml-1 opacity-50 hover:opacity-100"
             aria-label="dropdown button"
           />
-          <template #item-label="{ item }">
-            <div class="flex flex-col px-2 gap-y-1">
-              <span class="font-medium text-white">{{ item.label }}</span>
-              <span class="text-xs text-muted">{{ item.description }}</span>
-            </div>
-          </template>
         </UDropdownMenu>
       </div>
       <div class="flex items-center sm:gap-x-4 text-white font-medium">

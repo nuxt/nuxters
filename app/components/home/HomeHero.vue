@@ -7,9 +7,9 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
     <h1 class="text-4xl lg:text-6xl font-bold mb-4">
       Are you a <span class="text-green-400">Nuxter</span>?
     </h1>
-    <div class="flex flex-col gap-y-[40px] md:justify-between md:flex-row items-start gap-x-[92px]">
+    <div class="flex flex-col gap-y-10 md:justify-between md:flex-row items-start gap-x-23">
       <div class="flex flex-col gap-y-4 text-neutral-300">
-        <p class="text-base lg:text-lg lg:leading-[32px]">
+        <p class="text-base lg:text-lg lg:leading-8">
           Discover your contributions on
           <ULink
             to="https://github.com/nuxt"
@@ -59,9 +59,3 @@ const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '
     </div>
   </div>
 </template>
-
-<style scoped lang="postcss">
-p a {
-  @apply border-b hover:border-green-400 hover:text-green-400;
-}
-</style>

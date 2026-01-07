@@ -22,7 +22,7 @@ useSeoMeta({
   <UApp>
     <AppHeader />
     <UContainer class="overflow-hidden">
-      <NuxtPage />
+      <NuxtPage keepalive />
     </UContainer>
     <AppFooter />
   </UApp>

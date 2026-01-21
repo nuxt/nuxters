@@ -25,7 +25,7 @@
     "typescript": "^5.9.3",
     "vitest": "^4.0.16",
     "vue-tsc": "^3.2.1",
-    "wrangler": "^4.56.0"
+    "wrangler": "^4.59.1"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.3",

@@ -41,7 +41,7 @@
     "@octokit/plugin-retry": "^8.0.3",
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.3.0",
     "nuxt-og-image": "^5.1.13",
     "octokit": "^5.0.5",
     "ofetch": "^1.5.1",

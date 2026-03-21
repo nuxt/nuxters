@@ -42,7 +42,7 @@
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",
     "nuxt": "^4.4.2",
-    "nuxt-og-image": "^5.1.13",
+    "nuxt-og-image": "^6.1.0",
     "octokit": "^5.0.5",
     "ofetch": "^1.5.1",
     "tailwindcss": "^4.1.18",

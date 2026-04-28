@@ -2,9 +2,9 @@ import type { Contributor, ModuleMaintainer } from '#shared/types'
 import { Octokit } from 'octokit'
 
 export const fetchContributors = cachedFunction<Contributor[]>(async (event) => {
-  const url = getRequestURL(event)
+  const origin = process.env.NUXT_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || getRequestURL(event).origin
 
-  return $fetch<Contributor[]>(`${url.protocol}//${url.host}/contributors.json`)
+  return $fetch<Contributor[]>(`${origin}/contributors.json`)
 }, {
   getKey: () => 'contributors',
   maxAge: 60 * 60, // 1 hour

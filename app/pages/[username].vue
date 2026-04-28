@@ -16,14 +16,13 @@ if (!contributor.value) {
   })
 }
 
-const ogImageUrl = joinURL(origin, '/card/', contributor.value?.username || '', 'og.png')
 const contributorUrl = `nuxters.nuxt.com/${contributor.value?.username}`
 const format = useNumberFormatter()
 
-defineOgImageComponent('Nuxter', {
-  contributor,
-  cacheMaxAgeSeconds: 24 * 60 * 60, // 24 hours
+defineOgImage('Nuxter', {
+  slug: contributor.value?.username,
 })
+const ogImageUrl = `/_og/r/${contributor.value?.username}.png`
 
 useHead({
   link: [{ rel: 'canonical', href: `https://${contributorUrl}` }],

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 defineProps<{ comments: number }>()
-const format = useNumberFormatter()
+const { format } = Intl.NumberFormat('en-GB', {})
 </script>
 
 <template>

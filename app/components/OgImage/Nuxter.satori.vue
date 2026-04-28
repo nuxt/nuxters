@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-import type { Contributor } from '#shared/types'
+const { slug } = defineProps<{ slug: string }>()
 
-defineProps<{ contributor: Contributor }>()
-
-defineOptions({
-  inheritAttrs: false,
-})
+const contributor = await $fetch(`/api/contributors/${slug}`)
 
 const { format } = Intl.NumberFormat('en-GB', {})
 </script>
@@ -14,9 +10,9 @@ const { format } = Intl.NumberFormat('en-GB', {})
   <div class="flex flex-row justify-between w-full h-full p-[38px] bg-slate-900">
     <div class="flex flex-col w-1/3 items-center py-10 justify-between text-white">
       <div class="flex flex-col items-center">
-        <UAvatar
-          :src="contributor.username"
-          :ui="{ root: 'flex size-32 text-5xl', image: 'rounded-full' }"
+        <img
+          :src="`https://github.com/${contributor.username}.png?size=200`"
+          class="flex size-32 rounded-full"
           width="200"
           height="200"
         />

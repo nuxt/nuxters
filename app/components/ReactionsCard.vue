@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{ reactions: number }>()
 
-const format = useNumberFormatter()
+const { format } = Intl.NumberFormat('en-GB', {})
 </script>
 
 <template>

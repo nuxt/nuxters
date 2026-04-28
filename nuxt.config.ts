@@ -5,12 +5,13 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/ui',
-    '@nuxtjs/plausible',
     '@vueuse/nuxt',
     'nuxt-og-image',
     '@nuxt/image',
     '@nuxt/test-utils/module',
     '@nuxthub/core',
+    '@vercel/analytics',
+    '@vercel/speed-insights'
   ],
   devtools: { enabled: true },
 
@@ -39,10 +40,6 @@ export default defineNuxtConfig({
       uIProRoleId: '',
       botToken: '',
     },
-  },
-
-  routeRules: {
-    '/card/**': { proxy: '/__og-image__/image/**' },
   },
 
   experimental: {
@@ -77,11 +74,6 @@ export default defineNuxtConfig({
   ogImage: {
     runtimeCacheStorage: {
       driver: 'vercel-runtime-cache',
-    },
-    compatibility: {
-      runtime: {
-        chromium: false,
-      },
-    },
+    }
   },
 })

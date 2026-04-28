@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxthub/core',
     '@vercel/analytics',
-    '@vercel/speed-insights'
+    '@vercel/speed-insights',
   ],
   devtools: { enabled: true },
 
@@ -74,6 +74,6 @@ export default defineNuxtConfig({
   ogImage: {
     runtimeCacheStorage: {
       driver: 'vercel-runtime-cache',
-    }
+    },
   },
 })

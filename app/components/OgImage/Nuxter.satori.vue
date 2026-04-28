@@ -15,7 +15,7 @@ const { format } = Intl.NumberFormat('en-GB', {})
           class="flex size-32 rounded-full"
           width="200"
           height="200"
-        />
+        >
         <div class="text-3xl pt-[18px]">
           {{ contributor.username }}
         </div>

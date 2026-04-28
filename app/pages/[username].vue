@@ -22,7 +22,7 @@ const format = useNumberFormatter()
 defineOgImage('Nuxter', {
   slug: contributor.value?.username,
 })
-const ogImageUrl = `/_og/r/${contributor.value?.username}.png`
+const ogImageUrl = joinURL(origin, `/_og/r/${contributor.value?.username}.png`)
 
 useHead({
   link: [{ rel: 'canonical', href: `https://${contributorUrl}` }],

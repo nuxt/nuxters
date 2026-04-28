@@ -60,8 +60,5 @@
     "ignoredBuiltDependencies": [
       "esbuild"
     ]
-  },
-  "resolutions": {
-    "h3": "1.15.11"
   }
 }

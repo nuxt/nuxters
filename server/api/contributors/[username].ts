@@ -1,5 +1,6 @@
 export default eventHandler(async (event) => {
   const username = getRouterParam(event, 'username')
+
   if (!username) {
     throw createError({
       statusCode: 400,

@@ -15,6 +15,7 @@ const ORGS = [
   'nuxt-ui-templates',
 ] as const
 const HELPFUL_REACTIONS_THRESHOLD = 3
+const HELPFUL_COMMENTS_THRESHOLD = 5
 const OUTPUT_FILE = resolve(fileURLToPath(new URL('../public/contributors.json', import.meta.url)))
 const USER_AGENT = 'nuxters-contributor-collector'
 
@@ -90,6 +91,8 @@ const addIssueStats = (
     number: number
     pull_request?: object
     reactions?: { total_count?: number }
+    comments?: number
+    state_reason?: string | null
   },
   mergedPullNumbers: Set<number>,
 ) => {
@@ -99,8 +102,10 @@ const addIssueStats = (
   }
 
   const reactionCount = issue.reactions?.total_count ?? 0
+  const commentCount = issue.comments ?? 0
   contributor.reactions += reactionCount
-  if (reactionCount > HELPFUL_REACTIONS_THRESHOLD) {
+  const isCompleted = issue.state_reason === 'completed'
+  if (isCompleted || reactionCount >= HELPFUL_REACTIONS_THRESHOLD || commentCount >= HELPFUL_COMMENTS_THRESHOLD) {
     contributor.helpful_issues += 1
   }
 
@@ -128,7 +133,7 @@ const addCommentStats = (
   contributor.comments += 1
   const reactionCount = comment.reactions?.total_count ?? 0
   contributor.reactions += reactionCount
-  if (reactionCount > HELPFUL_REACTIONS_THRESHOLD) {
+  if (reactionCount >= HELPFUL_REACTIONS_THRESHOLD) {
     contributor.helpful_comments += 1
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const unlockList = ['1 pull request merged', '1 helpful issue (3+ reactions)', '1 helpful comment (3+ reactions)']
+const unlockList = ['1 pull request merged', '1 helpful issue (completed, 3+ reactions or 5+ comments)', '1 helpful comment (3+ reactions)']
 </script>
 
 <template>

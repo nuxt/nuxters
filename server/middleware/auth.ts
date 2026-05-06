@@ -1,4 +1,7 @@
 export default defineEventHandler(async (event) => {
+  if (event.path.startsWith('/api') || event.path.endsWith('.json')) {
+    return
+  }
   const session = await getUserSession(event)
   event.context.canUnlockNuxterBadge = false
 

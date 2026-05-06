@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     '@nuxt/image',
     '@nuxt/test-utils/module',
-    '@nuxthub/core',
     '@vercel/analytics',
     '@vercel/speed-insights',
   ],
@@ -48,8 +47,16 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-07-31',
 
-  hub: {
-    cache: true,
+  nitro: {
+    storage: {
+      cache: {
+        driver: 'http',
+        base: process.env.CACHE_API_URL,
+        headers: {
+          Authorization: `Bearer ${process.env.CACHE_API_TOKEN}`,
+        },
+      },
+    },
   },
 
   vite: {

@@ -66,8 +66,8 @@ function backToHome() {
         @click.prevent="backToHome()"
       />
     </div>
-    <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-[42px]">
-      <div class="relative z-40 md:col-span-2 h-full md:h-[400px] lg:h-full lg:col-span-1 lg:row-span-2 bg-neutral-800 p-px rounded-xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-[10px] before:bg-[linear-gradient(to_bottom_right,#00dc82,#1e293b)] before:-z-10 hover:before:bg-[linear-gradient(to_bottom_right,#00dc82,#00dc82)]">
+    <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-10.5">
+      <div class="relative z-40 md:col-span-2 h-full md:h-100 lg:h-full lg:col-span-1 lg:row-span-2 bg-neutral-800 p-px rounded-xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-[10px] before:bg-[linear-gradient(to_bottom_right,#00dc82,#1e293b)] before:-z-10 hover:before:bg-[linear-gradient(to_bottom_right,#00dc82,#00dc82)]">
         <div class="bg-[url('/card-gradient-bg.svg')] bg-no-repeat bg-size-[300%] flex flex-col md:flex-row lg:flex-col items-center justify-between h-full z-40 bg-neutral-950! rounded-[9.5px] relative p-[18px] sm:p-11 hover:border-primary">
           <div class="flex flex-col md:flex-row lg:flex-col gap-y-2 pb-2 md:w-full items-center text-center justify-between">
             <NuxtImg
@@ -77,7 +77,7 @@ function backToHome() {
               :style="{ 'view-transition-name': `nuxter-${contributor.username}` }"
             />
             <div class="flex flex-col items-center gap-4">
-              <div class="flex flex-col gap-y-[18px]">
+              <div class="flex flex-col items-center gap-y-4.5">
                 <UButton
                   :to="`https://github.com/${contributor.username}`"
                   color="neutral"

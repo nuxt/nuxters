@@ -1,10 +1,18 @@
 export type Provider = 'github' | 'discord'
 
+export interface MergedPullRequests {
+  docs: number
+  chore: number
+  feat: number
+  fix: number
+  all: number
+}
+
 export interface Contributor {
   username: string
   githubId: string
   issues: number
-  merged_pull_requests: number
+  merged_pull_requests: MergedPullRequests
   helpful_issues: number
   comments: number
   helpful_comments: number

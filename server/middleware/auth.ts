@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
       githubId: session.data.githubId,
       username: session.data.githubUsername,
       issues: 0,
-      merged_pull_requests: 0,
+      merged_pull_requests: { docs: 0, chore: 0, feat: 0, fix: 0, all: 0 },
       helpful_issues: 0,
       comments: 0,
       helpful_comments: 0,
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     }
     event.context.contributor = contributor
     event.context.canUnlockModuleBadge = !!(moduleMaintainers?.find(maintainer => maintainer.github?.toLowerCase() === String(session.data.githubUsername).toLowerCase()))
-    event.context.canUnlockNuxterBadge = event.context.canUnlockModuleBadge || (contributor.helpful_comments + contributor.helpful_issues + contributor.merged_pull_requests) > 0
+    event.context.canUnlockNuxterBadge = event.context.canUnlockModuleBadge || (contributor.helpful_comments + contributor.helpful_issues + contributor.merged_pull_requests.all) > 0
     event.context.canUnlockUIProBadge = event.context.canUnlockUIProBadge || nuxtUIProOutsideCollaborators?.includes(session.data.githubUsername)
   }
 })

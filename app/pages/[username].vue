@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { joinURL } from 'ufo'
 
+definePageMeta({
+  colorMode: 'dark',
+})
+
 const origin = useRequestURL().origin
 const router = useRouter()
 const { username } = useRoute().params

@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  colorMode: 'dark',
+})
+
 useHead({
   link: [{ rel: 'canonical', href: 'https://nuxters.nuxt.com' }],
 })

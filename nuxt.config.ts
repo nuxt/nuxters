@@ -52,6 +52,14 @@ export default defineNuxtConfig({
     cache: true,
   },
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        'vue-confetti-explosion',
+      ],
+    },
+  },
+
   typescript: {
     tsConfig: {
       include: ['../test'],

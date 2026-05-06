@@ -313,6 +313,10 @@ const main = async () => {
   }
 
   const data = buildContributorRecords()
+  if (data.length === 0) {
+    console.error('No contributors collected — refusing to write an empty file. Check the GitHub token and API access.')
+    process.exit(1)
+  }
   await saveContributors(data)
 }
 

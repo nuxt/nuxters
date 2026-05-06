@@ -33,6 +33,11 @@ jobs:
 
       - name: Commit and push if changed
         run: |
+          FILE_SIZE=$(wc -c < public/contributors.json)
+          if [ "$FILE_SIZE" -lt 1000 ]; then
+            echo "contributors.json is suspiciously small (${FILE_SIZE} bytes) — skipping commit"
+            exit 1
+          fi
           if git diff --quiet public/contributors.json; then
             echo "No changes to commit"
             exit 0

@@ -164,16 +164,16 @@ const TITLE_TYPE_PATTERNS: [RegExp, PullRequestType][] = [
 ]
 
 const LABEL_TYPE_MAP: Record<string, PullRequestType> = {
-  'documentation': 'docs',
-  'docs': 'docs',
-  'bug': 'fix',
-  'fix': 'fix',
-  'feature': 'feat',
-  'feat': 'feat',
-  'enhancement': 'feat',
-  'chore': 'chore',
-  'maintenance': 'chore',
-  'dependencies': 'chore',
+  documentation: 'docs',
+  docs: 'docs',
+  bug: 'fix',
+  fix: 'fix',
+  feature: 'feat',
+  feat: 'feat',
+  enhancement: 'feat',
+  chore: 'chore',
+  maintenance: 'chore',
+  dependencies: 'chore',
 }
 
 const inferPullRequestType = (title: string, labels: { name?: string }[]): PullRequestType => {

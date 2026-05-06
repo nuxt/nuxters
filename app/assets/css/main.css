@@ -46,4 +46,9 @@
   ::file-selector-button {
     border-color: var(--color-neutral-200, currentcolor);
   }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

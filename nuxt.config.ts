@@ -3,7 +3,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
-    '@nuxt/fonts',
     '@nuxt/ui',
     '@vueuse/nuxt',
     'nuxt-og-image',
@@ -13,6 +12,7 @@ export default defineNuxtConfig({
     '@vercel/analytics',
     '@vercel/speed-insights',
   ],
+
   devtools: { enabled: true },
 
   app: {

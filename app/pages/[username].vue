@@ -116,6 +116,7 @@ function backToHome() {
                       />
                     </svg>
                     <span class="text-xl text-center md:text-left lg:text-center md:ml-4 lg:ml-0"><span class="text-2xl font-medium">{{ format(contributor.score) }}</span> {{ contributor?.score === 1 ? 'pt' : 'pts' }}</span>
+                    <ContributorDetailedScore :contributor="contributor" />
                   </div>
                 </div>
               </div>
@@ -207,8 +208,8 @@ function backToHome() {
         <span class="text-2xl">{{ contributor?.comments === 1 ? 'Comment' : 'Comments' }}</span>
       </div>
       <div class="border-violet-400 rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end bg-[linear-gradient(180deg,_rgba(139,_92,_246,_0.40)_0%,_rgba(139,_92,_246,_0.00)_100%,_rgba(2,_4,_32,_0.50)),url('/pull-requests-card-bg.svg')]">
-        <span class="text-5xl font-medium">{{ format(contributor.merged_pull_requests) }}</span>
-        <span class="text-2xl">Merged {{ contributor?.merged_pull_requests === 1 ? 'PR' : 'PRs' }}</span>
+        <span class="text-5xl font-medium">{{ format(contributor.merged_pull_requests.all) }}</span>
+        <span class="text-2xl">Merged {{ contributor.merged_pull_requests.all === 1 ? 'PR' : 'PRs' }}</span>
       </div>
       <div class="border-yellow-400 rounded-xl border h-[285px] bg-no-repeat bg-top p-6 text-center flex flex-col items-center justify-end bg-[linear-gradient(180deg,_rgba(247,_209,_76,_0.40)_0%,_rgba(247,_209,_76,_0.00)_100%,_rgba(2,_4,_32,_0.50)),url('/reactions-card-bg.webp')]">
         <span class="text-5xl font-medium">{{ format(contributor.reactions) }}</span>

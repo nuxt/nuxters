@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import ConfettiExplosion from 'vue-confetti-explosion'
-import type { TableColumn } from '@nuxt/ui'
-import type { Score } from '#shared/types'
 
 const {
   linked,
@@ -12,7 +10,6 @@ const {
   hasMergedPullRequests,
   hasHelpfulIssues,
   hasHelpfulComments,
-  detailedScore,
 } = useNuxter()
 const format = useNumberFormatter()
 const showConfetti = ref(false)
@@ -43,29 +40,6 @@ onMounted(() => {
     popConfetti()
   }
 })
-
-const columns: TableColumn<Score>[] = [
-  {
-    accessorKey: 'type',
-    header: 'Type',
-    cell: ({ row }) => row.getValue('type'),
-  },
-  {
-    accessorKey: 'multiplier',
-    header: 'Multiplier',
-    cell: ({ row }) => row.getValue('multiplier'),
-  },
-  {
-    accessorKey: 'amount',
-    header: 'Amount',
-    cell: ({ row }) => row.getValue('amount'),
-  },
-  {
-    accessorKey: 'total',
-    header: 'Total',
-    cell: ({ row }) => row.getValue('total'),
-  },
-]
 </script>
 
 <template>
@@ -176,34 +150,13 @@ const columns: TableColumn<Score>[] = [
             <div class="flex items-center">
               <span class="text-white text-lg">{{ format(contributor.score) }}<span class="text-base text-neutral-200 pl-0.75">pts</span></span>
 
-              <UModal
-                class="relative"
-                title="How is the score calculated?"
-                :ui="{
-                  body: 'p-0 sm:p-0',
-                }"
-              >
-                <UButton
-                  variant="ghost"
-                  icon="i-ph-info"
-                  color="neutral"
-                  class="ml-1 transitions-color duration-200 z-10"
-                  aria-label="show score table"
-                />
-                <template #body>
-                  <UTable
-                    class="overflow-x-auto"
-                    :data="detailedScore"
-                    :columns="columns"
-                  />
-                </template>
-              </UModal>
+              <ContributorDetailedScore :contributor="contributor" />
             </div>
           </div>
 
           <div class="flex flex-col gap-y-6 text-neutral-300 w-full">
             <div class="flex items-center justify-between gap-2 w-full">
-              <span><span class="text-white font-medium">{{ format(contributor.merged_pull_requests) }}</span> merged pull request{{ contributor.merged_pull_requests > 1 ? 's' : '' }}</span>
+              <span><span class="text-white font-medium">{{ format(contributor.merged_pull_requests.all) }}</span> merged pull request{{ contributor.merged_pull_requests.all > 1 ? 's' : '' }}</span>
               <UCheckbox
                 v-model="hasMergedPullRequests"
                 :ui="{

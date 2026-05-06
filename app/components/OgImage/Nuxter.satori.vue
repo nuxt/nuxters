@@ -135,7 +135,7 @@ const { format } = Intl.NumberFormat('en-GB', {})
         <IssuesCard :issues="contributor.issues" />
       </div>
       <div class="h-[48%]">
-        <PullRequestCard :pull-requests="contributor.merged_pull_requests" />
+        <PullRequestCard :pull-requests="contributor.merged_pull_requests.all" />
       </div>
     </div>
     <div class="flex flex-col w-[31.5%] text-white justify-between">

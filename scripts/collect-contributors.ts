@@ -19,11 +19,21 @@ const HELPFUL_COMMENTS_THRESHOLD = 5
 const OUTPUT_FILE = resolve(fileURLToPath(new URL('../public/contributors.json', import.meta.url)))
 const USER_AGENT = 'nuxters-contributor-collector'
 
+type PullRequestType = 'docs' | 'chore' | 'feat' | 'fix'
+
+type MergedPullRequests = {
+  docs: number
+  chore: number
+  feat: number
+  fix: number
+  all: number
+}
+
 type ContributorAccumulator = {
   username: string
   githubId: string
   issues: number
-  merged_pull_requests: number
+  merged_pull_requests: MergedPullRequests
   helpful_issues: number
   comments: number
   helpful_comments: number
@@ -74,7 +84,7 @@ const upsertContributor = (user: { login: string | null, id: number | null } | n
       username: login,
       githubId: String(user.id ?? ''),
       issues: 0,
-      merged_pull_requests: 0,
+      merged_pull_requests: { docs: 0, chore: 0, feat: 0, fix: 0, all: 0 },
       helpful_issues: 0,
       comments: 0,
       helpful_comments: 0,
@@ -94,7 +104,7 @@ const addIssueStats = (
     comments?: number
     state_reason?: string | null
   },
-  mergedPullNumbers: Set<number>,
+  mergedPulls: Map<number, PullRequestType>,
 ) => {
   const contributor = upsertContributor(issue.user)
   if (!contributor) {
@@ -104,18 +114,20 @@ const addIssueStats = (
   const reactionCount = issue.reactions?.total_count ?? 0
   const commentCount = issue.comments ?? 0
   contributor.reactions += reactionCount
-  const isCompleted = issue.state_reason === 'completed'
-  if (isCompleted || reactionCount >= HELPFUL_REACTIONS_THRESHOLD || commentCount >= HELPFUL_COMMENTS_THRESHOLD) {
-    contributor.helpful_issues += 1
-  }
 
   if (!issue.pull_request) {
     contributor.issues += 1
+    const isCompleted = issue.state_reason === 'completed'
+    if (isCompleted || reactionCount >= HELPFUL_REACTIONS_THRESHOLD || commentCount >= HELPFUL_COMMENTS_THRESHOLD) {
+      contributor.helpful_issues += 1
+    }
     return
   }
 
-  if (mergedPullNumbers.has(issue.number)) {
-    contributor.merged_pull_requests += 1
+  const prType = mergedPulls.get(issue.number)
+  if (prType) {
+    contributor.merged_pull_requests[prType] += 1
+    contributor.merged_pull_requests.all += 1
   }
 }
 
@@ -138,8 +150,49 @@ const addCommentStats = (
   }
 }
 
+const TITLE_TYPE_PATTERNS: [RegExp, PullRequestType][] = [
+  [/^docs[\s(:]/i, 'docs'],
+  [/^fix[\s(:]/i, 'fix'],
+  [/^feat[\s(:]/i, 'feat'],
+  [/^chore[\s(:]/i, 'chore'],
+  [/^ci[\s(:]/i, 'chore'],
+  [/^build[\s(:]/i, 'chore'],
+  [/^test[\s(:]/i, 'chore'],
+  [/^refactor[\s(:]/i, 'chore'],
+  [/^style[\s(:]/i, 'chore'],
+  [/^perf[\s(:]/i, 'feat'],
+]
+
+const LABEL_TYPE_MAP: Record<string, PullRequestType> = {
+  documentation: 'docs',
+  docs: 'docs',
+  bug: 'fix',
+  fix: 'fix',
+  feature: 'feat',
+  feat: 'feat',
+  enhancement: 'feat',
+  chore: 'chore',
+  maintenance: 'chore',
+  dependencies: 'chore',
+}
+
+const inferPullRequestType = (title: string, labels: { name?: string }[]): PullRequestType => {
+  for (const [pattern, type] of TITLE_TYPE_PATTERNS) {
+    if (pattern.test(title)) {
+      return type
+    }
+  }
+  for (const label of labels) {
+    const name = label.name?.toLowerCase()
+    if (name && LABEL_TYPE_MAP[name]) {
+      return LABEL_TYPE_MAP[name]
+    }
+  }
+  return 'feat'
+}
+
 const fetchMergedPullNumbers = async (owner: string, repo: string) => {
-  const mergedPulls = new Set<number>()
+  const mergedPulls = new Map<number, PullRequestType>()
   for await (const response of octokit.paginate.iterator(octokit.rest.pulls.list, {
     owner,
     repo,
@@ -148,14 +201,15 @@ const fetchMergedPullNumbers = async (owner: string, repo: string) => {
   })) {
     for (const pull of response.data) {
       if (pull.merged_at) {
-        mergedPulls.add(pull.number)
+        const type = inferPullRequestType(pull.title, pull.labels)
+        mergedPulls.set(pull.number, type)
       }
     }
   }
   return mergedPulls
 }
 
-const collectIssues = async (owner: string, repo: string, mergedPullNumbers: Set<number>) => {
+const collectIssues = async (owner: string, repo: string, mergedPulls: Map<number, PullRequestType>) => {
   for await (const response of octokit.paginate.iterator(octokit.rest.issues.listForRepo, {
     owner,
     repo,
@@ -163,7 +217,7 @@ const collectIssues = async (owner: string, repo: string, mergedPullNumbers: Set
     per_page: 100,
   })) {
     for (const issue of response.data) {
-      addIssueStats(issue, mergedPullNumbers)
+      addIssueStats(issue, mergedPulls)
     }
   }
 }
@@ -182,8 +236,8 @@ const collectComments = async (owner: string, repo: string) => {
 
 const collectRepository = async (owner: string, repo: string) => {
   console.log(`Collecting stats for ${owner}/${repo}`)
-  const mergedPullNumbers = await fetchMergedPullNumbers(owner, repo)
-  await collectIssues(owner, repo, mergedPullNumbers)
+  const mergedPulls = await fetchMergedPullNumbers(owner, repo)
+  await collectIssues(owner, repo, mergedPulls)
   await collectComments(owner, repo)
 }
 
@@ -202,9 +256,22 @@ const collectOrganization = async (org: string) => {
   }
 }
 
+const PR_SCORE_MULTIPLIERS: Record<PullRequestType, number> = {
+  feat: 7,
+  fix: 5,
+  docs: 4,
+  chore: 3,
+}
+
 const computeScore = (stats: ContributorAccumulator) => {
+  const prScore
+    = stats.merged_pull_requests.feat * PR_SCORE_MULTIPLIERS.feat
+      + stats.merged_pull_requests.fix * PR_SCORE_MULTIPLIERS.fix
+      + stats.merged_pull_requests.docs * PR_SCORE_MULTIPLIERS.docs
+      + stats.merged_pull_requests.chore * PR_SCORE_MULTIPLIERS.chore
+
   const total
-    = stats.merged_pull_requests * 5
+    = prScore
       + stats.helpful_issues * 3
       + stats.helpful_comments * 2
       + stats.issues

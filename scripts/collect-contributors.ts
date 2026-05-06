@@ -31,7 +31,6 @@ type ContributorAccumulator = {
 
 type ContributorRecord = ContributorAccumulator & {
   score: number
-  rank: number
 }
 
 const OctokitWithPlugins = Octokit.plugin(paginateRest, retry)
@@ -222,10 +221,7 @@ const buildContributorRecords = () => {
       return a.username.localeCompare(b.username)
     })
 
-  return sorted.map<ContributorRecord>((contributor, index) => ({
-    ...contributor,
-    rank: index + 1,
-  }))
+  return sorted as ContributorRecord[]
 }
 
 const saveContributors = async (data: ContributorRecord[]) => {

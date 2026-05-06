@@ -114,13 +114,13 @@ const addIssueStats = (
   const reactionCount = issue.reactions?.total_count ?? 0
   const commentCount = issue.comments ?? 0
   contributor.reactions += reactionCount
-  const isCompleted = issue.state_reason === 'completed'
-  if (isCompleted || reactionCount >= HELPFUL_REACTIONS_THRESHOLD || commentCount >= HELPFUL_COMMENTS_THRESHOLD) {
-    contributor.helpful_issues += 1
-  }
 
   if (!issue.pull_request) {
     contributor.issues += 1
+    const isCompleted = issue.state_reason === 'completed'
+    if (isCompleted || reactionCount >= HELPFUL_REACTIONS_THRESHOLD || commentCount >= HELPFUL_COMMENTS_THRESHOLD) {
+      contributor.helpful_issues += 1
+    }
     return
   }
 

@@ -53,7 +53,7 @@
     "vue": "^3.5.33",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@11.1.2",
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"

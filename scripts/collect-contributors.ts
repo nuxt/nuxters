@@ -18,6 +18,7 @@ const HELPFUL_REACTIONS_THRESHOLD = 3
 const HELPFUL_COMMENTS_THRESHOLD = 5
 const OUTPUT_FILE = resolve(fileURLToPath(new URL('../public/contributors.json', import.meta.url)))
 const USER_AGENT = 'nuxters-contributor-collector'
+const KNOWN_BOT_ACCOUNTS = ['codecov-io', 'codecov-commenter']
 
 type PullRequestType = 'docs' | 'chore' | 'feat' | 'fix'
 
@@ -69,7 +70,7 @@ const isBotAccount = (login: string | null | undefined) => {
   if (!login) {
     return true
   }
-  return login.includes('[bot]') || login.endsWith('-bot')
+  return KNOWN_BOT_ACCOUNTS.includes(login) || login.includes('[bot]') || login.endsWith('-bot') || login === 'ghost'
 }
 
 const upsertContributor = (user: { login: string | null, id: number | null } | null | undefined) => {

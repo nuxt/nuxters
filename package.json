@@ -41,7 +41,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.3.0",
     "@vueuse/nuxt": "^14.3.0",
-    "nuxt": "^4.4.5",
+    "nuxt": "^4.4.8",
     "nuxt-og-image": "^6.7.2",
     "octokit": "^5.0.5",
     "ofetch": "^1.5.1",

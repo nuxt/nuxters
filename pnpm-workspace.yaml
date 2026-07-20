@@ -1,3 +1,6 @@
+overrides:
+  vite: ^8.1.4
+
 allowBuilds:
   "@parcel/watcher": false
   esbuild: false

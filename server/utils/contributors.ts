@@ -9,9 +9,7 @@ function normalizeMergedPRs(value: number | MergedPullRequests): MergedPullReque
 }
 
 export const fetchContributors = cachedFunction<Contributor[]>(async (event) => {
-  const origin = process.env.NUXT_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || getRequestURL(event).origin
-
-  const raw = await $fetch<Contributor[]>(`${origin}/contributors.json`)
+  const raw: Contributor[] = await event.$fetch('/contributors.json')
   return raw.map(c => ({
     ...c,
     merged_pull_requests: normalizeMergedPRs(c.merged_pull_requests),

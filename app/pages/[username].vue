@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { joinURL } from 'ufo'
+import { getHackathonsForUser } from '#shared/hackathons'
 
 definePageMeta({
   colorMode: 'dark',
@@ -19,6 +20,8 @@ if (!contributor.value) {
     message: 'Contributor not found',
   })
 }
+
+const contributorHackathons = computed(() => getHackathonsForUser(contributor.value?.githubId))
 
 const contributorUrl = `nuxters.nuxt.com/${contributor.value?.username}`
 const format = useNumberFormatter()
@@ -92,6 +95,22 @@ function backToHome() {
                     {{ contributor.username }}
                   </div>
                 </UButton>
+
+                <div
+                  v-if="contributorHackathons.length"
+                  class="flex flex-wrap justify-center gap-2"
+                >
+                  <UBadge
+                    v-for="hackathon in contributorHackathons"
+                    :key="hackathon.id"
+                    color="primary"
+                    variant="subtle"
+                    size="lg"
+                    icon="i-ph-trophy"
+                  >
+                    {{ hackathon.name }}
+                  </UBadge>
+                </div>
 
                 <div class="flex flex-col gap-y-2">
                   <div class="flex items-center justify-center gap-1">

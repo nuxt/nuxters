@@ -7,6 +7,7 @@ export default defineNuxtPlugin(async () => {
     canUnlockNuxterBadge,
     canUnlockModuleBadge,
     canUnlockUIProBadge,
+    unlockedHackathons,
     hasMergedPullRequests,
     hasHelpfulIssues,
     hasHelpfulComments,
@@ -23,6 +24,7 @@ export default defineNuxtPlugin(async () => {
   canUnlockNuxterBadge.value = event.context.canUnlockNuxterBadge
   canUnlockModuleBadge.value = event.context.canUnlockModuleBadge
   canUnlockUIProBadge.value = event.context.canUnlockUIProBadge
+  unlockedHackathons.value = event.context.unlockedHackathons ?? []
 
   if (contributor.value) {
     hasMergedPullRequests.value = contributor.value.merged_pull_requests.all > 0

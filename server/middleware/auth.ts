@@ -1,3 +1,5 @@
+import { getHackathonsForUser } from '#shared/hackathons'
+
 export default defineEventHandler(async (event) => {
   if (event.path.startsWith('/api') || event.path.endsWith('.json')) {
     return
@@ -27,5 +29,6 @@ export default defineEventHandler(async (event) => {
     event.context.canUnlockModuleBadge = !!(moduleMaintainers?.find(maintainer => maintainer.github?.toLowerCase() === String(session.data.githubUsername).toLowerCase()))
     event.context.canUnlockNuxterBadge = event.context.canUnlockModuleBadge || (contributor.helpful_comments + contributor.helpful_issues + contributor.merged_pull_requests.all) > 0
     event.context.canUnlockUIProBadge = event.context.canUnlockUIProBadge || nuxtUIProOutsideCollaborators?.includes(session.data.githubUsername)
+    event.context.unlockedHackathons = getHackathonsForUser(session.data.githubId).map(hackathon => hackathon.id)
   }
 })

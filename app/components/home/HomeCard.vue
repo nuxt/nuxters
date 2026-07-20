@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ConfettiExplosion from 'vue-confetti-explosion'
+import { hackathons } from '#shared/hackathons'
 
 const {
   linked,
@@ -7,6 +8,7 @@ const {
   canUnlockNuxterBadge,
   canUnlockModuleBadge,
   canUnlockUIProBadge,
+  unlockedHackathons,
   hasMergedPullRequests,
   hasHelpfulIssues,
   hasHelpfulComments,
@@ -18,11 +20,14 @@ const badgeName = computed(() => {
   if (canUnlockNuxterBadge.value) badges.push('Nuxter')
   if (canUnlockModuleBadge.value) badges.push('Module Author')
   if (canUnlockUIProBadge.value) badges.push('UI Pro')
+  for (const hackathon of hackathons) {
+    if (unlockedHackathons.value.includes(hackathon.id)) badges.push(hackathon.name)
+  }
   if (badges.length > 0) return badges.join(' + ') + ' badge' + (badges.length > 1 ? 's' : '') + ' unlocked'
   return 'You\'re almost there, keep going!'
 })
 const canUnlockADiscordBadge = computed(() => {
-  return canUnlockNuxterBadge.value || canUnlockModuleBadge.value || canUnlockUIProBadge.value
+  return canUnlockNuxterBadge.value || canUnlockModuleBadge.value || canUnlockUIProBadge.value || unlockedHackathons.value.length > 0
 })
 async function popConfetti() {
   showConfetti.value = false

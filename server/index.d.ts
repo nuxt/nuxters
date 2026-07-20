@@ -3,6 +3,7 @@ declare module 'h3' {
     contributor: Contributor
     canUnlockNuxterBadge: boolean
     canUnlockModuleBadge: boolean
+    unlockedHackathons: string[]
     nuxterRoleAdded: boolean
   }
 }

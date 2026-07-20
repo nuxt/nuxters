@@ -106,6 +106,23 @@ export default defineEventHandler(async (event) => {
     )
   }
 
+  for (const hackathonId of event.context.unlockedHackathons ?? []) {
+    const roleId = config.discord.hackathonRoleIds[hackathonId as keyof typeof config.discord.hackathonRoleIds]
+    if (!roleId) {
+      continue
+    }
+    await $fetch(
+      `https://discord.com/api/guilds/${config.discord.guildId}/members/${session.data.discordId}/roles/${roleId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'user-agent': 'Nuxters (https://nuxters.nuxt.com, 0.1)',
+          'Authorization': `Bot ${config.discord.botToken}`,
+        },
+      },
+    )
+  }
+
   await setUserSession(event, session.data)
 
   return await sendRedirect(event, '/')

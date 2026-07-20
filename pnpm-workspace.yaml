@@ -1,6 +1,16 @@
+overrides:
+  vite: ^8.1.4
+  unhead: ^3.2.1
+  "@unhead/vue": ^3.2.1
+
 allowBuilds:
   "@parcel/watcher": false
   esbuild: false
   sharp: true
   unrs-resolver: false
   vue-demi: false
+
+minimumReleaseAgeExclude:
+  - '@unhead/bundler@3.2.1'
+  - '@unhead/vue@3.2.1'
+  - unhead@3.2.1

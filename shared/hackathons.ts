@@ -53,6 +53,7 @@ export const hackathons: Hackathon[] = [
       { githubId: '5326365', username: 'harlan-zw' },
       { githubId: '640208', username: 'TheAlexLichter' },
       { githubId: '63512348', username: 'huang-julien' },
+      { githubId: '1377702', username: 'serhalp' },
     ],
   },
 ]

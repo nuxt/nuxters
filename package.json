@@ -16,7 +16,7 @@
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.120",
     "@nuxt/eslint": "^1.16.0",
-    "@nuxt/test-utils": "^4.0.3",
+    "@nuxt/test-utils": "^4.1.0",
     "@playwright/test": "^1.62.0",
     "@types/node": "^25.9.5",
     "eslint": "^10.8.0",
@@ -29,20 +29,20 @@
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.92",
-    "@nuxt/devtools": "^3.3.1",
+    "@nuxt/devtools": "^3.4.0",
     "@nuxt/fonts": "^0.14.0",
-    "@nuxt/image": "^2.0.0",
+    "@nuxt/image": "^2.1.0",
     "@nuxt/ui": "^4.10.0",
     "@octokit/plugin-paginate-rest": "^14.0.0",
     "@octokit/plugin-retry": "^8.1.0",
     "@resvg/resvg-js": "^2.6.2",
-    "@takumi-rs/core": "^2.5.0",
+    "@takumi-rs/core": "^2.5.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "@vueuse/core": "^14.3.0",
-    "@vueuse/nuxt": "^14.3.0",
+    "@vueuse/core": "^14.4.0",
+    "@vueuse/nuxt": "^14.4.0",
     "nuxt": "^4.4.8",
-    "nuxt-og-image": "^6.7.4",
+    "nuxt-og-image": "^6.7.5",
     "octokit": "^5.0.5",
     "ofetch": "^1.5.1",
     "satori": "^0.29.0",
@@ -53,5 +53,5 @@
     "vue": "^3.5.40",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@11.17.0"
+  "packageManager": "pnpm@11.18.0"
 }

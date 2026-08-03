@@ -14,16 +14,16 @@
     "test:unit": "vitest --project unit"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.120",
+    "@iconify-json/lucide": "^1.2.121",
     "@nuxt/eslint": "^1.16.0",
     "@nuxt/test-utils": "^4.1.0",
-    "@playwright/test": "^1.62.0",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^25.9.5",
     "eslint": "^10.8.0",
     "tsx": "^4.23.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
-    "vue-tsc": "^3.3.8"
+    "vue-tsc": "^3.3.9"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.3",
@@ -34,9 +34,9 @@
     "@nuxt/image": "^2.1.0",
     "@nuxt/ui": "^4.10.0",
     "@octokit/plugin-paginate-rest": "^14.0.0",
-    "@octokit/plugin-retry": "^8.1.0",
+    "@octokit/plugin-retry": "^8.1.1",
     "@resvg/resvg-js": "^2.6.2",
-    "@takumi-rs/core": "^2.5.3",
+    "@takumi-rs/core": "^2.5.4",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.4.0",

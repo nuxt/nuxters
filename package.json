@@ -33,7 +33,7 @@
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^2.1.0",
     "@nuxt/ui": "^4.10.0",
-    "@octokit/plugin-paginate-rest": "^14.0.0",
+    "@octokit/plugin-paginate-rest": "^15.0.0",
     "@octokit/plugin-retry": "^8.1.1",
     "@resvg/resvg-js": "^2.6.2",
     "@takumi-rs/core": "^2.5.4",

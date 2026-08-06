@@ -4,3 +4,10 @@ allowBuilds:
   sharp: true
   unrs-resolver: false
   vue-demi: false
+
+minimumReleaseAgeExclude:
+  - nuxt
+  - nuxt-nightly
+  - '@nuxt/*'
+  - vue
+  - '@vue/*'

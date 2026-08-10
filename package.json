@@ -14,13 +14,13 @@
     "test:unit": "vitest --project unit"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.121",
-    "@nuxt/eslint": "^1.16.0",
+    "@iconify-json/lucide": "^1.2.122",
+    "@nuxt/eslint": "^1.17.0",
     "@nuxt/test-utils": "^4.1.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^25.9.5",
-    "eslint": "^10.8.0",
-    "tsx": "^4.23.5",
+    "eslint": "^10.8.1",
+    "tsx": "^4.23.11",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.9"
@@ -36,7 +36,7 @@
     "@octokit/plugin-paginate-rest": "^15.0.0",
     "@octokit/plugin-retry": "^8.1.1",
     "@resvg/resvg-js": "^2.6.2",
-    "@takumi-rs/core": "^2.5.5",
+    "@takumi-rs/core": "^2.5.11",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.4.0",
@@ -50,7 +50,7 @@
     "ufo": "^1.6.4",
     "uncrypto": "^0.1.3",
     "unstorage": "^1.17.5",
-    "vue": "^3.5.40",
+    "vue": "^3.5.41",
     "vue-confetti-explosion": "^1.0.2"
   },
   "packageManager": "pnpm@11.20.0"

@@ -23,7 +23,7 @@
     "tsx": "^4.23.12",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
-    "vue-tsc": "^3.3.9"
+    "vue-tsc": "^3.3.10"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.3",
@@ -36,13 +36,13 @@
     "@octokit/plugin-paginate-rest": "^15.0.0",
     "@octokit/plugin-retry": "^8.1.1",
     "@resvg/resvg-js": "^2.6.2",
-    "@takumi-rs/core": "^2.6.1",
+    "@takumi-rs/core": "^2.9.2",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.4.0",
     "@vueuse/nuxt": "^14.4.0",
     "nuxt": "^4.5.2",
-    "nuxt-og-image": "^6.7.6",
+    "nuxt-og-image": "^6.7.8",
     "octokit": "^5.0.5",
     "ofetch": "^1.5.1",
     "satori": "^0.29.0",
@@ -53,5 +53,5 @@
     "vue": "^3.5.41",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@11.21.0"
+  "packageManager": "pnpm@11.22.0"
 }

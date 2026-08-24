@@ -36,7 +36,7 @@
     "@octokit/plugin-paginate-rest": "^15.0.0",
     "@octokit/plugin-retry": "^8.1.1",
     "@resvg/resvg-js": "^2.6.2",
-    "@takumi-rs/core": "^2.10.0",
+    "@takumi-rs/core": "^2.11.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.4.0",

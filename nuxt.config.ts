@@ -1,4 +1,9 @@
+import { createRequire } from 'node:module'
 import { defineNuxtConfig } from 'nuxt/config'
+
+const require = createRequire(import.meta.url)
+// satori >= 0.30 shapes text with harfbuzzjs, whose wasm is loaded at runtime and not traced into the server bundle
+const harfbuzzWasm = createRequire(require.resolve('satori')).resolve('harfbuzzjs/hb.wasm')
 
 export default defineNuxtConfig({
   modules: [
@@ -51,6 +56,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-31',
 
   nitro: {
+    externals: {
+      traceInclude: [harfbuzzWasm],
+    },
     storage: {
       cache: {
         driver: 'http',

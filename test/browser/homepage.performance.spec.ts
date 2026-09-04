@@ -128,7 +128,9 @@ async function measureFrames(page: Page, durationMs: number) {
 
     await new Promise<void>((resolve) => {
       function frame(now: number): void {
-        gaps.push(now - previous)
+        const gap = now - previous
+        if (gap > 0)
+          gaps.push(gap)
         previous = now
         if (now - start >= duration)
           resolve()

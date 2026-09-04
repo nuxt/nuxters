@@ -17,13 +17,14 @@
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.127",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/test-utils": "^4.2.0",
+    "@nuxt/test-utils": "https://pkg.pr.new/@nuxt/test-utils@1802",
     "@playwright/test": "^1.62.1",
     "@types/node": "^25.9.5",
     "eslint": "^10.9.1",
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
     "vitest": "5.0.0",
+    "vitest-environment-nuxt": "https://pkg.pr.new/vitest-environment-nuxt@1802",
     "vue-tsc": "^3.3.11"
   },
   "dependencies": {

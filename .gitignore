@@ -13,3 +13,4 @@ dist
 test-results
 performance-results
 .vercel
+.wrangler

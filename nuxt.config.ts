@@ -17,6 +17,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
+      meta: [{ name: 'color-scheme', content: 'light dark' }],
     },
     pageTransition: false,
   },
@@ -44,6 +45,10 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/people': { redirect: '/#community-map' },
+  },
+
   experimental: {
     viewTransition: true,
   },
@@ -51,15 +56,19 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-31',
 
   nitro: {
-    storage: {
-      cache: {
-        driver: 'http',
-        base: process.env.CACHE_API_URL,
-        headers: {
-          Authorization: `Bearer ${process.env.CACHE_API_TOKEN}`,
-        },
-      },
-    },
+    ...(process.env.CACHE_API_URL && process.env.CACHE_API_TOKEN
+      ? {
+          storage: {
+            cache: {
+              driver: 'http',
+              base: process.env.CACHE_API_URL,
+              headers: {
+                Authorization: `Bearer ${process.env.CACHE_API_TOKEN}`,
+              },
+            },
+          },
+        }
+      : {}),
   },
 
   vite: {
@@ -90,8 +99,13 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    runtimeCacheStorage: {
-      driver: 'vercel-runtime-cache',
+    compatibility: {
+      runtime: {
+        browser: false,
+        resvg: 'wasm',
+        satori: 'wasm',
+        takumi: false,
+      },
     },
   },
 })

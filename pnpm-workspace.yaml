@@ -4,6 +4,7 @@ allowBuilds:
   sharp: true
   unrs-resolver: false
   vue-demi: false
+  workerd: true
 
 minimumReleaseAgeExclude:
   - nuxt
@@ -11,7 +12,8 @@ minimumReleaseAgeExclude:
   - '@nuxt/*'
   - vue
   - '@vue/*'
-  # Vitest 5 is intentionally pinned for the performance benchmark.
+  - cobe-vue@1.0.0
+  # Vitest 5 is intentionally pinned for the performance harness.
   - '@vitest/mocker@5.0.0'
   - '@vitest/spy@5.0.0'
   - vitest@5.0.0

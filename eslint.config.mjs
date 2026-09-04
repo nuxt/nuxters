@@ -4,5 +4,5 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 export default withNuxt(
   // Your custom configs here
 ).append({
-  ignores: ['test/nuxt/color-mode.js'],
+  ignores: ['.wrangler/**', 'test/nuxt/color-mode.js'],
 })

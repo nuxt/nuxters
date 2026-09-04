@@ -85,6 +85,7 @@ async function installObservers(page: Page): Promise<void> {
   await page.addInitScript(() => {
     const metrics = {
       cls: 0,
+      globeReady: 0,
       lcp: 0,
       longTasks: [] as Array<{ duration: number, startTime: number }>,
     }
@@ -109,6 +110,13 @@ async function installObservers(page: Page): Promise<void> {
           metrics.cls += shift.value
       }
     }).observe({ type: 'layout-shift', buffered: true })
+
+    function recordReady(): void {
+      if (!metrics.globeReady && document.querySelector('.people-globe[data-ready="true"]'))
+        metrics.globeReady = performance.now()
+    }
+
+    new MutationObserver(recordReady).observe(document, { attributes: true, childList: true, subtree: true })
   })
 }
 
@@ -120,9 +128,7 @@ async function measureFrames(page: Page, durationMs: number) {
 
     await new Promise<void>((resolve) => {
       function frame(now: number): void {
-        const gap = now - previous
-        if (gap > 0)
-          gaps.push(gap)
+        gaps.push(now - previous)
         previous = now
         if (now - start >= duration)
           resolve()
@@ -166,6 +172,11 @@ test('records production homepage performance', async ({ baseURL, browser, brows
       const response = await page.goto(baseURL!, { waitUntil: 'load' })
       expect(response?.status()).toBe(200)
 
+      const globe = page.locator('.home-people .people-globe')
+      await expect(globe).toHaveAttribute('data-ready', 'true')
+      await expect(globe.locator('canvas')).toBeVisible()
+      expect(await globe.locator('.people-globe__avatar-marker').count()).toBeGreaterThan(20)
+
       const beforeAnimation = await runtimeSnapshot(cdp)
       const frames = await measureFrames(page, 5_000)
       const afterAnimation = await runtimeSnapshot(cdp)
@@ -173,6 +184,7 @@ test('records production homepage performance', async ({ baseURL, browser, brows
         const target = window as typeof window & {
           __nuxtersPerformance?: {
             cls: number
+            globeReady: number
             lcp: number
             longTasks: Array<{ duration: number, startTime: number }>
           }

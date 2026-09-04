@@ -8,6 +8,7 @@
     "collect:contributors": "tsx scripts/collect-contributors.ts",
     "postinstall": "nuxt prepare",
     "test:browser": "playwright test test/browser",
+    "test:performance": "playwright test test/browser/homepage.performance.spec.ts --workers=1",
     "test:browser:update": "docker run --rm --network host -v $(pwd):/work/ -v /tmp/playwright-node-modules:/work/node_modules -w /work/ -it mcr.microsoft.com/playwright:v1.55.1-noble bash -c 'corepack enable && pnpm i && pnpm playwright test test/browser --update-snapshots'",
     "test:nuxt": "vitest --project nuxt",
     "test:types": "vue-tsc -b --noEmit",
@@ -22,7 +23,7 @@
     "eslint": "^10.9.1",
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.11",
+    "vitest": "5.0.0",
     "vue-tsc": "^3.3.11"
   },
   "dependencies": {

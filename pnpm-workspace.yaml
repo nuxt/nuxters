@@ -19,4 +19,4 @@ minimumReleaseAgeExclude:
   - vitest@5.0.0
 
 patchedDependencies:
-  '@nuxt/test-utils@4.2.0': patches/@nuxt__test-utils@4.2.0.patch
+  '@nuxt/test-utils@4.2.0': patches/@nuxt__test-utils@4.2.0-pr-1802.patch

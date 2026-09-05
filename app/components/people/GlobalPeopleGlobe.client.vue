@@ -18,7 +18,7 @@ const exploring = computed(() => props.mode === 'explore')
 // Only serializable camera preferences belong in Nuxt state. WebGL, DOM and
 // frame-by-frame interpolation stay local to this mounted canvas.
 const camera = useState(`people:camera:${props.mode}`, () => ({ phi: 0, theta: 0.16, zoom: 1 }))
-const rotationPaused = useState('people:preview-paused', () => false)
+const rotationPaused = useState(`people:rotation-paused:${props.mode}`, () => false)
 const zoom = ref(camera.value.zoom)
 const markerElements = new Map<string, HTMLElement>()
 const markerCountries = computed(() => {
@@ -70,7 +70,7 @@ function render(now: number) {
   frame = 0
   const elapsed = Math.min(now - previousTime, 64)
   previousTime = now
-  const rotating = !exploring.value && !rotationPaused.value && !hovering && !reducedMotion?.matches
+  const rotating = !rotationPaused.value && (!hovering || exploring.value) && !pointers.size && !reducedMotion?.matches
   if (rotating)
     camera.value.phi += elapsed * 0.00006
   const progress = reducedMotion?.matches || pointers.size ? 1 : 1 - Math.exp(-elapsed / 110)
@@ -92,7 +92,8 @@ function render(now: number) {
     projectGlobePoint(projection, country.location, sinPhi, cosPhi, sinTheta, cosTheta, scale)
     const x = width / 2 + projection.x * height / 2
     const y = height / 2 + projection.y * height / 2
-    const markerWidth = exploring.value ? 26 + String(country.count).length * 7 : 30
+    const hasAvatars = exploring.value && country.id === props.selectedId && zoom.value >= 1.6
+    const markerWidth = exploring.value ? 20 + String(country.count).length * 7 + (hasAvatars ? country.preview.length * 22 + 8 : 0) : 30
     const wasVisible = element.dataset.visible === 'true'
     const front = projection.depth > (wasVisible ? 0.10 : 0.14)
     const fits = x > markerWidth / 2 && x < width - markerWidth / 2 && y > 20 && y < height - 20
@@ -119,11 +120,13 @@ function render(now: number) {
     frame = requestAnimationFrame(render)
 }
 function setZoom(value: number) {
+  rotationPaused.value = true
   zoom.value = clamp(value, 1, 3)
   camera.value = { ...camera.value, zoom: zoom.value }
   schedule()
 }
 function reset() {
+  rotationPaused.value = false
   camera.value = { phi: 0, theta: 0.16, zoom: 1 }
   zoom.value = 1
   emit('select', '')
@@ -133,6 +136,7 @@ function focusCountry() {
   const country = props.countries.find(country => country.id === props.selectedId)
   if (!country)
     return
+  rotationPaused.value = true
   const [latitude, longitude] = country.location
   camera.value = { phi: Math.PI - (longitude * Math.PI / 180 - Math.PI / 2), theta: clamp(latitude * Math.PI / 180, -1.45, 1.45), zoom: 1.8 }
   zoom.value = 1.8
@@ -145,6 +149,7 @@ function distance() {
 function pointerDown(event: PointerEvent) {
   if (!exploring.value)
     return
+  rotationPaused.value = true
   canvas.value?.setPointerCapture(event.pointerId)
   pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
   pinchDistance = distance()
@@ -182,6 +187,7 @@ function keydown(event: KeyboardEvent) {
   const move = moves[event.key]
   if (move) {
     event.preventDefault()
+    rotationPaused.value = true
     camera.value = { ...camera.value, phi: camera.value.phi + move[0], theta: clamp(camera.value.theta + move[1], -1.45, 1.45) }
     schedule()
   }
@@ -190,6 +196,15 @@ function keydown(event: KeyboardEvent) {
     if (event.key === '0') reset()
     else setZoom(zoom.value + (event.key === '-' ? -0.25 : 0.25))
   }
+}
+function wheel(event: WheelEvent) {
+  // Browsers send trackpad pinch as a Ctrl+wheel gesture. Leave ordinary
+  // scrolling and zoom outside the globe to the browser.
+  if (!exploring.value || !event.ctrlKey)
+    return
+  event.preventDefault()
+  const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? height : 1)
+  setZoom(camera.value.zoom * Math.exp(-delta * 0.01))
 }
 function hover(value: boolean) {
   hovering = value
@@ -218,7 +233,7 @@ onMounted(() => {
       throw new Error('WebGL unavailable')
     globe = createGlobe(canvas.value, {
       width: 1, height: 1, devicePixelRatio: Math.min(devicePixelRatio || 1, innerWidth < 768 ? 1.5 : 2),
-      phi, theta, scale: 0.98, dark: 0.85, diffuse: 1.2, mapSamples: 12000,
+      phi, theta, scale: 0.98, dark: 0.85, diffuse: 1.2, mapSamples: exploring.value ? 32000 : 12000,
       mapBrightness: 3.5, mapBaseBrightness: 0.04, baseColor: [0.24, 0.4, 0.45],
       markerColor: [0, 0.86, 0.51], glowColor: [0.015, 0.035, 0.04], markers: [],
     })
@@ -241,6 +256,7 @@ onMounted(() => {
     else stop()
   })
   visibilityObserver.observe(container.value)
+  container.value.addEventListener('wheel', wheel, { passive: false })
   document.addEventListener('visibilitychange', documentVisibility)
   reducedMotion.addEventListener('change', schedule)
   ready.value = true
@@ -251,6 +267,7 @@ onBeforeUnmount(() => {
   stop()
   sizeObserver?.disconnect()
   visibilityObserver?.disconnect()
+  container.value?.removeEventListener('wheel', wheel)
   document.removeEventListener('visibilitychange', documentVisibility)
   reducedMotion?.removeEventListener('change', schedule)
   globe?.destroy()
@@ -301,7 +318,21 @@ onBeforeUnmount(() => {
         @click="emit('select', country.id)"
       >
         <template v-if="exploring">
-          <span class="people-globe__dot" />{{ country.count.toLocaleString('en-US') }}
+          <span
+            v-if="country.id === selectedId && zoom >= 1.6"
+            class="people-globe__avatars"
+            aria-hidden="true"
+          >
+            <NuxtImg
+              v-for="username in country.preview"
+              :key="username"
+              :src="username"
+              width="32"
+              height="32"
+              alt=""
+            />
+          </span>
+          {{ country.count.toLocaleString('en-US') }}
         </template>
         <NuxtImg
           v-else
@@ -326,6 +357,14 @@ onBeforeUnmount(() => {
       role="group"
       aria-label="Globe controls"
     >
+      <UButton
+        :icon="rotationPaused ? 'i-lucide-play' : 'i-lucide-pause'"
+        :aria-label="rotationPaused ? 'Resume globe rotation' : 'Pause globe rotation'"
+        :aria-pressed="rotationPaused"
+        color="neutral"
+        variant="ghost"
+        @click="rotationPaused = !rotationPaused"
+      />
       <UButton
         icon="i-lucide-plus"
         aria-label="Zoom in"
@@ -375,7 +414,8 @@ onBeforeUnmount(() => {
 .people-globe__marker[data-visible="true"] { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
 @media (prefers-reduced-motion: reduce) { .people-globe__marker { transition-duration: 80ms, 0s; transition-delay: 0s, 80ms; } .people-globe__marker[data-visible="true"] { transition-delay: 0s; } }
 .people-globe__marker:hover, .people-globe__marker:focus-visible, .people-globe__marker.is-selected { border-color: var(--ui-primary); outline: 2px solid #00dc8255; outline-offset: 2px; z-index: 2; }
-.people-globe__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ui-primary); }
+.people-globe__avatars { display: flex; padding-left: 6px; }
+.people-globe__avatars img { width: 28px; height: 28px; margin-left: -6px; border: 2px solid #071b18; border-radius: 50%; }
 .people-globe__marker.is-avatar { width: 30px; min-width: 0; height: 30px; padding: 0; overflow: hidden; }
 .people-globe__marker img { width: 100%; height: 100%; object-fit: cover; }
 .people-globe__controls { position: absolute; left: 24px; bottom: 24px; display: flex; border: 1px solid #ffffff20; border-radius: 12px; padding: 4px; background: #080e13ee; }

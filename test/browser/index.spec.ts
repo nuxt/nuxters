@@ -18,7 +18,7 @@ test('homepage offers a compact globe and a link to the people directory', async
   expect(await globe.locator('.people-globe__marker').count()).toBeLessThanOrEqual(64)
   await page.getByRole('link', { name: 'Explore the community' }).click()
   await expect(page).toHaveURL(/\/people$/)
-  await expect(page.getByRole('heading', { name: 'A world of Nuxters.' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'People of Nuxt' })).toBeVisible()
 })
 
 test('directory filters, paginates and restores filters through browser history', async ({ page, goto }) => {
@@ -148,4 +148,29 @@ test('settled globe stops WebGL work and rotation does not resize its drawing bu
   await page.keyboard.press('ArrowRight')
   await expect.poll(async () => (await counts()).draws).toBeGreaterThan(settled.draws)
   expect((await counts()).resizes).toBe(settled.resizes)
+})
+
+test('explorer rotates until interaction and supports trackpad pinch and avatar previews', async ({ page, goto }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await goto('/people', { waitUntil: 'hydration' })
+  const globe = page.locator('.people-globe')
+  await expect(globe).toHaveAttribute('data-ready', 'true')
+  const initial = await globe.getAttribute('data-rotation')
+  await expect.poll(() => globe.getAttribute('data-rotation')).not.toBe(initial)
+  await page.getByLabel('Country', { exact: true }).selectOption('country-fr')
+  await expect(globe.locator('.people-globe__avatars img')).toHaveCount(3)
+  await expect(page.getByRole('button', { name: 'Resume globe rotation', exact: true })).toBeVisible()
+  await globe.dispatchEvent('wheel', { ctrlKey: true, deltaY: -30, deltaMode: 0 })
+  await expect.poll(async () => Number(await globe.getAttribute('data-zoom'))).toBeGreaterThan(1.8)
+  const pinched = await globe.getAttribute('data-zoom')
+  await globe.dispatchEvent('wheel', { ctrlKey: false, deltaY: 100 })
+  await expect(globe).toHaveAttribute('data-zoom', pinched!)
+  await expect.poll(async () => {
+    const before = await globe.getAttribute('data-rotation')
+    await page.waitForTimeout(250)
+    return await globe.getAttribute('data-rotation') === before
+  }, { timeout: 10_000 }).toBe(true)
+  const settled = await globe.getAttribute('data-rotation')
+  await page.getByRole('button', { name: 'Resume globe rotation', exact: true }).click()
+  await expect.poll(() => globe.getAttribute('data-rotation')).not.toBe(settled)
 })

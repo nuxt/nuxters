@@ -26,13 +26,13 @@ The immutable country index is built once per server instance from `public/peopl
 
 ## Render only when needed
 
-COBE renders directly into the available map area. Marker coordinates use the canvas height, matching COBE's aspect-ratio correction. Desktop overlays a side panel; mobile overlays an expandable bottom panel. There is no separate square globe window exposed by zoom.
+COBE renders directly into the available map area. Marker coordinates use the canvas height, matching COBE's aspect-ratio correction. Desktop overlays a two-column people directory; mobile overlays an expandable bottom panel with the same grid. Location details are expandable in the footer. A gradient fades the top of the globe into the header background. There is no separate square globe window exposed by zoom.
 
-The explorer renders while the camera changes and stops when it settles. The homepage rotates unless paused, hovered, or reduced motion is enabled. Both stop when hidden or outside the viewport. Unmounting cancels the pending frame, disconnects observers, removes listeners, and destroys WebGL resources.
+The explorer rotates automatically until paused or interacted with. Selecting a country, dragging, using arrow keys, or zooming pauses rotation; the play control resumes it. The homepage rotates unless paused, hovered, or reduced motion is enabled. Reduced motion disables automatic rotation in both modes. Both stop when hidden or outside the viewport, and a paused globe stops drawing once the camera settles. Unmounting cancels the pending frame, disconnects observers, removes listeners, and destroys WebGL resources.
 
 Drawing-buffer dimensions are sent to COBE only after a resize. Pixel density is capped at 1.5 on small screens and 2 on larger screens. Country markers avoid overlaps; the searchable list remains the complete way to find people whose markers are hidden.
 
-The canvas supports arrow keys, plus/minus, and zero to reset. Country selection and pagination also work without the canvas. WebGL failure leaves the directory available.
+The canvas supports arrow keys, plus/minus, and zero to reset. Trackpad pinch uses Ctrl+wheel inside the globe only; ordinary wheel scrolling and browser zoom elsewhere remain native. Selecting a country at zoom 1.6 or above reveals its three preview avatars beside its count. These are country samples, not precise individual locations. Country selection and pagination also work without the canvas. WebGL failure leaves the directory available.
 
 ## Maintain the COBE patch
 

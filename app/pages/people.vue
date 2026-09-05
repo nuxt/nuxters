@@ -326,7 +326,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
   .people-explorer__map :deep(.people-globe__controls button) { width: 36px; height: 36px; }
   .people-explorer__curtain { inset: auto 0 0; width: 100%; height: 100px; background: linear-gradient(transparent, var(--color-neutral-950)); }
   .people-explorer__hint { display: none; }
-  .people-panel { inset: auto 0 0; width: 100%; height: 43%; border-radius: 0; border-left: 0;  background: var(--color-neutral-950); }
+  .people-panel { inset: auto 0 0; width: 100%; height: clamp(220px, 30%, 280px); border-radius: 0; border-left: 0;  background: var(--color-neutral-950); }
   .people-explorer--expanded .people-panel { height: 80%; }
   .people-panel__toggle { display: flex; flex-shrink: 0; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 38px; padding-top: 9px; color: #9eacb9; font-size: 10px; position: relative; }
   .people-panel__handle { position: absolute; top: 7px; left: calc(50% - 16px); width: 32px; height: 3px; border-radius: 4px; background: #53616d; }

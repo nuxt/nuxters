@@ -17,6 +17,7 @@ const ORGS = [
 const HELPFUL_REACTIONS_THRESHOLD = 3
 const HELPFUL_COMMENTS_THRESHOLD = 5
 const OUTPUT_FILE = resolve(fileURLToPath(new URL('../public/contributors.json', import.meta.url)))
+const OUTPUT_META_FILE = resolve(fileURLToPath(new URL('../public/contributors-meta.json', import.meta.url)))
 const USER_AGENT = 'nuxters-contributor-collector'
 const KNOWN_BOT_ACCOUNTS = ['codecov-io', 'codecov-commenter']
 
@@ -299,7 +300,10 @@ const buildContributorRecords = () => {
 
 const saveContributors = async (data: ContributorRecord[]) => {
   await mkdir(dirname(OUTPUT_FILE), { recursive: true })
-  await writeFile(OUTPUT_FILE, `${JSON.stringify(data, null, 2)}\n`, 'utf8')
+  await Promise.all([
+    writeFile(OUTPUT_FILE, `${JSON.stringify(data, null, 2)}\n`, 'utf8'),
+    writeFile(OUTPUT_META_FILE, `${JSON.stringify({ count: data.length }, null, 2)}\n`, 'utf8'),
+  ])
   console.log(`Wrote ${data.length} contributors to ${OUTPUT_FILE}`)
 }
 

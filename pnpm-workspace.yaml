@@ -4,6 +4,7 @@ allowBuilds:
   sharp: true
   unrs-resolver: false
   vue-demi: false
+  workerd: true
 
 minimumReleaseAgeExclude:
   - nuxt
@@ -11,3 +12,15 @@ minimumReleaseAgeExclude:
   - '@nuxt/*'
   - vue
   - '@vue/*'
+  # Vitest 5 is intentionally pinned for the performance harness.
+  - '@vitest/mocker@5.0.0'
+  - '@vitest/spy@5.0.0'
+  - vitest@5.0.0
+
+patchedDependencies:
+  '@nuxt/test-utils@4.2.0': patches/@nuxt__test-utils@4.2.0-pr-1802.patch
+  cobe@2.0.1: patches/cobe@2.0.1.patch
+
+# Keep Miniflare's error renderer on the trusted stable release used by Nuxt.
+overrides:
+  miniflare>youch: 4.1.1

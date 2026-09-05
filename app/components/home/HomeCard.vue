@@ -49,36 +49,50 @@ onMounted(() => {
 
 <template>
   <div
+    v-if="!linked.github"
+    class="grid justify-items-start gap-2 sm:justify-items-center"
+  >
+    <UButton
+      icon="i-simple-icons-github"
+      label="Check my GitHub contributions"
+      to="/connect/github"
+      external
+      size="lg"
+      class="shrink-0"
+    />
+    <div class="flex max-w-sm items-center gap-1 text-xs text-muted">
+      <span>We never store your GitHub token.</span>
+      <UPopover
+        :content="{ side: 'bottom', align: 'center', sideOffset: 4 }"
+      >
+        <UButton
+          icon="i-lucide-info"
+          aria-label="How we use your GitHub data"
+          color="neutral"
+          variant="ghost"
+          size="xs"
+          square
+        />
+
+        <template #content>
+          <p class="max-w-72 p-3 text-xs leading-5 text-muted">
+            We keep only the account details needed to match contributions and grant Discord roles in a secure session cookie.
+          </p>
+        </template>
+      </UPopover>
+    </div>
+  </div>
+
+  <div
+    v-else
     class="relative w-full md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5"
   >
     <UPageCard
       class="md:max-w-100 lg:max-w-150 min-h-75 md:min-h-87.5 lg:min-h-55.5"
       :class="{ 'hover:ring-primary/60': linked.github && canUnlockNuxterBadge }"
-      :to="!!linked.github ? `/${contributor.username}` : undefined"
+      :to="`/${contributor.username}`"
     >
-      <!-- github connect -->
       <div
-        v-if="!linked.github"
-        class="flex gap-y-6 flex-col justify-center items-center"
-      >
-        <p class="text-xl text-neutral-50 text-center">
-          Unlock your role on Nuxt Discord server.
-        </p>
-        <UButton
-          icon="i-simple-icons-github"
-          class="relative px-7 max-w-fit hover:bg-neutral-700"
-          variant="outline"
-          color="neutral"
-          aria-label="connect with GitHub"
-          label="Connect with GitHub"
-          to="/connect/github"
-          external
-        />
-      </div>
-
-      <!-- linked to github -->
-      <div
-        v-else-if="linked.github"
         class="w-full h-full"
       >
         <img

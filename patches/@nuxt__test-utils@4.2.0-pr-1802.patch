@@ -1,0 +1,11 @@
+diff --git a/dist/vitest-environment.mjs b/dist/vitest-environment.mjs
+--- a/dist/vitest-environment.mjs
++++ b/dist/vitest-environment.mjs
+@@ -244,6 +244,6 @@
+ };
+ async function importVitestEnvironments() {
+-	return await (resolveModulePath("vitest/runtime", { try: true }) ? import("vitest/runtime") : import("vitest/environments"));
++	return await import("vitest/runtime");
+ }
+ var IntersectionObserver = class {
+ 	observe() {}

@@ -10,8 +10,11 @@ function normalizeMergedPRs(value: number | MergedPullRequests): MergedPullReque
 
 export const fetchContributors = cachedFunction<Contributor[]>(async (event) => {
   const origin = process.env.NUXT_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || getRequestURL(event).origin
+  const assets = event.context._platform?.cloudflare?.env?.ASSETS as { fetch: typeof fetch } | undefined
+  const raw = assets
+    ? await assets.fetch(new URL('/contributors.json', origin)).then(response => response.json() as Promise<Contributor[]>)
+    : await $fetch<Contributor[]>(`${origin}/contributors.json`)
 
-  const raw = await $fetch<Contributor[]>(`${origin}/contributors.json`)
   return raw.map(c => ({
     ...c,
     merged_pull_requests: normalizeMergedPRs(c.merged_pull_requests),

@@ -32,7 +32,7 @@ The explorer rotates automatically until paused or interacted with. Selecting a 
 
 Drawing-buffer dimensions are sent to COBE only after a resize. Pixel density is capped at 1.5 on small screens and 2 on larger screens. Country markers avoid overlaps; the searchable list remains the complete way to find people whose markers are hidden.
 
-The canvas supports arrow keys, plus/minus, and zero to reset. Trackpad pinch uses Ctrl+wheel inside the globe only; ordinary wheel scrolling and browser zoom elsewhere remain native. Selecting a country at zoom 1.6 or above reveals its three preview avatars beside its count. Clicking a person in the directory turns the globe to their country without changing the directory filters. Their avatar appears first in the country preview, and a separate profile link opens their contributions. These are country samples, not precise individual locations. Country selection and pagination also work without the canvas. WebGL failure leaves the directory available.
+The canvas supports arrow keys, plus/minus, and zero to reset. Trackpad pinch uses Ctrl+wheel inside the globe only; ordinary wheel scrolling and browser zoom elsewhere remain native. At zoom 1.6 or above, country counts fade into avatar previews. The selected country shows up to three avatars; other countries show one. Zooming out restores the count pills. Clicking a person in the directory turns the globe to their country without changing the directory filters. Their avatar appears first in the country preview, and a separate profile link opens their contributions. These are country samples, not precise individual locations. Country selection and pagination also work without the canvas. WebGL failure leaves the directory available.
 
 ## Maintain the COBE patch
 

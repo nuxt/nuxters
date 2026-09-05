@@ -19,6 +19,10 @@ const { data: results, status, error, refresh } = await useFetch<PeopleResults>(
 const focusedPerson = ref<PeopleEntry | null>(null)
 const focusRequest = ref(0)
 watch(country, () => focusedPerson.value = null)
+function selectMapCountry(value: string) {
+  focusedPerson.value = null
+  return selectCountry(value)
+}
 function locatePerson(person: PeopleEntry) {
   focusedPerson.value = person
   focusRequest.value++
@@ -40,7 +44,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
       <h1>People <span class="ml-1">of Nuxt</span></h1>
       <p aria-live="polite">
         <template v-if="focusedPerson">
-          {{ focusedPerson.username }} · {{ focusedPerson.country }}
+          Showing @{{ focusedPerson.username }} in {{ focusedPerson.country }}
         </template>
         <template v-else-if="people">
           {{ people.mappedContributors.toLocaleString('en-US') }} people · {{ people.countries.length }} countries
@@ -57,7 +61,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
           :selected-id="focusedPerson?.countryId || country"
           :focus-request="focusRequest"
           :focused-username="focusedPerson?.username"
-          @select="selectCountry"
+          @select="selectMapCountry"
         />
         <template #fallback>
           <div

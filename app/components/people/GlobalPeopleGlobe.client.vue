@@ -22,6 +22,7 @@ const exploring = computed(() => props.mode === 'explore')
 const camera = useState(`people:camera:${props.mode}`, () => ({ phi: 0, theta: 0.16, zoom: 1 }))
 const rotationPaused = useState(`people:rotation-paused:${props.mode}`, () => false)
 const zoom = ref(camera.value.zoom)
+const avatarMode = computed(() => exploring.value && zoom.value >= 1.6)
 const markerElements = new Map<string, HTMLElement>()
 const markerCountries = computed(() => {
   const countries = props.countries.map(country => country.id === props.selectedId && props.focusedUsername
@@ -97,8 +98,9 @@ function render(now: number) {
     projectGlobePoint(projection, country.location, sinPhi, cosPhi, sinTheta, cosTheta, scale)
     const x = width / 2 + projection.x * height / 2
     const y = height / 2 + projection.y * height / 2
-    const hasAvatars = exploring.value && country.id === props.selectedId && zoom.value >= 1.6
-    const markerWidth = exploring.value ? 20 + String(country.count).length * 7 + (hasAvatars ? country.preview.length * 22 + 8 : 0) : 30
+    const markerWidth = avatarMode.value
+      ? (country.id === props.selectedId ? 32 + (country.preview.length - 1) * 24 : 32)
+      : exploring.value ? 20 + country.count.toLocaleString('en-US').length * 7 : 30
     const wasVisible = element.dataset.visible === 'true'
     const front = projection.depth > (wasVisible ? 0.10 : 0.14)
     const fits = x > markerWidth / 2 && x < width - markerWidth / 2 && y > 20 && y < height - 20
@@ -226,7 +228,7 @@ function documentVisibility() {
   }
   else schedule()
 }
-watch([markerCountries, rotationPaused], schedule, { flush: 'post' })
+watch([markerCountries, rotationPaused, avatarMode], schedule, { flush: 'post' })
 watch([() => props.selectedId, () => props.focusRequest], focusCountry)
 
 onMounted(() => {
@@ -315,30 +317,41 @@ onBeforeUnmount(() => {
         inert
         type="button"
         class="people-globe__marker"
-        :class="{ 'is-selected': selectedId === country.id, 'is-avatar': !exploring }"
+        :class="{ 'is-selected': selectedId === country.id, 'is-avatar': !exploring, 'is-avatar-group': avatarMode }"
         :data-country="country.id"
         :title="`${country.label} · ${country.count.toLocaleString('en-US')}`"
         :aria-label="`${country.label}, ${country.count.toLocaleString('en-US')} ${country.count === 1 ? 'contributor' : 'contributors'}`"
         :aria-pressed="exploring ? selectedId === country.id : undefined"
         @click="emit('select', country.id)"
       >
-        <template v-if="exploring">
+        <Transition
+          v-if="exploring"
+          name="marker-content"
+          mode="out-in"
+          @after-enter="schedule"
+        >
           <span
-            v-if="country.id === selectedId && zoom >= 1.6"
+            v-if="avatarMode"
+            key="avatars"
             class="people-globe__avatars"
             aria-hidden="true"
           >
             <NuxtImg
-              v-for="username in country.preview"
+              v-for="username in country.id === selectedId ? country.preview : country.preview.slice(0, 1)"
               :key="username"
               :src="username"
               width="32"
               height="32"
               alt=""
+              loading="lazy"
             />
           </span>
-          {{ country.count.toLocaleString('en-US') }}
-        </template>
+          <span
+            v-else
+            key="count"
+            class="people-globe__count"
+          >{{ country.count.toLocaleString('en-US') }}</span>
+        </Transition>
         <NuxtImg
           v-else
           :src="country.preview[0]"
@@ -414,15 +427,19 @@ onBeforeUnmount(() => {
 .people-globe__canvas--interactive { cursor: grab; touch-action: none; }
 .people-globe__canvas--interactive:active { cursor: grabbing; }
 .people-globe__canvas:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: -4px; }
-.people-globe__marker { position: absolute; inset: 0 auto auto 0; display: flex; align-items: center; gap: 6px; min-width: 38px; height: 30px; padding: 0 9px; border: 1px solid #31554c; border-radius: 999px; background: #071b18; color: #d8f9ec; font: 600 11px/1 var(--font-sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.people-globe__marker { position: absolute; inset: 0 auto auto 0; display: flex; align-items: center; gap: 6px; width: max-content; min-width: 0; height: 30px; padding: 0 9px; border: 1px solid #31554c; border-radius: 999px; background: #071b18; color: #d8f9ec; font: 600 11px/1 var(--font-sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .people-globe__marker { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease-out, visibility 0s linear 160ms; }
 .people-globe__marker[data-visible="true"] { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
 @media (prefers-reduced-motion: reduce) { .people-globe__marker { transition-duration: 80ms, 0s; transition-delay: 0s, 80ms; } .people-globe__marker[data-visible="true"] { transition-delay: 0s; } }
 .people-globe__marker:hover, .people-globe__marker:focus-visible, .people-globe__marker.is-selected { border-color: var(--ui-primary); outline: 2px solid #00dc8255; outline-offset: 2px; z-index: 2; }
-.people-globe__avatars { display: flex; padding-left: 6px; }
-.people-globe__avatars img { width: 28px; height: 28px; margin-left: -6px; border: 2px solid #071b18; border-radius: 50%; }
+.people-globe__marker.is-avatar-group { padding: 0; height: 32px; border: 0; background: transparent; }
+.people-globe__avatars { display: flex; padding-left: 8px; }
+.people-globe__avatars img { max-width: none; object-fit: cover; width: 32px; height: 32px; margin-left: -8px; border: 2px solid #071b18; border-radius: 50%; flex-shrink: 0; }
+.marker-content-enter-active, .marker-content-leave-active { transition: opacity 120ms ease-out; }
+.marker-content-enter-from, .marker-content-leave-to { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .marker-content-enter-active, .marker-content-leave-active { transition-duration: 0s; } }
 .people-globe__marker.is-avatar { width: 30px; min-width: 0; height: 30px; padding: 0; overflow: hidden; }
-.people-globe__marker img { width: 100%; height: 100%; object-fit: cover; }
+.people-globe__marker.is-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .people-globe__controls { position: absolute; left: 24px; bottom: 24px; display: flex; border: 1px solid #ffffff20; border-radius: 12px; padding: 4px; background: #080e13ee; }
 .people-globe__controls :deep(button) { width: 44px; height: 44px; justify-content: center; }
 .people-globe__pause { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); }

@@ -69,7 +69,7 @@ test('globe supports keyboard zoom, country selection and a stable resized view'
   const before = await fixedMarker.evaluate(element => element.style.transform)
   await page.setViewportSize({ width: 1100, height: 800 })
   await expect.poll(() => fixedMarker.evaluate(element => element.style.transform)).not.toBe(before)
-  await globe.locator('.people-globe__marker:not([hidden])').first().click()
+  await globe.locator('.people-globe__marker[data-visible="true"]').first().click()
   await expect(page).toHaveURL(/country=/)
 })
 

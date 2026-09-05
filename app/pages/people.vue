@@ -228,7 +228,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 </template>
 
 <style scoped>
-.people-explorer { position: relative; height: 100%; overflow: hidden; background: radial-gradient(ellipse at 35% 55%, #072c242e, transparent 65%), #05080e; color: #dbe5ed; }
+.people-explorer { position: relative; height: 100%; overflow: hidden; background: var(--color-neutral-950); color: #dbe5ed; }
 .people-explorer__heading { position: absolute; z-index: 2; top: 32px; left: 40px; pointer-events: none; }
 .people-explorer__eyebrow { display: flex; align-items: center; gap: 8px; color: #82978f; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .16em; }
 .people-explorer__eyebrow span { width: 5px; height: 5px; background: var(--ui-primary); border-radius: 50%; }
@@ -237,9 +237,9 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 .people-explorer__heading > p:last-child { margin-top: 12px; color: #8d9caa; font-size: 12px; }
 .people-explorer__map { position: absolute; inset: 0 340px 0 0; }
 .people-explorer__loading { position: absolute; inset: 15%; border-radius: 50%; background: radial-gradient(circle, #0d2620, transparent 68%); }
-.people-explorer__curtain { position: absolute; inset: 0 0 0 auto; width: 100px; background: linear-gradient(to right, transparent, #05080e); pointer-events: none; }
+.people-explorer__curtain { position: absolute; inset: 0 0 0 auto; width: 100px; background: linear-gradient(to right, transparent, var(--color-neutral-950)); pointer-events: none; }
 .people-explorer__hint { position: absolute; left: 210px; bottom: 43px; color: #61766f; font-size: 11px; pointer-events: none; }
-.people-panel { position: absolute; z-index: 3; width: 380px; inset: 24px 24px 24px auto; display: flex; flex-direction: column; border: 1px solid #ffffff12; border-radius: 20px; background: #0b1018f5; box-shadow: 0 24px 64px #0004; overflow: hidden; }
+.people-panel { position: absolute; z-index: 3; width: 380px; inset: 24px 24px 24px auto; display: flex; flex-direction: column; border: 1px solid #ffffff12; border-radius: 20px; background: color-mix(in srgb, var(--color-neutral-950) 96%, white); box-shadow: 0 24px 64px #0004; overflow: hidden; }
 .people-panel__header { padding: 24px 24px 18px; border-bottom: 1px solid #ffffff0d; }
 .people-panel h2 { font-size: 19px; font-weight: 550; color: #f1f6f9; letter-spacing: -.025em; }
 .people-panel__count { border: 1px solid #00dc8229; border-radius: 7px; padding: 4px 7px; color: var(--ui-primary); background: #00dc820a; font-size: 11px; font-variant-numeric: tabular-nums; }
@@ -271,9 +271,9 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
   .people-explorer__map { inset: 0 0 25%; }
   .people-explorer__map :deep(.people-globe__controls) { top: 105px; left: 12px; flex-direction: column; }
   .people-explorer__map :deep(.people-globe__controls button) { width: 36px; height: 36px; }
-  .people-explorer__curtain { inset: auto 0 0; width: 100%; height: 100px; background: linear-gradient(transparent, #05080e); }
+  .people-explorer__curtain { inset: auto 0 0; width: 100%; height: 100px; background: linear-gradient(transparent, var(--color-neutral-950)); }
   .people-explorer__hint { display: none; }
-  .people-panel { inset: auto 0 0; width: 100%; height: 43%; border-radius: 22px 22px 0 0; border-bottom: 0; background: #0b1018; }
+  .people-panel { inset: auto 0 0; width: 100%; height: 43%; border-radius: 22px 22px 0 0; border-bottom: 0; background: color-mix(in srgb, var(--color-neutral-950) 96%, white); }
   .people-explorer--expanded .people-panel { height: 80%; }
   .people-panel__toggle { display: flex; flex-shrink: 0; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 38px; padding-top: 9px; color: #9eacb9; font-size: 10px; position: relative; }
   .people-panel__handle { position: absolute; top: 7px; left: calc(50% - 16px); width: 32px; height: 3px; border-radius: 4px; background: #53616d; }

@@ -93,17 +93,24 @@ function render(now: number) {
     const x = width / 2 + projection.x * height / 2
     const y = height / 2 + projection.y * height / 2
     const markerWidth = exploring.value ? 26 + String(country.count).length * 7 : 30
-    const front = projection.depth > 0.12
+    const wasVisible = element.dataset.visible === 'true'
+    const front = projection.depth > (wasVisible ? 0.10 : 0.14)
     const fits = x > markerWidth / 2 && x < width - markerWidth / 2 && y > 20 && y < height - 20
-    const hasRoom = occupied.every(other => Math.abs(other.x - x) > (other.width + markerWidth) / 2 + 6 || Math.abs(other.y - y) > 34)
+    const gap = wasVisible ? 4 : 8
+    const hasRoom = occupied.every(other => Math.abs(other.x - x) > (other.width + markerWidth) / 2 + gap || Math.abs(other.y - y) > 28 + gap)
     const show = front && fits && hasRoom
-    element.hidden = !show
-    if (show) {
+    if (show !== wasVisible) {
+      element.dataset.visible = String(show)
+      element.inert = !show
+    }
+    // Keep positions tied to the globe; CSS only interpolates visibility.
+    if (show || wasVisible) {
       const transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) translate(-50%, -50%)`
       if (element.style.transform !== transform)
         element.style.transform = transform
-      occupied.push({ x, y, width: markerWidth })
     }
+    if (show)
+      occupied.push({ x, y, width: markerWidth })
   }
   if (container.value)
     container.value.dataset.rotation = phi.toFixed(4)
@@ -282,7 +289,8 @@ onBeforeUnmount(() => {
         v-for="country in markerCountries"
         :key="country.id"
         :ref="element => markerRef(country.id, element)"
-        hidden
+        data-visible="false"
+        inert
         type="button"
         class="people-globe__marker"
         :class="{ 'is-selected': selectedId === country.id, 'is-avatar': !exploring }"
@@ -363,7 +371,9 @@ onBeforeUnmount(() => {
 .people-globe__canvas--interactive:active { cursor: grabbing; }
 .people-globe__canvas:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: -4px; }
 .people-globe__marker { position: absolute; inset: 0 auto auto 0; display: flex; align-items: center; gap: 6px; min-width: 38px; height: 30px; padding: 0 9px; border: 1px solid #31554c; border-radius: 999px; background: #071b18; color: #d8f9ec; font: 600 11px/1 var(--font-sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.people-globe__marker[hidden] { display: none; }
+.people-globe__marker { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease-out, visibility 0s linear 160ms; }
+.people-globe__marker[data-visible="true"] { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
+@media (prefers-reduced-motion: reduce) { .people-globe__marker { transition-duration: 80ms, 0s; transition-delay: 0s, 80ms; } .people-globe__marker[data-visible="true"] { transition-delay: 0s; } }
 .people-globe__marker:hover, .people-globe__marker:focus-visible, .people-globe__marker.is-selected { border-color: var(--ui-primary); outline: 2px solid #00dc8255; outline-offset: 2px; z-index: 2; }
 .people-globe__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ui-primary); }
 .people-globe__marker.is-avatar { width: 30px; min-width: 0; height: 30px; padding: 0; overflow: hidden; }

@@ -51,7 +51,7 @@ export function createPeopleDirectory(snapshot: PeopleSnapshot) {
   function search(options: { country?: string, q?: string, page?: number }): PeopleResults {
     const query = (options.q ?? '').trim().toLowerCase().slice(0, 100)
     const matches = searchable.filter(({ entry, text }) => (!options.country || entry.countryId === options.country) && (!query || text.includes(query)))
-    const pageSize = 24
+    const pageSize = 48
     const pages = Math.max(1, Math.ceil(matches.length / pageSize))
     const page = Math.min(pages, Math.max(1, Math.trunc(options.page || 1)))
     return {

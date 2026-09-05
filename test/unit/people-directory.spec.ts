@@ -5,22 +5,22 @@ import { parseProfileBatch } from '../../scripts/utils/github-profiles'
 const directory = createPeopleDirectory({
   generatedAt: '2026-09-05', totalContributors: 100,
   locations: [
-    { id: 'country-fr', country: 'France', location: [46, 2], people: Array.from({ length: 30 }, (_, i) => `person${String(i).padStart(2, '0')}`) },
+    { id: 'country-fr', country: 'France', location: [46, 2], people: Array.from({ length: 60 }, (_, i) => `person${String(i).padStart(2, '0')}`) },
     { id: 'country-es', country: 'Spain', location: [40, -3], people: ['onmax', 'PERSON00'] },
   ],
 })
 
 describe('people directory', () => {
   it('returns a small summary while keeping every contributor discoverable', () => {
-    expect(directory.summary.mappedContributors).toBe(31)
-    expect(directory.summary.countries[0]?.count).toBe(30)
+    expect(directory.summary.mappedContributors).toBe(61)
+    expect(directory.summary.countries[0]?.count).toBe(60)
     expect(directory.summary.countries[0]?.preview).toHaveLength(3)
     const first = directory.search({ country: 'country-fr' })
     const second = directory.search({ country: 'country-fr', page: 2 })
-    expect(first.total).toBe(30)
-    expect(first.items).toHaveLength(24)
-    expect(second.items).toHaveLength(6)
-    expect(new Set([...first.items, ...second.items].map(item => item.username)).size).toBe(30)
+    expect(first.total).toBe(60)
+    expect(first.items).toHaveLength(48)
+    expect(second.items).toHaveLength(12)
+    expect(new Set([...first.items, ...second.items].map(item => item.username)).size).toBe(60)
   })
   it('combines case-insensitive search with country filters and clamps pages', () => {
     expect(directory.search({ q: 'ONMAX' }).items[0]?.username).toBe('onmax')

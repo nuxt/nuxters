@@ -24,7 +24,7 @@ test('homepage offers a compact globe and a link to the people directory', async
 test('directory filters, paginates and restores filters through browser history', async ({ page, goto }) => {
   await goto('/people', { waitUntil: 'hydration' })
   const list = page.getByRole('list', { name: 'Contributors', exact: true })
-  await expect(list.locator('li')).toHaveCount(24)
+  await expect(list.locator('li')).toHaveCount(48)
   const first = await list.locator('a').first().getAttribute('href')
   await page.getByRole('button', { name: 'Next page', exact: true }).click()
   await expect(page).toHaveURL(/page=2/)
@@ -33,7 +33,7 @@ test('directory filters, paginates and restores filters through browser history'
   await expect(page).toHaveURL(/country=country-fr/)
   await expect(page).not.toHaveURL(/page=/)
   await expect(page.getByRole('heading', { name: 'France', exact: true })).toBeVisible()
-  await expect(list.locator('li')).toHaveCount(24)
+  await expect(list.locator('li')).toHaveCount(48)
   await page.goBack()
   await expect(page).toHaveURL(/page=2/)
   await expect(page.getByLabel('Country', { exact: true })).toHaveValue('')
@@ -49,7 +49,7 @@ test('search shows matching contributors and handles an empty result', async ({ 
   await expect(page.getByText('No contributors match your search.')).toBeVisible()
   await page.getByRole('button', { name: 'Clear filters' }).click()
   await expect(search).toHaveValue('')
-  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).locator('li')).toHaveCount(24)
+  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).locator('li')).toHaveCount(48)
 })
 
 test('globe supports keyboard zoom, country selection and a stable resized view', async ({ page, goto }) => {
@@ -98,7 +98,7 @@ test('directory remains usable when WebGL is unavailable', async ({ page, goto }
   })
   await goto('/people', { waitUntil: 'hydration' })
   await expect(page.getByText('The globe is unavailable on this device.', { exact: false })).toBeVisible()
-  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).locator('li')).toHaveCount(24)
+  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).locator('li')).toHaveCount(48)
 })
 
 test('failed directory requests can be retried', async ({ page, goto }) => {

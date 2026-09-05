@@ -20,7 +20,7 @@ The app uses Nuxt layouts and does not keep inactive pages mounted. Camera prefe
 
 `GET /api/people` returns country names, counts, centroids, up to three preview usernames per country, and snapshot totals. The homepage draws at most 64 avatar markers.
 
-`GET /api/people/contributors?country=country-fr&q=alex&page=1` returns at most 24 usernames and their countries, plus `total`, `page`, and `pageSize`. Search is case-insensitive and results are ordered by username. Unknown countries return an empty result. Out-of-range pages clamp to the last page; malformed page values and filters longer than 100 characters return HTTP 400.
+`GET /api/people/contributors?country=country-fr&q=alex&page=1` returns at most 48 usernames and their countries, plus `total`, `page`, and `pageSize`. Search is case-insensitive and results are ordered by username. Unknown countries return an empty result. Out-of-range pages clamp to the last page; malformed page values and filters longer than 100 characters return HTTP 400.
 
 The immutable country index is built once per server instance from `public/people.json`. It contains no request or session state. Responses have bounded HTTP cache lifetimes; there is no unbounded server-side cache of arbitrary search terms.
 
@@ -32,7 +32,7 @@ The explorer rotates automatically until paused or interacted with. Selecting a 
 
 Drawing-buffer dimensions are sent to COBE only after a resize. Pixel density is capped at 1.5 on small screens and 2 on larger screens. Country markers avoid overlaps; the searchable list remains the complete way to find people whose markers are hidden.
 
-The canvas supports arrow keys, plus/minus, and zero to reset. Trackpad pinch uses Ctrl+wheel inside the globe only; ordinary wheel scrolling and browser zoom elsewhere remain native. At zoom 1.6 or above, country counts fade into avatar previews. The selected country shows up to three avatars; other countries show one. Zooming out restores the count pills. Clicking a person in the directory turns the globe to their country without changing the directory filters. Their avatar appears first in the country preview, and a separate profile link opens their contributions. These are country samples, not precise individual locations. Country selection and pagination also work without the canvas. WebGL failure leaves the directory available.
+The canvas supports arrow keys, plus/minus, and zero to reset. Trackpad pinch uses Ctrl+wheel inside the globe only; ordinary wheel scrolling and browser zoom elsewhere remain native. At zoom 1.6 or above, country counts fade into avatar previews. The selected country shows up to three avatars; other countries show one. Zooming out restores the count pills. Clicking a person in the directory turns the globe to their country without changing the directory filters. Their avatar appears first in the country preview, and their linked username opens their contributions. These are country samples, not precise individual locations. Country selection and pagination also work without the canvas. WebGL failure leaves the directory available.
 
 ## Maintain the COBE patch
 

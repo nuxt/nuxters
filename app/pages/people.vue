@@ -31,7 +31,11 @@ function locatePerson(person: PeopleEntry) {
 const selected = computed(() => people.value?.countries.find(item => item.id === country.value))
 const focusedCountry = computed(() => people.value?.countries.find(item => item.id === (focusedPerson.value?.countryId || country.value)))
 const countries = computed(() => [{ label: 'All countries', value: '' }, ...(people.value?.countries ?? []).map(item => ({ label: item.label, value: item.id })).sort((a, b) => a.label.localeCompare(b.label, 'en'))])
-const pages = computed(() => Math.max(1, Math.ceil((results.value?.total ?? 0) / (results.value?.pageSize ?? 24))))
+const pages = computed(() => Math.max(1, Math.ceil((results.value?.total ?? 0) / (results.value?.pageSize ?? 48))))
+function countryFlag(id: string) {
+  const code = id.replace(/^country-/, '').toUpperCase()
+  return /^[A-Z]{2}$/.test(code) ? String.fromCodePoint(...[...code].map(char => char.charCodeAt(0) + 127397)) : ''
+}
 const resultsScroll = useTemplateRef('resultsScroll')
 watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { flush: 'post' })
 </script>
@@ -110,6 +114,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
             aria-label="Search contributors"
             size="lg"
             variant="soft"
+            :ui="{ base: 'bg-elevated text-default' }"
             class="w-full"
             :maxlength="100"
             @update:model-value="search(String($event))"
@@ -186,15 +191,16 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
           <li
             v-for="person in results.items"
             :key="person.username"
+            :class="{ 'is-located': focusedPerson?.username === person.username }"
           >
             <button
               type="button"
-              class="people-panel__person"
-              :class="{ 'is-located': focusedPerson?.username === person.username }"
+              class="people-panel__locate"
               :aria-label="`Locate ${person.username} in ${person.country}`"
               :aria-pressed="focusedPerson?.username === person.username"
               @click="locatePerson(person)"
-            >
+            />
+            <div class="people-panel__person">
               <NuxtImg
                 :src="person.username"
                 width="40"
@@ -203,18 +209,24 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
                 loading="lazy"
                 class="people-panel__avatar"
               />
-              <span class="people-panel__identity"><span class="people-panel__username">{{ person.username }}</span><span
-                v-if="!selected"
-                class="people-panel__country"
-              >{{ person.country }}</span></span>
-            </button>
-            <NuxtLink
-              :to="`/${person.username}`"
-              :aria-label="`Open ${person.username}'s profile`"
-              class="people-panel__profile"
-            >
-              <UIcon name="i-lucide-arrow-up-right" />
-            </NuxtLink>
+              <span class="people-panel__identity">
+                <NuxtLink
+                  :to="`/${person.username}`"
+                  :aria-label="`Open ${person.username}'s profile`"
+                  class="people-panel__username"
+                >{{ person.username }}</NuxtLink>
+                <span
+                  v-if="!selected"
+                  class="people-panel__country"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="people-panel__flag"
+                  >{{ countryFlag(person.countryId) }}</span>
+                  {{ person.country }}
+                </span>
+              </span>
+            </div>
           </li>
         </ul>
       </div>
@@ -262,7 +274,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 .people-explorer__heading { position: absolute; z-index: 2; top: 32px; left: max(32px, calc((100vw - var(--ui-container)) / 2 + 32px)); pointer-events: none; }
 .people-explorer h1 { margin: 0; color: white; font-size: clamp(30px, 3vw, 40px); line-height: 1.1; font-weight: 550; letter-spacing: -.045em; }
 .people-explorer h1 span { color: var(--ui-primary); }
-.people-explorer__heading > p:last-child { margin-top: 12px; color: #8d9caa; font-size: 14px; }
+.people-explorer__heading > p:last-child { margin-top: 12px; color: var(--ui-text-muted); font-size: 14px; }
 .people-explorer__map { position: absolute; inset: 0 var(--people-sidebar-width) 0 0; }
 .people-explorer__map::after { content: ""; position: absolute; inset: 0 0 auto; height: 230px; background: linear-gradient(var(--color-neutral-950) 10%, color-mix(in srgb, var(--color-neutral-950) 85%, transparent) 45%, transparent); pointer-events: none; }
 .people-explorer__loading { position: absolute; inset: 15%; border-radius: 50%; background: radial-gradient(circle, #0d2620, transparent 68%); }
@@ -271,23 +283,24 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 .people-panel { position: absolute; z-index: 3; width: var(--people-sidebar-width); inset: 0 0 0 auto; display: flex; flex-direction: column;  background: var(--color-neutral-950); overflow: hidden; }
 .people-panel__header { padding: 20px 16px 14px;  }
 .people-panel h2 { font-size: 19px; font-weight: 550; color: #f1f6f9; letter-spacing: -.025em; }
-.people-panel__count { color: #8d9caa; font-size: 11px; font-variant-numeric: tabular-nums; }
+.people-panel__count { color: var(--ui-text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .people-panel__filters { display: grid; grid-template-columns: minmax(0, 1fr) 125px; gap: 8px; margin-top: 12px; }
 .people-panel__header p { margin-top: 6px; color: #7f8c9d; font-size: 12px; }
-.people-panel__select { width: 100%; height: 40px; padding: 0 12px; border: 0; border-radius: 6px; background: #101620; font-size: 13px; color: #c3cedb; color-scheme: dark; }
+.people-panel__select { width: 100%; height: 40px; padding: 0 12px; border: 0; border-radius: 6px; background: var(--ui-bg-elevated); font-size: 13px; color: var(--ui-text); color-scheme: dark; }
 .people-panel__select:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: 2px; }
 .people-panel__results { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #34453f transparent; }
 .people-panel__list > li { position: relative; min-width: 0; }
-.people-panel__profile { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 30px; height: 36px; color: #8d9caa; border-radius: 6px; }
-.people-panel__profile:hover, .people-panel__profile:focus-visible { color: var(--ui-primary); background: #ffffff0a; }
+.people-panel__locate { position: absolute; inset: 0; width: 100%; height: 100%; }
+.people-panel__locate:hover, .people-panel__list > li.is-located { background: color-mix(in srgb, var(--ui-primary) 6%, transparent); }
+.people-panel__locate:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: -2px; }
 .people-panel__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 0; padding: 4px 8px; }
-.people-panel__person { display: flex; width: 100%; text-align: left; align-items: center; gap: 8px; min-height: 44px; padding: 5px 32px 5px 8px; border-radius: 0; transition: background 120ms ease; }
-.people-panel__person:hover, .people-panel__person:focus-visible, .people-panel__person.is-located { background: #ffffff08; outline: none; }
+.people-panel__person { display: flex; width: 100%; text-align: left; align-items: center; gap: 8px; min-height: 44px; padding: 5px 8px; pointer-events: none; border-radius: 0; transition: background 120ms ease; }
 .people-panel__avatar { width: 28px; height: 28px; border-radius: 50%; background: #19212c; flex-shrink: 0; }
-.people-panel__person:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: -2px; }
 .people-panel__identity { min-width: 0; flex: 1; }
-.people-panel__username { white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; color: #dce6ef; font-size: 13px; font-weight: 500; }
-.people-panel__country { display: block; margin-top: 1px; color: #7b8b9b; font-size: 10px; }
+.people-panel__username { position: relative; pointer-events: auto; width: fit-content; max-width: 100%; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; color: var(--ui-text-highlighted); font-size: 13px; font-weight: 500; }
+.people-panel__username:hover { color: var(--ui-primary); }
+.people-panel__flag { font-size: 12px; line-height: 1; }
+.people-panel__country { display: flex; align-items: center; gap: 5px; margin-top: 1px; color: var(--ui-text-muted); font-size: 10px; }
 .people-panel__about { margin-top: 0; font-size: 10px; color: #78899a; }
 .people-panel__about summary { cursor: pointer; padding: 6px 0; }
 .people-panel__footer {  padding: 4px 16px 8px; }
@@ -320,8 +333,8 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
   .people-panel__footer { padding: 4px 16px max(8px, env(safe-area-inset-bottom)); }
   .people-panel__about { display: none; }
   .people-explorer--expanded .people-panel__about { display: block; }
-  .people-panel__person { padding: 5px 30px 5px 8px; }
-  .people-panel__username { font-size: 12px; }
+  .people-panel__person { padding: 5px 8px; }
+  .people-panel__username { position: relative; pointer-events: auto; width: fit-content; max-width: 100%; font-size: 12px; }
   .people-panel__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .people-panel { transition: height 220ms cubic-bezier(.2,.8,.2,1); }
 }

@@ -33,8 +33,8 @@ const focusedCountry = computed(() => people.value?.countries.find(item => item.
 const countries = computed(() => [{ label: 'All countries', value: '' }, ...(people.value?.countries ?? []).map(item => ({ label: item.label, value: item.id })).sort((a, b) => a.label.localeCompare(b.label, 'en'))])
 const pages = computed(() => Math.max(1, Math.ceil((results.value?.total ?? 0) / (results.value?.pageSize ?? 48))))
 function countryFlag(id: string) {
-  const code = id.replace(/^country-/, '').toUpperCase()
-  return /^[A-Z]{2}$/.test(code) ? String.fromCodePoint(...[...code].map(char => char.charCodeAt(0) + 127397)) : ''
+  const code = id.replace(/^country-/, '').toLowerCase()
+  return /^[a-z]{2}$/.test(code) ? `i-circle-flags-${code}` : 'i-lucide-globe'
 }
 const resultsScroll = useTemplateRef('resultsScroll')
 watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { flush: 'post' })
@@ -219,10 +219,11 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
                   v-if="!selected"
                   class="people-panel__country"
                 >
-                  <span
+                  <UIcon
+                    :name="countryFlag(person.countryId)"
                     aria-hidden="true"
                     class="people-panel__flag"
-                  >{{ countryFlag(person.countryId) }}</span>
+                  />
                   {{ person.country }}
                 </span>
               </span>
@@ -255,7 +256,13 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
           />
         </nav>
         <details class="people-panel__about">
-          <summary>About these locations</summary>
+          <summary>
+            <UIcon
+              name="i-lucide-info"
+              aria-hidden="true"
+            />
+            About these locations
+          </summary>
           <p>
             Public GitHub locations, grouped by country. Avatars are a sample; positions are approximate. <a
               href="https://www.geonames.org/"
@@ -299,10 +306,12 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 .people-panel__identity { min-width: 0; flex: 1; }
 .people-panel__username { position: relative; pointer-events: auto; width: fit-content; max-width: 100%; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; color: var(--ui-text-highlighted); font-size: 13px; font-weight: 500; }
 .people-panel__username:hover { color: var(--ui-primary); }
-.people-panel__flag { font-size: 12px; line-height: 1; }
+.people-panel__flag { width: 12px; height: 12px; flex-shrink: 0; }
 .people-panel__country { display: flex; align-items: center; gap: 5px; margin-top: 1px; color: var(--ui-text-muted); font-size: 10px; }
 .people-panel__about { margin-top: 0; font-size: 10px; color: #78899a; }
-.people-panel__about summary { cursor: pointer; padding: 6px 0; }
+.people-panel__about summary { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 0; list-style: none; }
+.people-panel__about summary::-webkit-details-marker { display: none; }
+.people-panel__about summary > span { width: 14px; height: 14px; }
 .people-panel__footer {  padding: 4px 16px 8px; }
 .people-panel__pagination { display: flex; align-items: center; justify-content: space-between; color: #9ba8b8; font-size: 11px; font-variant-numeric: tabular-nums; }
 .people-panel__pagination :deep(button) { width: 40px; height: 40px; justify-content: center; }

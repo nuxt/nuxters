@@ -30,7 +30,7 @@ function locatePerson(person: PeopleEntry) {
 }
 const selected = computed(() => people.value?.countries.find(item => item.id === country.value))
 const focusedCountry = computed(() => people.value?.countries.find(item => item.id === (focusedPerson.value?.countryId || country.value)))
-const countries = computed(() => [{ label: 'All countries', value: '' }, ...(people.value?.countries ?? []).map(item => ({ label: item.label, value: item.id })).sort((a, b) => a.label.localeCompare(b.label, 'en'))])
+const countries = computed(() => [{ label: 'All countries', value: 'all' }, ...(people.value?.countries ?? []).map(item => ({ label: item.label, value: item.id, icon: countryFlag(item.id) })).sort((a, b) => a.label.localeCompare(b.label, 'en'))])
 const pages = computed(() => Math.max(1, Math.ceil((results.value?.total ?? 0) / (results.value?.pageSize ?? 48))))
 function countryFlag(id: string) {
   const code = id.replace(/^country-/, '').toLowerCase()
@@ -88,9 +88,10 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
       class="people-panel"
       aria-labelledby="people-panel-title"
     >
-      <button
+      <UButton
         class="people-panel__toggle"
-        type="button"
+        color="neutral"
+        variant="ghost"
         :aria-expanded="expanded"
         aria-controls="people-panel-content"
         @click="expanded = !expanded"
@@ -98,7 +99,7 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
         <span class="people-panel__handle" />
         <span>{{ expanded ? 'Show more of the globe' : 'Expand contributor list' }}</span>
         <UIcon :name="expanded ? 'i-lucide-chevron-down' : 'i-lucide-chevron-up'" />
-      </button>
+      </UButton>
       <div class="people-panel__header">
         <div class="flex items-center justify-between gap-4">
           <h2 id="people-panel-title">
@@ -119,24 +120,20 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
             :maxlength="100"
             @update:model-value="search(String($event))"
           />
-          <label
-            class="sr-only"
-            for="people-country"
-          >Country</label>
-          <select
+          <USelectMenu
             id="people-country"
-            class="people-panel__select"
-            :value="country"
-            @change="selectCountry(($event.target as HTMLSelectElement).value)"
-          >
-            <option
-              v-for="option in countries"
-              :key="option.value"
-              :value="option.value"
-            >
-              {{ option.label }}
-            </option>
-          </select>
+            :model-value="country || 'all'"
+            :items="countries"
+            value-key="value"
+            aria-label="Country"
+            placeholder="All countries"
+            :search-input="{ placeholder: 'Search countries' }"
+            size="lg"
+            variant="soft"
+            :ui="{ base: 'bg-elevated text-default', content: 'min-w-64' }"
+            class="w-full min-w-0"
+            @update:model-value="selectMapCountry($event === 'all' ? '' : ($event ?? ''))"
+          />
         </div>
       </div>
 
@@ -255,22 +252,26 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
             @click="setPage((results?.page ?? 1) + 1)"
           />
         </nav>
-        <details class="people-panel__about">
-          <summary>
-            <UIcon
-              name="i-lucide-info"
-              aria-hidden="true"
-            />
-            About these locations
-          </summary>
-          <p>
-            Public GitHub locations, grouped by country. Avatars are a sample; positions are approximate. <a
-              href="https://www.geonames.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >GeoNames</a>.
-          </p>
-        </details>
+        <UCollapsible class="people-panel__about">
+          <UButton
+            icon="i-lucide-info"
+            label="About these locations"
+            variant="ghost"
+            color="neutral"
+            size="xs"
+            class="px-0 text-muted"
+          />
+          <template #content>
+            <p>
+              Public GitHub locations, grouped by country. Avatars are a sample; positions are approximate.
+              <ULink
+                to="https://www.geonames.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >GeoNames</ULink>.
+            </p>
+          </template>
+        </UCollapsible>
       </footer>
     </aside>
   </div>
@@ -291,10 +292,8 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 .people-panel__header { padding: 20px 16px 14px;  }
 .people-panel h2 { font-size: 19px; font-weight: 550; color: #f1f6f9; letter-spacing: -.025em; }
 .people-panel__count { color: var(--ui-text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.people-panel__filters { display: grid; grid-template-columns: minmax(0, 1fr) 125px; gap: 8px; margin-top: 12px; }
+.people-panel__filters { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: 8px; margin-top: 12px; }
 .people-panel__header p { margin-top: 6px; color: #7f8c9d; font-size: 12px; }
-.people-panel__select { width: 100%; height: 40px; padding: 0 12px; border: 0; border-radius: 6px; background: var(--ui-bg-elevated); font-size: 13px; color: var(--ui-text); color-scheme: dark; }
-.people-panel__select:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: 2px; }
 .people-panel__results { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #34453f transparent; }
 .people-panel__list > li { position: relative; min-width: 0; }
 .people-panel__locate { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -309,9 +308,6 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
 .people-panel__flag { width: 12px; height: 12px; flex-shrink: 0; }
 .people-panel__country { display: flex; align-items: center; gap: 5px; margin-top: 1px; color: var(--ui-text-muted); font-size: 10px; }
 .people-panel__about { margin-top: 0; font-size: 10px; color: #78899a; }
-.people-panel__about summary { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 0; list-style: none; }
-.people-panel__about summary::-webkit-details-marker { display: none; }
-.people-panel__about summary > span { width: 14px; height: 14px; }
 .people-panel__footer {  padding: 4px 16px 8px; }
 .people-panel__pagination { display: flex; align-items: center; justify-content: space-between; color: #9ba8b8; font-size: 11px; font-variant-numeric: tabular-nums; }
 .people-panel__pagination :deep(button) { width: 40px; height: 40px; justify-content: center; }
@@ -338,7 +334,6 @@ watch(() => results.value, () => resultsScroll.value?.scrollTo({ top: 0 }), { fl
   .people-panel h2 { font-size: 17px; }
   .people-panel__header p { display: none; }
   .people-panel__filters { margin-top: 10px; }
-  .people-panel__select { font-size: 12px; }
   .people-panel__footer { padding: 4px 16px max(8px, env(safe-area-inset-bottom)); }
   .people-panel__about { display: none; }
   .people-explorer--expanded .people-panel__about { display: block; }

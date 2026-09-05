@@ -12,7 +12,7 @@ The homepage globe links to `/people`, where visitors can select a country, sear
 | Contributor results | Reactive `useFetch`, `deep: false` | Nuxt refreshes on filter changes and cancels superseded requests. |
 | WebGL context, observers, pointer coordinates, interpolation | Local renderer variables | These objects are not serializable and must be released when the component unmounts. |
 
-Search waits 200 ms after the last keystroke. Selecting a country or leaving the route cancels the pending input update. Data objects are shallow because the UI replaces responses instead of mutating entries.
+The country filter uses Nuxt UI `USelectMenu` with built-in search and flag icons. `UCollapsible` owns the location disclosure, and `UButton` owns the mobile panel toggle. Search waits 200 ms after the last keystroke. Selecting a country or leaving the route cancels the pending input update. Data objects are shallow because the UI replaces responses instead of mutating entries.
 
 The app uses Nuxt layouts and does not keep inactive pages mounted. Camera preferences can survive through `useState` without a hidden globe continuing to render.
 

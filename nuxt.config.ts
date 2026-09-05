@@ -50,10 +50,6 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/people': { redirect: '/#community-map' },
-  },
-
   experimental: {
     viewTransition: true,
   },

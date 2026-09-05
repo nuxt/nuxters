@@ -1,16 +1,13 @@
 import type { PeopleLocation, PeopleMapResponse } from '../app/data/people'
-import { readFile, writeFile } from 'node:fs/promises'
+import { readFile, rename, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { strFromU8, unzipSync } from 'fflate'
+import type { GitHubProfile } from './utils/github-profiles'
+import { parseProfileBatch } from './utils/github-profiles'
 
 interface ContributorRecord {
   score: number
   username: string
-}
-
-interface GitHubProfile {
-  location: string | null
-  login: string
 }
 
 interface Country {
@@ -255,17 +252,7 @@ async function fetchProfileBatch(usernames: string[], attempt = 1): Promise<GitH
     throw new Error(`GitHub GraphQL request failed: ${response.status} ${await response.text()}`)
   }
 
-  const result = await response.json() as {
-    data?: Record<string, GitHubProfile | { cost: number, remaining: number, resetAt: string } | null>
-    errors?: Array<{ message: string }>
-  }
-  if (!result.data)
-    throw new Error(`GitHub GraphQL returned no data: ${result.errors?.map(error => error.message).join('; ')}`)
-
-  return usernames.flatMap((_, index) => {
-    const profile = result.data?.[`u${index}`]
-    return profile && 'login' in profile ? [profile] : []
-  })
+  return parseProfileBatch(await response.json(), usernames)
 }
 
 async function collectProfiles(contributors: ContributorRecord[]): Promise<GitHubProfile[]> {
@@ -332,7 +319,9 @@ async function main(): Promise<void> {
     unresolvedProfiles,
   }
 
-  await writeFile(OUTPUT_FILE, `${JSON.stringify(response, null, 2)}\n`, 'utf8')
+  const temporaryFile = `${OUTPUT_FILE}.${process.pid}.tmp`
+  await writeFile(temporaryFile, `${JSON.stringify(response, null, 2)}\n`, 'utf8')
+  await rename(temporaryFile, OUTPUT_FILE)
   console.log(`Mapped ${mappedContributors}/${publicProfiles} public profiles across ${resolvedLocations.length} countries`)
   console.log(`Wrote ${OUTPUT_FILE}`)
 }

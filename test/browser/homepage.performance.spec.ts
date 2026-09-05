@@ -177,7 +177,7 @@ test('records production homepage performance', async ({ baseURL, browser, brows
       const globe = page.locator('.home-people .people-globe')
       await expect(globe).toHaveAttribute('data-ready', 'true')
       await expect(globe.locator('canvas')).toBeVisible()
-      expect(await globe.locator('.people-globe__avatar-marker').count()).toBeGreaterThan(20)
+      expect(await globe.locator('.people-globe__marker').count()).toBeGreaterThan(20)
 
       const beforeAnimation = await runtimeSnapshot(cdp)
       const frames = await measureFrames(page, 5_000)

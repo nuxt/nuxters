@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import contributorMeta from '../../public/contributors-meta.json'
 import peopleMap from '../../public/people.json'
-import { peopleLocations } from '../../app/data/people'
 import { globeMinimumDepth, projectGlobePoint } from '../../app/utils/globe'
 
 describe('people map data', () => {
@@ -16,15 +15,15 @@ describe('people map data', () => {
   })
 
   it('uses unique ids and public profiles once', () => {
-    const ids = peopleLocations.map(location => location.id)
-    const people = peopleLocations.flatMap(location => location.people)
+    const ids = peopleMap.locations.map(location => location.id)
+    const people = peopleMap.locations.flatMap(location => location.people)
 
     expect(new Set(ids).size).toBe(ids.length)
     expect(new Set(people).size).toBe(people.length)
   })
 
   it('keeps every centroid within valid coordinate bounds', () => {
-    for (const location of peopleLocations) {
+    for (const location of peopleMap.locations) {
       expect(location.location[0]).toBeGreaterThanOrEqual(-90)
       expect(location.location[0]).toBeLessThanOrEqual(90)
       expect(location.location[1]).toBeGreaterThanOrEqual(-180)

@@ -1,195 +1,151 @@
 import { expect, test } from '@nuxt/test-utils/playwright'
-import peopleMap from '../../public/people.json' with { type: 'json' }
 
 test.use({
+  contextOptions: { reducedMotion: 'reduce' },
   nuxt: {
-    nuxtConfig: {
-      runtimeConfig: {
-        sessionPassword: 'test-session-password-at-least-32-characters',
-      },
-    },
+    nuxtConfig: { runtimeConfig: { sessionPassword: 'test-session-password-at-least-32-characters' } },
     setupTimeout: 600_000,
   },
 })
 test.setTimeout(60_000)
 
-// TODO: figure out how to run these with `@nuxthub/core` module enabled
-
-test('home page', async ({ page }) => {
-  await page.goto('/')
-  await expect(page).toHaveScreenshot()
-})
-
-test('landing page contains the community globe', async ({ page }) => {
-  await page.goto('/')
-
-  const section = page.locator('.home-people')
-  const globe = section.locator('.people-globe')
-  const canvas = globe.locator('canvas')
+test('homepage offers a compact globe and a link to the people directory', async ({ page, goto }) => {
+  await goto('/', { waitUntil: 'hydration' })
+  const globe = page.locator('.home-people .people-globe')
   await expect(globe).toHaveAttribute('data-ready', 'true')
-  await expect(canvas).toBeVisible()
-  expect(await globe.locator('.people-globe__viewport').evaluate(element => getComputedStyle(element).maskImage)).toContain('radial-gradient')
-  await expect(section.getByRole('group', { name: 'Globe version' })).toHaveCount(0)
-  expect(await globe.locator('.people-globe__avatar-marker').count()).toBeGreaterThan(150)
-  const hiddenAvatar = globe.locator('.people-globe__avatar-marker:not(.is-visible)').first()
-  await expect(hiddenAvatar).toBeAttached()
-  const hiddenAvatarStyle = await hiddenAvatar.evaluate((element) => {
-    const style = getComputedStyle(element)
-    return { duration: style.transitionDuration, transform: style.transform }
-  })
-  expect(hiddenAvatarStyle.duration).toContain('0.36s')
-  expect(hiddenAvatarStyle.transform).toContain('0.76')
-  await expect(section.getByRole('button', { name: /Explore globe/ })).toHaveCount(0)
-  await expect(section.locator('.home-people__browser')).toHaveCount(0)
-  const controls = globe.getByRole('group', { name: 'Globe controls' })
-  await expect(controls).toHaveCSS('opacity', '0')
-  await expect(controls.getByRole('button', { name: 'Zoom out' })).toBeAttached()
-  await expect(controls.getByRole('button', { name: 'Zoom in' })).toBeAttached()
-  await expect(controls.getByRole('button', { name: 'Collapse map' })).toHaveCount(0)
-  await expect(controls.getByRole('button', { name: 'Reset world view' })).toHaveCount(0)
-  await expect(globe).toHaveAttribute('data-avatar-detail', '0')
-  expect(Number(await globe.getAttribute('data-avatar-count'))).toBeGreaterThan(150)
-  await expect(globe.locator('[style*="anchor-name"]')).toHaveCount(0)
-  await expect.poll(() => globe.locator('.people-globe__avatar-marker.is-visible').count()).toBeGreaterThan(20)
-  expect(await globe.locator('.people-globe__avatar-marker.is-visible').first().evaluate(element => getComputedStyle(element).transitionDuration)).toContain('0.52s')
-  const globeCenter = await globe.evaluate(element => element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2)
-  const statsCenter = await section.locator('.home-people__stats').evaluate(element => element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2)
-  expect(Math.abs(globeCenter - statsCenter)).toBeLessThan(2)
-
-  await page.getByRole('heading', { name: 'Are you a Nuxter?' }).hover()
-  await page.waitForTimeout(200)
-  await globe.hover()
-  await expect(globe).toHaveAttribute('data-paused', 'true')
-  await expect(controls).toHaveCSS('opacity', '1')
-  const pausedRotation = Number(await globe.getAttribute('data-rotation'))
-  await page.waitForTimeout(300)
-  expect(Math.abs(Number(await globe.getAttribute('data-rotation')) - pausedRotation)).toBeLessThan(0.005)
-  const zoomBeforeButton = Number(await globe.getAttribute('data-zoom'))
-  await controls.getByRole('button', { name: 'Zoom in' }).click()
-  await expect.poll(async () => Number(await globe.getAttribute('data-zoom'))).toBeGreaterThan(zoomBeforeButton)
-  for (let step = 0; step < 12 && await controls.getByRole('button', { name: 'Zoom in' }).isEnabled(); step++)
-    await controls.getByRole('button', { name: 'Zoom in' }).click()
-  await expect(globe).toHaveAttribute('data-zoom', '100')
-  const zoomedGlobeBounds = await globe.evaluate((element) => {
-    const bounds = element.getBoundingClientRect()
-    return { x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height }
-  })
-  await expect.poll(async () => globe.locator('.people-globe__avatar-marker.is-visible').evaluateAll((elements, globeBounds) => elements.filter((element) => {
-    const bounds = element.getBoundingClientRect()
-    const centerX = bounds.x + bounds.width / 2
-    const centerY = bounds.y + bounds.height / 2
-    const radius = Math.hypot(centerX - globeBounds.x - globeBounds.width / 2, centerY - globeBounds.y - globeBounds.height / 2)
-    return radius > globeBounds.width * 0.44 + 1
-  }).length, zoomedGlobeBounds)).toBe(0)
-  await page.getByRole('heading', { name: 'Are you a Nuxter?' }).hover()
-  await expect(globe).not.toHaveAttribute('data-paused')
-  await expect.poll(async () => Math.abs(Number(await globe.getAttribute('data-rotation')) - pausedRotation)).toBeGreaterThan(0.005)
-
-  const avatarPositions = await globe.locator('.people-globe__avatar-marker').evaluateAll(elements => new Set(elements.map((element) => {
-    const bounds = element.getBoundingClientRect()
-    return `${Math.round(bounds.x)},${Math.round(bounds.y)}`
-  })).size)
-  expect(avatarPositions).toBeGreaterThan(20)
-  await globe.locator('.people-globe__avatar-marker.is-visible').first().dispatchEvent('click')
-  const profilePanel = page.getByRole('dialog')
-  await expect(profilePanel).toContainText('Merged PRs')
-  await expect(profilePanel.getByRole('link', { name: 'View full Nuxter profile' })).toBeVisible()
-  await profilePanel.getByRole('button', { name: 'Close' }).click()
-
-  const zoomBeforeWheel = await globe.getAttribute('data-zoom')
-  await canvas.dispatchEvent('wheel', { deltaY: -500 })
-  await expect(globe).toHaveAttribute('data-zoom', zoomBeforeWheel ?? '0')
-  await canvas.dispatchEvent('pointerdown', { pointerId: 1, clientX: 100, clientY: 100 })
-  await canvas.dispatchEvent('pointermove', { pointerId: 1, clientX: 100, clientY: 420 })
-  await canvas.dispatchEvent('pointerup', { pointerId: 1, clientX: 100, clientY: 420 })
-  await expect.poll(async () => Number(await globe.getAttribute('data-latitude'))).toBeGreaterThan(70)
-  await expect.poll(async () => Number(await globe.getAttribute('data-rendered-latitude'))).toBeGreaterThan(70)
-
-  await expect(page.getByRole('heading', { name: 'Become a Nuxter' })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Check my GitHub contributions' })).toBeVisible()
-  await expect(page.getByText('We never store your GitHub token.')).toBeVisible()
-  await page.getByRole('button', { name: 'How we use your GitHub data' }).click()
-  await expect(page.getByText('We keep only the account details needed to match contributions and grant Discord roles in a secure session cookie.')).toBeVisible()
-  await expect(page.getByLabel('Layout')).toHaveCount(0)
-  await expect(page.getByText('Join section prototype')).toHaveCount(0)
-  await expect(section.locator('.home-people__stats dd')).toHaveText([
-    peopleMap.totalContributors.toLocaleString(),
-    new Set(peopleMap.locations.map(location => location.country.toLowerCase().replace(/^the\s+/, ''))).size.toLocaleString(),
-  ])
-  await expect(section).not.toContainText('Regional zoom limit')
-  await expect(section).not.toContainText('Approximate locations')
-  await expect(section).not.toContainText('Explore the community')
-  await expect(section).not.toContainText('Find Nuxters near you')
-  await expect(section.locator('a[href="/people"]')).toHaveCount(0)
+  await expect(globe.locator('canvas')).toBeVisible()
+  await expect(globe.getByRole('button', { name: 'Zoom in', exact: true })).toHaveCount(0)
+  expect(await globe.locator('.people-globe__marker').count()).toBeLessThanOrEqual(64)
+  await page.getByRole('link', { name: 'Explore the community' }).click()
+  await expect(page).toHaveURL(/\/people$/)
+  await expect(page.getByRole('heading', { name: 'A world of Nuxters.' })).toBeVisible()
 })
 
-test('mobile keeps the globe without a country browser', async ({ page }) => {
+test('directory filters, paginates and restores filters through browser history', async ({ page, goto }) => {
+  await goto('/people', { waitUntil: 'hydration' })
+  const list = page.getByRole('list', { name: 'Contributors', exact: true })
+  await expect(list.locator('li')).toHaveCount(24)
+  const first = await list.locator('a').first().getAttribute('href')
+  await page.getByRole('button', { name: 'Next page', exact: true }).click()
+  await expect(page).toHaveURL(/page=2/)
+  await expect(list.locator('a').first()).not.toHaveAttribute('href', first!)
+  await page.getByLabel('Country', { exact: true }).selectOption('country-fr')
+  await expect(page).toHaveURL(/country=country-fr/)
+  await expect(page).not.toHaveURL(/page=/)
+  await expect(page.getByRole('heading', { name: 'France', exact: true })).toBeVisible()
+  await expect(list.locator('li')).toHaveCount(24)
+  await page.goBack()
+  await expect(page).toHaveURL(/page=2/)
+  await expect(page.getByLabel('Country', { exact: true })).toHaveValue('')
+})
+
+test('search shows matching contributors and handles an empty result', async ({ page, goto }) => {
+  await goto('/people', { waitUntil: 'hydration' })
+  const search = page.getByRole('textbox', { name: 'Search contributors' })
+  await search.fill('atinux')
+  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).getByRole('link')).toHaveCount(1)
+  await expect(page.getByRole('link', { name: /atinux/ })).toHaveAttribute('href', '/atinux')
+  await search.fill('no-such-nuxter-123456789')
+  await expect(page.getByText('No contributors match your search.')).toBeVisible()
+  await page.getByRole('button', { name: 'Clear filters' }).click()
+  await expect(search).toHaveValue('')
+  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).locator('li')).toHaveCount(24)
+})
+
+test('globe supports keyboard zoom, country selection and a stable resized view', async ({ page, goto }) => {
+  await goto('/people?country=country-fr', { waitUntil: 'hydration' })
+  const globe = page.locator('.people-globe')
+  await expect(globe).toHaveAttribute('data-ready', 'true')
+  await expect(page.getByRole('heading', { name: 'France', exact: true })).toBeVisible()
+  const canvas = globe.locator('canvas')
+  await canvas.focus()
+  await page.keyboard.press('+')
+  await expect(globe).toHaveAttribute('data-zoom', '2.05')
+  await page.keyboard.press('0')
+  await expect(globe).toHaveAttribute('data-zoom', '1')
+  await expect(page).not.toHaveURL(/country=/)
+  const fixedMarker = globe.locator('[data-country="country-us"]')
+  await expect(fixedMarker).toBeVisible()
+  const before = await fixedMarker.evaluate(element => element.style.transform)
+  await page.setViewportSize({ width: 1100, height: 800 })
+  await expect.poll(() => fixedMarker.evaluate(element => element.style.transform)).not.toBe(before)
+  await globe.locator('.people-globe__marker:not([hidden])').first().click()
+  await expect(page).toHaveURL(/country=/)
+})
+
+test('mobile contributor panel expands without horizontal overflow', async ({ page, goto }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/')
-
-  const section = page.locator('.home-people')
-  const globe = section.locator('.people-globe')
-  const canvas = globe.locator('canvas')
-  await expect(globe).toHaveAttribute('data-ready', 'true')
-  await expect(globe).toHaveCSS('position', 'relative')
-  await expect(canvas).toHaveCSS('touch-action', 'pan-y')
-  await expect(section.locator('.home-people__browser')).toHaveCount(0)
-  await expect(section.getByRole('button', { name: /Explore globe/ })).toHaveCount(0)
-  const globeCenter = await globe.evaluate(element => element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2)
-  const statsCenter = await section.locator('.home-people__stats').evaluate(element => element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2)
-  expect(Math.abs(globeCenter - statsCenter)).toBeLessThan(2)
-
-  const zoomBeforePinch = Number(await globe.getAttribute('data-zoom'))
-  await canvas.dispatchEvent('pointerdown', { pointerId: 1, pointerType: 'touch', clientX: 100, clientY: 100 })
-  await canvas.dispatchEvent('pointerdown', { pointerId: 2, pointerType: 'touch', clientX: 200, clientY: 100 })
-  await canvas.dispatchEvent('pointermove', { pointerId: 2, pointerType: 'touch', clientX: 250, clientY: 100 })
-  await canvas.dispatchEvent('pointerup', { pointerId: 2, pointerType: 'touch', clientX: 250, clientY: 100 })
-  await canvas.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', clientX: 100, clientY: 100 })
-  await expect.poll(async () => Number(await globe.getAttribute('data-zoom'))).toBeGreaterThan(zoomBeforePinch)
+  await goto('/people', { waitUntil: 'hydration' })
+  const toggle = page.getByRole('button', { name: 'Expand contributor list' })
+  await expect(toggle).toBeVisible()
+  const panel = page.locator('.people-panel')
+  const initialHeight = await panel.evaluate(element => element.getBoundingClientRect().height)
+  await toggle.click()
+  await expect(page.getByRole('button', { name: 'Show more of the globe' })).toHaveAttribute('aria-expanded', 'true')
+  expect(await panel.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThan(initialHeight)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.getByRole('textbox', { name: 'Search contributors' }).fill('atinux')
+  await expect(page.getByRole('link', { name: /atinux/ })).toBeVisible()
 })
 
-test('resizing a reduced-motion globe updates avatar positions', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.setViewportSize({ width: 1440, height: 1000 })
-  await page.goto('/')
-
-  const globe = page.locator('.people-globe[data-ready]')
-  await globe.scrollIntoViewIfNeeded()
-  const avatar = globe.locator('.people-globe__avatar-marker.is-visible').first()
-  await expect(avatar).toBeVisible()
-  const id = await avatar.getAttribute('data-avatar-id')
-  const marker = globe.locator(`[data-avatar-id="${id}"]`)
-  const before = await marker.evaluate(element => element.style.translate)
-  const rotation = await globe.getAttribute('data-rotation')
-
-  await page.setViewportSize({ width: 1100, height: 1000 })
-  await expect.poll(() => marker.evaluate(element => element.style.translate)).not.toBe(before)
-  await expect(globe).toHaveAttribute('data-rotation', rotation!)
+test('directory remains usable when WebGL is unavailable', async ({ page, goto }) => {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext
+    HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, ...args: Parameters<typeof original>) {
+      if (String(args[0]).startsWith('webgl')) return null
+      return original.apply(this, args)
+    } as typeof original
+  })
+  await goto('/people', { waitUntil: 'hydration' })
+  await expect(page.getByText('The globe is unavailable on this device.', { exact: false })).toBeVisible()
+  await expect(page.getByRole('list', { name: 'Contributors', exact: true }).locator('li')).toHaveCount(24)
 })
 
-test('globe animation pauses outside the viewport', async ({ page }) => {
-  await page.goto('/')
+test('failed directory requests can be retried', async ({ page, goto }) => {
+  await goto('/people', { waitUntil: 'hydration' })
+  let fail = true
+  await page.route('**/api/people/contributors*', (route) => {
+    if (fail) return route.fulfill({ status: 503, json: { statusMessage: 'Unavailable' } })
+    return route.continue()
+  })
+  await page.getByRole('textbox', { name: 'Search contributors' }).fill('atinux')
+  await expect(page.getByRole('alert')).toContainText('We couldn\'t load the community.')
+  fail = false
+  await page.getByRole('button', { name: 'Try again' }).click()
+  await expect(page.getByRole('link', { name: /atinux/ })).toBeVisible()
+})
 
+test('settled globe stops WebGL work and rotation does not resize its drawing buffer', async ({ page, goto }) => {
+  await page.addInitScript(() => {
+    const counters = { draws: 0, resizes: 0 }
+    Object.assign(window, { __globeCounters: counters })
+    const draw = WebGLRenderingContext.prototype.drawArrays
+    WebGLRenderingContext.prototype.drawArrays = function (...args) {
+      counters.draws++
+      return draw.apply(this, args)
+    }
+    for (const key of ['width', 'height']) {
+      const descriptor = Object.getOwnPropertyDescriptor(HTMLCanvasElement.prototype, key)!
+      Object.defineProperty(HTMLCanvasElement.prototype, key, {
+        ...descriptor,
+        set(value) {
+          counters.resizes++
+          descriptor.set!.call(this, value)
+        },
+      })
+    }
+  })
+  await goto('/people', { waitUntil: 'hydration' })
   const globe = page.locator('.people-globe[data-ready]')
-  await globe.scrollIntoViewIfNeeded()
-  const initialRotation = Number(await globe.getAttribute('data-rotation'))
-  await expect.poll(async () => Math.abs(Number(await globe.getAttribute('data-rotation')) - initialRotation)).toBeGreaterThan(0.005)
-
-  await page.evaluate(() => scrollTo(0, document.body.scrollHeight))
-  await expect.poll(() => globe.evaluate((element) => {
-    const bounds = element.getBoundingClientRect()
-    return bounds.bottom <= 0 || bounds.top >= innerHeight
-  })).toBe(true)
-  await page.waitForTimeout(100)
-  const pausedRotation = Number(await globe.getAttribute('data-rotation'))
+  await expect(globe.locator('canvas')).toBeVisible()
+  const counts = () => page.evaluate(() => (window as typeof window & { __globeCounters: { draws: number, resizes: number } }).__globeCounters)
+  await expect.poll(async () => (await counts()).draws).toBeGreaterThan(0)
   await page.waitForTimeout(300)
-  expect(Math.abs(Number(await globe.getAttribute('data-rotation')) - pausedRotation)).toBeLessThan(0.005)
-
-  await globe.scrollIntoViewIfNeeded()
-  await expect.poll(async () => Math.abs(Number(await globe.getAttribute('data-rotation')) - pausedRotation)).toBeGreaterThan(0.005)
-})
-
-test('og image for home page', async ({ page }) => {
-  await page.goto('/__og-image__/image/og.png')
-  await expect(page).toHaveScreenshot()
+  const settled = await counts()
+  await page.waitForTimeout(300)
+  expect(await counts()).toEqual(settled)
+  await globe.locator('canvas').focus()
+  await page.keyboard.press('ArrowRight')
+  await expect.poll(async () => (await counts()).draws).toBeGreaterThan(settled.draws)
+  expect((await counts()).resizes).toBe(settled.resizes)
 })

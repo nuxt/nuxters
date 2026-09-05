@@ -1,24 +1,9 @@
-import type { PeopleMapResponse } from '~/data/people'
-import { peopleMapFallback } from '~/data/people'
+import type { PeopleSummary } from '#shared/people'
 
-interface UsePeopleMapOptions {
-  lazy?: boolean
-  server?: boolean
+function fetchPeopleMap(_nuxtApp: unknown, { signal }: { signal: AbortSignal }) {
+  return $fetch<PeopleSummary>('/api/people', { signal })
 }
 
-function defaultPeopleMap(): PeopleMapResponse {
-  return peopleMapFallback
-}
-
-function fetchPeopleMap(_nuxtApp: unknown, { signal }: { signal: AbortSignal }): Promise<PeopleMapResponse> {
-  return $fetch('/api/people', { signal })
-}
-
-export function usePeopleMap(options: UsePeopleMapOptions = {}) {
-  return useAsyncData<PeopleMapResponse>('people-map', fetchPeopleMap, {
-    deep: false,
-    default: defaultPeopleMap,
-    lazy: options.lazy ?? false,
-    server: options.server ?? true,
-  })
+export function usePeopleMap() {
+  return useAsyncData('people-map', fetchPeopleMap, { deep: false, dedupe: 'defer' })
 }

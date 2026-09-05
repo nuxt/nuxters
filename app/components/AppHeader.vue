@@ -44,6 +44,14 @@ const links: DropdownMenuItem[] = [
       </div>
       <div class="flex items-center sm:gap-x-4 text-white font-medium">
         <UButton
+          to="/people"
+          label="People"
+          icon="i-lucide-globe-2"
+          color="neutral"
+          variant="link"
+          size="lg"
+        />
+        <UButton
           class="flex items-center sm:-mr-2"
           to="https://go.nuxt.com/discord"
           target="_blank"

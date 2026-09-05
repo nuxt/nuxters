@@ -55,7 +55,6 @@
     "@vueuse/core": "^14.4.0",
     "@vueuse/nuxt": "^14.4.0",
     "cobe": "2.0.1",
-    "cobe-vue": "^1.0.0",
     "nuxt": "^4.5.2",
     "nuxt-og-image": "^6.7.8",
     "octokit": "^5.0.5",

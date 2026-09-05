@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  miniflare>youch: 4.1.1
+
 patchedDependencies:
   cobe@2.0.1: 2b377974f1a55a236275fd7de9361973b6acbfeea119d879ad64f3a9264ee1c7
   '@nuxt/test-utils@4.2.0': 5a7846faa5446a88740ea22045b6076269675d63fdc98452dec7abaf9ee5e841
@@ -6696,9 +6699,6 @@ packages:
   youch-core@0.3.3:
     resolution: {integrity: sha512-ho7XuGjLaJ2hWHoK8yFnsUGy2Y5uDpqSTq1FkHLK4/oqKtyUU1AFbOOxY4IpC9f0fTLjwYbslUz0Po5BpD1wrA==}
 
-  youch@4.1.0-beta.10:
-    resolution: {integrity: sha512-rLfVLB4FgQneDr0dv1oddCVZmKjcJ6yX6mS4pU82Mq/Dt9a3cLZQ62pDBL4AUO+uVrCvtWz3ZFUL2HFAFJ/BXQ==}
-
   youch@4.1.1:
     resolution: {integrity: sha512-mxW3qiSnl+GRxXsaUMzv2Mbada1Y8CDltET9UxejDQe6DBYlSekghl5U5K0ReAikcHDi0G1vKZEmmo/NWAGKLA==}
 
@@ -11503,7 +11503,7 @@ snapshots:
       undici: 7.29.0
       workerd: 1.20260828.1
       ws: 8.21.0
-      youch: 4.1.0-beta.10
+      youch: 4.1.1
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -13679,14 +13679,6 @@ snapshots:
     dependencies:
       '@poppinss/exception': 1.2.3
       error-stack-parser-es: 1.0.5
-
-  youch@4.1.0-beta.10:
-    dependencies:
-      '@poppinss/colors': 4.1.6
-      '@poppinss/dumper': 0.6.5
-      '@speed-highlight/core': 1.2.14
-      cookie: 1.1.1
-      youch-core: 0.3.3
 
   youch@4.1.1:
     dependencies:

@@ -1,4 +1,5 @@
 import { expect, test } from '@nuxt/test-utils/playwright'
+import peopleMap from '../../public/people.json' with { type: 'json' }
 
 test.use({
   nuxt: {
@@ -111,8 +112,10 @@ test('landing page contains the community globe', async ({ page }) => {
   await expect(page.getByText('We keep only the account details needed to match contributions and grant Discord roles in a secure session cookie.')).toBeVisible()
   await expect(page.getByLabel('Layout')).toHaveCount(0)
   await expect(page.getByText('Join section prototype')).toHaveCount(0)
-  await expect(section).toContainText('26,287')
-  await expect(section).toContainText('164')
+  await expect(section.locator('.home-people__stats dd')).toHaveText([
+    peopleMap.totalContributors.toLocaleString(),
+    new Set(peopleMap.locations.map(location => location.country.toLowerCase().replace(/^the\s+/, ''))).size.toLocaleString(),
+  ])
   await expect(section).not.toContainText('Regional zoom limit')
   await expect(section).not.toContainText('Approximate locations')
   await expect(section).not.toContainText('Explore the community')
@@ -143,6 +146,25 @@ test('mobile keeps the globe without a country browser', async ({ page }) => {
   await canvas.dispatchEvent('pointerup', { pointerId: 2, pointerType: 'touch', clientX: 250, clientY: 100 })
   await canvas.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', clientX: 100, clientY: 100 })
   await expect.poll(async () => Number(await globe.getAttribute('data-zoom'))).toBeGreaterThan(zoomBeforePinch)
+})
+
+test('resizing a reduced-motion globe updates avatar positions', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.goto('/')
+
+  const globe = page.locator('.people-globe[data-ready]')
+  await globe.scrollIntoViewIfNeeded()
+  const avatar = globe.locator('.people-globe__avatar-marker.is-visible').first()
+  await expect(avatar).toBeVisible()
+  const id = await avatar.getAttribute('data-avatar-id')
+  const marker = globe.locator(`[data-avatar-id="${id}"]`)
+  const before = await marker.evaluate(element => element.style.translate)
+  const rotation = await globe.getAttribute('data-rotation')
+
+  await page.setViewportSize({ width: 1100, height: 1000 })
+  await expect.poll(() => marker.evaluate(element => element.style.translate)).not.toBe(before)
+  await expect(globe).toHaveAttribute('data-rotation', rotation!)
 })
 
 test('globe animation pauses outside the viewport', async ({ page }) => {

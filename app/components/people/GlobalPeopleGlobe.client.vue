@@ -475,6 +475,8 @@ function animate(timestamp = performance.now()): void {
     scheduleAnimation()
 }
 
+watch([containerWidth, avatarPoints], scheduleAnimation, { flush: 'post' })
+
 watch(() => props.selectedId, () => {
   if (props.selectedId)
     focusSelected()

@@ -8,6 +8,8 @@ const props = withDefaults(defineProps<{
   countries: readonly PeopleCountry[]
   mode?: 'preview' | 'explore'
   selectedId?: string
+  focusRequest?: number
+  focusedUsername?: string
 }>(), { mode: 'preview' })
 const emit = defineEmits<{ select: [country: string] }>()
 const container = useTemplateRef('container')
@@ -22,7 +24,10 @@ const rotationPaused = useState(`people:rotation-paused:${props.mode}`, () => fa
 const zoom = ref(camera.value.zoom)
 const markerElements = new Map<string, HTMLElement>()
 const markerCountries = computed(() => {
-  const sorted = [...props.countries].sort((a, b) => Number(b.id === props.selectedId) - Number(a.id === props.selectedId) || b.count - a.count)
+  const countries = props.countries.map(country => country.id === props.selectedId && props.focusedUsername
+    ? { ...country, preview: [props.focusedUsername, ...country.preview.filter(username => username !== props.focusedUsername)].slice(0, 3) }
+    : country)
+  const sorted = countries.sort((a, b) => Number(b.id === props.selectedId) - Number(a.id === props.selectedId) || b.count - a.count)
   return exploring.value ? sorted : sorted.slice(0, 64)
 })
 let globe: Globe | undefined
@@ -222,7 +227,7 @@ function documentVisibility() {
   else schedule()
 }
 watch([markerCountries, rotationPaused], schedule, { flush: 'post' })
-watch(() => props.selectedId, focusCountry)
+watch([() => props.selectedId, () => props.focusRequest], focusCountry)
 
 onMounted(() => {
   if (!canvas.value || !container.value)

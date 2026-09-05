@@ -187,7 +187,7 @@ test('locating a person turns the globe without leaving the directory', async ({
   await expect(globe).toHaveAttribute('data-zoom', '1.8')
   await expect.poll(() => globe.getAttribute('data-rotation')).not.toBe(before)
   await expect(globe.locator('[data-country="country-vn"]')).toHaveAttribute('data-visible', 'true')
-  await expect(page.locator('.people-explorer__heading')).toContainText('Showing @001123 in Vietnam')
+  await expect(page.locator('.people-explorer__heading')).toContainText('Vietnam · 122 people')
   await expect(globe.locator('.people-globe__avatars img').first()).toHaveAttribute('src', /001123/)
   await expect(globe.locator('.people-globe__count')).toHaveCount(0)
   const focused = Number(await globe.getAttribute('data-rotation'))

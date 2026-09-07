@@ -53,5 +53,5 @@
     "vue": "^3.5.42",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@11.25.0"
+  "packageManager": "pnpm@12.3.4"
 }

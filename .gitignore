@@ -11,4 +11,5 @@ dist
 .vscode
 .pnpm-store
 test-results
+performance-results
 .vercel

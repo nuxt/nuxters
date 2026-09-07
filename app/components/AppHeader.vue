@@ -23,7 +23,7 @@ const links: DropdownMenuItem[] = [
       <div class="flex items-center">
         <NuxtLink
           to="/"
-          aria-label="go to home page"
+          aria-label="Nuxters home"
           class="flex items-center"
         >
           <TheLogo class="h-6" />
@@ -38,11 +38,19 @@ const links: DropdownMenuItem[] = [
             icon="i-ph-caret-down-fill"
             square
             class="ml-1 opacity-50 hover:opacity-100"
-            aria-label="dropdown button"
+            aria-label="Open Nuxt links"
           />
         </UDropdownMenu>
       </div>
       <div class="flex items-center sm:gap-x-4 text-white font-medium">
+        <UButton
+          to="/people"
+          label="People"
+          icon="i-lucide-globe-2"
+          color="neutral"
+          variant="link"
+          size="lg"
+        />
         <UButton
           class="flex items-center sm:-mr-2"
           to="https://go.nuxt.com/discord"
@@ -50,7 +58,7 @@ const links: DropdownMenuItem[] = [
           variant="link"
           color="neutral"
           size="xl"
-          aria-label="join us"
+          aria-label="Join the Nuxt Discord"
         >
           <UIcon
             name="i-simple-icons-discord"
@@ -60,13 +68,13 @@ const links: DropdownMenuItem[] = [
         </UButton>
         <div class="hidden sm:block h-8 w-px bg-neutral-700 -mr-2 sm:-mr-6" />
         <UButton
-          to="http://go.nuxt.com/github"
+          to="https://go.nuxt.com/github"
           class="flex gap-x-2 items-center"
           variant="link"
           color="neutral"
           size="xl"
           target="_blank"
-          aria-label="star us"
+          aria-label="Star Nuxt on GitHub"
         >
           <UIcon
             name="i-simple-icons-github"

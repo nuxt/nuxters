@@ -20,10 +20,8 @@ useSeoMeta({
 
 <template>
   <UApp>
-    <AppHeader />
-    <UContainer class="overflow-hidden">
-      <NuxtPage keepalive />
-    </UContainer>
-    <AppFooter />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>

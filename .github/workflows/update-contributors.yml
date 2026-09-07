@@ -31,19 +31,29 @@ jobs:
           NUXT_GITHUB_TOKEN: ${{ secrets.NUXT_GITHUB_TOKEN }}
         run: pnpm collect:contributors
 
+      - name: Collect public contributor locations
+        env:
+          NUXT_GITHUB_TOKEN: ${{ secrets.NUXT_GITHUB_TOKEN }}
+        run: pnpm collect:people
+
       - name: Commit and push if changed
         run: |
           FILE_SIZE=$(wc -c < public/contributors.json)
+          PEOPLE_FILE_SIZE=$(wc -c < public/people.json)
           if [ "$FILE_SIZE" -lt 1000 ]; then
             echo "contributors.json is suspiciously small (${FILE_SIZE} bytes) — skipping commit"
             exit 1
           fi
-          if git diff --quiet public/contributors.json; then
+          if [ "$PEOPLE_FILE_SIZE" -lt 1000 ]; then
+            echo "people.json is suspiciously small (${PEOPLE_FILE_SIZE} bytes) — skipping commit"
+            exit 1
+          fi
+          if git diff --quiet public/contributors.json public/contributors-meta.json public/people.json; then
             echo "No changes to commit"
             exit 0
           fi
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/contributors.json
+          git add public/contributors.json public/contributors-meta.json public/people.json
           git commit -m "chore: update contributors"
           git push

@@ -5,16 +5,16 @@
     "issues": 547,
     "merged_pull_requests": {
       "docs": 145,
-      "chore": 835,
-      "feat": 543,
-      "fix": 1277,
-      "all": 2800
+      "chore": 850,
+      "feat": 545,
+      "fix": 1283,
+      "all": 2823
     },
-    "helpful_issues": 498,
+    "helpful_issues": 499,
     "comments": 3024,
     "helpful_comments": 136,
-    "reactions": 8510,
-    "score": 17947
+    "reactions": 8514,
+    "score": 18039
   },
   {
     "username": "benjamincanac",
@@ -23,15 +23,15 @@
     "merged_pull_requests": {
       "docs": 74,
       "chore": 86,
-      "feat": 175,
+      "feat": 176,
       "fix": 184,
-      "all": 519
+      "all": 520
     },
     "helpful_issues": 438,
     "comments": 5904,
     "helpful_comments": 222,
-    "reactions": 5056,
-    "score": 8394
+    "reactions": 5059,
+    "score": 8401
   },
   {
     "username": "atinux",
@@ -41,14 +41,14 @@
       "docs": 82,
       "chore": 74,
       "feat": 154,
-      "fix": 109,
-      "all": 419
+      "fix": 110,
+      "all": 420
     },
     "helpful_issues": 433,
     "comments": 5904,
     "helpful_comments": 369,
     "reactions": 7297,
-    "score": 8365
+    "score": 8370
   },
   {
     "username": "pi0",
@@ -91,15 +91,15 @@
     "merged_pull_requests": {
       "docs": 35,
       "chore": 44,
-      "feat": 213,
-      "fix": 297,
-      "all": 589
+      "feat": 214,
+      "fix": 299,
+      "all": 592
     },
     "helpful_issues": 111,
-    "comments": 1789,
+    "comments": 1791,
     "helpful_comments": 32,
-    "reactions": 1609,
-    "score": 4831
+    "reactions": 1610,
+    "score": 4850
   },
   {
     "username": "TheAlexLichter",
@@ -183,7 +183,7 @@
     "helpful_issues": 97,
     "comments": 147,
     "helpful_comments": 4,
-    "reactions": 613,
+    "reactions": 614,
     "score": 2663
   },
   {
@@ -194,14 +194,14 @@
       "docs": 67,
       "chore": 44,
       "feat": 197,
-      "fix": 90,
-      "all": 398
+      "fix": 91,
+      "all": 399
     },
     "helpful_issues": 13,
     "comments": 546,
     "helpful_comments": 15,
-    "reactions": 538,
-    "score": 2639
+    "reactions": 539,
+    "score": 2644
   },
   {
     "username": "antfu",
@@ -225,17 +225,17 @@
     "githubId": "22072217",
     "issues": 121,
     "merged_pull_requests": {
-      "docs": 50,
-      "chore": 43,
-      "feat": 58,
-      "fix": 165,
-      "all": 316
+      "docs": 53,
+      "chore": 48,
+      "feat": 60,
+      "fix": 172,
+      "all": 333
     },
     "helpful_issues": 96,
-    "comments": 269,
+    "comments": 298,
     "helpful_comments": 4,
-    "reactions": 324,
-    "score": 2144
+    "reactions": 384,
+    "score": 2240
   },
   {
     "username": "ricardogobbosouza",
@@ -260,16 +260,16 @@
     "issues": 68,
     "merged_pull_requests": {
       "docs": 24,
-      "chore": 58,
-      "feat": 95,
+      "chore": 59,
+      "feat": 96,
       "fix": 79,
-      "all": 256
+      "all": 258
     },
     "helpful_issues": 56,
     "comments": 564,
     "helpful_comments": 21,
     "reactions": 404,
-    "score": 1930
+    "score": 1940
   },
   {
     "username": "smarroufin",
@@ -948,7 +948,7 @@
     "helpful_issues": 10,
     "comments": 243,
     "helpful_comments": 8,
-    "reactions": 171,
+    "reactions": 172,
     "score": 444
   },
   {
@@ -2563,7 +2563,7 @@
     "helpful_issues": 28,
     "comments": 68,
     "helpful_comments": 0,
-    "reactions": 60,
+    "reactions": 61,
     "score": 165
   },
   {
@@ -5281,7 +5281,7 @@
       "all": 2
     },
     "helpful_issues": 18,
-    "comments": 10,
+    "comments": 11,
     "helpful_comments": 0,
     "reactions": 47,
     "score": 92
@@ -6335,7 +6335,7 @@
       "all": 4
     },
     "helpful_issues": 11,
-    "comments": 12,
+    "comments": 13,
     "helpful_comments": 1,
     "reactions": 15,
     "score": 79
@@ -6440,6 +6440,23 @@
     "comments": 49,
     "helpful_comments": 0,
     "reactions": 13,
+    "score": 78
+  },
+  {
+    "username": "raminjafary",
+    "githubId": "42489475",
+    "issues": 16,
+    "merged_pull_requests": {
+      "docs": 1,
+      "chore": 0,
+      "feat": 0,
+      "fix": 4,
+      "all": 5
+    },
+    "helpful_issues": 11,
+    "comments": 6,
+    "helpful_comments": 0,
+    "reactions": 15,
     "score": 78
   },
   {
@@ -6576,23 +6593,6 @@
     "comments": 21,
     "helpful_comments": 1,
     "reactions": 19,
-    "score": 77
-  },
-  {
-    "username": "raminjafary",
-    "githubId": "42489475",
-    "issues": 15,
-    "merged_pull_requests": {
-      "docs": 1,
-      "chore": 0,
-      "feat": 0,
-      "fix": 4,
-      "all": 5
-    },
-    "helpful_issues": 11,
-    "comments": 6,
-    "helpful_comments": 0,
-    "reactions": 15,
     "score": 77
   },
   {
@@ -10183,6 +10183,23 @@
     "score": 55
   },
   {
+    "username": "miguelrk",
+    "githubId": "18708856",
+    "issues": 8,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 1,
+      "fix": 0,
+      "all": 1
+    },
+    "helpful_issues": 6,
+    "comments": 19,
+    "helpful_comments": 3,
+    "reactions": 62,
+    "score": 55
+  },
+  {
     "username": "mkierdev",
     "githubId": "69116340",
     "issues": 22,
@@ -10843,23 +10860,6 @@
     "comments": 13,
     "helpful_comments": 0,
     "reactions": 12,
-    "score": 53
-  },
-  {
-    "username": "miguelrk",
-    "githubId": "18708856",
-    "issues": 7,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 1,
-      "fix": 0,
-      "all": 1
-    },
-    "helpful_issues": 6,
-    "comments": 17,
-    "helpful_comments": 3,
-    "reactions": 62,
     "score": 53
   },
   {
@@ -12678,7 +12678,7 @@
     "helpful_issues": 0,
     "comments": 8,
     "helpful_comments": 0,
-    "reactions": 6,
+    "reactions": 7,
     "score": 47
   },
   {
@@ -15215,6 +15215,23 @@
     "score": 41
   },
   {
+    "username": "dsfcoll",
+    "githubId": "49880862",
+    "issues": 10,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 9,
+    "comments": 4,
+    "helpful_comments": 0,
+    "reactions": 17,
+    "score": 41
+  },
+  {
     "username": "Eckhardt-D",
     "githubId": "37825447",
     "issues": 3,
@@ -15688,23 +15705,6 @@
     "comments": 10,
     "helpful_comments": 0,
     "reactions": 2,
-    "score": 40
-  },
-  {
-    "username": "dsfcoll",
-    "githubId": "49880862",
-    "issues": 9,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 9,
-    "comments": 4,
-    "helpful_comments": 0,
-    "reactions": 17,
     "score": 40
   },
   {
@@ -16368,6 +16368,23 @@
     "comments": 5,
     "helpful_comments": 0,
     "reactions": 0,
+    "score": 39
+  },
+  {
+    "username": "lukas-pierce",
+    "githubId": "4938316",
+    "issues": 8,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 7,
+    "comments": 8,
+    "helpful_comments": 2,
+    "reactions": 17,
     "score": 39
   },
   {
@@ -18020,23 +18037,6 @@
     "score": 36
   },
   {
-    "username": "lukas-pierce",
-    "githubId": "4938316",
-    "issues": 8,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 6,
-    "comments": 8,
-    "helpful_comments": 2,
-    "reactions": 17,
-    "score": 36
-  },
-  {
     "username": "matej-marjanovic",
     "githubId": "2822227",
     "issues": 6,
@@ -18819,6 +18819,23 @@
     "score": 35
   },
   {
+    "username": "miosenpai",
+    "githubId": "5713101",
+    "issues": 9,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 8,
+    "comments": 1,
+    "helpful_comments": 0,
+    "reactions": 18,
+    "score": 35
+  },
+  {
     "username": "mubaidr",
     "githubId": "2222702",
     "issues": 5,
@@ -19085,7 +19102,7 @@
       "all": 4
     },
     "helpful_issues": 2,
-    "comments": 6,
+    "comments": 7,
     "helpful_comments": 0,
     "reactions": 5,
     "score": 34
@@ -21026,23 +21043,6 @@
     "comments": 2,
     "helpful_comments": 0,
     "reactions": 8,
-    "score": 32
-  },
-  {
-    "username": "miosenpai",
-    "githubId": "5713101",
-    "issues": 9,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 7,
-    "comments": 1,
-    "helpful_comments": 0,
-    "reactions": 18,
     "score": 32
   },
   {
@@ -23783,6 +23783,23 @@
     "score": 29
   },
   {
+    "username": "LouisHaftmann",
+    "githubId": "30736553",
+    "issues": 4,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 3,
+      "all": 3
+    },
+    "helpful_issues": 2,
+    "comments": 6,
+    "helpful_comments": 0,
+    "reactions": 10,
+    "score": 29
+  },
+  {
     "username": "mahapo",
     "githubId": "28730855",
     "issues": 5,
@@ -25330,23 +25347,6 @@
     "score": 27
   },
   {
-    "username": "alexieremia",
-    "githubId": "29977258",
-    "issues": 4,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 1,
-      "feat": 0,
-      "fix": 1,
-      "all": 2
-    },
-    "helpful_issues": 4,
-    "comments": 5,
-    "helpful_comments": 0,
-    "reactions": 3,
-    "score": 27
-  },
-  {
     "username": "alexjoverm",
     "githubId": "5701162",
     "issues": 3,
@@ -25378,6 +25378,23 @@
     "comments": 1,
     "helpful_comments": 0,
     "reactions": 36,
+    "score": 27
+  },
+  {
+    "username": "alexteodor33",
+    "githubId": "29977258",
+    "issues": 4,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 1,
+      "feat": 0,
+      "fix": 1,
+      "all": 2
+    },
+    "helpful_issues": 4,
+    "comments": 5,
+    "helpful_comments": 0,
+    "reactions": 3,
     "score": 27
   },
   {
@@ -26571,6 +26588,23 @@
     "score": 26
   },
   {
+    "username": "comfuture",
+    "githubId": "151300",
+    "issues": 7,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 4,
+    "comments": 3,
+    "helpful_comments": 2,
+    "reactions": 10,
+    "score": 26
+  },
+  {
     "username": "d3xter-dev",
     "githubId": "62628584",
     "issues": 0,
@@ -27044,23 +27078,6 @@
     "comments": 12,
     "helpful_comments": 1,
     "reactions": 26,
-    "score": 26
-  },
-  {
-    "username": "LouisHaftmann",
-    "githubId": "30736553",
-    "issues": 4,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 3,
-      "all": 3
-    },
-    "helpful_issues": 1,
-    "comments": 6,
-    "helpful_comments": 0,
-    "reactions": 10,
     "score": 26
   },
   {
@@ -36190,23 +36207,6 @@
     "comments": 7,
     "helpful_comments": 2,
     "reactions": 8,
-    "score": 20
-  },
-  {
-    "username": "comfuture",
-    "githubId": "151300",
-    "issues": 7,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 3,
-    "comments": 3,
-    "helpful_comments": 1,
-    "reactions": 9,
     "score": 20
   },
   {
@@ -51830,6 +51830,23 @@
     "comments": 0,
     "helpful_comments": 0,
     "reactions": 2,
+    "score": 15
+  },
+  {
+    "username": "i-kyvatskyi",
+    "githubId": "125251243",
+    "issues": 3,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 3,
+    "comments": 1,
+    "helpful_comments": 1,
+    "reactions": 8,
     "score": 15
   },
   {
@@ -67779,23 +67796,6 @@
     "score": 12
   },
   {
-    "username": "i-kyvatskyi",
-    "githubId": "125251243",
-    "issues": 3,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 2,
-    "comments": 1,
-    "helpful_comments": 1,
-    "reactions": 8,
-    "score": 12
-  },
-  {
     "username": "iamonuwa",
     "githubId": "6551094",
     "issues": 1,
@@ -70954,7 +70954,7 @@
     "helpful_issues": 0,
     "comments": 2,
     "helpful_comments": 0,
-    "reactions": 6,
+    "reactions": 7,
     "score": 12
   },
   {
@@ -74253,6 +74253,23 @@
     "comments": 2,
     "helpful_comments": 0,
     "reactions": 5,
+    "score": 11
+  },
+  {
+    "username": "giaBaoJS",
+    "githubId": "39545125",
+    "issues": 0,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 2,
+      "all": 2
+    },
+    "helpful_issues": 0,
+    "comments": 2,
+    "helpful_comments": 0,
+    "reactions": 1,
     "score": 11
   },
   {
@@ -81985,7 +82002,7 @@
       "all": 0
     },
     "helpful_issues": 1,
-    "comments": 4,
+    "comments": 5,
     "helpful_comments": 0,
     "reactions": 7,
     "score": 10
@@ -84926,6 +84943,23 @@
       "all": 0
     },
     "helpful_issues": 2,
+    "comments": 3,
+    "helpful_comments": 0,
+    "reactions": 1,
+    "score": 10
+  },
+  {
+    "username": "MattA-Official",
+    "githubId": "43476212",
+    "issues": 1,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 1,
+      "fix": 0,
+      "all": 1
+    },
+    "helpful_issues": 0,
     "comments": 3,
     "helpful_comments": 0,
     "reactions": 1,
@@ -93619,6 +93653,23 @@
     "score": 9
   },
   {
+    "username": "geferon",
+    "githubId": "7958349",
+    "issues": 2,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 2,
+    "comments": 1,
+    "helpful_comments": 0,
+    "reactions": 1,
+    "score": 9
+  },
+  {
     "username": "GelsDEV",
     "githubId": "28780840",
     "issues": 2,
@@ -96951,6 +97002,23 @@
     "score": 9
   },
   {
+    "username": "lndmanh",
+    "githubId": "69383979",
+    "issues": 2,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 1,
+      "all": 1
+    },
+    "helpful_issues": 0,
+    "comments": 3,
+    "helpful_comments": 0,
+    "reactions": 0,
+    "score": 9
+  },
+  {
     "username": "lobo-tuerto",
     "githubId": "5730",
     "issues": 2,
@@ -97677,23 +97745,6 @@
     },
     "helpful_issues": 2,
     "comments": 2,
-    "helpful_comments": 0,
-    "reactions": 1,
-    "score": 9
-  },
-  {
-    "username": "MattA-Official",
-    "githubId": "43476212",
-    "issues": 0,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 1,
-      "fix": 0,
-      "all": 1
-    },
-    "helpful_issues": 0,
-    "comments": 3,
     "helpful_comments": 0,
     "reactions": 1,
     "score": 9
@@ -109361,23 +109412,6 @@
     "score": 8
   },
   {
-    "username": "geferon",
-    "githubId": "7958349",
-    "issues": 2,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 2,
-    "comments": 0,
-    "helpful_comments": 0,
-    "reactions": 1,
-    "score": 8
-  },
-  {
     "username": "GeoffreyParrier",
     "githubId": "47033480",
     "issues": 1,
@@ -112365,23 +112399,6 @@
     },
     "helpful_issues": 2,
     "comments": 0,
-    "helpful_comments": 0,
-    "reactions": 0,
-    "score": 8
-  },
-  {
-    "username": "lndmanh",
-    "githubId": "69383979",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 1,
-      "all": 1
-    },
-    "helpful_issues": 0,
-    "comments": 3,
     "helpful_comments": 0,
     "reactions": 0,
     "score": 8
@@ -139601,23 +139618,6 @@
     "comments": 4,
     "helpful_comments": 0,
     "reactions": 0,
-    "score": 6
-  },
-  {
-    "username": "giaBaoJS",
-    "githubId": "39545125",
-    "issues": 0,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 1,
-      "all": 1
-    },
-    "helpful_issues": 0,
-    "comments": 2,
-    "helpful_comments": 0,
-    "reactions": 1,
     "score": 6
   },
   {
@@ -178772,6 +178772,23 @@
     "score": 5
   },
   {
+    "username": "lukas-hiube",
+    "githubId": "33403149",
+    "issues": 1,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 1,
+    "comments": 1,
+    "helpful_comments": 0,
+    "reactions": 0,
+    "score": 5
+  },
+  {
     "username": "lukasklier-v-sion",
     "githubId": "204867411",
     "issues": 1,
@@ -198880,23 +198897,6 @@
     "comments": 2,
     "helpful_comments": 0,
     "reactions": 1,
-    "score": 5
-  },
-  {
-    "username": "vonlu3",
-    "githubId": "33403149",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 1,
-    "comments": 1,
-    "helpful_comments": 0,
-    "reactions": 0,
     "score": 5
   },
   {
@@ -238612,23 +238612,6 @@
     "score": 4
   },
   {
-    "username": "liushuai05",
-    "githubId": "26994692",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 1,
-    "comments": 0,
-    "helpful_comments": 0,
-    "reactions": 1,
-    "score": 4
-  },
-  {
     "username": "LiuYuYang01",
     "githubId": "103110550",
     "issues": 1,
@@ -247520,6 +247503,23 @@
     "score": 4
   },
   {
+    "username": "niklhut",
+    "githubId": "49069026",
+    "issues": 1,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 1,
+    "comments": 0,
+    "helpful_comments": 0,
+    "reactions": 0,
+    "score": 4
+  },
+  {
     "username": "nikolajlovenhardt",
     "githubId": "3541622",
     "issues": 1,
@@ -250325,6 +250325,23 @@
     "score": 4
   },
   {
+    "username": "pasanflo",
+    "githubId": "3006784",
+    "issues": 1,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 1,
+    "comments": 0,
+    "helpful_comments": 0,
+    "reactions": 0,
+    "score": 4
+  },
+  {
     "username": "pascal-mueller",
     "githubId": "5372520",
     "issues": 1,
@@ -252010,6 +252027,23 @@
   {
     "username": "plfort",
     "githubId": "1080255",
+    "issues": 1,
+    "merged_pull_requests": {
+      "docs": 0,
+      "chore": 0,
+      "feat": 0,
+      "fix": 0,
+      "all": 0
+    },
+    "helpful_issues": 1,
+    "comments": 0,
+    "helpful_comments": 0,
+    "reactions": 0,
+    "score": 4
+  },
+  {
+    "username": "PluemStudio",
+    "githubId": "308827200",
     "issues": 1,
     "merged_pull_requests": {
       "docs": 0,
@@ -295885,23 +295919,6 @@
     "score": 2
   },
   {
-    "username": "dumptyd",
-    "githubId": "16368429",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 0,
-    "comments": 1,
-    "helpful_comments": 0,
-    "reactions": 2,
-    "score": 2
-  },
-  {
     "username": "DurandSacha",
     "githubId": "29280692",
     "issues": 1,
@@ -307696,7 +307713,7 @@
     "helpful_issues": 0,
     "comments": 4,
     "helpful_comments": 0,
-    "reactions": 2,
+    "reactions": 3,
     "score": 2
   },
   {
@@ -394060,23 +394077,6 @@
     "score": 1
   },
   {
-    "username": "niklhut",
-    "githubId": "49069026",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 0,
-    "comments": 0,
-    "helpful_comments": 0,
-    "reactions": 0,
-    "score": 1
-  },
-  {
     "username": "niko-la-petrovic",
     "githubId": "23142144",
     "issues": 0,
@@ -398803,23 +398803,6 @@
     "score": 1
   },
   {
-    "username": "pasanflo",
-    "githubId": "3006784",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 0,
-    "comments": 0,
-    "helpful_comments": 0,
-    "reactions": 0,
-    "score": 1
-  },
-  {
     "username": "pascal-klesse",
     "githubId": "54418919",
     "issues": 0,
@@ -401367,23 +401350,6 @@
     "comments": 1,
     "helpful_comments": 0,
     "reactions": 2,
-    "score": 1
-  },
-  {
-    "username": "PluemStudio",
-    "githubId": "308827200",
-    "issues": 1,
-    "merged_pull_requests": {
-      "docs": 0,
-      "chore": 0,
-      "feat": 0,
-      "fix": 0,
-      "all": 0
-    },
-    "helpful_issues": 0,
-    "comments": 0,
-    "helpful_comments": 0,
-    "reactions": 0,
     "score": 1
   },
   {

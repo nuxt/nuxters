@@ -53,15 +53,11 @@
     "vue": "^3.5.42",
     "vue-confetti-explosion": "^1.0.2"
   },
+  "packageManager": "pnpm@12.3.4",
   "devEngines": {
     "runtime": {
       "name": "node",
       "version": "^24.0.0",
-      "onFail": "download"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.3.4",
       "onFail": "download"
     }
   }

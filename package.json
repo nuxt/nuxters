@@ -14,11 +14,11 @@
     "test:unit": "vitest --project unit"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.129",
+    "@iconify-json/lucide": "^1.2.132",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/test-utils": "^4.3.0",
+    "@nuxt/test-utils": "^4.3.2",
     "@playwright/test": "^1.63.0",
-    "@types/node": "^25.9.5",
+    "@types/node": "^25.9.6",
     "eslint": "^10.10.0",
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
@@ -28,11 +28,11 @@
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.94",
+    "@iconify-json/simple-icons": "^1.2.96",
     "@nuxt/devtools": "^3.4.2",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^2.1.0",
-    "@nuxt/ui": "^4.11.0",
+    "@nuxt/ui": "^4.11.1",
     "@octokit/plugin-paginate-rest": "^15.0.0",
     "@octokit/plugin-retry": "^8.1.1",
     "@resvg/resvg-js": "^2.6.2",
@@ -53,7 +53,7 @@
     "vue": "^3.5.42",
     "vue-confetti-explosion": "^1.0.2"
   },
-  "packageManager": "pnpm@12.3.4",
+  "packageManager": "pnpm@12.4.1",
   "devEngines": {
     "runtime": {
       "name": "node",

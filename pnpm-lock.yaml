@@ -267,7 +267,7 @@ importers:
         specifier: runtime:^24.0.0
         version: runtime:24.21.0
       tsx:
-        specifier: ^4.23.14
+        specifier: ^4.23.15
         version: 4.23.15
       typescript:
         specifier: ^6.0.3

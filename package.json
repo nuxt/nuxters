@@ -20,7 +20,7 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "^25.9.8",
     "eslint": "^10.11.0",
-    "tsx": "^4.23.14",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vitest": "^5.0.1",
     "vue-tsc": "^3.3.11"

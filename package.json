@@ -5,7 +5,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "lint": "eslint .",
-    "collect:contributors": "tsx scripts/collect-contributors.ts",
+    "collect:contributors": "node scripts/collect-contributors.ts",
     "postinstall": "nuxt prepare",
     "test:browser": "playwright test test/browser",
     "test:browser:update": "docker run --rm --network host -v $(pwd):/work/ -v /tmp/playwright-node-modules:/work/node_modules -w /work/ -it mcr.microsoft.com/playwright:v1.55.1-noble bash -c 'corepack enable && pnpm i && pnpm playwright test test/browser --update-snapshots'",
@@ -20,7 +20,6 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "^25.9.8",
     "eslint": "^10.11.0",
-    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vitest": "^5.0.1",
     "vue-tsc": "^3.3.11"

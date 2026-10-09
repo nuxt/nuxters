@@ -27,7 +27,9 @@ pnpm dev
 ## Contributor stats
 
  - Run `pnpm collect:contributors` locally with `NUXT_GITHUB_TOKEN` set to a GitHub personal access token that can read public repos.
- - The script aggregates contributions across Nuxt organizations and writes the results to `public/contributors.json`.
+ - The script aggregates contributions across Nuxt organizations and writes one file per period to `public/`: `contributors.json` (all time), `contributors-30d.json`, `contributors-12m.json` and `contributors-<year>.json` (from 2016).
+ - Merged PRs, helpful issues and helpful comments in `nuxt/nuxt` and its former homes (`nuxt/framework`, `nuxt/docs`, both archived but still collected) count double. Each record has a `core` object with that part, so the score can be explained.
+ - To test locally on a few repositories without touching `public/`: `COLLECT_REPOS=nuxt/docs,nuxt/nuxters CONTRIBUTORS_OUTPUT_DIR=/tmp/nuxters pnpm collect:contributors`.
 - `.github/workflows/update-contributors.yml` refreshes the data nightly and on demand, committing changes automatically.
 
 ### License

@@ -434,18 +434,28 @@ const saveContributors = async (period: Period, data: ContributorRecord[]) => {
 const main = async () => {
   if (COLLECT_REPOS?.length) {
     for (const fullName of COLLECT_REPOS) {
-      const [owner, repo] = fullName.split('/')
-      await collectRepository(owner!, repo!)
+      const [owner, repo, ...rest] = fullName.split('/')
+      if (!owner || !repo || rest.length) {
+        throw new Error(`Invalid COLLECT_REPOS entry "${fullName}", expected owner/repo`)
+      }
+      await collectRepository(owner, repo)
     }
   }
   else {
+    const failedOrgs: string[] = []
     for (const org of ORGS) {
       try {
         await collectOrganization(org)
       }
       catch (error) {
         console.error(`Failed to collect data for ${org}:`, error)
+        failedOrgs.push(org)
       }
+    }
+    // Partial data would publish wrong ranks in every period file: keep the previous files instead.
+    if (failedOrgs.length) {
+      console.error(`Collection failed for ${failedOrgs.join(', ')} — refusing to write contributor files.`)
+      process.exit(1)
     }
   }
 

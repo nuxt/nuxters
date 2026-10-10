@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const socialLinks = [
   {
-    to: 'https://twitter.com/nuxt_js',
-    alt: 'Nuxt Twitter Account',
-    icon: 'i-simple-icons-twitter',
+    to: 'https://x.com/nuxt_js',
+    alt: 'Nuxt X Account',
+    icon: 'i-simple-icons-x',
   },
   {
     to: 'https://github.com/nuxt/nuxt',

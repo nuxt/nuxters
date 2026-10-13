@@ -32,13 +32,15 @@ jobs:
             exit 1
           fi
           # contributors.json (all time), contributors-30d.json, contributors-12m.json, contributors-<year>.json
-          # `git status` also sees new files, e.g. the first file of a new year.
-          if [ -z "$(git status --porcelain -- 'public/contributors*.json')" ]; then
+          # and profiles.json. `git status` also sees new files, e.g. the first file of a new year.
+          if [ -z "$(git status --porcelain -- 'public/contributors*.json' public/profiles.json)" ]; then
             echo "No changes to commit"
             exit 0
           fi
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- 'public/contributors*.json'
+          # Missing when the first collection of profiles failed
+          if [ -f public/profiles.json ]; then git add -- public/profiles.json; fi
           git commit -m "chore: update contributors"
           git push

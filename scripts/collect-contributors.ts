@@ -101,6 +101,27 @@ const periodsFor = (date: string | null | undefined): Period[] => {
   return periods
 }
 
+/** Profile links of every all-time contributor, from their GitHub profile. */
+const PROFILES_FILE = 'profiles.json'
+/** One GraphQL query per 100 users costs 1 point of the 5,000 per hour. */
+const PROFILES_BATCH_SIZE = 100
+const PROFILES_CONCURRENCY = 3
+
+type SocialAccount = {
+  /** `bluesky`, `twitter`, `linkedin`, `mastodon`, `youtube`, `npm`… or `generic` for any other URL */
+  provider: string
+  url: string
+  display_name: string
+}
+
+type ProfileRecord = {
+  username: string
+  githubId: string
+  name: string | null
+  website: string | null
+  social_accounts: SocialAccount[]
+}
+
 const periodFile = (period: Period) => period === 'all' ? 'contributors.json' : `contributors-${period}.json`
 
 const OctokitWithPlugins = Octokit.plugin(paginateRest, retry)
@@ -431,6 +452,94 @@ const saveContributors = async (period: Period, data: ContributorRecord[]) => {
   console.log(`Wrote ${data.length} contributors to ${file}`)
 }
 
+type GraphQLProfile = {
+  databaseId: number | null
+  login: string
+  name: string | null
+  websiteUrl: string | null
+  twitterUsername: string | null
+  socialAccounts: { nodes: Array<{ provider: string, url: string, displayName: string } | null> | null }
+} | null
+
+const PROFILE_FIELDS = 'databaseId login name websiteUrl twitterUsername socialAccounts(first: 10) { nodes { provider url displayName } }'
+
+/** Links only: a profile without any is left out of the file. */
+const toProfileRecord = (githubId: string, user: GraphQLProfile): ProfileRecord | null => {
+  // A login freed and taken by another account since the collection: not the same person.
+  if (!user || String(user.databaseId) !== githubId) {
+    return null
+  }
+  const socialAccounts: SocialAccount[] = (user.socialAccounts?.nodes ?? []).flatMap(account => account
+    ? [{ provider: account.provider.toLowerCase(), url: account.url, display_name: account.displayName }]
+    : [])
+  // The legacy Twitter field, set on profiles that never added it as a social account.
+  if (user.twitterUsername && !socialAccounts.some(account => account.provider === 'twitter')) {
+    socialAccounts.push({ provider: 'twitter', url: `https://twitter.com/${user.twitterUsername}`, display_name: `@${user.twitterUsername}` })
+  }
+  const name = user.name?.trim() || null
+  // GitHub keeps the website as typed: `example.com` is common.
+  const typed = user.websiteUrl?.trim()
+  const website = typed ? (/^https?:\/\//i.test(typed) ? typed : `https://${typed}`) : null
+  if (!name && !website && !socialAccounts.length) {
+    return null
+  }
+  return { username: user.login, githubId, name, website, social_accounts: socialAccounts }
+}
+
+const fetchProfileBatch = async (batch: { username: string, githubId: string }[]) => {
+  const variables = Object.fromEntries(batch.map((user, index) => [`l${index}`, user.username]))
+  const query = `query(${batch.map((_, index) => `$l${index}: String!`).join(', ')}) {
+    ${batch.map((_, index) => `u${index}: user(login: $l${index}) { ${PROFILE_FIELDS} }`).join('\n')}
+  }`
+  let data: Record<string, GraphQLProfile>
+  try {
+    data = await octokit.graphql<Record<string, GraphQLProfile>>(query, variables)
+  }
+  catch (error) {
+    // A deleted or renamed account resolves to `null` with a NOT_FOUND error: keep the rest of the batch.
+    const response = error as { name?: string, data?: Record<string, GraphQLProfile>, errors?: { type?: string }[] }
+    if (response.name !== 'GraphqlResponseError' || !response.data || response.errors?.some(item => item.type !== 'NOT_FOUND')) {
+      throw error
+    }
+    data = response.data
+  }
+  return batch.flatMap((user, index) => {
+    const record = toProfileRecord(user.githubId, data[`u${index}`] ?? null)
+    return record ? [record] : []
+  })
+}
+
+const collectProfiles = async (users: { username: string, githubId: string }[]) => {
+  const batches: (typeof users)[] = []
+  for (let index = 0; index < users.length; index += PROFILES_BATCH_SIZE) {
+    batches.push(users.slice(index, index + PROFILES_BATCH_SIZE))
+  }
+  const profiles: ProfileRecord[] = []
+  let next = 0
+  await Promise.all(Array.from({ length: PROFILES_CONCURRENCY }, async () => {
+    while (next < batches.length) {
+      profiles.push(...await fetchProfileBatch(batches[next++]!))
+    }
+  }))
+  // By GitHub id: a stable order, so a diff only shows the profiles that changed.
+  return profiles.sort((a, b) => Number(a.githubId) - Number(b.githubId))
+}
+
+const saveProfiles = async (users: { username: string, githubId: string }[]) => {
+  let profiles: ProfileRecord[]
+  try {
+    profiles = await collectProfiles(users)
+  }
+  catch (error) {
+    // Links are a bonus: keep the previous file rather than publishing a partial one, and still publish the stats.
+    console.error(`Failed to collect profiles, keeping the previous ${PROFILES_FILE}:`, error)
+    return
+  }
+  const file = join(OUTPUT_DIR, PROFILES_FILE)
+  await writeFile(file, `[\n${profiles.map(record => JSON.stringify(record)).join(',\n')}\n]\n`, 'utf8')
+  console.log(`Wrote ${profiles.length} profiles to ${file}`)
+}
+
 const main = async () => {
   if (COLLECT_REPOS?.length) {
     for (const fullName of COLLECT_REPOS) {
@@ -473,6 +582,7 @@ const main = async () => {
   for (const period of periods) {
     await saveContributors(period, buildContributorRecords(period))
   }
+  await saveProfiles(buildContributorRecords('all').map(({ username, githubId }) => ({ username, githubId })))
 }
 
 main().catch((error) => {

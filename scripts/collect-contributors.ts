@@ -463,18 +463,25 @@ type GraphQLProfile = {
 
 const PROFILE_FIELDS = 'databaseId login name websiteUrl twitterUsername socialAccounts(first: 10) { nodes { provider url displayName } }'
 
+/** GitHub still stores Twitter links as `twitter.com`: link to `x.com`, the current domain. */
+const toXUrl = (url: string) => url.replace(/^https?:\/\/(?:www\.|mobile\.)?twitter\.com\//i, 'https://x.com/')
+
 /** Links only: a profile without any is left out of the file. */
 const toProfileRecord = (githubId: string, user: GraphQLProfile): ProfileRecord | null => {
   // A login freed and taken by another account since the collection: not the same person.
   if (!user || String(user.databaseId) !== githubId) {
     return null
   }
-  const socialAccounts: SocialAccount[] = (user.socialAccounts?.nodes ?? []).flatMap(account => account
-    ? [{ provider: account.provider.toLowerCase(), url: account.url, display_name: account.displayName }]
-    : [])
+  const socialAccounts: SocialAccount[] = (user.socialAccounts?.nodes ?? []).flatMap((account) => {
+    if (!account) {
+      return []
+    }
+    const provider = account.provider.toLowerCase()
+    return [{ provider, url: provider === 'twitter' ? toXUrl(account.url) : account.url, display_name: account.displayName }]
+  })
   // The legacy Twitter field, set on profiles that never added it as a social account.
   if (user.twitterUsername && !socialAccounts.some(account => account.provider === 'twitter')) {
-    socialAccounts.push({ provider: 'twitter', url: `https://twitter.com/${user.twitterUsername}`, display_name: `@${user.twitterUsername}` })
+    socialAccounts.push({ provider: 'twitter', url: `https://x.com/${user.twitterUsername}`, display_name: `@${user.twitterUsername}` })
   }
   const name = user.name?.trim() || null
   // GitHub keeps the website as typed: `example.com` is common.

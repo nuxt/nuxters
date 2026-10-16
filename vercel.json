@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/card/:username([A-Za-z0-9-]{1,39})/og.png", "destination": "https://nuxt.com/nuxters/:username/card.png", "statusCode": 301 },
+    { "source": "/__og-image__/image/:username([A-Za-z0-9-]{1,39})/og.png", "destination": "https://nuxt.com/nuxters/:username/card.png", "statusCode": 301 },
+    { "source": "/_og/r/:username([A-Za-z0-9-]{1,39}).png", "destination": "https://nuxt.com/nuxters/:username/card.png", "statusCode": 301 },
+    { "source": "/_og/d/c_Nuxter,slug_:username([A-Za-z0-9-]{1,39}),:rest*", "destination": "https://nuxt.com/nuxters/:username/card.png", "statusCode": 301 },
+    { "source": "/logout", "destination": "https://nuxt.com/nuxters", "statusCode": 301 },
+    { "source": "/connect/:path*", "destination": "https://nuxt.com/nuxters", "statusCode": 301 },
+    { "source": "/oauth/:path*", "destination": "https://nuxt.com/nuxters", "statusCode": 301 },
+    { "source": "/", "destination": "https://nuxt.com/nuxters", "statusCode": 301 },
+    { "source": "/:username([A-Za-z0-9-]{1,39})", "destination": "https://nuxt.com/nuxters/:username", "statusCode": 301 }
+  ]
+}

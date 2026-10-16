@@ -1,10 +1,10 @@
-[![Nuxters](./public/social-card.jpg)](https://nuxters.nuxt.com)
+[![Nuxters](./public/social-card.jpg)](https://nuxt.com/nuxters)
 
 # Nuxters
 
 Discover the number of contributions you made to Nuxt and get the Nuxter badge on [Nuxt Discord server](https://chat.nuxt.dev).
 
-https://nuxters.nuxt.com
+The leaderboard and the profiles now live on https://nuxt.com/nuxters: nuxters.nuxt.com redirects there (pages, profiles and README cards, see `vercel.json`). This repository collects the contributor stats that nuxt.com imports every day.
 
 ## Setup
 

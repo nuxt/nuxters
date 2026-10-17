@@ -44,6 +44,7 @@ export default defineNuxtConfig({
       uIProRoleId: '',
       hackathonRoleIds: {
         nuxtathon1: '',
+        nuxtathon2: '',
       },
       botToken: '',
     },

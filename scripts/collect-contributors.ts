@@ -20,8 +20,6 @@ const ORGS = [
  */
 const CORE_REPOS = ['nuxt/nuxt', 'nuxt/framework', 'nuxt/docs']
 const CORE_MULTIPLIER = 2
-/** Archived repositories are skipped, except these: years of Nuxt history live there. */
-const INCLUDE_ARCHIVED = ['nuxt/framework', 'nuxt/docs']
 const HELPFUL_REACTIONS_THRESHOLD = 3
 const HELPFUL_COMMENTS_THRESHOLD = 5
 // Override to test locally without touching `public/`, e.g. CONTRIBUTORS_OUTPUT_DIR=/tmp/nuxters
@@ -390,8 +388,8 @@ const collectOrganization = async (org: string) => {
     per_page: 100,
   })
   for (const repo of repos) {
-    const archived = repo.archived && !INCLUDE_ARCHIVED.includes(`${org}/${repo.name}`.toLowerCase())
-    if (repo.private || archived || repo.disabled || repo.fork) {
+    // Archived repositories are still collected: archiving one must not take back the contributions made there
+    if (repo.private || repo.disabled || repo.fork) {
       continue
     }
     await collectRepository(org, repo.name)

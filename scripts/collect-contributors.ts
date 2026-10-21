@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { Octokit } from 'octokit'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
 import { retry } from '@octokit/plugin-retry'
+import { countryFromLocation, loadCountryIndex, type CountryIndex } from './utils/countries.ts'
 
 const REQUIRED_TOKEN_MESSAGE = 'NUXT_GITHUB_TOKEN is required to collect contributor statistics'
 const ORGS = [
@@ -118,6 +119,8 @@ type ProfileRecord = {
   name: string | null
   website: string | null
   social_accounts: SocialAccount[]
+  /** ISO 3166-1 alpha-2 code, from the location of the profile */
+  country: string | null
 }
 
 const periodFile = (period: Period) => period === 'all' ? 'contributors.json' : `contributors-${period}.json`
@@ -456,15 +459,19 @@ type GraphQLProfile = {
   name: string | null
   websiteUrl: string | null
   twitterUsername: string | null
+  location: string | null
   socialAccounts: { nodes: Array<{ provider: string, url: string, displayName: string } | null> | null }
 } | null
 
-const PROFILE_FIELDS = 'databaseId login name websiteUrl twitterUsername socialAccounts(first: 10) { nodes { provider url displayName } }'
+const PROFILE_FIELDS = 'databaseId login name websiteUrl twitterUsername location socialAccounts(first: 10) { nodes { provider url displayName } }'
 
 /** GitHub still stores Twitter links as `twitter.com`: link to `x.com`, the current domain. */
 const toXUrl = (url: string) => url.replace(/^https?:\/\/(?:www\.|mobile\.)?twitter\.com\//i, 'https://x.com/')
 
-/** Links only: a profile without any is left out of the file. */
+/** Loaded once, before the profiles are fetched. */
+let countries: CountryIndex
+
+/** Links and country only: a profile without any is left out of the file. The location itself is not kept. */
 const toProfileRecord = (githubId: string, user: GraphQLProfile): ProfileRecord | null => {
   // A login freed and taken by another account since the collection: not the same person.
   if (!user || String(user.databaseId) !== githubId) {
@@ -485,10 +492,11 @@ const toProfileRecord = (githubId: string, user: GraphQLProfile): ProfileRecord 
   // GitHub keeps the website as typed: `example.com` is common.
   const typed = user.websiteUrl?.trim()
   const website = typed ? (/^https?:\/\//i.test(typed) ? typed : `https://${typed}`) : null
-  if (!name && !website && !socialAccounts.length) {
+  const country = countryFromLocation(user.location, countries)
+  if (!name && !website && !socialAccounts.length && !country) {
     return null
   }
-  return { username: user.login, githubId, name, website, social_accounts: socialAccounts }
+  return { username: user.login, githubId, name, website, social_accounts: socialAccounts, country }
 }
 
 const fetchProfileBatch = async (batch: { username: string, githubId: string }[]) => {
@@ -515,6 +523,7 @@ const fetchProfileBatch = async (batch: { username: string, githubId: string }[]
 }
 
 const collectProfiles = async (users: { username: string, githubId: string }[]) => {
+  countries = await loadCountryIndex()
   const batches: (typeof users)[] = []
   for (let index = 0; index < users.length; index += PROFILES_BATCH_SIZE) {
     batches.push(users.slice(index, index + PROFILES_BATCH_SIZE))

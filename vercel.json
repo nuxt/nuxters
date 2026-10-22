@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/api/contributors", "destination": "/contributors.json" }
+  ],
   "redirects": [
     { "source": "/card/:username([A-Za-z0-9-]{1,39})/og.png", "destination": "https://nuxt.com/nuxters/:username/card.png", "statusCode": 301 },
     { "source": "/__og-image__/image/:username([A-Za-z0-9-]{1,39})/og.png", "destination": "https://nuxt.com/nuxters/:username/card.png", "statusCode": 301 },

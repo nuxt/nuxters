@@ -1,14 +1,6 @@
 node_modules
 .env
-.nitro
-.nuxt
-.output
-.data
-src/server/routes/test.ts
-src/server/routes/add.ts
-dist
 .idea
 .vscode
 .pnpm-store
-test-results
 .vercel

@@ -1,8 +1,8 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 
-export default withNuxt(
-  // Your custom configs here
-).append({
-  ignores: ['test/nuxt/color-mode.js'],
+export default createConfigForNuxt({
+  features: {
+    stylistic: true,
+  },
 })

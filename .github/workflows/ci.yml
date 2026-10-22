@@ -43,29 +43,7 @@ jobs:
           cache: true
 
       - name: 💪 Type check
-        run: pnpm test:types
+        run: pnpm typecheck
 
       - name: 🧪 Unit test
-        run: pnpm test:unit
-
-      - name: 🏃 Component tests
-        run: pnpm test:nuxt
-
-  # browser:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: mcr.microsoft.com/playwright:v1.55.1-noble
-
-  #   steps:
-  #     - uses: actions/checkout@v5
-  #     - run: corepack enable
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: lts/*
-  #         cache: pnpm
-
-  #     - name: 📦 Install dependencies
-  #       run: pnpm install
-
-  #     - name: 🖥️ Test project (browser)
-  #       run: pnpm test:browser
+        run: pnpm test

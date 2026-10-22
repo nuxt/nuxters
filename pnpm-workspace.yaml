@@ -1,13 +1,3 @@
 allowBuilds:
-  "@parcel/watcher": false
   esbuild: false
-  sharp: true
   unrs-resolver: false
-  vue-demi: false
-
-minimumReleaseAgeExclude:
-  - nuxt
-  - nuxt-nightly
-  - '@nuxt/*'
-  - vue
-  - '@vue/*'

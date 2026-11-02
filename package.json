@@ -16,11 +16,11 @@
   "devDependencies": {
     "@nuxt/eslint-config": "^1.17.0",
     "@types/node": "^26.6.6",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5"
   },
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.16.1",
   "devEngines": {
     "runtime": {
       "name": "node",

@@ -93,6 +93,19 @@ beforeAll(() => {
   commit('2026-11-08T10:00:00Z', { name: 'HugoRCD', email: '71938701+HugoRCD@users.noreply.github.com' }, 'chore(fr): edit 1 on /docs/4.x/getting-started/installation', [
     edited(A, 'HugoRCD', '2026-11-08T09:59:00.000Z'),
   ], APP)
+  git(['checkout', '--quiet', '-b', 'suggest/Ibochkarev/fr'])
+  commit('2026-10-30T10:00:00Z', APP, 'chore(fr): suggest 1 on /docs/4.x/getting-started/introduction', [
+    edited(D, 'Ibochkarev', '2026-10-30T09:59:00.000Z'),
+  ])
+  git(['checkout', '--quiet', 'main'])
+  git(['merge', '--quiet', '--no-ff', '-m', 'chore(fr): suggestions from @Ibochkarev (#10)', 'suggest/Ibochkarev/fr'], {
+    GIT_AUTHOR_NAME: APP.name,
+    GIT_AUTHOR_EMAIL: APP.email,
+    GIT_AUTHOR_DATE: '2026-11-08T18:00:00Z',
+    GIT_COMMITTER_NAME: 'GitHub',
+    GIT_COMMITTER_EMAIL: 'noreply@github.com',
+    GIT_COMMITTER_DATE: '2026-11-08T18:00:00Z',
+  })
   git(['checkout', '--quiet', '-b', 'suggest/D3ller/fr'])
   commit('2026-11-09T10:00:00Z', APP, 'chore(fr): suggest 1 on /docs/4.x/getting-started/installation', [
     edited(E, 'D3ller', '2026-11-09T09:59:00.000Z'),
@@ -113,6 +126,7 @@ describe('readTranslationEvents', () => {
       { action: 'rejected', login: 'danielroe', locale: 'fr', hash: D, date: '2026-11-04T10:00:00.000Z' },
       { action: 'verified', login: 'danielroe', locale: 'fr', hash: A, date: '2026-11-06T10:00:00.000Z' },
       { action: 'edited', login: 'HugoRCD', locale: 'fr', hash: A, date: '2026-11-08T10:00:00.000Z' },
+      { action: 'edited', login: 'Ibochkarev', locale: 'fr', hash: D, date: '2026-11-08T18:00:00.000Z' },
     ])
   })
 

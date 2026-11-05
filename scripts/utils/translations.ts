@@ -110,9 +110,9 @@ const recordActions = (record: SegmentRecord) => {
 
 type RecordChange = { date: string, path: string, oid: string }
 
-/** Records added or changed by each commit of `rev`, oldest first. Merge commits are left out, as their changes are in the merged commits. */
+/** Records added or changed by each commit on the first-parent history of `rev`, oldest first. A merge brings the changes of its branch. */
 const listRecordChanges = async (gitDir: string, rev: string) => {
-  const log = await git(gitDir, ['log', '--reverse', '--no-merges', '--no-renames', '--raw', '--no-abbrev', '--format=%x00%cI', rev, '--', RECORD_PATHSPEC])
+  const log = await git(gitDir, ['log', '--reverse', '--first-parent', '--diff-merges=first-parent', '--no-renames', '--raw', '--no-abbrev', '--format=%x00%cI', rev, '--', RECORD_PATHSPEC])
   const changes: RecordChange[] = []
   let date = ''
   for (const line of log.split('\n')) {

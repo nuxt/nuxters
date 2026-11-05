@@ -1,10 +1,12 @@
 import { join, resolve } from 'node:path'
-import { mkdir, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { Octokit } from 'octokit'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
 import { retry } from '@octokit/plugin-retry'
 import { countryFromLocation, loadCountryIndex, type CountryIndex } from './utils/countries.ts'
+import { cloneRepository, countTranslations, readTranslationEvents, type TranslationAction, type TranslationCounts } from './utils/translations.ts'
 
 const REQUIRED_TOKEN_MESSAGE = 'NUXT_GITHUB_TOKEN is required to collect contributor statistics'
 const ORGS = [
@@ -23,6 +25,11 @@ const CORE_REPOS = ['nuxt/nuxt', 'nuxt/framework', 'nuxt/docs']
 const CORE_MULTIPLIER = 2
 const HELPFUL_REACTIONS_THRESHOLD = 3
 const HELPFUL_COMMENTS_THRESHOLD = 5
+/**
+ * Translation records made with diglot. Each segment a person edited, verified or rejected on the default branch
+ * counts once per period, whether it landed as a direct commit or a merged suggestion.
+ */
+const TRANSLATION_REPOS = ['nuxt/translations']
 // Override to test locally without touching `public/`, e.g. CONTRIBUTORS_OUTPUT_DIR=/tmp/nuxters
 const OUTPUT_DIR = process.env.CONTRIBUTORS_OUTPUT_DIR
   ? resolve(process.env.CONTRIBUTORS_OUTPUT_DIR)
@@ -30,7 +37,7 @@ const OUTPUT_DIR = process.env.CONTRIBUTORS_OUTPUT_DIR
 // Override to collect a few repositories only, e.g. COLLECT_REPOS=nuxt/nuxters,nuxt/test-utils
 const COLLECT_REPOS = process.env.COLLECT_REPOS?.split(',').map(repo => repo.trim()).filter(Boolean)
 const USER_AGENT = 'nuxters-contributor-collector'
-const KNOWN_BOT_ACCOUNTS = ['codecov-io', 'codecov-commenter']
+const KNOWN_BOT_ACCOUNTS = ['codecov-io', 'codecov-commenter', 'nuxtbot']
 
 type PullRequestType = 'docs' | 'chore' | 'feat' | 'fix'
 
@@ -59,11 +66,13 @@ type ContributorAccumulator = {
   helpful_comments: number
   reactions: number
   core: CoreContributions
+  /** Segments edited, verified and rejected in `TRANSLATION_REPOS`. Only set for contributors with translation work. */
+  translations?: TranslationCounts
 }
 
 type ContributorRecord = ContributorAccumulator & {
   score: number
-  /** Earliest counted contribution (issue, comment or merged PR), across all periods. */
+  /** Earliest counted contribution (issue, comment, merged PR or translation), across all periods. */
   first_contribution_at: string | null
 }
 
@@ -376,11 +385,40 @@ const collectComments = async (owner: string, repo: string) => {
   }
 }
 
+const collectTranslations = async (owner: string, repo: string) => {
+  const dir = await mkdtemp(join(tmpdir(), 'nuxters-translations-'))
+  try {
+    await cloneRepository(`https://github.com/${owner}/${repo}.git`, dir)
+    const events = await readTranslationEvents(dir)
+    const users = await resolveUsers([...new Set(events.map(event => event.login.toLowerCase()))])
+    for (const [period, byLogin] of countTranslations(events, periodsFor)) {
+      for (const [login, counts] of byLogin) {
+        const contributor = upsertContributor(period, users.get(login))
+        if (contributor) {
+          contributor.translations ??= { edited: 0, verified: 0, rejected: 0 }
+          for (const action of Object.keys(counts) as TranslationAction[]) {
+            contributor.translations[action] += counts[action]
+          }
+        }
+      }
+    }
+    for (const event of events) {
+      recordFirstContribution(users.get(event.login.toLowerCase()), event.date)
+    }
+  }
+  finally {
+    await rm(dir, { recursive: true, force: true })
+  }
+}
+
 const collectRepository = async (owner: string, repo: string) => {
   console.log(`Collecting stats for ${owner}/${repo}`)
   const mergedPulls = await fetchMergedPullNumbers(owner, repo)
   await collectIssues(owner, repo, mergedPulls)
   await collectComments(owner, repo)
+  if (TRANSLATION_REPOS.includes(`${owner}/${repo}`.toLowerCase())) {
+    await collectTranslations(owner, repo)
+  }
 }
 
 const collectOrganization = async (org: string) => {
@@ -415,12 +453,26 @@ const qualityPoints = (stats: Pick<ContributorAccumulator, 'merged_pull_requests
   + stats.helpful_issues * 3
   + stats.helpful_comments * 2
 
+const TRANSLATION_SCORE_MULTIPLIERS: Record<TranslationAction, number> = {
+  edited: 1,
+  verified: 0.5,
+  rejected: 0.5,
+}
+
+const translationPoints = (translations: TranslationCounts | undefined) =>
+  translations
+    ? translations.edited * TRANSLATION_SCORE_MULTIPLIERS.edited
+    + translations.verified * TRANSLATION_SCORE_MULTIPLIERS.verified
+    + translations.rejected * TRANSLATION_SCORE_MULTIPLIERS.rejected
+    : 0
+
 const computeScore = (stats: ContributorAccumulator) => {
   const total
     = qualityPoints(stats)
       + stats.issues
       + stats.comments * 0.5
       + stats.reactions * 0.1
+      + translationPoints(stats.translations)
       // The core part is already in the totals: add it (multiplier - 1) more times.
       + qualityPoints(stats.core) * (CORE_MULTIPLIER - 1)
   return Math.round(total)
@@ -499,27 +551,52 @@ const toProfileRecord = (githubId: string, user: GraphQLProfile): ProfileRecord 
   return { username: user.login, githubId, name, website, social_accounts: socialAccounts, country }
 }
 
-const fetchProfileBatch = async (batch: { username: string, githubId: string }[]) => {
-  const variables = Object.fromEntries(batch.map((user, index) => [`l${index}`, user.username]))
-  const query = `query(${batch.map((_, index) => `$l${index}: String!`).join(', ')}) {
-    ${batch.map((_, index) => `u${index}: user(login: $l${index}) { ${PROFILE_FIELDS} }`).join('\n')}
+/** The `fields` of each user, by login, in one GraphQL query: `null` for an account that does not exist. */
+const queryUsers = async <T>(logins: string[], fields: string) => {
+  const variables = Object.fromEntries(logins.map((login, index) => [`l${index}`, login]))
+  const query = `query(${logins.map((_, index) => `$l${index}: String!`).join(', ')}) {
+    ${logins.map((_, index) => `u${index}: user(login: $l${index}) { ${fields} }`).join('\n')}
   }`
-  let data: Record<string, GraphQLProfile>
+  let data: Record<string, T | null>
   try {
-    data = await octokit.graphql<Record<string, GraphQLProfile>>(query, variables)
+    data = await octokit.graphql<Record<string, T | null>>(query, variables)
   }
   catch (error) {
     // A deleted or renamed account resolves to `null` with a NOT_FOUND error: keep the rest of the batch.
-    const response = error as { name?: string, data?: Record<string, GraphQLProfile>, errors?: { type?: string }[] }
+    const response = error as { name?: string, data?: Record<string, T | null>, errors?: { type?: string }[] }
     if (response.name !== 'GraphqlResponseError' || !response.data || response.errors?.some(item => item.type !== 'NOT_FOUND')) {
       throw error
     }
     data = response.data
   }
+  return logins.map((_, index) => data[`u${index}`] ?? null)
+}
+
+const fetchProfileBatch = async (batch: { username: string, githubId: string }[]) => {
+  const users = await queryUsers<NonNullable<GraphQLProfile>>(batch.map(user => user.username), PROFILE_FIELDS)
   return batch.flatMap((user, index) => {
-    const record = toProfileRecord(user.githubId, data[`u${index}`] ?? null)
+    const record = toProfileRecord(user.githubId, users[index] ?? null)
     return record ? [record] : []
   })
+}
+
+const GITHUB_LOGIN = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i
+
+/** Lowercased login → GitHub user. Logins without a GitHub account are left out. */
+const resolveUsers = async (logins: string[]) => {
+  const users = new Map<string, { login: string, id: number }>()
+  const valid = logins.filter(login => GITHUB_LOGIN.test(login))
+  for (let index = 0; index < valid.length; index += PROFILES_BATCH_SIZE) {
+    const batch = valid.slice(index, index + PROFILES_BATCH_SIZE)
+    const found = await queryUsers<{ login: string, databaseId: number | null }>(batch, 'login databaseId')
+    batch.forEach((login, position) => {
+      const user = found[position]
+      if (user?.databaseId) {
+        users.set(login.toLowerCase(), { login: user.login, id: user.databaseId })
+      }
+    })
+  }
+  return users
 }
 
 const collectProfiles = async (users: { username: string, githubId: string }[]) => {
